@@ -57,6 +57,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CommPort.cs" />
     <Compile Include="Util\ExceptionPolicy.cs" />
+    <Compile Include="Util\HartCommunication.cs" />
+    <Compile Include="Util\Packet.cs" />
     <Compile Include="Util\SingleInstance.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
