@@ -1,4 +1,4 @@
-﻿namespace LJH.HartTool
+﻿namespace HartTool
 {
     partial class FrmMain
     {

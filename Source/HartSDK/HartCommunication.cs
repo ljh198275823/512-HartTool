@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading ;
 using System.IO.Ports;
+using LJH.GeneralLibrary.ExceptionHandling;
 
-namespace LJH.HartTool.Util
+namespace HartSDK
 {
-    public delegate void PacketArrivedDelegate(object sender, Packet p);
+    public delegate void PacketArrivedDelegate(object sender, ResponsePacket p);
 
     public class HartCommunication
     {
-         #region 构造方法
+        #region 构造方法
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -51,6 +52,11 @@ namespace LJH.HartTool.Util
                 return _Port.IsOpen;
             }
         }
+
+        /// <summary>
+        /// 获取或设置是否进入调试模式
+        /// </summary>
+        public bool Debug { get; set; }
         #endregion 属性
 
         #region 事件
@@ -59,7 +65,7 @@ namespace LJH.HartTool.Util
         /// </summary>
         public event PacketArrivedDelegate PacketArrived;
 
-        protected virtual void OnPacketArrived(Packet p)
+        protected virtual void OnPacketArrived(ResponsePacket p)
         {
             if (this.PacketArrived != null) this.PacketArrived(this, p);
         }
@@ -98,7 +104,7 @@ namespace LJH.HartTool.Util
                             _Port.Read(data, 0, data.Length);
                             _Buffer.AddRange(data);
                         }
-                        Packet p = GetAPacket();
+                        ResponsePacket p = GetAPacket();
                         while (p != null)
                         {
                             if (p.PacketType == 0x01) //成组包,从设备主动上传的包
@@ -124,7 +130,7 @@ namespace LJH.HartTool.Util
             }
         }
 
-        private Packet GetAPacket()
+        private ResponsePacket GetAPacket()
         {
             lock (_DataLocker)
             {
@@ -142,7 +148,7 @@ namespace LJH.HartTool.Util
                                 byte[] temp = new byte[dlp - i + 1];
                                 _Buffer.CopyTo(i, temp, 0, temp.Length);
                                 _Buffer.RemoveRange(0, dlp + 1);
-                                return new Packet(temp);
+                                return new ResponsePacket(temp);
                                 break;
                             }
                         }

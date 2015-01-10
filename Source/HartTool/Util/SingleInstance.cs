@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace LJH.HartTool.Util
+namespace HartTool.Util
 {
     /// <summary>
     /// 这个类用于控制应用程序一次只有一个实例运行

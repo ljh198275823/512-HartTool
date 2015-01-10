@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace LJH.HartTool
+namespace HartTool
 {
     public partial class FrmMain : Form
     {

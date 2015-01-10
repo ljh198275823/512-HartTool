@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using LJH.HartTool.Util;
+using HartTool.Util;
 
-namespace LJH.HartTool
+namespace HartTool
 {
     static class Program
     {

@@ -4,9 +4,9 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 
-namespace HartTool.Util
+namespace LJH.GeneralLibrary.ExceptionHandling
 {
-    public static class ExceptionPolicy
+    internal static class ExceptionPolicy
     {
         #region 公共方法
         /// <summary>
