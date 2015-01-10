@@ -15,5 +15,10 @@ namespace HartTool
         {
             InitializeComponent();
         }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            comPortComboBox1.Init();
+        }
     }
 }

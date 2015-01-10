@@ -42,11 +42,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneralLibrary\BCDConverter.cs" />
+    <Compile Include="GeneralLibrary\ComPortCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralLibrary\ComPortCombobox.designer.cs">
+      <DependentUpon>ComPortCombobox.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralLibrary\CRCHelper.cs" />
     <Compile Include="GeneralLibrary\ExceptionPolicy.cs" />
     <Compile Include="GeneralLibrary\FileLog.cs" />
     <Compile Include="GeneralLibrary\HexStringConverter.cs" />
+    <Compile Include="GeneralLibrary\IntergerTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralLibrary\IntergerTextBox.designer.cs">
+      <DependentUpon>IntergerTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralLibrary\SEBinaryConverter.cs" />
+    <Compile Include="GeneralLibrary\StringHelper.cs" />
     <Compile Include="GeneralLibrary\TempFolderManager.cs" />
     <Compile Include="HartCommunication.cs" />
     <Compile Include="RequestPacket.cs" />

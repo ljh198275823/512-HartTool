@@ -39,6 +39,11 @@ namespace HartSDK
 
         private object _DataLocker = new object();
         private List<byte> _Buffer = new List<byte>();
+
+        private object _CommandLocker = new object();
+        private AutoResetEvent _DeviceResponsed = new AutoResetEvent(false);
+        private ResponsePacket _ResponsePacket = null;
+        private RequestPacket _RequestPakcet = null;
         #endregion 成员变量
 
         #region 属性
@@ -90,6 +95,24 @@ namespace HartSDK
             }
         }
 
+        /// <summary>
+        /// 将输出缓冲区中的数据发送出去
+        /// </summary>
+        private void SendData(byte[] outPut)
+        {
+            try
+            {
+                if (this.IsOpened)
+                {
+                    _Port.Write(outPut, 0, outPut.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex);
+            }
+        }
+
         private void ReadDataTask()
         {
             try
@@ -113,7 +136,11 @@ namespace HartSDK
                             }
                             else if (p.PacketType == 0x06) //从主包,从设备回复主设备
                             {
-
+                                if (_RequestPakcet != null && _RequestPakcet.Command == p.Command)
+                                {
+                                    _ResponsePacket = p;
+                                    _DeviceResponsed.Set(); //通知设备有回复
+                                }
                             }
                             p = GetAPacket();
                         }
@@ -149,7 +176,6 @@ namespace HartSDK
                                 _Buffer.CopyTo(i, temp, 0, temp.Length);
                                 _Buffer.RemoveRange(0, dlp + 1);
                                 return new ResponsePacket(temp);
-                                break;
                             }
                         }
                     }
@@ -184,7 +210,6 @@ namespace HartSDK
                 ExceptionPolicy.HandleException(ex);
             }
         }
-
         /// <summary>
         /// 关闭串口
         /// </summary>
@@ -206,21 +231,30 @@ namespace HartSDK
         }
 
         /// <summary>
-        /// 将输出缓冲区中的数据发送出去
+        /// 请求数据
         /// </summary>
-        public void SendData(byte[] outPut)
+        /// <param name="packet"></param>
+        /// <returns></returns>
+        public ResponsePacket Request(RequestPacket packet, int timeout = 2000)
         {
-            try
+            ResponsePacket ret = null;
+            lock (_CommandLocker)
             {
-                if (this.IsOpened)
+                _DeviceResponsed.Reset();
+                _RequestPakcet = packet;
+                _ResponsePacket = null;
+                byte[] cmd = _RequestPakcet.ToBytes();
+                if (cmd != null && cmd.Length > 0 && IsOpened)
                 {
-                    _Port.Write(outPut, 0, outPut.Length);
+                    SendData(cmd);
+                    if (_DeviceResponsed.WaitOne(timeout))
+                    {
+                        ret = _ResponsePacket;
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                ExceptionPolicy.HandleException(ex);
-            }
+            _RequestPakcet = null;
+            return ret;
         }
         #endregion 公开方法
     }
