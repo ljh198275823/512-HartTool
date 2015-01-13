@@ -62,6 +62,7 @@
     <Compile Include="GeneralLibrary\StringHelper.cs" />
     <Compile Include="GeneralLibrary\TempFolderManager.cs" />
     <Compile Include="HartCommunication.cs" />
+    <Compile Include="PacketQueue.cs" />
     <Compile Include="RequestPacket.cs" />
     <Compile Include="ResponsePacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

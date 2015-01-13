@@ -37,8 +37,7 @@ namespace HartSDK
         private string _PortName;
         private Thread _ReadDataTread = null;
 
-        private object _DataLocker = new object();
-        private List<byte> _Buffer = new List<byte>();
+        private PacketQueue _Buffer = new PacketQueue();
 
         private object _CommandLocker = new object();
         private AutoResetEvent _DeviceResponsed = new AutoResetEvent(false);
@@ -121,29 +120,26 @@ namespace HartSDK
                 {
                     if (_Port.BytesToRead > 0)
                     {
-                        lock (_DataLocker)
+                        byte[] data = new byte[_Port.BytesToRead];
+                        _Port.Read(data, 0, data.Length);
+                        _Buffer.AppendData(data);
+                    }
+                    ResponsePacket p = _Buffer.Dequeue();
+                    while (p != null)
+                    {
+                        if (p.PacketType == 0x01) //成组包,从设备主动上传的包
                         {
-                            byte[] data = new byte[_Port.BytesToRead];
-                            _Port.Read(data, 0, data.Length);
-                            _Buffer.AddRange(data);
+                            OnPacketArrived(p);
                         }
-                        ResponsePacket p = GetAPacket();
-                        while (p != null)
+                        else if (p.PacketType == 0x06) //从主包,从设备回复主设备
                         {
-                            if (p.PacketType == 0x01) //成组包,从设备主动上传的包
+                            if (_RequestPakcet != null && _RequestPakcet.Command == p.Command)
                             {
-                                OnPacketArrived(p);
+                                _ResponsePacket = p;
+                                _DeviceResponsed.Set(); //通知设备有回复
                             }
-                            else if (p.PacketType == 0x06) //从主包,从设备回复主设备
-                            {
-                                if (_RequestPakcet != null && _RequestPakcet.Command == p.Command)
-                                {
-                                    _ResponsePacket = p;
-                                    _DeviceResponsed.Set(); //通知设备有回复
-                                }
-                            }
-                            p = GetAPacket();
                         }
+                        p = _Buffer.Dequeue();
                     }
                     Thread.Sleep(50);
                 }
@@ -157,32 +153,6 @@ namespace HartSDK
             }
         }
 
-        private ResponsePacket GetAPacket()
-        {
-            lock (_DataLocker)
-            {
-                if (_Buffer.Count < 7) return null;
-                for (int i = 0; i < _Buffer.Count; i++)
-                {
-                    if (_Buffer[i] == 0xFF && _Buffer[i + 1] == 0xFF && _Buffer[i + 2] != 0xFF) //至少两个0xFF 作为前导符
-                    {
-                        int dlp = i + 2 + ((_Buffer[i + 1] & 0x80) == 0x80 ? 5 : 1) + 1 + 1; //包中表示数据长度所在的位置
-                        if (dlp < _Buffer.Count) //定位到数据长度字节
-                        {
-                            dlp += _Buffer[dlp] + 1;
-                            if (dlp < _Buffer.Count) //缓存中已经包含一个包了
-                            {
-                                byte[] temp = new byte[dlp - i + 1];
-                                _Buffer.CopyTo(i, temp, 0, temp.Length);
-                                _Buffer.RemoveRange(0, dlp + 1);
-                                return new ResponsePacket(temp);
-                            }
-                        }
-                    }
-                }
-            }
-            return null;
-        }
         #endregion 私有方法
 
         #region 公开方法
@@ -256,6 +226,6 @@ namespace HartSDK
             _RequestPakcet = null;
             return ret;
         }
-        #endregion 公开方法
+        #endregion
     }
 }
