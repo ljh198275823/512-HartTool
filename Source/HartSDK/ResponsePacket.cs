@@ -5,9 +5,12 @@ using System.Text;
 
 namespace HartSDK
 {
+
     /// <summary>
-    /// 表示一个收到的HART帧, 结构 前导字节(2字节) + 界定(1字节) + 设备地址(1或5字节) + 命令(1字节) + 数据长度(1字节) + 数据(0-n字节) + CRC(1字节)
+    /// 表示一个返回帧
     /// </summary>
+    // 结构 前导字节(2字节) + 界定(1字节) + 设备地址(1或5字节) + 命令(1字节) + 数据长度(1字节) + 数据(0-n字节) + CRC(1字节)
+    // 前导符：设备回复此帧时可能在通讯上有超过两个字节的前导帧，但这里为了简便管理，统一取两个字节
     public class ResponsePacket
     {
         #region 构造函数
@@ -44,7 +47,6 @@ namespace HartSDK
                 return -1;
             }
         }
-
         /// <summary>
         /// 获取帧的设备地址,长帧用38位表示，短帧用4位表示
         /// </summary>
@@ -102,15 +104,15 @@ namespace HartSDK
             {
                 int dlen = 0;
                 int dp = 0;
-                if (LongOrShort == 1 && _Data.Length > 10)
+                if (LongOrShort == 1 && _Data.Length > 12)
                 {
-                    dlen = _Data[9];
-                    dp = 10;
+                    dlen = _Data[9] - 2; //数据部分的前两个字节有其它用途
+                    dp = 12;
                 }
-                if (LongOrShort == 0 && _Data.Length > 6)
+                if (LongOrShort == 0 && _Data.Length > 8)
                 {
-                    dlen = _Data[5];
-                    dp = 6;
+                    dlen = _Data[5] - 2; //数据部分的前两个字节有其它用途
+                    dp = 8;
                 }
                 if (dlen > 0)
                 {
@@ -128,10 +130,8 @@ namespace HartSDK
         {
             get
             {
-                if (PacketType == 6 && DataContent != null && DataContent.Length >= 1)
-                {
-                    return DataContent[0];
-                }
+                if (LongOrShort == 1 && _Data.Length > 10) return _Data[10];
+                if (LongOrShort == 0 && _Data.Length > 6) return _Data[6];
                 return -1;
             }
         }
@@ -142,10 +142,8 @@ namespace HartSDK
         {
             get
             {
-                if (PacketType == 6 && DataContent != null && DataContent.Length >= 2)
-                {
-                    return DataContent[1];
-                }
+                if (LongOrShort == 1 && _Data.Length > 11) return _Data[11];
+                if (LongOrShort == 0 && _Data.Length > 7) return _Data[7];
                 return -1;
             }
         }
@@ -156,6 +154,14 @@ namespace HartSDK
         {
             get
             {
+                if (DataContent == null || DataContent.Length == 0) return false;
+                if ((DataContent[0] & 0x80) == 0x80) return false;  //通讯状态bit7为1表示通讯错误
+                byte[] temp = new byte[_Data.Length - 3]; //去掉前导两个0xFF 0xFF 和未尾的CRC
+                //计算CRC
+                Array.Copy(_Data, 2, temp, 0, temp.Length);
+                byte crc = LJH.GeneralLibrary.CRCHelper.CalCRC(temp);
+                if (crc != _Data[_Data.Length - 1]) return false;
+
                 return true;
             }
         }

@@ -57,7 +57,7 @@ namespace HartSDK
             temp.Add((byte)(DataContent != null && DataContent.Length > 0 ? DataContent.Length : 0)); //数据长度
             if (DataContent != null && DataContent.Length > 0) temp.AddRange(DataContent);
             temp.Add(LJH.GeneralLibrary.CRCHelper.CalCRC(temp));
-            temp.InsertRange(0, new byte[] { 0xFF, 0xFF });
+            temp.InsertRange(0, new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }); //5个字节的前导符
             return temp.ToArray();
         }
 

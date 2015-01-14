@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading ;
 using System.IO.Ports;
+using LJH.GeneralLibrary;
 using LJH.GeneralLibrary.ExceptionHandling;
 
 namespace HartSDK
@@ -199,7 +200,6 @@ namespace HartSDK
                 ExceptionPolicy.HandleException(ex);
             }
         }
-
         /// <summary>
         /// 请求数据
         /// </summary>
@@ -224,6 +224,74 @@ namespace HartSDK
                 }
             }
             _RequestPakcet = null;
+            return ret;
+        }
+        #endregion
+
+        #region 设备参数获取和设置相关方法
+        /// <summary>
+        /// 读取设备唯一标识
+        /// </summary>
+        public UniqueIdentifier ReadUniqueID(int shortAddress)
+        {
+            UniqueIdentifier ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 0, Address = shortAddress, Command = 0x00 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 12)
+            {
+                ret = new UniqueIdentifier();
+                ret.ManufactureID = response.DataContent[1];
+                ret.ManufactureDeviceType = response.DataContent[2];
+                ret.DeviceID = LJH.GeneralLibrary.SEBinaryConverter.BytesToInt(new byte[] { response.DataContent[11], response.DataContent[10], response.DataContent[9] });
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取设备的主变量
+        /// </summary>
+        public DeviceVariable ReadPV(long longAddress)
+        {
+            DeviceVariable ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 5)
+            {
+                ret = new DeviceVariable();
+                ret.UnitCode = response.DataContent[0];
+                ret.Value = BitConverter.ToSingle(new byte[] { response.DataContent[1], response.DataContent[2], response.DataContent[3], response.DataContent[4] }, 0);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取设备标签信息
+        /// </summary>
+        public DeviceTagInfo ReadTag(long longAddress)
+        {
+            DeviceTagInfo ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 21)
+            {
+                byte[] d = response.DataContent;
+                ret = new DeviceTagInfo();
+                ret.Tag = HexStringConverter.HexToString(new byte[] { d[0], d[1], d[2], d[3], d[4], d[5] }, string.Empty);   //字节0-5
+                ret.Description = HexStringConverter.HexToString(new byte[] { d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15], d[16], d[17] }, string.Empty); //字节6-17
+                ret.Date = new DateTime(1990 + d[20], d[19], d[18]);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取设备消息
+        /// </summary>
+        public string ReadMessage(long longAddress)
+        {
+            string ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 24)
+            {
+                ret = HexStringConverter.HexToString(response.DataContent, string.Empty);   //字节0-23
+            }
             return ret;
         }
         #endregion

@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentInfo.cs" />
+    <Compile Include="DeviceTagInfo.cs" />
+    <Compile Include="DeviceVariable.cs" />
     <Compile Include="GeneralLibrary\BCDConverter.cs" />
     <Compile Include="GeneralLibrary\ComPortCombobox.cs">
       <SubType>Component</SubType>
@@ -62,10 +65,13 @@
     <Compile Include="GeneralLibrary\StringHelper.cs" />
     <Compile Include="GeneralLibrary\TempFolderManager.cs" />
     <Compile Include="HartCommunication.cs" />
+    <Compile Include="OutputInfo.cs" />
     <Compile Include="PacketQueue.cs" />
     <Compile Include="RequestPacket.cs" />
     <Compile Include="ResponsePacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorInfo.cs" />
+    <Compile Include="UniqueIdentifier.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

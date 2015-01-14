@@ -19,7 +19,7 @@ namespace UnitTest1
             que.AppendData(new byte[] { 0xFF, 0xFF, 0x82, 0xA6, 0x06, 0xBC, 0x61, 0x4E, 0x01, 0x00, 0xB0 });
             p = que.Dequeue();
             Assert.IsTrue(p != null);
-            Assert.IsTrue(p.IsValid);
+            Assert.IsTrue(!p.IsValid);  //请求帧的数据不能通过返回帧的有效性检测
             p = que.Dequeue();
             Assert.IsTrue(p == null);
 
@@ -48,7 +48,15 @@ namespace UnitTest1
             Assert.IsTrue(p.IsValid);
             p = que.Dequeue();
             Assert.IsTrue(p != null);
+            Assert.IsTrue(!p.IsValid);  //请求帧的数据不能通过返回帧的有效性检测
+
+            que.AppendData(new byte[] { 0xFF, 0xFF, 0x56, 0x25 });
+            que.AppendData(new byte[] { 0xFF, 0xFF, 0x86, 0xA6, 0x06, 0xBC, 0x61, 0x4E, 0x01, 0x07, 0x00, 0x00, 0x06, 0x40, 0xB0, 0x00, 0x00, 0x45 });
+            p = que.Dequeue();
+            Assert.IsTrue(p != null);
             Assert.IsTrue(p.IsValid);
+            Assert.IsTrue(p.DataContent != null);
+            Assert.IsTrue(p.DataContent.Length == 5);
         }
     }
 }
