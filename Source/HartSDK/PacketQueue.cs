@@ -31,6 +31,14 @@ namespace HartSDK
                 }
             }
         }
+
+        public void Clear()
+        {
+            lock (_DataLocker)
+            {
+                _Data.Clear();
+            }
+        }
         /// <summary>
         /// 从数据中取出最早的一个回复帧,如果数据里面没有返回空
         /// </summary>
@@ -39,24 +47,34 @@ namespace HartSDK
         {
             lock (_DataLocker)
             {
-                if (_Data.Count < 7) return null;
-                for (int i = 0; i < _Data.Count; i++)
+                try
                 {
-                    if (_Data[i] == 0xFF && _Data[i + 1] == 0xFF && _Data[i + 2] != 0xFF) //至少两个0xFF 作为前导符
+                    while (_Data.Count > 0 && _Data[0] != 0xFF)
                     {
-                        int dlp = i + 2 + ((_Data[i + 1] & 0x80) == 0x80 ? 5 : 1) + 1 + 1; //包中表示数据长度所在的位置
-                        if (dlp < _Data.Count) //定位到数据长度字节
+                        _Data.RemoveAt(0);
+                    }
+                    if (_Data.Count < 7) return null;
+                    for (int i = 0; i < _Data.Count; i++)
+                    {
+                        if (_Data[i] == 0xFF && _Data[i + 1] == 0xFF && _Data[i + 2] != 0xFF) //至少两个0xFF 作为前导符
                         {
-                            dlp += _Data[dlp] + 1;
-                            if (dlp < _Data.Count) //缓存中已经包含一个包了
+                            int dlp = i + 2 + ((_Data[i + 2] & 0x80) == 0x80 ? 5 : 1) + 1 + 1; //包中表示数据长度所在的位置
+                            if (dlp < _Data.Count) //定位到数据长度字节
                             {
-                                byte[] temp = new byte[dlp - i + 1];
-                                _Data.CopyTo(i, temp, 0, temp.Length);
-                                _Data.RemoveRange(0, dlp + 1);
-                                return new ResponsePacket(temp);
+                                dlp += _Data[dlp] + 1;
+                                if (dlp < _Data.Count) //缓存中已经包含一个包了
+                                {
+                                    byte[] temp = new byte[dlp - i + 1];
+                                    _Data.CopyTo(i, temp, 0, temp.Length);
+                                    _Data.RemoveRange(0, dlp + 1);
+                                    return new ResponsePacket(temp);
+                                }
                             }
                         }
                     }
+                }
+                catch (Exception ex)
+                {
                 }
             }
             return null;

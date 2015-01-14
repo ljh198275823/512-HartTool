@@ -35,6 +35,7 @@ namespace HartSDK
 
         #region 成员变量
         private SerialPort _Port;
+        private object _PortLocker = new object();
         private string _PortName;
         private Thread _ReadDataTread = null;
 
@@ -89,7 +90,7 @@ namespace HartSDK
         {
             try
             {
-                _Port = new SerialPort(portName, baud);
+                _Port = new SerialPort(portName, baud, Parity.Odd);
             }
             catch (Exception ex)
             {
@@ -104,9 +105,15 @@ namespace HartSDK
         {
             try
             {
-                if (this.IsOpened)
+                lock (_PortLocker)
                 {
-                    _Port.Write(outPut, 0, outPut.Length);
+                    _Port.RtsEnable = true;
+                    if (this.IsOpened)
+                    {
+                        if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "发送数据:" + HexStringConverter.HexToString(outPut, " "));
+                        _Port.Write(outPut, 0, outPut.Length);
+                        Thread.Sleep(1000);
+                    }
                 }
             }
             catch (Exception ex)
@@ -121,31 +128,37 @@ namespace HartSDK
             {
                 while (true)
                 {
-                    if (_Port.BytesToRead > 0)
+                    lock (_PortLocker)
                     {
-                        byte[] data = new byte[_Port.BytesToRead];
-                        _Port.Read(data, 0, data.Length);
-                        _Buffer.AppendData(data);
-                    }
-                    ResponsePacket p = _Buffer.Dequeue();
-                    while (p != null)
-                    {
-                        if (p.PacketType == 0x01) //成组包,从设备主动上传的包
+                        _Port.RtsEnable = false;
+                        _Port.DtrEnable = true;
+                        if (_Port.BytesToRead > 0)
                         {
-                            OnPacketArrived(p);
-                        }
-                        else if (p.PacketType == 0x06) //从主包,从设备回复主设备
-                        {
-                            if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == _ResponsePacket.Address)
+                            byte[] data = new byte[_Port.BytesToRead];
+                            _Port.Read(data, 0, data.Length);
+                            _Buffer.AppendData(data);
+                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "缓存数据:" + HexStringConverter.HexToString(data, " "));
+                            ResponsePacket p = _Buffer.Dequeue();
+                            while (p != null)
                             {
-                                _ResponsePacket = p;
-                                _DeviceResponsed.Set(); //通知设备有回复
+                                if (p.PacketType == 0x01) //成组包,从设备主动上传的包
+                                {
+                                    OnPacketArrived(p);
+                                }
+                                else if (p.PacketType == 0x06) //从主包,从设备回复主设备
+                                {
+                                    if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == p.Address)
+                                    {
+                                        _ResponsePacket = p;
+                                        _DeviceResponsed.Set(); //通知设备有回复
+                                    }
+                                }
+                                p = _Buffer.Dequeue();
                             }
                         }
-                        p = _Buffer.Dequeue();
                     }
-                    Thread.Sleep(50);
                 }
+                Thread.Sleep(50);
             }
             catch (ThreadAbortException ex)
             {
@@ -155,7 +168,6 @@ namespace HartSDK
                 ExceptionPolicy.HandleException(ex);
             }
         }
-
         #endregion 私有方法
 
         #region 公开方法
@@ -207,7 +219,7 @@ namespace HartSDK
         /// </summary>
         /// <param name="packet"></param>
         /// <returns></returns>
-        public ResponsePacket Request(RequestPacket packet, int timeout = 1000)
+        public ResponsePacket Request(RequestPacket packet, int timeout = 2000)
         {
             ResponsePacket ret = null;
             lock (_CommandLocker)
@@ -216,8 +228,9 @@ namespace HartSDK
                 _RequestPakcet = packet;
                 _ResponsePacket = null;
                 byte[] cmd = _RequestPakcet.ToBytes();
-                if (cmd != null && cmd.Length > 0 && IsOpened)
+                if (cmd != null && cmd.Length > 0)
                 {
+                    _Buffer.Clear();
                     SendData(cmd);
                     if (_DeviceResponsed.WaitOne(timeout))
                     {

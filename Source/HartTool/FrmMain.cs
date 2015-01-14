@@ -35,9 +35,11 @@ namespace HartTool
             {
                 _HartComm = new HartSDK.HartCommunication(comPortComboBox1.ComPort, 1200);
                 _HartComm.Open();
+                _HartComm.Debug = true;
                 btnOpen.Enabled = !_HartComm.IsOpened;
                 btnClose.Enabled = _HartComm.IsOpened;
-                if (_HartComm.IsOpened) lblCommportState.Text = string.Format("通讯串口已打开");
+                lblCommportState.Text = string.Format(_HartComm .IsOpened ?"通讯串口已打开":"通讯串口打开失败");
+                lblCommportState.ForeColor = _HartComm.IsOpened ? Color.Blue : Color.Red;
             }
             else
             {
@@ -62,7 +64,7 @@ namespace HartTool
                 return;
             }
             cmbShortAddress.Items.Clear();
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 1; i++)
             {
                 RequestPacket p = new RequestPacket()
                 {
