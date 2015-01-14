@@ -44,6 +44,8 @@ namespace HartSDK
         private AutoResetEvent _DeviceResponsed = new AutoResetEvent(false);
         private ResponsePacket _ResponsePacket = null;
         private RequestPacket _RequestPakcet = null;
+
+        private string _LastError;
         #endregion 成员变量
 
         #region 属性
@@ -134,7 +136,7 @@ namespace HartSDK
                         }
                         else if (p.PacketType == 0x06) //从主包,从设备回复主设备
                         {
-                            if (_RequestPakcet != null && _RequestPakcet.Command == p.Command)
+                            if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == _ResponsePacket.Address)
                             {
                                 _ResponsePacket = p;
                                 _DeviceResponsed.Set(); //通知设备有回复
@@ -205,7 +207,7 @@ namespace HartSDK
         /// </summary>
         /// <param name="packet"></param>
         /// <returns></returns>
-        public ResponsePacket Request(RequestPacket packet, int timeout = 2000)
+        public ResponsePacket Request(RequestPacket packet, int timeout = 1000)
         {
             ResponsePacket ret = null;
             lock (_CommandLocker)
@@ -219,12 +221,32 @@ namespace HartSDK
                     SendData(cmd);
                     if (_DeviceResponsed.WaitOne(timeout))
                     {
-                        ret = _ResponsePacket;
+                        if (_ResponsePacket.ResponseOk)
+                        {
+                            ret = _ResponsePacket;
+                            _LastError = string.Empty;
+                        }
+                        else
+                        {
+                            _LastError = string.Format("通讯状态:{0} 设备状态:{1}", _ResponsePacket.CommunicationError_Str(), _ResponsePacket.DeviceStatus_Str());
+                        }
+                    }
+                    else
+                    {
+                        _LastError = "设备没有回复";
                     }
                 }
             }
             _RequestPakcet = null;
             return ret;
+        }
+        /// <summary>
+        /// 获取最后一次操作的错误描述
+        /// </summary>
+        /// <returns></returns>
+        public string GetLastError()
+        {
+            return _LastError;
         }
         #endregion
 
