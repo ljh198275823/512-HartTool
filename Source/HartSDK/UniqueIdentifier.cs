@@ -31,13 +31,19 @@ namespace HartSDK
         #endregion
 
         #region 公共方法
-        public long ConvertToLongAddress()
+        /// <summary>
+        /// 获取设备的长地址
+        /// </summary>
+        public long LongAddress
         {
-            long ret = ManufactureID & 0x3F;
-            ret = ret << 32;
-            ret += (long)ManufactureDeviceType << 24;
-            ret += DeviceID;
-            return ret;
+            get
+            {
+                long ret = ManufactureID & 0x3F;
+                ret = ret << 32;
+                ret += (long)ManufactureDeviceType << 24;
+                ret += DeviceID;
+                return ret;
+            }
         }
         #endregion
     }

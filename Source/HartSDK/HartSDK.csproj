@@ -52,6 +52,18 @@
       <DependentUpon>ComPortCombobox.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneralLibrary\CRCHelper.cs" />
+    <Compile Include="GeneralLibrary\DBCTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralLibrary\DBCTextBox.designer.cs">
+      <DependentUpon>DBCTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralLibrary\DecimalTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralLibrary\DecimalTextBox.designer.cs">
+      <DependentUpon>DecimalTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralLibrary\ExceptionPolicy.cs" />
     <Compile Include="GeneralLibrary\FileLog.cs" />
     <Compile Include="GeneralLibrary\HexStringConverter.cs" />
@@ -64,7 +76,7 @@
     <Compile Include="GeneralLibrary\SEBinaryConverter.cs" />
     <Compile Include="GeneralLibrary\StringHelper.cs" />
     <Compile Include="GeneralLibrary\TempFolderManager.cs" />
-    <Compile Include="HartCommunication.cs" />
+    <Compile Include="HartComport.cs" />
     <Compile Include="OutputInfo.cs" />
     <Compile Include="PacketQueue.cs" />
     <Compile Include="RequestPacket.cs" />

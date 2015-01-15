@@ -12,7 +12,10 @@ namespace HartSDK
 {
     public delegate void PacketArrivedDelegate(object sender, ResponsePacket p);
 
-    public class HartCommunication
+    /// <summary>
+    /// 表示HART 通讯串口
+    /// </summary>
+    public class HartComport
     {
         #region 构造方法
         /// <summary>
@@ -20,13 +23,13 @@ namespace HartSDK
         /// </summary>
         /// <param name="portNum">串口号</param>
         /// <param name="baud">波特率</param>
-        public HartCommunication(byte portNum, int baud)
+        public HartComport(byte portNum, int baud)
         {
             _PortName = "COM" + portNum;
             InitCommPort(_PortName, baud);
         }
 
-        public HartCommunication(string portName, int baud)
+        public HartComport(string portName, int baud)
         {
             _PortName = portName;
             InitCommPort(_PortName, baud);
@@ -80,12 +83,6 @@ namespace HartSDK
         #endregion 事件
 
         #region 私有方法
-        /// <summary>
-        /// 初始化串口
-        /// </summary>
-        /// <param name="_portNum">端口号</param>
-        /// <param name="_settings">通信参数</param>
-        /// <param name="_rThreshold">触发事件阀值</param>
         private void InitCommPort(string portName, int baud)
         {
             try
@@ -98,9 +95,6 @@ namespace HartSDK
             }
         }
 
-        /// <summary>
-        /// 将输出缓冲区中的数据发送出去
-        /// </summary>
         private void SendData(byte[] outPut)
         {
             try
@@ -112,7 +106,7 @@ namespace HartSDK
                     {
                         if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "发送数据:" + HexStringConverter.HexToString(outPut, " "));
                         _Port.Write(outPut, 0, outPut.Length);
-                        Thread.Sleep(1000);
+                        //Thread.Sleep(1000);
                     }
                 }
             }
@@ -122,43 +116,60 @@ namespace HartSDK
             }
         }
 
+        private byte[] ReadData()
+        {
+            try
+            {
+                lock (_PortLocker)
+                {
+                    _Port.RtsEnable = false;
+                    _Port.DtrEnable = true;
+                    if (_Port.BytesToRead > 0)
+                    {
+                        byte[] data = new byte[_Port.BytesToRead];
+                        _Port.Read(data, 0, data.Length);
+                        return data;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex);
+            }
+            return null;
+        }
+
         private void ReadDataTask()
         {
             try
             {
                 while (true)
                 {
-                    lock (_PortLocker)
+                    byte[] data = ReadData(); //从串口中读取数据
+                    if (data != null && data.Length > 0)
                     {
-                        _Port.RtsEnable = false;
-                        _Port.DtrEnable = true;
-                        if (_Port.BytesToRead > 0)
+                        _Buffer.AppendData(data);
+                        if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "收到数据:" + HexStringConverter.HexToString(data, " "));
+                        ResponsePacket p = _Buffer.Dequeue();
+                        while (p != null)
                         {
-                            byte[] data = new byte[_Port.BytesToRead];
-                            _Port.Read(data, 0, data.Length);
-                            _Buffer.AppendData(data);
-                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "缓存数据:" + HexStringConverter.HexToString(data, " "));
-                            ResponsePacket p = _Buffer.Dequeue();
-                            while (p != null)
+                            if (p.PacketType == 0x01) //成组包,从设备主动上传的包
                             {
-                                if (p.PacketType == 0x01) //成组包,从设备主动上传的包
-                                {
-                                    OnPacketArrived(p);
-                                }
-                                else if (p.PacketType == 0x06) //从主包,从设备回复主设备
-                                {
-                                    if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == p.Address)
-                                    {
-                                        _ResponsePacket = p;
-                                        _DeviceResponsed.Set(); //通知设备有回复
-                                    }
-                                }
-                                p = _Buffer.Dequeue();
+                                OnPacketArrived(p);
                             }
+                            else if (p.PacketType == 0x06) //从主包,从设备回复主设备
+                            {
+                                if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == p.Address)
+                                {
+                                    _ResponsePacket = p;
+                                    _DeviceResponsed.Set(); //通知设备有回复
+                                }
+                            }
+                            p = _Buffer.Dequeue();
                         }
+                        Thread.Sleep(100);
                     }
                 }
-                Thread.Sleep(50);
             }
             catch (ThreadAbortException ex)
             {
@@ -224,12 +235,12 @@ namespace HartSDK
             ResponsePacket ret = null;
             lock (_CommandLocker)
             {
-                _DeviceResponsed.Reset();
-                _RequestPakcet = packet;
-                _ResponsePacket = null;
-                byte[] cmd = _RequestPakcet.ToBytes();
+                byte[] cmd = packet.ToBytes();
                 if (cmd != null && cmd.Length > 0)
                 {
+                    _DeviceResponsed.Reset();
+                    _RequestPakcet = packet;
+                    _ResponsePacket = null;
                     _Buffer.Clear();
                     SendData(cmd);
                     if (_DeviceResponsed.WaitOne(timeout))
@@ -250,7 +261,6 @@ namespace HartSDK
                     }
                 }
             }
-            _RequestPakcet = null;
             return ret;
         }
         /// <summary>
@@ -294,6 +304,23 @@ namespace HartSDK
                 ret = new DeviceVariable();
                 ret.UnitCode = response.DataContent[0];
                 ret.Value = BitConverter.ToSingle(new byte[] { response.DataContent[1], response.DataContent[2], response.DataContent[3], response.DataContent[4] }, 0);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取电流和量程百分比
+        /// </summary>
+        public CurrentInfo ReadCurrent(long longAddress)
+        {
+            CurrentInfo ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x02 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 8)
+            {
+                byte[] d = response.DataContent;
+                ret = new CurrentInfo();
+                ret.Current = BitConverter.ToSingle(new byte[] { d[0], d[1], d[2], d[3] }, 0);
+                ret.PercentOfRange = BitConverter.ToSingle(new byte[] { d[4], d[5], d[6], d[7] }, 0);
             }
             return ret;
         }

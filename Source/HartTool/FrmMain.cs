@@ -18,8 +18,31 @@ namespace HartTool
         }
 
         #region 私有变量
-        private HartSDK.HartCommunication _HartComm = null;
+        private HartSDK.HartComport _HartComm = null;
         private int _ShortAddress = 0;
+        private UniqueIdentifier _CurUI = null;
+        #endregion
+
+        #region 私有方法
+        private void ReadDevice()
+        {
+            _CurUI = null;
+            if (_HartComm != null && _HartComm.IsOpened && int.TryParse(cmbShortAddress.Text, out _ShortAddress))
+            {
+                _CurUI = _HartComm.ReadUniqueID(_ShortAddress);
+                txtDeviceID.IntergerValue = _CurUI != null ? _CurUI.DeviceID : 0;
+                if (_CurUI != null)
+                {
+                    DeviceTagInfo tag = _HartComm.ReadTag(_CurUI.LongAddress);
+                    txtTag.Text = tag != null ? tag.Tag : string.Empty;
+                    txtDescr.Text = tag != null ? tag.Description : string.Empty;
+                    txtYear.IntergerValue = tag != null ? tag.Date.Year : 0;
+                    txtMonth.IntergerValue = tag != null ? tag.Date.Month : 0;
+                    txtDay.IntergerValue = tag != null ? tag.Date.Day : 0;
+                    txtMessage.Text = _HartComm.ReadMessage(_CurUI.LongAddress);
+                }
+            }
+        }
         #endregion
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -33,13 +56,14 @@ namespace HartTool
             if (_HartComm != null) _HartComm.Close();
             if (comPortComboBox1.ComPort > 0)
             {
-                _HartComm = new HartSDK.HartCommunication(comPortComboBox1.ComPort, 1200);
+                _HartComm = new HartSDK.HartComport(comPortComboBox1.ComPort, 1200);
                 _HartComm.Open();
                 _HartComm.Debug = true;
                 btnOpen.Enabled = !_HartComm.IsOpened;
                 btnClose.Enabled = _HartComm.IsOpened;
-                lblCommportState.Text = string.Format(_HartComm .IsOpened ?"通讯串口已打开":"通讯串口打开失败");
+                lblCommportState.Text = string.Format(_HartComm.IsOpened ? "通讯串口已打开" : "通讯串口打开失败");
                 lblCommportState.ForeColor = _HartComm.IsOpened ? Color.Blue : Color.Red;
+                ReadDevice();
             }
             else
             {
@@ -55,32 +79,36 @@ namespace HartTool
             lblCommportState.Text = string.Empty;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void cmbShortAddress_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int count = 0;
-            if (_HartComm == null || !_HartComm.IsOpened)
+            ReadDevice();
+        }
+
+        private void btnRealTime_Click(object sender, EventArgs e)
+        {
+            if (tmrRealTime.Enabled)
             {
-                MessageBox.Show("通讯串口打开失败");
-                return;
+                tmrRealTime.Enabled = false;
+                btnRealTime.Text = "实时采集";
             }
-            cmbShortAddress.Items.Clear();
-            for (int i = 0; i < 1; i++)
+            else
             {
-                RequestPacket p = new RequestPacket()
+                if (_CurUI != null)
                 {
-                    LongOrShort = 0,
-                    Address = i,
-                    Command = 0x00,
-                    DataContent = null
-                };
-                ResponsePacket response = _HartComm.Request(p);
-                if (response != null)
-                {
-                    cmbShortAddress.Items.Add(i);
-                    count++;
+                    tmrRealTime.Enabled = true;
+                    btnRealTime.Text = "停止采集";
                 }
             }
-            MessageBox.Show(string.Format("共搜索到 {0} 个设备", count), "搜索结果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void tmrRealTime_Tick(object sender, EventArgs e)
+        {
+            if (_CurUI == null) return;
+            DeviceVariable pv = _HartComm.ReadPV(_CurUI.LongAddress);
+            txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
+            CurrentInfo ci = _HartComm.ReadCurrent(_CurUI.LongAddress);
+            txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
+            txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
         }
     }
 }

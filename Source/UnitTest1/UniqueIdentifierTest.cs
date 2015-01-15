@@ -16,7 +16,7 @@ namespace UnitTest1
         public void ConvertTest()
         {
             HartSDK.UniqueIdentifier uid = new HartSDK.UniqueIdentifier { ManufactureID = 0x16, ManufactureDeviceType = 0x7C, DeviceID = 201785 };
-            long lng = uid.ConvertToLongAddress();
+            long lng = uid.LongAddress;
             Assert.IsTrue(lng == 0x167C031439);
         }
     }
