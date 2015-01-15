@@ -40,6 +40,10 @@ namespace HartTool
                     txtMonth.IntergerValue = tag != null ? tag.Date.Month : 0;
                     txtDay.IntergerValue = tag != null ? tag.Date.Day : 0;
                     txtMessage.Text = _HartComm.ReadMessage(_CurUI.LongAddress);
+                    OutputInfo oi = _HartComm.ReadOutput(_CurUI.LongAddress);
+                    txtLowRange.DecimalValue = (decimal)(oi != null ? oi.LowerRangeValue : 0);
+                    txtUpperRange.DecimalValue = (decimal)(oi != null ? oi.UpperRangeValue : 0);
+                    txtDampValue.DecimalValue = (decimal)(oi != null ? oi.DampingValue : 0);
                 }
             }
         }

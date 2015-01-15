@@ -356,6 +356,49 @@ namespace HartSDK
             }
             return ret;
         }
+        /// <summary>
+        /// 读取主变量传感器信息
+        /// </summary>
+        public SensorInfo ReadPVSensor(long longAddress)
+        {
+            SensorInfo ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 17)
+            {
+                byte[] d = response.DataContent;
+                ret = new SensorInfo();
+                ret.SensorSN = SEBinaryConverter.BytesToInt(new byte[] { d[2], d[1], d[0] });
+                ret.UnitCode = d[3];
+                ret.UpperLimit = BitConverter.ToSingle(new byte[] { d[4], d[5], d[6], d[7] }, 0);
+                ret.LowerLimit = BitConverter.ToSingle(new byte[] { d[8], d[9], d[10], d[11] }, 0);
+                ret.MinimumSpan = BitConverter.ToSingle(new byte[] { d[12], d[13], d[14], d[15] }, 0);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取模拟输出信息
+        /// </summary>
+        public OutputInfo ReadOutput(long longAddress)
+        {
+            OutputInfo ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 17)
+            {
+                byte[] d = response.DataContent;
+                ret = new OutputInfo();
+                ret.AlarmSelectCode = d[0];
+                ret.TransferFunctionCode = d[1];
+                ret.PVUnitCode = d[2];
+                ret.UpperRangeValue = BitConverter.ToSingle(new byte[] { d[3], d[4], d[5], d[6] }, 0);
+                ret.LowerRangeValue = BitConverter.ToSingle(new byte[] { d[7], d[8], d[9], d[10] }, 0);
+                ret.DampingValue = BitConverter.ToSingle(new byte[] { d[11], d[12], d[13], d[14] }, 0);
+                ret.WriteProtectCode = d[15];
+                ret.PrivateLabelDistributorCode = d[16];
+            }
+            return ret;
+        }
         #endregion
     }
 }

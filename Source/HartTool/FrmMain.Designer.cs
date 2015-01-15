@@ -68,12 +68,19 @@
             this.txtCurrent = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtPV = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.tmrRealTime = new System.Windows.Forms.Timer(this.components);
-            this.decimalTextBox5 = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
-            this.decimalTextBox4 = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.txtUpperRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.txtLowRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.comPortComboBox1 = new LJH.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbTransferFunction = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDampValue = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.label23 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -165,9 +172,8 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(397, 123);
+            this.label3.Location = new System.Drawing.Point(28, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 9;
@@ -175,9 +181,8 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(397, 154);
+            this.label4.Location = new System.Drawing.Point(28, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 10;
@@ -411,9 +416,8 @@
             // 
             // label21
             // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(562, 123);
+            this.label21.Location = new System.Drawing.Point(193, 75);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(29, 12);
             this.label21.TabIndex = 32;
@@ -421,9 +425,8 @@
             // 
             // label22
             // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(559, 154);
+            this.label22.Location = new System.Drawing.Point(193, 106);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(29, 12);
             this.label22.TabIndex = 33;
@@ -487,45 +490,45 @@
             this.tmrRealTime.Interval = 500;
             this.tmrRealTime.Tick += new System.EventHandler(this.tmrRealTime_Tick);
             // 
-            // decimalTextBox5
+            // txtUpperRange
             // 
-            this.decimalTextBox5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.decimalTextBox5.Location = new System.Drawing.Point(456, 150);
-            this.decimalTextBox5.MaxValue = new decimal(new int[] {
+            this.txtUpperRange.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtUpperRange.Location = new System.Drawing.Point(87, 102);
+            this.txtUpperRange.MaxValue = new decimal(new int[] {
             -1,
             -1,
             -1,
             0});
-            this.decimalTextBox5.MinValue = new decimal(new int[] {
+            this.txtUpperRange.MinValue = new decimal(new int[] {
             -1,
             -1,
             -1,
             -2147483648});
-            this.decimalTextBox5.Name = "decimalTextBox5";
-            this.decimalTextBox5.PointCount = -1;
-            this.decimalTextBox5.Size = new System.Drawing.Size(97, 21);
-            this.decimalTextBox5.TabIndex = 35;
-            this.decimalTextBox5.Text = "0";
+            this.txtUpperRange.Name = "txtUpperRange";
+            this.txtUpperRange.PointCount = -1;
+            this.txtUpperRange.Size = new System.Drawing.Size(97, 21);
+            this.txtUpperRange.TabIndex = 35;
+            this.txtUpperRange.Text = "0";
             // 
-            // decimalTextBox4
+            // txtLowRange
             // 
-            this.decimalTextBox4.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.decimalTextBox4.Location = new System.Drawing.Point(456, 119);
-            this.decimalTextBox4.MaxValue = new decimal(new int[] {
+            this.txtLowRange.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtLowRange.Location = new System.Drawing.Point(87, 71);
+            this.txtLowRange.MaxValue = new decimal(new int[] {
             -1,
             -1,
             -1,
             0});
-            this.decimalTextBox4.MinValue = new decimal(new int[] {
+            this.txtLowRange.MinValue = new decimal(new int[] {
             -1,
             -1,
             -1,
             -2147483648});
-            this.decimalTextBox4.Name = "decimalTextBox4";
-            this.decimalTextBox4.PointCount = -1;
-            this.decimalTextBox4.Size = new System.Drawing.Size(97, 21);
-            this.decimalTextBox4.TabIndex = 34;
-            this.decimalTextBox4.Text = "0";
+            this.txtLowRange.Name = "txtLowRange";
+            this.txtLowRange.PointCount = -1;
+            this.txtLowRange.Size = new System.Drawing.Size(97, 21);
+            this.txtLowRange.TabIndex = 34;
+            this.txtLowRange.Text = "0";
             // 
             // comPortComboBox1
             // 
@@ -536,19 +539,92 @@
             this.comPortComboBox1.Size = new System.Drawing.Size(121, 20);
             this.comPortComboBox1.TabIndex = 0;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Controls.Add(this.txtDampValue);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.cmbTransferFunction);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.txtUpperRange);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.txtLowRange);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Location = new System.Drawing.Point(382, 110);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(327, 349);
+            this.groupBox3.TabIndex = 38;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "模拟输出";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "转换函数";
+            // 
+            // cmbTransferFunction
+            // 
+            this.cmbTransferFunction.FormattingEnabled = true;
+            this.cmbTransferFunction.Items.AddRange(new object[] {
+            "线性",
+            "开方"});
+            this.cmbTransferFunction.Location = new System.Drawing.Point(87, 41);
+            this.cmbTransferFunction.Name = "cmbTransferFunction";
+            this.cmbTransferFunction.Size = new System.Drawing.Size(97, 20);
+            this.cmbTransferFunction.TabIndex = 37;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(28, 139);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "阻尼系数";
+            // 
+            // txtDampValue
+            // 
+            this.txtDampValue.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtDampValue.Location = new System.Drawing.Point(87, 135);
+            this.txtDampValue.MaxValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.txtDampValue.MinValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.txtDampValue.Name = "txtDampValue";
+            this.txtDampValue.PointCount = -1;
+            this.txtDampValue.Size = new System.Drawing.Size(97, 21);
+            this.txtDampValue.TabIndex = 39;
+            this.txtDampValue.Text = "0";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(193, 139);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(17, 12);
+            this.label23.TabIndex = 40;
+            this.label23.Text = "秒";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 548);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.decimalTextBox5);
-            this.Controls.Add(this.decimalTextBox4);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.label21);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbShortAddress);
@@ -565,6 +641,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -604,8 +682,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private LJH.GeneralLibrary.WinformControl.DecimalTextBox decimalTextBox4;
-        private LJH.GeneralLibrary.WinformControl.DecimalTextBox decimalTextBox5;
+        private LJH.GeneralLibrary.WinformControl.DecimalTextBox txtLowRange;
+        private LJH.GeneralLibrary.WinformControl.DecimalTextBox txtUpperRange;
         private System.Windows.Forms.Button btnRealTime;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Timer tmrRealTime;
@@ -614,6 +692,12 @@
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPV;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtMessage;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtDescr;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cmbTransferFunction;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label23;
+        private LJH.GeneralLibrary.WinformControl.DecimalTextBox txtDampValue;
+        private System.Windows.Forms.Label label6;
     }
 }
 
