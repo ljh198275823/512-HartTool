@@ -49,10 +49,6 @@ namespace HartSDK
             {
                 try
                 {
-                    while (_Data.Count > 0 && _Data[0] != 0xFF)
-                    {
-                        _Data.RemoveAt(0);
-                    }
                     if (_Data.Count < 7) return null;
                     for (int i = 0; i < _Data.Count; i++)
                     {
@@ -69,12 +65,21 @@ namespace HartSDK
                                     _Data.RemoveRange(0, dlp + 1);
                                     return new ResponsePacket(temp);
                                 }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                break;
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
+                    LJH.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
                 }
             }
             return null;

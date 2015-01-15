@@ -25,9 +25,17 @@ namespace HartSDK
         /// </summary>
         public string Description { get; set; }
         /// <summary>
-        /// 获取或设置日期
+        /// 获取或设置日期的年份
         /// </summary>
-        public DateTime Date { get; set; }
+        public int  Year { get; set; }
+        /// <summary>
+        /// 获取或设置日期的月份
+        /// </summary>
+        public int Month { get; set; }
+        /// <summary>
+        /// 获取或设置日期的天数部分
+        /// </summary>
+        public int Day { get; set; }
         #endregion
     }
 }

@@ -36,10 +36,11 @@ namespace HartTool
                     DeviceTagInfo tag = _HartComm.ReadTag(_CurUI.LongAddress);
                     txtTag.Text = tag != null ? tag.Tag : string.Empty;
                     txtDescr.Text = tag != null ? tag.Description : string.Empty;
-                    txtYear.IntergerValue = tag != null ? tag.Date.Year : 0;
-                    txtMonth.IntergerValue = tag != null ? tag.Date.Month : 0;
-                    txtDay.IntergerValue = tag != null ? tag.Date.Day : 0;
-                    txtMessage.Text = _HartComm.ReadMessage(_CurUI.LongAddress);
+                    txtYear.IntergerValue = tag != null ? tag.Year : 0;
+                    txtMonth.IntergerValue = tag != null ? tag.Month : 0;
+                    txtDay.IntergerValue = tag != null ? tag.Day : 0;
+                    string msg = _HartComm.ReadMessage(_CurUI.LongAddress);
+                    txtMessage.Text = !string.IsNullOrEmpty(msg) ? msg : _HartComm.GetLastError();
                     OutputInfo oi = _HartComm.ReadOutput(_CurUI.LongAddress);
                     txtLowRange.DecimalValue = (decimal)(oi != null ? oi.LowerRangeValue : 0);
                     txtUpperRange.DecimalValue = (decimal)(oi != null ? oi.UpperRangeValue : 0);

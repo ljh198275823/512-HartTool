@@ -106,7 +106,7 @@ namespace HartSDK
                     {
                         if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "发送数据:" + HexStringConverter.HexToString(outPut, " "));
                         _Port.Write(outPut, 0, outPut.Length);
-                        //Thread.Sleep(1000);
+                        Thread.Sleep(500);
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace HartSDK
             }
             catch (Exception ex)
             {
-                ExceptionPolicy.HandleException(ex);
+                //ExceptionPolicy.HandleException(ex);
             }
             return null;
         }
@@ -297,13 +297,13 @@ namespace HartSDK
         public DeviceVariable ReadPV(long longAddress)
         {
             DeviceVariable ret = null;
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 1 };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 5)
             {
                 ret = new DeviceVariable();
                 ret.UnitCode = response.DataContent[0];
-                ret.Value = BitConverter.ToSingle(new byte[] { response.DataContent[1], response.DataContent[2], response.DataContent[3], response.DataContent[4] }, 0);
+                ret.Value = BitConverter.ToSingle(new byte[] { response.DataContent[4], response.DataContent[3], response.DataContent[2], response.DataContent[1] }, 0);
             }
             return ret;
         }
@@ -313,14 +313,14 @@ namespace HartSDK
         public CurrentInfo ReadCurrent(long longAddress)
         {
             CurrentInfo ret = null;
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x02 };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 2 };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 8)
             {
                 byte[] d = response.DataContent;
                 ret = new CurrentInfo();
-                ret.Current = BitConverter.ToSingle(new byte[] { d[0], d[1], d[2], d[3] }, 0);
-                ret.PercentOfRange = BitConverter.ToSingle(new byte[] { d[4], d[5], d[6], d[7] }, 0);
+                ret.Current = BitConverter.ToSingle(new byte[] { d[3], d[2], d[1], d[0] }, 0);
+                ret.PercentOfRange = BitConverter.ToSingle(new byte[] { d[7], d[6], d[5], d[4] }, 0);
             }
             return ret;
         }
@@ -330,7 +330,7 @@ namespace HartSDK
         public DeviceTagInfo ReadTag(long longAddress)
         {
             DeviceTagInfo ret = null;
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 13 };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 21)
             {
@@ -338,7 +338,9 @@ namespace HartSDK
                 ret = new DeviceTagInfo();
                 ret.Tag = HexStringConverter.HexToString(new byte[] { d[0], d[1], d[2], d[3], d[4], d[5] }, string.Empty);   //字节0-5
                 ret.Description = HexStringConverter.HexToString(new byte[] { d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15], d[16], d[17] }, string.Empty); //字节6-17
-                ret.Date = new DateTime(1990 + d[20], d[19], d[18]);
+                ret.Year = 1990 + d[20];
+                ret.Month = d[19];
+                ret.Day = d[18];
             }
             return ret;
         }
@@ -348,7 +350,7 @@ namespace HartSDK
         public string ReadMessage(long longAddress)
         {
             string ret = null;
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 12 };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 24)
             {
@@ -362,7 +364,7 @@ namespace HartSDK
         public SensorInfo ReadPVSensor(long longAddress)
         {
             SensorInfo ret = null;
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 14 };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 17)
             {
@@ -370,9 +372,9 @@ namespace HartSDK
                 ret = new SensorInfo();
                 ret.SensorSN = SEBinaryConverter.BytesToInt(new byte[] { d[2], d[1], d[0] });
                 ret.UnitCode = d[3];
-                ret.UpperLimit = BitConverter.ToSingle(new byte[] { d[4], d[5], d[6], d[7] }, 0);
-                ret.LowerLimit = BitConverter.ToSingle(new byte[] { d[8], d[9], d[10], d[11] }, 0);
-                ret.MinimumSpan = BitConverter.ToSingle(new byte[] { d[12], d[13], d[14], d[15] }, 0);
+                ret.UpperLimit = BitConverter.ToSingle(new byte[] { d[7], d[6], d[5], d[4] }, 0);
+                ret.LowerLimit = BitConverter.ToSingle(new byte[] { d[11], d[10], d[9], d[8] }, 0);
+                ret.MinimumSpan = BitConverter.ToSingle(new byte[] { d[15], d[14], d[13], d[12] }, 0);
             }
             return ret;
         }
@@ -382,7 +384,7 @@ namespace HartSDK
         public OutputInfo ReadOutput(long longAddress)
         {
             OutputInfo ret = null;
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0x01 };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 15 };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 17)
             {
@@ -391,9 +393,9 @@ namespace HartSDK
                 ret.AlarmSelectCode = d[0];
                 ret.TransferFunctionCode = d[1];
                 ret.PVUnitCode = d[2];
-                ret.UpperRangeValue = BitConverter.ToSingle(new byte[] { d[3], d[4], d[5], d[6] }, 0);
-                ret.LowerRangeValue = BitConverter.ToSingle(new byte[] { d[7], d[8], d[9], d[10] }, 0);
-                ret.DampingValue = BitConverter.ToSingle(new byte[] { d[11], d[12], d[13], d[14] }, 0);
+                ret.UpperRangeValue = BitConverter.ToSingle(new byte[] { d[6], d[5], d[4], d[3] }, 0);
+                ret.LowerRangeValue = BitConverter.ToSingle(new byte[] { d[10], d[9], d[8], d[7] }, 0);
+                ret.DampingValue = BitConverter.ToSingle(new byte[] { d[14], d[13], d[12], d[11] }, 0);
                 ret.WriteProtectCode = d[15];
                 ret.PrivateLabelDistributorCode = d[16];
             }

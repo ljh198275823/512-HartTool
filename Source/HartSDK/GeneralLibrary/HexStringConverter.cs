@@ -8,7 +8,7 @@ namespace LJH.GeneralLibrary
     /// <summary>
     /// 十六进制字符串与字节组之间的转换器
     /// </summary>
-    internal class HexStringConverter
+    public class HexStringConverter
     {
         #region 十六进制字节组处理函数
         /// <summary>

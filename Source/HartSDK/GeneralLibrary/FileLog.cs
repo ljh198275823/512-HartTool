@@ -59,7 +59,7 @@ namespace LJH.GeneralLibrary.LOG
                 {
                     try
                     {
-                        string message = string.Format("{0}:{1}\r\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), content);
+                        string message = string.Format("{0}:{1}\r\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"), content);
 
                         string dir = Path.Combine(path, "Logs/" + DateTime.Today.ToString("yyyy-MM-dd"));
                         if (!Directory.Exists(dir))

@@ -57,6 +57,12 @@ namespace UnitTest1
             Assert.IsTrue(p.IsValid);
             Assert.IsTrue(p.DataContent != null);
             Assert.IsTrue(p.DataContent.Length == 5);
+
+            que.AppendData(LJH.GeneralLibrary.HexStringConverter.StringToHex(
+                "FF FF FF FF 86 A6 7C 03 14 39 0C 1A 00 00 FF FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 9B "));
+            p = que.Dequeue();
+            Assert.IsTrue(p != null);
+
         }
     }
 }
