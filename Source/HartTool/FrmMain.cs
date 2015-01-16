@@ -31,6 +31,7 @@ namespace HartTool
             {
                 _CurDevice = _HartComm.ReadUniqueID(_PollingAddress);
                 txtDeviceID.IntergerValue = _CurDevice != null ? _CurDevice.DeviceID : 0;
+                txtPollingAddress.IntergerValue = _PollingAddress;
                 if (_CurDevice != null)
                 {
                     DeviceTagInfo tag = _HartComm.ReadTag(_CurDevice.LongAddress);
@@ -39,8 +40,6 @@ namespace HartTool
                     txtYear.IntergerValue = tag != null ? tag.Year : 0;
                     txtMonth.IntergerValue = tag != null ? tag.Month : 0;
                     txtDay.IntergerValue = tag != null ? tag.Day : 0;
-                    string msg = _HartComm.ReadMessage(_CurDevice.LongAddress);
-                    txtMessage.Text = !string.IsNullOrEmpty(msg) ? msg : _HartComm.GetLastError();
                     OutputInfo oi = _HartComm.ReadOutput(_CurDevice.LongAddress);
                     txtLowRange.DecimalValue = (decimal)(oi != null ? oi.LowerRangeValue : 0);
                     txtUpperRange.DecimalValue = (decimal)(oi != null ? oi.UpperRangeValue : 0);
@@ -118,6 +117,23 @@ namespace HartTool
             CurrentInfo ci = _HartComm.ReadCurrent(_CurDevice.LongAddress);
             txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
             txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
+        }
+
+        private void btnWritePollingAddress_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
+            {
+                bool ret = _HartComm.WritePollingAddress(_CurDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
+                if (!ret)
+                {
+                    MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("短帧地址只能设置在0-15之间", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -238,6 +254,83 @@ namespace HartTool
             if (_CurDevice == null) return;
             bool ret = _HartComm.SetUpperRangeValue(_CurDevice.LongAddress);
             txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+        }
+        #endregion
+
+        #region 其它
+        private void btnReadMsg_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            string msg = _HartComm.ReadMessage(_CurDevice.LongAddress);
+            txtMessage.Text = !string.IsNullOrEmpty(msg) ? msg : _HartComm.GetLastError();
+        }
+
+        private void btnWriteMsg_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            _HartComm.WriteMessage(_CurDevice.LongAddress, txtMessage.Text.Trim());
+        }
+        #endregion
+
+        #region 性能参数
+        private void btnWriteTransferFunction_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            if (cmbWriteTranserFunction.SelectedIndex >= 0)
+            {
+                TransferFunctionCode tc = (TransferFunctionCode)cmbWriteTranserFunction.SelectedIndex;
+                bool ret = _HartComm.WriteTransferFunction(_CurDevice.LongAddress, tc);
+                if (!ret)
+                {
+                    MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnWriteDampValue_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            decimal damp = 0;
+            if (decimal.TryParse(txtWriteDampValue.Text, out damp))
+            {
+                bool ret = _HartComm.WriteDampValue(_CurDevice.LongAddress, (float)damp);
+                if (!ret)
+                {
+                    MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("输入的阻尼系数不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnWriteRangeValue_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            if (cmbWriteRangeValueUnit.SelectedIndex <= 0)
+            {
+                MessageBox.Show("没有选择主单位", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            decimal lowerRange = 0;
+            decimal upperRange = 0;
+            if (!decimal.TryParse(txtWriteRangeValueLower.Text, out lowerRange))
+            {
+                MessageBox.Show("基本量程下限不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!decimal.TryParse(txtWriteRangeValueUpper.Text, out upperRange))
+            {
+                MessageBox.Show("基本量程上限不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            bool ret = _HartComm.WriteRangeValue(_CurDevice.LongAddress, (byte)cmbWriteRangeValueUnit.SelectedIndex,
+                (float)lowerRange, (float)upperRange);
+            if (!ret)
+            {
+                MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
     }

@@ -43,7 +43,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -51,73 +50,79 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.btnRealTime = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tmrRealTime = new System.Windows.Forms.Timer(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbTransferFunction = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtMessage = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label34 = new System.Windows.Forms.Label();
+            this.btnWritePollingAddress = new System.Windows.Forms.Button();
+            this.txtPollingAddress = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtDescr = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtTag = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtDay = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtMonth = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtYear = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtDeviceID = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
-            this.txtDampValue = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
-            this.txtUpperRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
-            this.txtLowRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.label16 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnRealTime = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtPercentOfRange = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtCurrent = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtPV = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.comPortComboBox1 = new LJH.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.btn20_N = new System.Windows.Forms.Button();
-            this.btn4_N = new System.Windows.Forms.Button();
-            this.btnFixedCurrent = new System.Windows.Forms.Button();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtFixedCurrent = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
-            this.label27 = new System.Windows.Forms.Label();
+            this.tmrRealTime = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtDampValue = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtUpperRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.txtLowRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txt4_N = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txt4_H = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txt20_H = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txt20_N = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtLastError_Current = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.btn4_H = new System.Windows.Forms.Button();
             this.btn20_H = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtLastError_Current = new System.Windows.Forms.TextBox();
-            this.txt20_N = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txt20_H = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txt4_H = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txt4_N = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtFixedCurrent = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.label26 = new System.Windows.Forms.Label();
+            this.btnFixedCurrent = new System.Windows.Forms.Button();
+            this.btn4_N = new System.Windows.Forms.Button();
+            this.btn20_N = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnSetPVZero = new System.Windows.Forms.Button();
+            this.txtMsg_压力微调 = new System.Windows.Forms.TextBox();
             this.btnSetUpperRange = new System.Windows.Forms.Button();
             this.btnSetLowerRange = new System.Windows.Forms.Button();
-            this.txtMsg_压力微调 = new System.Windows.Forms.TextBox();
+            this.btnSetPVZero = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.dbcTextBox1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.label32 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label33 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.txtMsg_性能参数 = new System.Windows.Forms.TextBox();
+            this.txtWriteDampValue = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.btnWriteDampValue = new System.Windows.Forms.Button();
+            this.btnWriteTransferFunction = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dbcTextBox3 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtMsg_性能参数 = new System.Windows.Forms.TextBox();
+            this.cmbWriteTranserFunction = new System.Windows.Forms.ComboBox();
+            this.cmbWriteRangeValueUnit = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtWriteRangeValueLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtWriteRangeValueUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label32 = new System.Windows.Forms.Label();
+            this.btnWriteRangeValue = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnWriteMsg = new System.Windows.Forms.Button();
+            this.btnReadMsg = new System.Windows.Forms.Button();
+            this.txtMessage = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label12 = new System.Windows.Forms.Label();
+            this.comPortComboBox1 = new LJH.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
+            this.cmbTransferFunction = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -127,6 +132,7 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -280,16 +286,6 @@
             this.label11.TabIndex = 18;
             this.label11.Text = "%";
             // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(17, 186);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(89, 12);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "信息(32位字符)";
-            // 
             // label13
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -352,7 +348,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtMessage);
+            this.groupBox1.Controls.Add(this.label34);
+            this.groupBox1.Controls.Add(this.btnWritePollingAddress);
+            this.groupBox1.Controls.Add(this.txtPollingAddress);
             this.groupBox1.Controls.Add(this.txtDescr);
             this.groupBox1.Controls.Add(this.txtTag);
             this.groupBox1.Controls.Add(this.txtDay);
@@ -366,13 +364,104 @@
             this.groupBox1.Controls.Add(this.txtDeviceID);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(706, 216);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设备基本信息";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(404, 37);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(53, 12);
+            this.label34.TabIndex = 41;
+            this.label34.Text = "短帧地址";
+            // 
+            // btnWritePollingAddress
+            // 
+            this.btnWritePollingAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnWritePollingAddress.Location = new System.Drawing.Point(543, 32);
+            this.btnWritePollingAddress.Name = "btnWritePollingAddress";
+            this.btnWritePollingAddress.Size = new System.Drawing.Size(75, 23);
+            this.btnWritePollingAddress.TabIndex = 40;
+            this.btnWritePollingAddress.Text = "修改短帧地址";
+            this.btnWritePollingAddress.UseVisualStyleBackColor = true;
+            this.btnWritePollingAddress.Click += new System.EventHandler(this.btnWritePollingAddress_Click);
+            // 
+            // txtPollingAddress
+            // 
+            this.txtPollingAddress.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPollingAddress.Location = new System.Drawing.Point(463, 34);
+            this.txtPollingAddress.MaxValue = 2147483647;
+            this.txtPollingAddress.MinValue = -2147483648;
+            this.txtPollingAddress.Name = "txtPollingAddress";
+            this.txtPollingAddress.Size = new System.Drawing.Size(65, 21);
+            this.txtPollingAddress.TabIndex = 39;
+            this.txtPollingAddress.Text = "0";
+            // 
+            // txtDescr
+            // 
+            this.txtDescr.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtDescr.Location = new System.Drawing.Point(119, 108);
+            this.txtDescr.Name = "txtDescr";
+            this.txtDescr.Size = new System.Drawing.Size(208, 21);
+            this.txtDescr.TabIndex = 38;
+            // 
+            // txtTag
+            // 
+            this.txtTag.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtTag.Location = new System.Drawing.Point(119, 65);
+            this.txtTag.Name = "txtTag";
+            this.txtTag.Size = new System.Drawing.Size(208, 21);
+            this.txtTag.TabIndex = 29;
+            // 
+            // txtDay
+            // 
+            this.txtDay.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtDay.Location = new System.Drawing.Point(274, 145);
+            this.txtDay.MaxValue = 2147483647;
+            this.txtDay.MinValue = -2147483648;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(43, 21);
+            this.txtDay.TabIndex = 28;
+            this.txtDay.Text = "0";
+            // 
+            // txtMonth
+            // 
+            this.txtMonth.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtMonth.Location = new System.Drawing.Point(208, 145);
+            this.txtMonth.MaxValue = 2147483647;
+            this.txtMonth.MinValue = -2147483648;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(43, 21);
+            this.txtMonth.TabIndex = 27;
+            this.txtMonth.Text = "0";
+            // 
+            // txtYear
+            // 
+            this.txtYear.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtYear.Location = new System.Drawing.Point(119, 145);
+            this.txtYear.MaxValue = 2147483647;
+            this.txtYear.MinValue = -2147483648;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(65, 21);
+            this.txtYear.TabIndex = 26;
+            this.txtYear.Text = "0";
+            // 
+            // txtDeviceID
+            // 
+            this.txtDeviceID.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtDeviceID.Location = new System.Drawing.Point(119, 34);
+            this.txtDeviceID.MaxValue = 2147483647;
+            this.txtDeviceID.MinValue = -2147483648;
+            this.txtDeviceID.Name = "txtDeviceID";
+            this.txtDeviceID.Size = new System.Drawing.Size(208, 21);
+            this.txtDeviceID.TabIndex = 14;
+            this.txtDeviceID.Text = "0";
             // 
             // label16
             // 
@@ -439,6 +528,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时数据";
             // 
+            // txtPercentOfRange
+            // 
+            this.txtPercentOfRange.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPercentOfRange.Location = new System.Drawing.Point(63, 94);
+            this.txtPercentOfRange.Name = "txtPercentOfRange";
+            this.txtPercentOfRange.Size = new System.Drawing.Size(96, 21);
+            this.txtPercentOfRange.TabIndex = 39;
+            // 
+            // txtCurrent
+            // 
+            this.txtCurrent.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtCurrent.Location = new System.Drawing.Point(63, 61);
+            this.txtCurrent.Name = "txtCurrent";
+            this.txtCurrent.Size = new System.Drawing.Size(96, 21);
+            this.txtCurrent.TabIndex = 40;
+            // 
+            // txtPV
+            // 
+            this.txtPV.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPV.Location = new System.Drawing.Point(63, 28);
+            this.txtPV.Name = "txtPV";
+            this.txtPV.Size = new System.Drawing.Size(96, 21);
+            this.txtPV.TabIndex = 38;
+            // 
             // tmrRealTime
             // 
             this.tmrRealTime.Interval = 500;
@@ -462,7 +575,7 @@
             this.groupBox3.Size = new System.Drawing.Size(327, 177);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "模拟输出";
+            this.groupBox3.Text = "性能参数";
             // 
             // label23
             // 
@@ -473,6 +586,26 @@
             this.label23.TabIndex = 40;
             this.label23.Text = "秒";
             // 
+            // txtDampValue
+            // 
+            this.txtDampValue.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtDampValue.Location = new System.Drawing.Point(87, 119);
+            this.txtDampValue.MaxValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.txtDampValue.MinValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.txtDampValue.Name = "txtDampValue";
+            this.txtDampValue.PointCount = -1;
+            this.txtDampValue.Size = new System.Drawing.Size(97, 21);
+            this.txtDampValue.TabIndex = 39;
+            this.txtDampValue.Text = "0";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -482,25 +615,45 @@
             this.label6.TabIndex = 38;
             this.label6.Text = "阻尼系数";
             // 
-            // cmbTransferFunction
+            // txtUpperRange
             // 
-            this.cmbTransferFunction.FormattingEnabled = true;
-            this.cmbTransferFunction.Items.AddRange(new object[] {
-            "线性",
-            "开方"});
-            this.cmbTransferFunction.Location = new System.Drawing.Point(87, 25);
-            this.cmbTransferFunction.Name = "cmbTransferFunction";
-            this.cmbTransferFunction.Size = new System.Drawing.Size(97, 20);
-            this.cmbTransferFunction.TabIndex = 37;
+            this.txtUpperRange.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtUpperRange.Location = new System.Drawing.Point(87, 86);
+            this.txtUpperRange.MaxValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.txtUpperRange.MinValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.txtUpperRange.Name = "txtUpperRange";
+            this.txtUpperRange.PointCount = -1;
+            this.txtUpperRange.Size = new System.Drawing.Size(97, 21);
+            this.txtUpperRange.TabIndex = 35;
+            this.txtUpperRange.Text = "0";
             // 
-            // label5
+            // txtLowRange
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "转换函数";
+            this.txtLowRange.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtLowRange.Location = new System.Drawing.Point(87, 55);
+            this.txtLowRange.MaxValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.txtLowRange.MinValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.txtLowRange.Name = "txtLowRange";
+            this.txtLowRange.PointCount = -1;
+            this.txtLowRange.Size = new System.Drawing.Size(97, 21);
+            this.txtLowRange.TabIndex = 34;
+            this.txtLowRange.Text = "0";
             // 
             // tabControl1
             // 
@@ -559,261 +712,71 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "电流校准";
             // 
-            // txtMessage
+            // txt4_N
             // 
-            this.txtMessage.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtMessage.Location = new System.Drawing.Point(119, 183);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(208, 21);
-            this.txtMessage.TabIndex = 39;
+            this.txt4_N.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt4_N.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txt4_N.Location = new System.Drawing.Point(83, 91);
+            this.txt4_N.Name = "txt4_N";
+            this.txt4_N.Size = new System.Drawing.Size(100, 26);
+            this.txt4_N.TabIndex = 27;
             // 
-            // txtDescr
+            // txt4_H
             // 
-            this.txtDescr.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDescr.Location = new System.Drawing.Point(119, 108);
-            this.txtDescr.Name = "txtDescr";
-            this.txtDescr.Size = new System.Drawing.Size(208, 21);
-            this.txtDescr.TabIndex = 38;
+            this.txt4_H.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt4_H.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txt4_H.Location = new System.Drawing.Point(85, 155);
+            this.txt4_H.Name = "txt4_H";
+            this.txt4_H.Size = new System.Drawing.Size(100, 26);
+            this.txt4_H.TabIndex = 26;
             // 
-            // txtTag
+            // txt20_H
             // 
-            this.txtTag.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtTag.Location = new System.Drawing.Point(119, 65);
-            this.txtTag.Name = "txtTag";
-            this.txtTag.Size = new System.Drawing.Size(208, 21);
-            this.txtTag.TabIndex = 29;
+            this.txt20_H.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt20_H.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txt20_H.Location = new System.Drawing.Point(350, 155);
+            this.txt20_H.Name = "txt20_H";
+            this.txt20_H.Size = new System.Drawing.Size(100, 26);
+            this.txt20_H.TabIndex = 25;
             // 
-            // txtDay
+            // txt20_N
             // 
-            this.txtDay.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDay.Location = new System.Drawing.Point(274, 145);
-            this.txtDay.MaxValue = 2147483647;
-            this.txtDay.MinValue = -2147483648;
-            this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(43, 21);
-            this.txtDay.TabIndex = 28;
-            this.txtDay.Text = "0";
+            this.txt20_N.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt20_N.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txt20_N.Location = new System.Drawing.Point(348, 91);
+            this.txt20_N.Name = "txt20_N";
+            this.txt20_N.Size = new System.Drawing.Size(100, 26);
+            this.txt20_N.TabIndex = 24;
             // 
-            // txtMonth
+            // txtLastError_Current
             // 
-            this.txtMonth.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtMonth.Location = new System.Drawing.Point(208, 145);
-            this.txtMonth.MaxValue = 2147483647;
-            this.txtMonth.MinValue = -2147483648;
-            this.txtMonth.Name = "txtMonth";
-            this.txtMonth.Size = new System.Drawing.Size(43, 21);
-            this.txtMonth.TabIndex = 27;
-            this.txtMonth.Text = "0";
+            this.txtLastError_Current.BackColor = System.Drawing.SystemColors.Control;
+            this.txtLastError_Current.Enabled = false;
+            this.txtLastError_Current.Location = new System.Drawing.Point(43, 276);
+            this.txtLastError_Current.Multiline = true;
+            this.txtLastError_Current.Name = "txtLastError_Current";
+            this.txtLastError_Current.Size = new System.Drawing.Size(548, 56);
+            this.txtLastError_Current.TabIndex = 23;
             // 
-            // txtYear
+            // label29
             // 
-            this.txtYear.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtYear.Location = new System.Drawing.Point(119, 145);
-            this.txtYear.MaxValue = 2147483647;
-            this.txtYear.MinValue = -2147483648;
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(65, 21);
-            this.txtYear.TabIndex = 26;
-            this.txtYear.Text = "0";
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(41, 98);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(29, 12);
+            this.label29.TabIndex = 22;
+            this.label29.Text = "常温";
             // 
-            // txtDeviceID
+            // label28
             // 
-            this.txtDeviceID.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDeviceID.Location = new System.Drawing.Point(119, 34);
-            this.txtDeviceID.MaxValue = 2147483647;
-            this.txtDeviceID.MinValue = -2147483648;
-            this.txtDeviceID.Name = "txtDeviceID";
-            this.txtDeviceID.Size = new System.Drawing.Size(208, 21);
-            this.txtDeviceID.TabIndex = 14;
-            this.txtDeviceID.Text = "0";
-            // 
-            // txtDampValue
-            // 
-            this.txtDampValue.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDampValue.Location = new System.Drawing.Point(87, 119);
-            this.txtDampValue.MaxValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.txtDampValue.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
-            this.txtDampValue.Name = "txtDampValue";
-            this.txtDampValue.PointCount = -1;
-            this.txtDampValue.Size = new System.Drawing.Size(97, 21);
-            this.txtDampValue.TabIndex = 39;
-            this.txtDampValue.Text = "0";
-            // 
-            // txtUpperRange
-            // 
-            this.txtUpperRange.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtUpperRange.Location = new System.Drawing.Point(87, 86);
-            this.txtUpperRange.MaxValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.txtUpperRange.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
-            this.txtUpperRange.Name = "txtUpperRange";
-            this.txtUpperRange.PointCount = -1;
-            this.txtUpperRange.Size = new System.Drawing.Size(97, 21);
-            this.txtUpperRange.TabIndex = 35;
-            this.txtUpperRange.Text = "0";
-            // 
-            // txtLowRange
-            // 
-            this.txtLowRange.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtLowRange.Location = new System.Drawing.Point(87, 55);
-            this.txtLowRange.MaxValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.txtLowRange.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
-            this.txtLowRange.Name = "txtLowRange";
-            this.txtLowRange.PointCount = -1;
-            this.txtLowRange.Size = new System.Drawing.Size(97, 21);
-            this.txtLowRange.TabIndex = 34;
-            this.txtLowRange.Text = "0";
-            // 
-            // txtPercentOfRange
-            // 
-            this.txtPercentOfRange.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPercentOfRange.Location = new System.Drawing.Point(63, 94);
-            this.txtPercentOfRange.Name = "txtPercentOfRange";
-            this.txtPercentOfRange.Size = new System.Drawing.Size(96, 21);
-            this.txtPercentOfRange.TabIndex = 39;
-            // 
-            // txtCurrent
-            // 
-            this.txtCurrent.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtCurrent.Location = new System.Drawing.Point(63, 61);
-            this.txtCurrent.Name = "txtCurrent";
-            this.txtCurrent.Size = new System.Drawing.Size(96, 21);
-            this.txtCurrent.TabIndex = 40;
-            // 
-            // txtPV
-            // 
-            this.txtPV.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPV.Location = new System.Drawing.Point(63, 28);
-            this.txtPV.Name = "txtPV";
-            this.txtPV.Size = new System.Drawing.Size(96, 21);
-            this.txtPV.TabIndex = 38;
-            // 
-            // comPortComboBox1
-            // 
-            this.comPortComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comPortComboBox1.FormattingEnabled = true;
-            this.comPortComboBox1.Location = new System.Drawing.Point(55, 460);
-            this.comPortComboBox1.Name = "comPortComboBox1";
-            this.comPortComboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comPortComboBox1.TabIndex = 0;
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(83, 51);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(47, 12);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "4mA校准";
-            // 
-            // label25
-            // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(348, 51);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(53, 12);
-            this.label25.TabIndex = 8;
-            this.label25.Text = "20mA校准";
-            // 
-            // btn20_N
-            // 
-            this.btn20_N.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn20_N.Location = new System.Drawing.Point(461, 87);
-            this.btn20_N.Name = "btn20_N";
-            this.btn20_N.Size = new System.Drawing.Size(75, 35);
-            this.btn20_N.TabIndex = 9;
-            this.btn20_N.Text = "DA调整";
-            this.btn20_N.UseVisualStyleBackColor = true;
-            this.btn20_N.Click += new System.EventHandler(this.btn20_N_Click);
-            // 
-            // btn4_N
-            // 
-            this.btn4_N.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn4_N.Location = new System.Drawing.Point(189, 87);
-            this.btn4_N.Name = "btn4_N";
-            this.btn4_N.Size = new System.Drawing.Size(75, 35);
-            this.btn4_N.TabIndex = 10;
-            this.btn4_N.Text = "DA调整";
-            this.btn4_N.UseVisualStyleBackColor = true;
-            this.btn4_N.Click += new System.EventHandler(this.btn4_N_Click);
-            // 
-            // btnFixedCurrent
-            // 
-            this.btnFixedCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFixedCurrent.Location = new System.Drawing.Point(234, 226);
-            this.btnFixedCurrent.Name = "btnFixedCurrent";
-            this.btnFixedCurrent.Size = new System.Drawing.Size(94, 29);
-            this.btnFixedCurrent.TabIndex = 11;
-            this.btnFixedCurrent.Text = "设置";
-            this.btnFixedCurrent.UseVisualStyleBackColor = true;
-            this.btnFixedCurrent.Click += new System.EventHandler(this.btnFixedCurrent_Click);
-            // 
-            // label26
-            // 
-            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(41, 234);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 12);
-            this.label26.TabIndex = 12;
-            this.label26.Text = "固定电流输出";
-            // 
-            // txtFixedCurrent
-            // 
-            this.txtFixedCurrent.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtFixedCurrent.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtFixedCurrent.Location = new System.Drawing.Point(124, 227);
-            this.txtFixedCurrent.MaxValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.txtFixedCurrent.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
-            this.txtFixedCurrent.Name = "txtFixedCurrent";
-            this.txtFixedCurrent.PointCount = -1;
-            this.txtFixedCurrent.Size = new System.Drawing.Size(100, 26);
-            this.txtFixedCurrent.TabIndex = 13;
-            this.txtFixedCurrent.Text = "0";
-            // 
-            // label27
-            // 
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.Color.Red;
-            this.label27.Location = new System.Drawing.Point(342, 234);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(161, 12);
-            this.label27.TabIndex = 14;
-            this.label27.Text = "0 表示退出固定电流输出模式";
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(41, 162);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(29, 12);
+            this.label28.TabIndex = 21;
+            this.label28.Text = "高温";
             // 
             // btn4_H
             // 
@@ -837,71 +800,100 @@
             this.btn20_H.UseVisualStyleBackColor = true;
             this.btn20_H.Click += new System.EventHandler(this.btn20_H_Click);
             // 
-            // label28
+            // label27
             // 
-            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(41, 162);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(29, 12);
-            this.label28.TabIndex = 21;
-            this.label28.Text = "高温";
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(342, 234);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(161, 12);
+            this.label27.TabIndex = 14;
+            this.label27.Text = "0 表示退出固定电流输出模式";
             // 
-            // label29
+            // txtFixedCurrent
             // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(41, 98);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(29, 12);
-            this.label29.TabIndex = 22;
-            this.label29.Text = "常温";
+            this.txtFixedCurrent.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtFixedCurrent.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtFixedCurrent.Location = new System.Drawing.Point(124, 227);
+            this.txtFixedCurrent.MaxValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.txtFixedCurrent.MinValue = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.txtFixedCurrent.Name = "txtFixedCurrent";
+            this.txtFixedCurrent.PointCount = -1;
+            this.txtFixedCurrent.Size = new System.Drawing.Size(100, 26);
+            this.txtFixedCurrent.TabIndex = 13;
+            this.txtFixedCurrent.Text = "0";
             // 
-            // txtLastError_Current
+            // label26
             // 
-            this.txtLastError_Current.BackColor = System.Drawing.SystemColors.Control;
-            this.txtLastError_Current.Enabled = false;
-            this.txtLastError_Current.Location = new System.Drawing.Point(43, 276);
-            this.txtLastError_Current.Multiline = true;
-            this.txtLastError_Current.Name = "txtLastError_Current";
-            this.txtLastError_Current.Size = new System.Drawing.Size(548, 56);
-            this.txtLastError_Current.TabIndex = 23;
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(41, 234);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(77, 12);
+            this.label26.TabIndex = 12;
+            this.label26.Text = "固定电流输出";
             // 
-            // txt20_N
+            // btnFixedCurrent
             // 
-            this.txt20_N.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt20_N.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txt20_N.Location = new System.Drawing.Point(348, 91);
-            this.txt20_N.Name = "txt20_N";
-            this.txt20_N.Size = new System.Drawing.Size(100, 26);
-            this.txt20_N.TabIndex = 24;
+            this.btnFixedCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFixedCurrent.Location = new System.Drawing.Point(234, 226);
+            this.btnFixedCurrent.Name = "btnFixedCurrent";
+            this.btnFixedCurrent.Size = new System.Drawing.Size(94, 29);
+            this.btnFixedCurrent.TabIndex = 11;
+            this.btnFixedCurrent.Text = "设置";
+            this.btnFixedCurrent.UseVisualStyleBackColor = true;
+            this.btnFixedCurrent.Click += new System.EventHandler(this.btnFixedCurrent_Click);
             // 
-            // txt20_H
+            // btn4_N
             // 
-            this.txt20_H.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt20_H.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txt20_H.Location = new System.Drawing.Point(350, 155);
-            this.txt20_H.Name = "txt20_H";
-            this.txt20_H.Size = new System.Drawing.Size(100, 26);
-            this.txt20_H.TabIndex = 25;
+            this.btn4_N.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn4_N.Location = new System.Drawing.Point(189, 87);
+            this.btn4_N.Name = "btn4_N";
+            this.btn4_N.Size = new System.Drawing.Size(75, 35);
+            this.btn4_N.TabIndex = 10;
+            this.btn4_N.Text = "DA调整";
+            this.btn4_N.UseVisualStyleBackColor = true;
+            this.btn4_N.Click += new System.EventHandler(this.btn4_N_Click);
             // 
-            // txt4_H
+            // btn20_N
             // 
-            this.txt4_H.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt4_H.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txt4_H.Location = new System.Drawing.Point(85, 155);
-            this.txt4_H.Name = "txt4_H";
-            this.txt4_H.Size = new System.Drawing.Size(100, 26);
-            this.txt4_H.TabIndex = 26;
+            this.btn20_N.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn20_N.Location = new System.Drawing.Point(461, 87);
+            this.btn20_N.Name = "btn20_N";
+            this.btn20_N.Size = new System.Drawing.Size(75, 35);
+            this.btn20_N.TabIndex = 9;
+            this.btn20_N.Text = "DA调整";
+            this.btn20_N.UseVisualStyleBackColor = true;
+            this.btn20_N.Click += new System.EventHandler(this.btn20_N_Click);
             // 
-            // txt4_N
+            // label25
             // 
-            this.txt4_N.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt4_N.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txt4_N.Location = new System.Drawing.Point(83, 91);
-            this.txt4_N.Name = "txt4_N";
-            this.txt4_N.Size = new System.Drawing.Size(100, 26);
-            this.txt4_N.TabIndex = 27;
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(348, 51);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(53, 12);
+            this.label25.TabIndex = 8;
+            this.label25.Text = "20mA校准";
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(83, 51);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(47, 12);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "4mA校准";
             // 
             // tabPage3
             // 
@@ -916,16 +908,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "压力微调";
             // 
-            // btnSetPVZero
+            // txtMsg_压力微调
             // 
-            this.btnSetPVZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSetPVZero.Location = new System.Drawing.Point(104, 60);
-            this.btnSetPVZero.Name = "btnSetPVZero";
-            this.btnSetPVZero.Size = new System.Drawing.Size(116, 35);
-            this.btnSetPVZero.TabIndex = 19;
-            this.btnSetPVZero.Text = "零点微调";
-            this.btnSetPVZero.UseVisualStyleBackColor = true;
-            this.btnSetPVZero.Click += new System.EventHandler(this.btnSetPVZero_Click);
+            this.txtMsg_压力微调.BackColor = System.Drawing.SystemColors.Control;
+            this.txtMsg_压力微调.Enabled = false;
+            this.txtMsg_压力微调.Location = new System.Drawing.Point(46, 240);
+            this.txtMsg_压力微调.Multiline = true;
+            this.txtMsg_压力微调.Name = "txtMsg_压力微调";
+            this.txtMsg_压力微调.Size = new System.Drawing.Size(548, 56);
+            this.txtMsg_压力微调.TabIndex = 34;
             // 
             // btnSetUpperRange
             // 
@@ -949,31 +940,32 @@
             this.btnSetLowerRange.UseVisualStyleBackColor = true;
             this.btnSetLowerRange.Click += new System.EventHandler(this.btnSetLowerRange_Click);
             // 
-            // txtMsg_压力微调
+            // btnSetPVZero
             // 
-            this.txtMsg_压力微调.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMsg_压力微调.Enabled = false;
-            this.txtMsg_压力微调.Location = new System.Drawing.Point(46, 240);
-            this.txtMsg_压力微调.Multiline = true;
-            this.txtMsg_压力微调.Name = "txtMsg_压力微调";
-            this.txtMsg_压力微调.Size = new System.Drawing.Size(548, 56);
-            this.txtMsg_压力微调.TabIndex = 34;
+            this.btnSetPVZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSetPVZero.Location = new System.Drawing.Point(104, 60);
+            this.btnSetPVZero.Name = "btnSetPVZero";
+            this.btnSetPVZero.Size = new System.Drawing.Size(116, 35);
+            this.btnSetPVZero.TabIndex = 19;
+            this.btnSetPVZero.Text = "零点微调";
+            this.btnSetPVZero.UseVisualStyleBackColor = true;
+            this.btnSetPVZero.Click += new System.EventHandler(this.btnSetPVZero_Click);
             // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.Controls.Add(this.dbcTextBox3);
-            this.tabPage4.Controls.Add(this.button3);
-            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.txtWriteDampValue);
+            this.tabPage4.Controls.Add(this.btnWriteDampValue);
+            this.tabPage4.Controls.Add(this.btnWriteTransferFunction);
             this.tabPage4.Controls.Add(this.label35);
             this.tabPage4.Controls.Add(this.txtMsg_性能参数);
-            this.tabPage4.Controls.Add(this.comboBox2);
-            this.tabPage4.Controls.Add(this.comboBox1);
+            this.tabPage4.Controls.Add(this.cmbWriteTranserFunction);
+            this.tabPage4.Controls.Add(this.cmbWriteRangeValueUnit);
             this.tabPage4.Controls.Add(this.label33);
-            this.tabPage4.Controls.Add(this.dbcTextBox1);
-            this.tabPage4.Controls.Add(this.dbcTextBox2);
+            this.tabPage4.Controls.Add(this.txtWriteRangeValueLower);
+            this.tabPage4.Controls.Add(this.txtWriteRangeValueUpper);
             this.tabPage4.Controls.Add(this.label32);
-            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.btnWriteRangeValue);
             this.tabPage4.Controls.Add(this.label31);
             this.tabPage4.Controls.Add(this.label30);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
@@ -982,79 +974,74 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "性能参数";
             // 
-            // label30
+            // txtWriteDampValue
             // 
-            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(53, 42);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(53, 12);
-            this.label30.TabIndex = 7;
-            this.label30.Text = "输出选择";
+            this.txtWriteDampValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtWriteDampValue.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtWriteDampValue.Location = new System.Drawing.Point(112, 176);
+            this.txtWriteDampValue.Name = "txtWriteDampValue";
+            this.txtWriteDampValue.Size = new System.Drawing.Size(121, 26);
+            this.txtWriteDampValue.TabIndex = 46;
             // 
-            // label31
+            // btnWriteDampValue
             // 
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(41, 89);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(65, 12);
-            this.label31.TabIndex = 8;
-            this.label31.Text = "主单位设置";
+            this.btnWriteDampValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnWriteDampValue.Location = new System.Drawing.Point(278, 172);
+            this.btnWriteDampValue.Name = "btnWriteDampValue";
+            this.btnWriteDampValue.Size = new System.Drawing.Size(75, 35);
+            this.btnWriteDampValue.TabIndex = 45;
+            this.btnWriteDampValue.Text = "下载";
+            this.btnWriteDampValue.UseVisualStyleBackColor = true;
+            this.btnWriteDampValue.Click += new System.EventHandler(this.btnWriteDampValue_Click);
             // 
-            // dbcTextBox1
+            // btnWriteTransferFunction
             // 
-            this.dbcTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dbcTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox1.Location = new System.Drawing.Point(112, 126);
-            this.dbcTextBox1.Name = "dbcTextBox1";
-            this.dbcTextBox1.Size = new System.Drawing.Size(121, 26);
-            this.dbcTextBox1.TabIndex = 31;
+            this.btnWriteTransferFunction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnWriteTransferFunction.Location = new System.Drawing.Point(278, 31);
+            this.btnWriteTransferFunction.Name = "btnWriteTransferFunction";
+            this.btnWriteTransferFunction.Size = new System.Drawing.Size(75, 35);
+            this.btnWriteTransferFunction.TabIndex = 44;
+            this.btnWriteTransferFunction.Text = "下载";
+            this.btnWriteTransferFunction.UseVisualStyleBackColor = true;
+            this.btnWriteTransferFunction.Click += new System.EventHandler(this.btnWriteTransferFunction_Click);
             // 
-            // dbcTextBox2
+            // label35
             // 
-            this.dbcTextBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dbcTextBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox2.Location = new System.Drawing.Point(336, 126);
-            this.dbcTextBox2.Name = "dbcTextBox2";
-            this.dbcTextBox2.Size = new System.Drawing.Size(121, 26);
-            this.dbcTextBox2.TabIndex = 30;
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(29, 183);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(77, 12);
+            this.label35.TabIndex = 41;
+            this.label35.Text = "阻尼系数(秒)";
             // 
-            // label32
+            // txtMsg_性能参数
             // 
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(29, 133);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(77, 12);
-            this.label32.TabIndex = 29;
-            this.label32.Text = "基本量程上限";
+            this.txtMsg_性能参数.BackColor = System.Drawing.SystemColors.Control;
+            this.txtMsg_性能参数.Enabled = false;
+            this.txtMsg_性能参数.Location = new System.Drawing.Point(112, 322);
+            this.txtMsg_性能参数.Multiline = true;
+            this.txtMsg_性能参数.Name = "txtMsg_性能参数";
+            this.txtMsg_性能参数.Size = new System.Drawing.Size(548, 56);
+            this.txtMsg_性能参数.TabIndex = 37;
             // 
-            // button1
+            // cmbWriteTranserFunction
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(472, 122);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 35);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "下载";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cmbWriteTranserFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWriteTranserFunction.FormattingEnabled = true;
+            this.cmbWriteTranserFunction.Items.AddRange(new object[] {
+            "线性",
+            "开方"});
+            this.cmbWriteTranserFunction.Location = new System.Drawing.Point(112, 38);
+            this.cmbWriteTranserFunction.Name = "cmbWriteTranserFunction";
+            this.cmbWriteTranserFunction.Size = new System.Drawing.Size(121, 20);
+            this.cmbWriteTranserFunction.TabIndex = 36;
             // 
-            // label33
+            // cmbWriteRangeValueUnit
             // 
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(253, 133);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(77, 12);
-            this.label33.TabIndex = 32;
-            this.label33.Text = "基本量程下限";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbWriteRangeValueUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWriteRangeValueUnit.FormattingEnabled = true;
+            this.cmbWriteRangeValueUnit.Items.AddRange(new object[] {
+            "",
             "inH2O",
             "inHg",
             "ftH2O",
@@ -1072,79 +1059,162 @@
             "mpa",
             "mA",
             "%"});
-            this.comboBox1.Location = new System.Drawing.Point(112, 86);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 35;
+            this.cmbWriteRangeValueUnit.Location = new System.Drawing.Point(112, 86);
+            this.cmbWriteRangeValueUnit.Name = "cmbWriteRangeValueUnit";
+            this.cmbWriteRangeValueUnit.Size = new System.Drawing.Size(121, 20);
+            this.cmbWriteRangeValueUnit.TabIndex = 35;
             // 
-            // comboBox2
+            // label33
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "线性",
-            "开方"});
-            this.comboBox2.Location = new System.Drawing.Point(112, 38);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 36;
+            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(253, 133);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(77, 12);
+            this.label33.TabIndex = 32;
+            this.label33.Text = "基本量程上限";
             // 
-            // txtMsg_性能参数
+            // txtWriteRangeValueLower
             // 
-            this.txtMsg_性能参数.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMsg_性能参数.Enabled = false;
-            this.txtMsg_性能参数.Location = new System.Drawing.Point(112, 322);
-            this.txtMsg_性能参数.Multiline = true;
-            this.txtMsg_性能参数.Name = "txtMsg_性能参数";
-            this.txtMsg_性能参数.Size = new System.Drawing.Size(548, 56);
-            this.txtMsg_性能参数.TabIndex = 37;
+            this.txtWriteRangeValueLower.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtWriteRangeValueLower.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtWriteRangeValueLower.Location = new System.Drawing.Point(112, 126);
+            this.txtWriteRangeValueLower.Name = "txtWriteRangeValueLower";
+            this.txtWriteRangeValueLower.Size = new System.Drawing.Size(121, 26);
+            this.txtWriteRangeValueLower.TabIndex = 31;
             // 
-            // label35
+            // txtWriteRangeValueUpper
             // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(29, 183);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(77, 12);
-            this.label35.TabIndex = 41;
-            this.label35.Text = "阻尼系数(秒)";
+            this.txtWriteRangeValueUpper.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtWriteRangeValueUpper.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtWriteRangeValueUpper.Location = new System.Drawing.Point(336, 126);
+            this.txtWriteRangeValueUpper.Name = "txtWriteRangeValueUpper";
+            this.txtWriteRangeValueUpper.Size = new System.Drawing.Size(121, 26);
+            this.txtWriteRangeValueUpper.TabIndex = 30;
             // 
-            // button2
+            // label32
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(278, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 35);
-            this.button2.TabIndex = 44;
-            this.button2.Text = "下载";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(29, 133);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(77, 12);
+            this.label32.TabIndex = 29;
+            this.label32.Text = "基本量程下限";
             // 
-            // button3
+            // btnWriteRangeValue
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(278, 172);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 35);
-            this.button3.TabIndex = 45;
-            this.button3.Text = "下载";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnWriteRangeValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnWriteRangeValue.Location = new System.Drawing.Point(472, 122);
+            this.btnWriteRangeValue.Name = "btnWriteRangeValue";
+            this.btnWriteRangeValue.Size = new System.Drawing.Size(75, 35);
+            this.btnWriteRangeValue.TabIndex = 28;
+            this.btnWriteRangeValue.Text = "下载";
+            this.btnWriteRangeValue.UseVisualStyleBackColor = true;
+            this.btnWriteRangeValue.Click += new System.EventHandler(this.btnWriteRangeValue_Click);
             // 
-            // dbcTextBox3
+            // label31
             // 
-            this.dbcTextBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dbcTextBox3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox3.Location = new System.Drawing.Point(112, 176);
-            this.dbcTextBox3.Name = "dbcTextBox3";
-            this.dbcTextBox3.Size = new System.Drawing.Size(121, 26);
-            this.dbcTextBox3.TabIndex = 46;
+            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(29, 89);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(77, 12);
+            this.label31.TabIndex = 8;
+            this.label31.Text = "基本量程单位";
+            // 
+            // label30
+            // 
+            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(53, 42);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(53, 12);
+            this.label30.TabIndex = 7;
+            this.label30.Text = "输出选择";
             // 
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.Controls.Add(this.btnWriteMsg);
+            this.tabPage5.Controls.Add(this.btnReadMsg);
+            this.tabPage5.Controls.Add(this.txtMessage);
+            this.tabPage5.Controls.Add(this.label12);
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(722, 412);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "其 它";
+            // 
+            // btnWriteMsg
+            // 
+            this.btnWriteMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnWriteMsg.Location = new System.Drawing.Point(436, 49);
+            this.btnWriteMsg.Name = "btnWriteMsg";
+            this.btnWriteMsg.Size = new System.Drawing.Size(75, 23);
+            this.btnWriteMsg.TabIndex = 43;
+            this.btnWriteMsg.Text = "下载";
+            this.btnWriteMsg.UseVisualStyleBackColor = true;
+            this.btnWriteMsg.Click += new System.EventHandler(this.btnWriteMsg_Click);
+            // 
+            // btnReadMsg
+            // 
+            this.btnReadMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReadMsg.Location = new System.Drawing.Point(355, 49);
+            this.btnReadMsg.Name = "btnReadMsg";
+            this.btnReadMsg.Size = new System.Drawing.Size(75, 23);
+            this.btnReadMsg.TabIndex = 42;
+            this.btnReadMsg.Text = "读取";
+            this.btnReadMsg.UseVisualStyleBackColor = true;
+            this.btnReadMsg.Click += new System.EventHandler(this.btnReadMsg_Click);
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtMessage.Location = new System.Drawing.Point(127, 51);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(208, 21);
+            this.txtMessage.TabIndex = 41;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(25, 54);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 12);
+            this.label12.TabIndex = 40;
+            this.label12.Text = "信息(32位字符)";
+            // 
+            // comPortComboBox1
+            // 
+            this.comPortComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comPortComboBox1.FormattingEnabled = true;
+            this.comPortComboBox1.Location = new System.Drawing.Point(55, 460);
+            this.comPortComboBox1.Name = "comPortComboBox1";
+            this.comPortComboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comPortComboBox1.TabIndex = 0;
+            // 
+            // cmbTransferFunction
+            // 
+            this.cmbTransferFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTransferFunction.FormattingEnabled = true;
+            this.cmbTransferFunction.Items.AddRange(new object[] {
+            "线性",
+            "开方"});
+            this.cmbTransferFunction.Location = new System.Drawing.Point(87, 25);
+            this.cmbTransferFunction.Name = "cmbTransferFunction";
+            this.cmbTransferFunction.Size = new System.Drawing.Size(97, 20);
+            this.cmbTransferFunction.TabIndex = 37;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "转换函数";
             // 
             // FrmMain
             // 
@@ -1178,6 +1248,8 @@
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1201,7 +1273,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
@@ -1225,11 +1296,8 @@
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPercentOfRange;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtCurrent;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPV;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtMessage;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtDescr;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox cmbTransferFunction;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label23;
         private LJH.GeneralLibrary.WinformControl.DecimalTextBox txtDampValue;
         private System.Windows.Forms.Label label6;
@@ -1259,21 +1327,30 @@
         private System.Windows.Forms.Button btnSetPVZero;
         private System.Windows.Forms.TextBox txtMsg_压力微调;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbWriteRangeValueUnit;
         private System.Windows.Forms.Label label33;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox1;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtWriteRangeValueLower;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtWriteRangeValueUpper;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnWriteRangeValue;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbWriteTranserFunction;
         private System.Windows.Forms.TextBox txtMsg_性能参数;
         private System.Windows.Forms.Label label35;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtWriteDampValue;
+        private System.Windows.Forms.Button btnWriteDampValue;
+        private System.Windows.Forms.Button btnWriteTransferFunction;
         private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button btnWriteMsg;
+        private System.Windows.Forms.Button btnReadMsg;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtMessage;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnWritePollingAddress;
+        private LJH.GeneralLibrary.WinformControl.IntergerTextBox txtPollingAddress;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.ComboBox cmbTransferFunction;
+        private System.Windows.Forms.Label label5;
     }
 }
 
