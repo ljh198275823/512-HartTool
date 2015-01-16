@@ -50,6 +50,7 @@ namespace HartTool
         }
         #endregion
 
+        #region 事件处理
         private void FrmMain_Load(object sender, EventArgs e)
         {
             comPortComboBox1.Init();
@@ -68,6 +69,7 @@ namespace HartTool
                 btnClose.Enabled = _HartComm.IsOpened;
                 lblCommportState.Text = string.Format(_HartComm.IsOpened ? "通讯串口已打开" : "通讯串口打开失败");
                 lblCommportState.ForeColor = _HartComm.IsOpened ? Color.Blue : Color.Red;
+                statusStrip1.Refresh();
                 ReadDevice();
             }
             else
@@ -88,7 +90,9 @@ namespace HartTool
         {
             ReadDevice();
         }
+        #endregion
 
+        #region 基本信息
         private void btnRealTime_Click(object sender, EventArgs e)
         {
             if (tmrRealTime.Enabled)
@@ -115,5 +119,126 @@ namespace HartTool
             txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
             txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
         }
+        #endregion
+
+        #region 电流校调
+        private void btnFixedCurrent_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            decimal current = txtFixedCurrent.DecimalValue;
+            if (current == 0 || (current >= 4 && current <= 20))
+            {
+                bool ret = _HartComm.SetFixedCurrent(_CurDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "设置固定电流成功" : _HartComm.GetLastError();
+            }
+            else
+            {
+                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn4_N_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            decimal current = -1;
+            if (!decimal.TryParse(txt4_N.Text, out current))
+            {
+                MessageBox.Show("输入的电流不能是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (current == 0 || (current >= 4 && current <= 20))
+            {
+                bool ret = _HartComm.TrimDACZero(_CurDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+            }
+            else
+            {
+                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn4_H_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            decimal current = -1;
+            if (!decimal.TryParse(txt4_H.Text, out current))
+            {
+                MessageBox.Show("输入的电流不能是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (current == 0 || (current >= 4 && current <= 20))
+            {
+                bool ret = _HartComm.TrimDACZero(_CurDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+            }
+            else
+            {
+                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn20_N_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            decimal current = -1;
+            if (!decimal.TryParse(txt20_N.Text, out current))
+            {
+                MessageBox.Show("输入的电流不能是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (current == 0 || (current >= 4 && current <= 20))
+            {
+                bool ret = _HartComm.TrimDACGain(_CurDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+            }
+            else
+            {
+                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn20_H_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            decimal current = -1;
+            if (!decimal.TryParse(txt20_H.Text, out current))
+            {
+                MessageBox.Show("输入的电流不能是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (current == 0 || (current >= 4 && current <= 20))
+            {
+                bool ret = _HartComm.TrimDACGain(_CurDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+            }
+            else
+            {
+                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region 压力微调
+        private void btnSetPVZero_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            bool ret = _HartComm.SetPVZero(_CurDevice.LongAddress);
+            txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+        }
+
+        private void btnSetLowerRange_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            bool ret = _HartComm.SetLowerRangeValue(_CurDevice.LongAddress);
+            txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+        }
+
+        private void btnSetUpperRange_Click(object sender, EventArgs e)
+        {
+            if (_CurDevice == null) return;
+            bool ret = _HartComm.SetUpperRangeValue(_CurDevice.LongAddress);
+            txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+        }
+        #endregion
     }
 }
