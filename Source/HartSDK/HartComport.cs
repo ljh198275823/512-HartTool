@@ -273,7 +273,7 @@ namespace HartSDK
         }
         #endregion
 
-        #region 设备参数获取和设置相关方法
+        #region 读取参数的相关方法
         /// <summary>
         /// 读取设备唯一标识
         /// </summary>
@@ -336,8 +336,8 @@ namespace HartSDK
             {
                 byte[] d = response.DataContent;
                 ret = new DeviceTagInfo();
-                ret.Tag = HexStringConverter.HexToString(new byte[] { d[0], d[1], d[2], d[3], d[4], d[5] }, string.Empty);   //字节0-5
-                ret.Description = HexStringConverter.HexToString(new byte[] { d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15], d[16], d[17] }, string.Empty); //字节6-17
+                ret.Tag = PackAsciiHelper.GetString(new byte[] { d[0], d[1], d[2], d[3], d[4], d[5] });   //字节0-5
+                ret.Description = PackAsciiHelper.GetString(new byte[] { d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15], d[16], d[17] }); //字节6-17
                 ret.Year = 1990 + d[20];
                 ret.Month = d[19];
                 ret.Day = d[18];
@@ -354,7 +354,7 @@ namespace HartSDK
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null && response.DataContent.Length >= 24)
             {
-                ret = HexStringConverter.HexToString(response.DataContent, string.Empty);   //字节0-23
+                ret = PackAsciiHelper.GetString(response.DataContent);   //字节0-23
             }
             return ret;
         }
@@ -400,6 +400,356 @@ namespace HartSDK
                 ret.PrivateLabelDistributorCode = d[16];
             }
             return ret;
+        }
+        #endregion
+
+        #region 设置参数的相关方法
+        /// <summary>
+        /// 写设备的短帧地址
+        /// </summary>
+        public bool WritePollingAddress(long longAddress, byte pollingAddress)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 6,
+                DataContent = new byte[] { pollingAddress },
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写消息
+        /// </summary>
+        public bool WriteMessage(long longAddress, string msg)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 17,
+                DataContent = PackAsciiHelper.GetBytes(msg, 24),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写标签信息
+        /// </summary>
+        public bool WriteTag(long longAddress, DeviceTagInfo tag)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 18,
+            };
+            List<byte> d = new List<byte>();
+            d.AddRange(PackAsciiHelper.GetBytes(tag.Tag, 6));
+            d.AddRange(PackAsciiHelper.GetBytes(tag.Description, 12));
+            d.Add((byte)tag.Day);
+            d.Add((byte)tag.Month);
+            d.Add((byte)(tag.Year - 1990));
+            request.DataContent = d.ToArray();
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写设备的最终装配号
+        /// </summary>
+        public bool WriteFinalAssemblyNumber(long longAddress, int assemblyNumber)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 19,
+                DataContent = SEBinaryConverter.IntToBytes(assemblyNumber, 3).Reverse().ToArray(),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写主变量的阻尼系数
+        /// </summary>
+        public bool WriteDampValue(long longAddress, float dampValue)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 34,
+                DataContent = BitConverter.GetBytes(dampValue).Reverse().ToArray(),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写主变量的量程范围
+        /// </summary>
+        public bool WriteRangeValue(long longAddress, byte unitCode, float upperRange, float lowerRange)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 35,
+            };
+            List<byte> d = new List<byte>();
+            d.Add(unitCode);
+            d.AddRange(BitConverter.GetBytes(upperRange).Reverse());
+            d.AddRange(BitConverter.GetBytes(lowerRange).Reverse());
+            request.DataContent = d.ToArray();
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 将当前的主变量值设置成主变量的上限
+        /// </summary>
+        public bool SetUpperRangeValue(long longAddress)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 36,
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 将当前的主变量值设置成主变量的下限
+        /// </summary>
+        public bool SetLowerRangeValue(long longAddress)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 37,
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置固定电流输出,当传入的参数为0时表示取消固定电流输出模式
+        /// </summary>
+        public bool SetFixedCurrent(long longAddress, float current)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 40,
+                DataContent = BitConverter.GetBytes(current).Reverse().ToArray(),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 自检
+        /// </summary>
+        public bool SelftTest(long longAddress)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 41,
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 复位设备
+        /// </summary>
+        public bool Reset(long longAddress)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 42,
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置主变量零点
+        /// </summary>
+        public bool SetPVZero(long longAddress)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 43,
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置主变量单位代码
+        /// </summary>
+        public bool WritePVUnit(long longAddress, UnitCode unitCode)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 44,
+                DataContent = new byte[] { (byte)unitCode },
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 调校下限输出电流
+        /// </summary>
+        public bool TrimDACZero(long longAddress, float current)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 45,
+                DataContent = BitConverter.GetBytes(current).Reverse().ToArray(),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 调校上限电流
+        /// </summary>
+        public bool TrimDACGain(long longAddress, float current)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 46,
+                DataContent = BitConverter.GetBytes(current).Reverse().ToArray(),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置主变量DA输出转换函数
+        /// </summary>
+        public bool WriteTransferFunction(long longAddress, TransferFunctionCode code)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 47,
+                DataContent = new byte[] { (byte)code },
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写主变量传感器序列号
+        /// </summary>
+        public bool WritePVSensorSN(long longAddress, int sn)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 47,
+                DataContent = SEBinaryConverter.IntToBytes(sn, 3).Reverse().ToArray(),
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 写返回帧前导字符(0xFF)的个数
+        /// </summary>
+        public bool WriteResponsePreamblesCount(long longAddress, byte count)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 59,
+                DataContent = new byte[] { count }
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
     }

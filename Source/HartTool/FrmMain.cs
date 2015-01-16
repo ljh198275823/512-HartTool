@@ -19,29 +19,29 @@ namespace HartTool
 
         #region 私有变量
         private HartSDK.HartComport _HartComm = null;
-        private int _ShortAddress = 0;
-        private UniqueIdentifier _CurUI = null;
+        private int _PollingAddress = 0;
+        private UniqueIdentifier _CurDevice = null;
         #endregion
 
         #region 私有方法
         private void ReadDevice()
         {
-            _CurUI = null;
-            if (_HartComm != null && _HartComm.IsOpened && int.TryParse(cmbShortAddress.Text, out _ShortAddress))
+            _CurDevice = null;
+            if (_HartComm != null && _HartComm.IsOpened && int.TryParse(cmbShortAddress.Text, out _PollingAddress))
             {
-                _CurUI = _HartComm.ReadUniqueID(_ShortAddress);
-                txtDeviceID.IntergerValue = _CurUI != null ? _CurUI.DeviceID : 0;
-                if (_CurUI != null)
+                _CurDevice = _HartComm.ReadUniqueID(_PollingAddress);
+                txtDeviceID.IntergerValue = _CurDevice != null ? _CurDevice.DeviceID : 0;
+                if (_CurDevice != null)
                 {
-                    DeviceTagInfo tag = _HartComm.ReadTag(_CurUI.LongAddress);
+                    DeviceTagInfo tag = _HartComm.ReadTag(_CurDevice.LongAddress);
                     txtTag.Text = tag != null ? tag.Tag : string.Empty;
                     txtDescr.Text = tag != null ? tag.Description : string.Empty;
                     txtYear.IntergerValue = tag != null ? tag.Year : 0;
                     txtMonth.IntergerValue = tag != null ? tag.Month : 0;
                     txtDay.IntergerValue = tag != null ? tag.Day : 0;
-                    string msg = _HartComm.ReadMessage(_CurUI.LongAddress);
+                    string msg = _HartComm.ReadMessage(_CurDevice.LongAddress);
                     txtMessage.Text = !string.IsNullOrEmpty(msg) ? msg : _HartComm.GetLastError();
-                    OutputInfo oi = _HartComm.ReadOutput(_CurUI.LongAddress);
+                    OutputInfo oi = _HartComm.ReadOutput(_CurDevice.LongAddress);
                     txtLowRange.DecimalValue = (decimal)(oi != null ? oi.LowerRangeValue : 0);
                     txtUpperRange.DecimalValue = (decimal)(oi != null ? oi.UpperRangeValue : 0);
                     txtDampValue.DecimalValue = (decimal)(oi != null ? oi.DampingValue : 0);
@@ -53,7 +53,7 @@ namespace HartTool
         private void FrmMain_Load(object sender, EventArgs e)
         {
             comPortComboBox1.Init();
-            cmbShortAddress.Text = _ShortAddress.ToString();
+            cmbShortAddress.Text = _PollingAddress.ToString();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace HartTool
             }
             else
             {
-                if (_CurUI != null)
+                if (_CurDevice != null)
                 {
                     tmrRealTime.Enabled = true;
                     btnRealTime.Text = "停止采集";
@@ -108,10 +108,10 @@ namespace HartTool
 
         private void tmrRealTime_Tick(object sender, EventArgs e)
         {
-            if (_CurUI == null) return;
-            DeviceVariable pv = _HartComm.ReadPV(_CurUI.LongAddress);
+            if (_CurDevice == null) return;
+            DeviceVariable pv = _HartComm.ReadPV(_CurDevice.LongAddress);
             txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
-            CurrentInfo ci = _HartComm.ReadCurrent(_CurUI.LongAddress);
+            CurrentInfo ci = _HartComm.ReadCurrent(_CurDevice.LongAddress);
             txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
             txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
         }

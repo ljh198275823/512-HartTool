@@ -28,19 +28,26 @@ namespace LJH.GeneralLibrary
         }
 
         /// <summary>
-        /// 把整形转换成字节的数组
+        /// 把整形转换成字节的数组,可以根据需要返回指定大小的数组
         /// </summary>
-        /// <param name="t"></param>
-        /// <returns>返回值为一个长度为4的字节数组</returns>
-        public static byte[] IntToBytes(int t)
+        public static byte[] IntToBytes(int t, int count = 4)
         {
-            byte[] bytes = new byte[4];
-
-            for (int i = 0; i < bytes.Length; i++)
+            if (count == 4)
             {
-                bytes[i] = (byte)(t >> (i * 8) & 0xFF);
+                byte[] bytes = new byte[4];
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    bytes[i] = (byte)(t >> (i * 8) & 0xFF);
+                }
+                return bytes;
             }
-            return bytes;
+            else
+            {
+                byte[] bytes = new byte[count];
+                byte[] temp = IntToBytes(t, 4);
+                Array.Copy(temp, 0, bytes, 0, bytes.Length);
+                return bytes;
+            }
         }
 
         /// <summary>

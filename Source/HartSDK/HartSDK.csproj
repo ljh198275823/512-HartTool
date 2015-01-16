@@ -110,6 +110,7 @@
     <Compile Include="GeneralLibrary\TempFolderManager.cs" />
     <Compile Include="HartComport.cs" />
     <Compile Include="OutputInfo.cs" />
+    <Compile Include="GeneralLibrary\PackAsciiHelper.cs" />
     <Compile Include="PacketQueue.cs" />
     <Compile Include="RequestPacket.cs" />
     <Compile Include="ResponsePacket.cs" />
