@@ -68,11 +68,12 @@
             this.txtPercentOfRange = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtCurrent = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtPV = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.tmrRealTime = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtDampValue = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label6 = new System.Windows.Forms.Label();
+            this.cmbTransferFunction = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtUpperRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.txtLowRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -121,8 +122,8 @@
             this.txtMessage = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label12 = new System.Windows.Forms.Label();
             this.comPortComboBox1 = new LJH.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
-            this.cmbTransferFunction = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.pBody = new System.Windows.Forms.Panel();
+            this.btnGeneral = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -212,7 +213,7 @@
             this.lblCommportState});
             this.statusStrip1.Location = new System.Drawing.Point(0, 492);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(747, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(792, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -390,7 +391,6 @@
             this.btnWritePollingAddress.TabIndex = 40;
             this.btnWritePollingAddress.Text = "修改短帧地址";
             this.btnWritePollingAddress.UseVisualStyleBackColor = true;
-            this.btnWritePollingAddress.Click += new System.EventHandler(this.btnWritePollingAddress_Click);
             // 
             // txtPollingAddress
             // 
@@ -507,7 +507,6 @@
             this.btnRealTime.TabIndex = 36;
             this.btnRealTime.Text = "实时采集";
             this.btnRealTime.UseVisualStyleBackColor = true;
-            this.btnRealTime.Click += new System.EventHandler(this.btnRealTime_Click);
             // 
             // groupBox2
             // 
@@ -551,11 +550,6 @@
             this.txtPV.Name = "txtPV";
             this.txtPV.Size = new System.Drawing.Size(96, 21);
             this.txtPV.TabIndex = 38;
-            // 
-            // tmrRealTime
-            // 
-            this.tmrRealTime.Interval = 500;
-            this.tmrRealTime.Tick += new System.EventHandler(this.tmrRealTime_Tick);
             // 
             // groupBox3
             // 
@@ -615,6 +609,27 @@
             this.label6.TabIndex = 38;
             this.label6.Text = "阻尼系数";
             // 
+            // cmbTransferFunction
+            // 
+            this.cmbTransferFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTransferFunction.FormattingEnabled = true;
+            this.cmbTransferFunction.Items.AddRange(new object[] {
+            "线性",
+            "开方"});
+            this.cmbTransferFunction.Location = new System.Drawing.Point(87, 25);
+            this.cmbTransferFunction.Name = "cmbTransferFunction";
+            this.cmbTransferFunction.Size = new System.Drawing.Size(97, 20);
+            this.cmbTransferFunction.TabIndex = 37;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "转换函数";
+            // 
             // txtUpperRange
             // 
             this.txtUpperRange.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -666,11 +681,12 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.ItemSize = new System.Drawing.Size(60, 25);
-            this.tabControl1.Location = new System.Drawing.Point(8, 9);
+            this.tabControl1.Location = new System.Drawing.Point(673, 439);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(730, 445);
+            this.tabControl1.Size = new System.Drawing.Size(98, 50);
             this.tabControl1.TabIndex = 39;
+            this.tabControl1.Visible = false;
             // 
             // tabPage1
             // 
@@ -681,7 +697,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(722, 412);
+            this.tabPage1.Size = new System.Drawing.Size(90, 17);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本信息";
             // 
@@ -708,7 +724,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(722, 412);
+            this.tabPage2.Size = new System.Drawing.Size(90, 17);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "电流校准";
             // 
@@ -904,7 +920,7 @@
             this.tabPage3.Controls.Add(this.btnSetPVZero);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(722, 412);
+            this.tabPage3.Size = new System.Drawing.Size(90, 17);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "压力微调";
             // 
@@ -970,7 +986,7 @@
             this.tabPage4.Controls.Add(this.label30);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(722, 412);
+            this.tabPage4.Size = new System.Drawing.Size(90, 17);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "性能参数";
             // 
@@ -1142,7 +1158,7 @@
             this.tabPage5.Controls.Add(this.label12);
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(722, 412);
+            this.tabPage5.Size = new System.Drawing.Size(90, 17);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "其 它";
             // 
@@ -1195,32 +1211,35 @@
             this.comPortComboBox1.Size = new System.Drawing.Size(121, 20);
             this.comPortComboBox1.TabIndex = 0;
             // 
-            // cmbTransferFunction
+            // pBody
             // 
-            this.cmbTransferFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTransferFunction.FormattingEnabled = true;
-            this.cmbTransferFunction.Items.AddRange(new object[] {
-            "线性",
-            "开方"});
-            this.cmbTransferFunction.Location = new System.Drawing.Point(87, 25);
-            this.cmbTransferFunction.Name = "cmbTransferFunction";
-            this.cmbTransferFunction.Size = new System.Drawing.Size(97, 20);
-            this.cmbTransferFunction.TabIndex = 37;
+            this.pBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBody.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pBody.Location = new System.Drawing.Point(96, 2);
+            this.pBody.Name = "pBody";
+            this.pBody.Size = new System.Drawing.Size(693, 431);
+            this.pBody.TabIndex = 40;
+            this.pBody.Resize += new System.EventHandler(this.pBody_Resize);
             // 
-            // label5
+            // btnGeneral
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "转换函数";
+            this.btnGeneral.Location = new System.Drawing.Point(10, 29);
+            this.btnGeneral.Name = "btnGeneral";
+            this.btnGeneral.Size = new System.Drawing.Size(75, 33);
+            this.btnGeneral.TabIndex = 41;
+            this.btnGeneral.Text = "基本信息";
+            this.btnGeneral.UseVisualStyleBackColor = true;
+            this.btnGeneral.Click += new System.EventHandler(this.btnGeneral_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 514);
+            this.ClientSize = new System.Drawing.Size(792, 514);
+            this.Controls.Add(this.btnGeneral);
+            this.Controls.Add(this.pBody);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label2);
@@ -1229,8 +1248,10 @@
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comPortComboBox1);
+            this.IsMdiContainer = true;
             this.Name = "FrmMain";
             this.Text = "Hart 工具";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -1292,7 +1313,6 @@
         private LJH.GeneralLibrary.WinformControl.DecimalTextBox txtUpperRange;
         private System.Windows.Forms.Button btnRealTime;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Timer tmrRealTime;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPercentOfRange;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtCurrent;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPV;
@@ -1351,6 +1371,8 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ComboBox cmbTransferFunction;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel pBody;
+        private System.Windows.Forms.Button btnGeneral;
     }
 }
 

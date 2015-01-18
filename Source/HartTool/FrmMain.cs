@@ -12,40 +12,89 @@ namespace HartTool
 {
     public partial class FrmMain : Form
     {
+        [System.Runtime.InteropServices.DllImport("user32")]
+        private extern static long SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+
         public FrmMain()
         {
             InitializeComponent();
         }
 
         #region 私有变量
-        private HartSDK.HartComport _HartComm = null;
+        private HartSDK.HartComport HartComport = null;
         private int _PollingAddress = 0;
-        private UniqueIdentifier _CurDevice = null;
+        private UniqueIdentifier CurrentDevice = null;
+
+        private List<Form> _openedForms = new List<Form>();
+        private Form _ActiveForm = null;
         #endregion
 
         #region 私有方法
         private void ReadDevice()
         {
-            _CurDevice = null;
-            if (_HartComm != null && _HartComm.IsOpened && int.TryParse(cmbShortAddress.Text, out _PollingAddress))
+            CurrentDevice = null;
+            if (HartComport != null && HartComport.IsOpened && int.TryParse(cmbShortAddress.Text, out _PollingAddress))
             {
-                _CurDevice = _HartComm.ReadUniqueID(_PollingAddress);
-                txtDeviceID.IntergerValue = _CurDevice != null ? _CurDevice.DeviceID : 0;
+                CurrentDevice = HartComport.ReadUniqueID(_PollingAddress);
+                txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
                 txtPollingAddress.IntergerValue = _PollingAddress;
-                if (_CurDevice != null)
+                if (CurrentDevice != null)
                 {
-                    DeviceTagInfo tag = _HartComm.ReadTag(_CurDevice.LongAddress);
+                    foreach (Form frm in _openedForms)
+                    {
+                        if (frm is IHartCommunication)
+                        {
+                            IHartCommunication iHart = frm as IHartCommunication;
+                            iHart.HartComport = HartComport;
+                            iHart.CurrentDevice = CurrentDevice;
+                        }
+                    }
+                    DeviceTagInfo tag = HartComport.ReadTag(CurrentDevice.LongAddress);
                     txtTag.Text = tag != null ? tag.Tag : string.Empty;
                     txtDescr.Text = tag != null ? tag.Description : string.Empty;
                     txtYear.IntergerValue = tag != null ? tag.Year : 0;
                     txtMonth.IntergerValue = tag != null ? tag.Month : 0;
                     txtDay.IntergerValue = tag != null ? tag.Day : 0;
-                    OutputInfo oi = _HartComm.ReadOutput(_CurDevice.LongAddress);
+                    OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
                     txtLowRange.DecimalValue = (decimal)(oi != null ? oi.LowerRangeValue : 0);
                     txtUpperRange.DecimalValue = (decimal)(oi != null ? oi.UpperRangeValue : 0);
                     txtDampValue.DecimalValue = (decimal)(oi != null ? oi.DampingValue : 0);
                 }
             }
+        }
+
+        private void RenderForm(Form frm)
+        {
+            if (frm == null) return;
+            frm.Size = new Size(this.pBody.Size.Width, this.pBody.Height);
+            SetParent(frm.Handle, this.pBody.Handle);
+            frm.Show();
+        }
+
+        private T AddForm<T>() where T : Form
+        {
+            T instance = null;
+            foreach (Form f in _openedForms)
+            {
+                if (f.GetType() == typeof(T))
+                {
+                    instance = f as T;
+                    break;
+                }
+            }
+            if (instance == null)
+            {
+                instance = Activator.CreateInstance(typeof(T)) as T;
+                instance.TopLevel = false;
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.ShowInTaskbar = false;
+                instance.StartPosition = FormStartPosition.Manual;
+                _openedForms.Add(instance);
+            }
+            Form frm = instance as Form;
+            _ActiveForm = frm;
+            RenderForm(frm);
+            return instance;
         }
         #endregion
 
@@ -54,20 +103,21 @@ namespace HartTool
         {
             comPortComboBox1.Init();
             cmbShortAddress.Text = _PollingAddress.ToString();
+            btnGeneral.PerformClick();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            if (_HartComm != null) _HartComm.Close();
+            if (HartComport != null) HartComport.Close();
             if (comPortComboBox1.ComPort > 0)
             {
-                _HartComm = new HartSDK.HartComport(comPortComboBox1.ComPort, 1200);
-                _HartComm.Open();
-                _HartComm.Debug = true;
-                btnOpen.Enabled = !_HartComm.IsOpened;
-                btnClose.Enabled = _HartComm.IsOpened;
-                lblCommportState.Text = string.Format(_HartComm.IsOpened ? "通讯串口已打开" : "通讯串口打开失败");
-                lblCommportState.ForeColor = _HartComm.IsOpened ? Color.Blue : Color.Red;
+                HartComport = new HartSDK.HartComport(comPortComboBox1.ComPort, 1200);
+                HartComport.Open();
+                HartComport.Debug = true;
+                btnOpen.Enabled = !HartComport.IsOpened;
+                btnClose.Enabled = HartComport.IsOpened;
+                lblCommportState.Text = string.Format(HartComport.IsOpened ? "通讯串口已打开" : "通讯串口打开失败");
+                lblCommportState.ForeColor = HartComport.IsOpened ? Color.Blue : Color.Red;
                 statusStrip1.Refresh();
                 ReadDevice();
             }
@@ -79,7 +129,7 @@ namespace HartTool
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (_HartComm != null) _HartComm.Close();
+            if (HartComport != null) HartComport.Close();
             btnOpen.Enabled = true;
             btnClose.Enabled = false;
             lblCommportState.Text = string.Empty;
@@ -91,61 +141,17 @@ namespace HartTool
         }
         #endregion
 
-        #region 基本信息
-        private void btnRealTime_Click(object sender, EventArgs e)
-        {
-            if (tmrRealTime.Enabled)
-            {
-                tmrRealTime.Enabled = false;
-                btnRealTime.Text = "实时采集";
-            }
-            else
-            {
-                if (_CurDevice != null)
-                {
-                    tmrRealTime.Enabled = true;
-                    btnRealTime.Text = "停止采集";
-                }
-            }
-        }
-
-        private void tmrRealTime_Tick(object sender, EventArgs e)
-        {
-            if (_CurDevice == null) return;
-            DeviceVariable pv = _HartComm.ReadPV(_CurDevice.LongAddress);
-            txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
-            CurrentInfo ci = _HartComm.ReadCurrent(_CurDevice.LongAddress);
-            txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
-            txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
-        }
-
-        private void btnWritePollingAddress_Click(object sender, EventArgs e)
-        {
-            if (_CurDevice == null) return;
-            if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
-            {
-                bool ret = _HartComm.WritePollingAddress(_CurDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
-                if (!ret)
-                {
-                    MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("短帧地址只能设置在0-15之间", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        #endregion
+        
 
         #region 电流校调
         private void btnFixedCurrent_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             decimal current = txtFixedCurrent.DecimalValue;
             if (current == 0 || (current >= 4 && current <= 20))
             {
-                bool ret = _HartComm.SetFixedCurrent(_CurDevice.LongAddress, (float)current);
-                txtLastError_Current.Text = ret ? "设置固定电流成功" : _HartComm.GetLastError();
+                bool ret = HartComport.SetFixedCurrent(CurrentDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "设置固定电流成功" : HartComport.GetLastError();
             }
             else
             {
@@ -155,7 +161,7 @@ namespace HartTool
 
         private void btn4_N_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             decimal current = -1;
             if (!decimal.TryParse(txt4_N.Text, out current))
             {
@@ -164,8 +170,8 @@ namespace HartTool
             }
             if (current == 0 || (current >= 4 && current <= 20))
             {
-                bool ret = _HartComm.TrimDACZero(_CurDevice.LongAddress, (float)current);
-                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+                bool ret = HartComport.TrimDACZero(CurrentDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : HartComport.GetLastError();
             }
             else
             {
@@ -175,7 +181,7 @@ namespace HartTool
 
         private void btn4_H_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             decimal current = -1;
             if (!decimal.TryParse(txt4_H.Text, out current))
             {
@@ -184,8 +190,8 @@ namespace HartTool
             }
             if (current == 0 || (current >= 4 && current <= 20))
             {
-                bool ret = _HartComm.TrimDACZero(_CurDevice.LongAddress, (float)current);
-                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+                bool ret = HartComport.TrimDACZero(CurrentDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : HartComport.GetLastError();
             }
             else
             {
@@ -195,7 +201,7 @@ namespace HartTool
 
         private void btn20_N_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             decimal current = -1;
             if (!decimal.TryParse(txt20_N.Text, out current))
             {
@@ -204,8 +210,8 @@ namespace HartTool
             }
             if (current == 0 || (current >= 4 && current <= 20))
             {
-                bool ret = _HartComm.TrimDACGain(_CurDevice.LongAddress, (float)current);
-                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+                bool ret = HartComport.TrimDACGain(CurrentDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : HartComport.GetLastError();
             }
             else
             {
@@ -215,7 +221,7 @@ namespace HartTool
 
         private void btn20_H_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             decimal current = -1;
             if (!decimal.TryParse(txt20_H.Text, out current))
             {
@@ -224,8 +230,8 @@ namespace HartTool
             }
             if (current == 0 || (current >= 4 && current <= 20))
             {
-                bool ret = _HartComm.TrimDACGain(_CurDevice.LongAddress, (float)current);
-                txtLastError_Current.Text = ret ? "校调成功" : _HartComm.GetLastError();
+                bool ret = HartComport.TrimDACGain(CurrentDevice.LongAddress, (float)current);
+                txtLastError_Current.Text = ret ? "校调成功" : HartComport.GetLastError();
             }
             else
             {
@@ -237,66 +243,66 @@ namespace HartTool
         #region 压力微调
         private void btnSetPVZero_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
-            bool ret = _HartComm.SetPVZero(_CurDevice.LongAddress);
-            txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+            if (CurrentDevice == null) return;
+            bool ret = HartComport.SetPVZero(CurrentDevice.LongAddress);
+            txtMsg_压力微调.Text = ret ? "设置成功" : HartComport.GetLastError();
         }
 
         private void btnSetLowerRange_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
-            bool ret = _HartComm.SetLowerRangeValue(_CurDevice.LongAddress);
-            txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+            if (CurrentDevice == null) return;
+            bool ret = HartComport.SetLowerRangeValue(CurrentDevice.LongAddress);
+            txtMsg_压力微调.Text = ret ? "设置成功" : HartComport.GetLastError();
         }
 
         private void btnSetUpperRange_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
-            bool ret = _HartComm.SetUpperRangeValue(_CurDevice.LongAddress);
-            txtMsg_压力微调.Text = ret ? "设置成功" : _HartComm.GetLastError();
+            if (CurrentDevice == null) return;
+            bool ret = HartComport.SetUpperRangeValue(CurrentDevice.LongAddress);
+            txtMsg_压力微调.Text = ret ? "设置成功" : HartComport.GetLastError();
         }
         #endregion
 
         #region 其它
         private void btnReadMsg_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
-            string msg = _HartComm.ReadMessage(_CurDevice.LongAddress);
-            txtMessage.Text = !string.IsNullOrEmpty(msg) ? msg : _HartComm.GetLastError();
+            if (CurrentDevice == null) return;
+            string msg = HartComport.ReadMessage(CurrentDevice.LongAddress);
+            txtMessage.Text = !string.IsNullOrEmpty(msg) ? msg : HartComport.GetLastError();
         }
 
         private void btnWriteMsg_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
-            _HartComm.WriteMessage(_CurDevice.LongAddress, txtMessage.Text.Trim());
+            if (CurrentDevice == null) return;
+            HartComport.WriteMessage(CurrentDevice.LongAddress, txtMessage.Text.Trim());
         }
         #endregion
 
         #region 性能参数
         private void btnWriteTransferFunction_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             if (cmbWriteTranserFunction.SelectedIndex >= 0)
             {
                 TransferFunctionCode tc = (TransferFunctionCode)cmbWriteTranserFunction.SelectedIndex;
-                bool ret = _HartComm.WriteTransferFunction(_CurDevice.LongAddress, tc);
+                bool ret = HartComport.WriteTransferFunction(CurrentDevice.LongAddress, tc);
                 if (!ret)
                 {
-                    MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnWriteDampValue_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             decimal damp = 0;
             if (decimal.TryParse(txtWriteDampValue.Text, out damp))
             {
-                bool ret = _HartComm.WriteDampValue(_CurDevice.LongAddress, (float)damp);
+                bool ret = HartComport.WriteDampValue(CurrentDevice.LongAddress, (float)damp);
                 if (!ret)
                 {
-                    MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -307,7 +313,7 @@ namespace HartTool
 
         private void btnWriteRangeValue_Click(object sender, EventArgs e)
         {
-            if (_CurDevice == null) return;
+            if (CurrentDevice == null) return;
             if (cmbWriteRangeValueUnit.SelectedIndex <= 0)
             {
                 MessageBox.Show("没有选择主单位", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -325,13 +331,28 @@ namespace HartTool
                 MessageBox.Show("基本量程上限不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            bool ret = _HartComm.WriteRangeValue(_CurDevice.LongAddress, (byte)cmbWriteRangeValueUnit.SelectedIndex,
+            bool ret = HartComport.WriteRangeValue(CurrentDevice.LongAddress, (byte)cmbWriteRangeValueUnit.SelectedIndex,
                 (float)lowerRange, (float)upperRange);
             if (!ret)
             {
-                MessageBox.Show(_HartComm.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
+
+        private void btnGeneral_Click(object sender, EventArgs e)
+        {
+            AddForm<FrmGeneralInfo>();
+        }
+
+        private void pBody_Resize(object sender, EventArgs e)
+        {
+            RenderForm(_ActiveForm);
+        }
+
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -47,16 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmGeneralInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGeneralInfo.Designer.cs">
+      <DependentUpon>FrmGeneralInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="IHartCommunication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ExceptionPolicy.cs" />
     <Compile Include="Util\SingleInstance.cs" />
+    <EmbeddedResource Include="FrmGeneralInfo.resx">
+      <DependentUpon>FrmGeneralInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
