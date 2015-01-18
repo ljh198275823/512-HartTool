@@ -28,19 +28,6 @@ namespace HartTool
         public void ReadData()
         {
             txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
-            if (CurrentDevice != null)
-            {
-                DeviceTagInfo tag = HartComport.ReadTag(CurrentDevice.LongAddress);
-                txtTag.Text = tag != null ? tag.Tag : string.Empty;
-                txtDescr.Text = tag != null ? tag.Description : string.Empty;
-                txtYear.IntergerValue = tag != null ? tag.Year : 0;
-                txtMonth.IntergerValue = tag != null ? tag.Month : 0;
-                txtDay.IntergerValue = tag != null ? tag.Day : 0;
-                OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
-                txtLowRange.DecimalValue = (decimal)(oi != null ? oi.LowerRangeValue : 0);
-                txtUpperRange.DecimalValue = (decimal)(oi != null ? oi.UpperRangeValue : 0);
-                txtDampValue.DecimalValue = (decimal)(oi != null ? oi.DampingValue : 0);
-            }
         }
         #endregion
 
@@ -49,8 +36,6 @@ namespace HartTool
         {
             ReadData();
         }
-
-        
 
         private void btnWritePollingAddress_Click(object sender, EventArgs e)
         {

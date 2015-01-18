@@ -10,7 +10,7 @@ using HartSDK;
 
 namespace HartTool
 {
-    public partial class Frm性能参数 : Form,IHartCommunication 
+    public partial class Frm性能参数 : Form, IHartCommunication
     {
         public Frm性能参数()
         {
@@ -24,70 +24,64 @@ namespace HartTool
 
         public void ReadData()
         {
+            if (CurrentDevice == null) return;
+            OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
+            if (oi != null)
+            {
+                cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
+                txtDampValue.Text = oi.DampingValue.ToString();
+                cmbPVUnit.SelectedIndex = oi.PVUnitCode;
+            }
         }
         #endregion
 
-
-        #region 性能参数
-        private void btnWriteTransferFunction_Click(object sender, EventArgs e)
+        private bool CheckInput()
         {
-            if (CurrentDevice == null) return;
-            if (cmbWriteTranserFunction.SelectedIndex >= 0)
+            if (cmbTranserFunction.SelectedIndex < 0)
             {
-                TransferFunctionCode tc = (TransferFunctionCode)cmbWriteTranserFunction.SelectedIndex;
-                bool ret = HartComport.WriteTransferFunction(CurrentDevice.LongAddress, tc);
-                if (!ret)
-                {
-                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("没有指定输出函数");
+                return false;
             }
-        }
-
-        private void btnWriteDampValue_Click(object sender, EventArgs e)
-        {
-            if (CurrentDevice == null) return;
+            if (cmbPVUnit.SelectedIndex <= 0)
+            {
+                MessageBox.Show("没有指定显示单位");
+                return false;
+            }
             decimal damp = 0;
-            if (decimal.TryParse(txtWriteDampValue.Text, out damp))
-            {
-                bool ret = HartComport.WriteDampValue(CurrentDevice.LongAddress, (float)damp);
-                if (!ret)
-                {
-                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
+            if (!decimal.TryParse(txtDampValue.Text, out damp))
             {
                 MessageBox.Show("输入的阻尼系数不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
+            return true;
         }
 
-        private void btnWriteRangeValue_Click(object sender, EventArgs e)
+        private void btnWrite_Click(object sender, EventArgs e)
         {
             if (CurrentDevice == null) return;
-            if (cmbWriteRangeValueUnit.SelectedIndex <= 0)
-            {
-                MessageBox.Show("没有选择主单位", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            decimal lowerRange = 0;
-            decimal upperRange = 0;
-            if (!decimal.TryParse(txtWriteRangeValueLower.Text, out lowerRange))
-            {
-                MessageBox.Show("基本量程下限不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!decimal.TryParse(txtWriteRangeValueUpper.Text, out upperRange))
-            {
-                MessageBox.Show("基本量程上限不是有效的数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            bool ret = HartComport.WriteRangeValue(CurrentDevice.LongAddress, (byte)cmbWriteRangeValueUnit.SelectedIndex,
-                (float)lowerRange, (float)upperRange);
+            if (!CheckInput()) return;
+            bool ret = false;
+
+            TransferFunctionCode tc = (TransferFunctionCode)cmbTranserFunction.SelectedIndex;
+            ret = HartComport.WriteTransferFunction(CurrentDevice.LongAddress, tc);
+            if (!ret) MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            UnitCode pvUnit = (UnitCode)cmbPVUnit.SelectedIndex;
+            ret = HartComport.WritePVUnit(CurrentDevice.LongAddress, pvUnit);
+            if (!ret) MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            decimal damp = 0;
+            decimal.TryParse(txtDampValue.Text, out damp);
+            ret = HartComport.WriteDampValue(CurrentDevice.LongAddress, (float)damp);
             if (!ret)
             {
                 MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        private void Frm性能参数_Load(object sender, EventArgs e)
+        {
+            ReadData();
+        }
     }
 }

@@ -158,5 +158,10 @@ namespace HartTool
         {
             ShowForm<Frm过程量监控>();
         }
+
+        private void btn仪表信息_Click(object sender, EventArgs e)
+        {
+            ShowForm<Frm仪表信息>();
+        }
     }
 }

@@ -205,6 +205,7 @@
             this.btn仪表信息.TabIndex = 48;
             this.btn仪表信息.Text = "仪表信息";
             this.btn仪表信息.UseVisualStyleBackColor = true;
+            this.btn仪表信息.Click += new System.EventHandler(this.btn仪表信息_Click);
             // 
             // btn过程量监控
             // 
