@@ -47,11 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmGeneralInfo.cs">
+    <Compile Include="Frm电流校准.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmGeneralInfo.Designer.cs">
-      <DependentUpon>FrmGeneralInfo.cs</DependentUpon>
+    <Compile Include="Frm电流校准.Designer.cs">
+      <DependentUpon>Frm电流校准.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm基本信息.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm基本信息.Designer.cs">
+      <DependentUpon>Frm基本信息.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -59,16 +65,55 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm其它.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm其它.Designer.cs">
+      <DependentUpon>Frm其它.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm压力标定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm压力标定.Designer.cs">
+      <DependentUpon>Frm压力标定.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm性能参数.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm性能参数.Designer.cs">
+      <DependentUpon>Frm性能参数.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm过程量监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm过程量监控.Designer.cs">
+      <DependentUpon>Frm过程量监控.cs</DependentUpon>
+    </Compile>
     <Compile Include="IHartCommunication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ExceptionPolicy.cs" />
     <Compile Include="Util\SingleInstance.cs" />
-    <EmbeddedResource Include="FrmGeneralInfo.resx">
-      <DependentUpon>FrmGeneralInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Frm电流校准.resx">
+      <DependentUpon>Frm电流校准.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm基本信息.resx">
+      <DependentUpon>Frm基本信息.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm其它.resx">
+      <DependentUpon>Frm其它.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm压力标定.resx">
+      <DependentUpon>Frm压力标定.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm性能参数.resx">
+      <DependentUpon>Frm性能参数.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm过程量监控.resx">
+      <DependentUpon>Frm过程量监控.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

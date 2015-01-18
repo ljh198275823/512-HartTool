@@ -9,5 +9,6 @@ namespace HartTool
     {
         HartSDK.HartComport HartComport { get; set; }
         HartSDK.UniqueIdentifier CurrentDevice { get; set; }
+        void ReadData();
     }
 }

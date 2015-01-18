@@ -1,6 +1,6 @@
 ﻿namespace HartTool
 {
-    partial class FrmGeneralInfo
+    partial class Frm基本信息
     {
         /// <summary>
         /// Required designer variable.
@@ -58,21 +58,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtLowRange = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label22 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtPercentOfRange = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txtCurrent = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txtPV = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnRealTime = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tmrRealTime = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -417,135 +404,20 @@
             this.label22.TabIndex = 33;
             this.label22.Text = "单位";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtPercentOfRange);
-            this.groupBox2.Controls.Add(this.txtCurrent);
-            this.groupBox2.Controls.Add(this.txtPV);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.btnRealTime);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Location = new System.Drawing.Point(4, 226);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(354, 177);
-            this.groupBox2.TabIndex = 43;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "实时数据";
-            // 
-            // txtPercentOfRange
-            // 
-            this.txtPercentOfRange.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPercentOfRange.Location = new System.Drawing.Point(63, 94);
-            this.txtPercentOfRange.Name = "txtPercentOfRange";
-            this.txtPercentOfRange.Size = new System.Drawing.Size(96, 21);
-            this.txtPercentOfRange.TabIndex = 39;
-            // 
-            // txtCurrent
-            // 
-            this.txtCurrent.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtCurrent.Location = new System.Drawing.Point(63, 61);
-            this.txtCurrent.Name = "txtCurrent";
-            this.txtCurrent.Size = new System.Drawing.Size(96, 21);
-            this.txtCurrent.TabIndex = 40;
-            // 
-            // txtPV
-            // 
-            this.txtPV.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPV.Location = new System.Drawing.Point(63, 28);
-            this.txtPV.Name = "txtPV";
-            this.txtPV.Size = new System.Drawing.Size(96, 21);
-            this.txtPV.TabIndex = 38;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 65);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 12);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "电流";
-            // 
-            // btnRealTime
-            // 
-            this.btnRealTime.Location = new System.Drawing.Point(225, 29);
-            this.btnRealTime.Name = "btnRealTime";
-            this.btnRealTime.Size = new System.Drawing.Size(112, 89);
-            this.btnRealTime.TabIndex = 36;
-            this.btnRealTime.Text = "实时采集";
-            this.btnRealTime.UseVisualStyleBackColor = true;
-            this.btnRealTime.Click += new System.EventHandler(this.btnRealTime_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(28, 32);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 12);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "压力";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 98);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 12);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "百分比值";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(165, 98);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(11, 12);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "%";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(165, 65);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(29, 12);
-            this.label20.TabIndex = 31;
-            this.label20.Text = "毫安";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(165, 32);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 12);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "单位";
-            // 
-            // tmrRealTime
-            // 
-            this.tmrRealTime.Interval = 500;
-            this.tmrRealTime.Tick += new System.EventHandler(this.tmrRealTime_Tick);
-            // 
-            // FrmGeneralInfo
+            // Frm基本信息
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 405);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Name = "FrmGeneralInfo";
+            this.Name = "Frm基本信息";
             this.Text = "FrmGeneralInfo";
             this.Load += new System.EventHandler(this.FrmGeneralInfo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -581,18 +453,6 @@
         private System.Windows.Forms.Label label21;
         private LJH.GeneralLibrary.WinformControl.DecimalTextBox txtLowRange;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPercentOfRange;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtCurrent;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPV;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnRealTime;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Timer tmrRealTime;
 
     }
 }

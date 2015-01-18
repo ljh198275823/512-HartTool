@@ -5,15 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading ;
 using System.Windows.Forms;
 using HartSDK;
 
 namespace HartTool
 {
-    public partial class FrmGeneralInfo : Form, IHartCommunication
+    public partial class Frm基本信息 : Form, IHartCommunication
     {
         #region 构造函数
-        public FrmGeneralInfo()
+        public Frm基本信息()
         {
             InitializeComponent();
         }
@@ -23,11 +24,10 @@ namespace HartTool
         public HartSDK.HartComport HartComport { get; set; }
 
         public HartSDK.UniqueIdentifier CurrentDevice { get; set; }
-        #endregion
 
-
-        private void FrmGeneralInfo_Load(object sender, EventArgs e)
+        public void ReadData()
         {
+            txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
             if (CurrentDevice != null)
             {
                 DeviceTagInfo tag = HartComport.ReadTag(CurrentDevice.LongAddress);
@@ -42,34 +42,15 @@ namespace HartTool
                 txtDampValue.DecimalValue = (decimal)(oi != null ? oi.DampingValue : 0);
             }
         }
+        #endregion
 
-        #region 基本信息
-        private void btnRealTime_Click(object sender, EventArgs e)
+        #region 事件处理程序
+        private void FrmGeneralInfo_Load(object sender, EventArgs e)
         {
-            if (tmrRealTime.Enabled)
-            {
-                tmrRealTime.Enabled = false;
-                btnRealTime.Text = "实时采集";
-            }
-            else
-            {
-                if (CurrentDevice != null)
-                {
-                    tmrRealTime.Enabled = true;
-                    btnRealTime.Text = "停止采集";
-                }
-            }
+            ReadData();
         }
 
-        private void tmrRealTime_Tick(object sender, EventArgs e)
-        {
-            if (CurrentDevice == null) return;
-            DeviceVariable pv = HartComport.ReadPV(CurrentDevice.LongAddress);
-            txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
-            CurrentInfo ci = HartComport.ReadCurrent(CurrentDevice.LongAddress);
-            txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
-            txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
-        }
+        
 
         private void btnWritePollingAddress_Click(object sender, EventArgs e)
         {

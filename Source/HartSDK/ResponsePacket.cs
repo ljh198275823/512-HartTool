@@ -170,7 +170,7 @@ namespace HartSDK
         {
             get
             {
-                return CommunicationState == 0x00 && DeviceState == 0x00;
+                return CommunicationState == 0x00;
             }
         }
         #endregion
