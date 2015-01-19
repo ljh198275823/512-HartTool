@@ -115,7 +115,9 @@
     <Compile Include="RequestPacket.cs" />
     <Compile Include="ResponsePacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorCode.cs" />
     <Compile Include="SensorInfo.cs" />
+    <Compile Include="SensorMode.cs" />
     <Compile Include="TransferFunctionCode.cs" />
     <Compile Include="UniqueIdentifier.cs" />
     <Compile Include="UnitCode.cs" />

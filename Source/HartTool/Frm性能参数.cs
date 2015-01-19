@@ -24,13 +24,18 @@ namespace HartTool
 
         public void ReadData()
         {
-            if (CurrentDevice == null) return;
-            OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
-            if (oi != null)
+            btnWrite.Enabled = CurrentDevice != null;
+            button1.Enabled = CurrentDevice != null;
+            if (CurrentDevice != null)
             {
-                cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
-                txtDampValue.Text = oi.DampingValue.ToString();
-                cmbPVUnit.SelectedIndex = oi.PVUnitCode;
+                OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
+                if (oi != null)
+                {
+                    cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
+                    txtDampValue.Text = oi.DampingValue.ToString();
+                    cmbPVUnit.SelectedIndex = oi.PVUnitCode;
+                }
+                txtTrim4.Text = HartComport.ReadCurrentTrim(CurrentDevice.LongAddress, 0).ToString();
             }
         }
         #endregion
@@ -82,6 +87,24 @@ namespace HartTool
         private void Frm性能参数_Load(object sender, EventArgs e)
         {
             ReadData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(CurrentDevice ==null )return ;
+            float f = 0;
+            if (float.TryParse(txtTrim4.Text, out f))
+            {
+                bool ret = HartComport.WriteCurrentTrim(CurrentDevice.LongAddress, 0x22, f);
+                if (!ret)
+                {
+                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("小信号切除量输入的值不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

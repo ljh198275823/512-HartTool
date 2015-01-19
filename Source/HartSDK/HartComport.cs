@@ -367,7 +367,7 @@ namespace HartSDK
             SensorInfo ret = null;
             RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 14 };
             ResponsePacket response = Request(request);
-            if (response != null && response.DataContent != null && response.DataContent.Length >= 17)
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 16)
             {
                 byte[] d = response.DataContent;
                 ret = new SensorInfo();
@@ -401,6 +401,38 @@ namespace HartSDK
                 ret.PrivateLabelDistributorCode = d[16];
             }
             return ret;
+        }
+        /// <summary>
+        /// 获取信号切除量,百分比 0表示小信号切除量，1表示大20mA信号切除量
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="upperOrLower"></param>
+        /// <returns></returns>
+        public float ReadCurrentTrim(long longAddress, byte upperOrLower)
+        {
+            float ret = 0;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0xBF };
+            request.DataContent = new byte[] { upperOrLower };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 4)
+            {
+                byte[] d = response.DataContent;
+                ret = BitConverter.ToSingle(new byte[] { d[3], d[2], d[1], d[0] }, 0);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取某个命令的返回值
+        /// </summary>
+        public byte[] ReadCommand(long longAddress, byte cmd)
+        {
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = cmd };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null)
+            {
+                return response.DataContent;
+            }
+            return null;
         }
         #endregion
 
@@ -744,6 +776,51 @@ namespace HartSDK
                 Address = longAddress,
                 Command = 59,
                 DataContent = new byte[] { count }
+            };
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置信号量切除量
+        /// </summary>
+        public bool WriteCurrentTrim(long longAddress, byte uOrl, float percent)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 0xBF,
+            };
+            List<byte> d = new List<byte>();
+            d.Add(uOrl);
+            d.AddRange(BitConverter.GetBytes(percent).Reverse().ToArray());
+            request.DataContent = d.ToArray();
+            ResponsePacket response = Request(request);
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 设置主传感器工作模式
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="mode"></param>
+        /// <param name="sensorCode"></param>
+        /// <returns></returns>
+        public bool WritePVSensorMode(long longAddress, SensorMode mode, SensorCode sensorCode)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 0x84,
+                DataContent = new byte[] { (byte)mode, (byte)sensorCode },
             };
             ResponsePacket response = Request(request);
             if (response != null)

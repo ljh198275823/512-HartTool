@@ -37,7 +37,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dbcTextBox1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtTrim4 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -137,14 +137,14 @@
             this.label1.TabIndex = 60;
             this.label1.Text = "小信号切除";
             // 
-            // dbcTextBox1
+            // txtTrim4
             // 
-            this.dbcTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dbcTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox1.Location = new System.Drawing.Point(107, 181);
-            this.dbcTextBox1.Name = "dbcTextBox1";
-            this.dbcTextBox1.Size = new System.Drawing.Size(121, 26);
-            this.dbcTextBox1.TabIndex = 61;
+            this.txtTrim4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtTrim4.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtTrim4.Location = new System.Drawing.Point(107, 181);
+            this.txtTrim4.Name = "txtTrim4";
+            this.txtTrim4.Size = new System.Drawing.Size(121, 26);
+            this.txtTrim4.TabIndex = 61;
             // 
             // label2
             // 
@@ -163,6 +163,7 @@
             this.button1.TabIndex = 63;
             this.button1.Text = "下载";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Frm性能参数
             // 
@@ -171,7 +172,7 @@
             this.ClientSize = new System.Drawing.Size(653, 342);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dbcTextBox1);
+            this.Controls.Add(this.txtTrim4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDampValue);
             this.Controls.Add(this.btnWrite);
@@ -198,7 +199,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label1;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtTrim4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
     }
