@@ -39,7 +39,7 @@
             this.comPortComboBox1 = new LJH.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
             this.pBody = new System.Windows.Forms.Panel();
             this.btnGeneral = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pCommand = new System.Windows.Forms.Panel();
             this.btn量程设置 = new System.Windows.Forms.Button();
             this.btn仪表信息 = new System.Windows.Forms.Button();
             this.btn过程量监控 = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.btn多点线性化 = new System.Windows.Forms.Button();
             this.btn电流校准 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pCommand.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +57,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(8, 441);
+            this.label1.Location = new System.Drawing.Point(8, 398);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
@@ -66,7 +66,7 @@
             // btnOpen
             // 
             this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpen.Location = new System.Drawing.Point(191, 436);
+            this.btnOpen.Location = new System.Drawing.Point(191, 393);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnClose.Enabled = false;
-            this.btnClose.Location = new System.Drawing.Point(290, 436);
+            this.btnClose.Location = new System.Drawing.Point(290, 393);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 3;
@@ -107,7 +107,7 @@
             "13",
             "14",
             "15"});
-            this.cmbShortAddress.Location = new System.Drawing.Point(484, 437);
+            this.cmbShortAddress.Location = new System.Drawing.Point(484, 394);
             this.cmbShortAddress.Name = "cmbShortAddress";
             this.cmbShortAddress.Size = new System.Drawing.Size(103, 20);
             this.cmbShortAddress.TabIndex = 4;
@@ -117,7 +117,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(424, 441);
+            this.label2.Location = new System.Drawing.Point(424, 398);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 6;
@@ -127,9 +127,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblCommportState});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 469);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 426);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(849, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1049, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -143,7 +143,7 @@
             // 
             this.comPortComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comPortComboBox1.FormattingEnabled = true;
-            this.comPortComboBox1.Location = new System.Drawing.Point(55, 437);
+            this.comPortComboBox1.Location = new System.Drawing.Point(55, 394);
             this.comPortComboBox1.Name = "comPortComboBox1";
             this.comPortComboBox1.Size = new System.Drawing.Size(121, 20);
             this.comPortComboBox1.TabIndex = 0;
@@ -155,7 +155,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.pBody.Location = new System.Drawing.Point(139, 4);
             this.pBody.Name = "pBody";
-            this.pBody.Size = new System.Drawing.Size(705, 418);
+            this.pBody.Size = new System.Drawing.Size(905, 375);
             this.pBody.TabIndex = 40;
             this.pBody.Resize += new System.EventHandler(this.pBody_Resize);
             // 
@@ -169,23 +169,23 @@
             this.btnGeneral.UseVisualStyleBackColor = true;
             this.btnGeneral.Click += new System.EventHandler(this.btnGeneral_Click);
             // 
-            // panel1
+            // pCommand
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.pCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.Controls.Add(this.btn量程设置);
-            this.panel1.Controls.Add(this.btn仪表信息);
-            this.panel1.Controls.Add(this.btn过程量监控);
-            this.panel1.Controls.Add(this.btn压力微调);
-            this.panel1.Controls.Add(this.btn性能参数);
-            this.panel1.Controls.Add(this.btn温度补偿);
-            this.panel1.Controls.Add(this.btn多点线性化);
-            this.panel1.Controls.Add(this.btn电流校准);
-            this.panel1.Controls.Add(this.btnGeneral);
-            this.panel1.Location = new System.Drawing.Point(10, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(123, 418);
-            this.panel1.TabIndex = 43;
+            this.pCommand.Controls.Add(this.btn量程设置);
+            this.pCommand.Controls.Add(this.btn仪表信息);
+            this.pCommand.Controls.Add(this.btn过程量监控);
+            this.pCommand.Controls.Add(this.btn压力微调);
+            this.pCommand.Controls.Add(this.btn性能参数);
+            this.pCommand.Controls.Add(this.btn温度补偿);
+            this.pCommand.Controls.Add(this.btn多点线性化);
+            this.pCommand.Controls.Add(this.btn电流校准);
+            this.pCommand.Controls.Add(this.btnGeneral);
+            this.pCommand.Location = new System.Drawing.Point(10, 4);
+            this.pCommand.Name = "pCommand";
+            this.pCommand.Size = new System.Drawing.Size(123, 375);
+            this.pCommand.TabIndex = 43;
             // 
             // btn量程设置
             // 
@@ -271,8 +271,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 491);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1049, 448);
+            this.Controls.Add(this.pCommand);
             this.Controls.Add(this.pBody);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label2);
@@ -287,7 +287,7 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.pCommand.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,7 +305,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCommportState;
         private System.Windows.Forms.Panel pBody;
         private System.Windows.Forms.Button btnGeneral;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pCommand;
         private System.Windows.Forms.Button btn量程设置;
         private System.Windows.Forms.Button btn仪表信息;
         private System.Windows.Forms.Button btn过程量监控;

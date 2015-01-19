@@ -28,6 +28,15 @@ namespace HartTool
         public void ReadData()
         {
             txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
+            if (CurrentDevice != null)
+            {
+                OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
+                txtOutputLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
+                txtOutputUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
+                SensorInfo si = HartComport.ReadPVSensor(CurrentDevice.LongAddress);
+                txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
+                txtSenserUpper.Text = si != null ? si.UpperLimit.ToString() : null;
+            }
         }
         #endregion
 

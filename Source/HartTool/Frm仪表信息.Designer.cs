@@ -48,7 +48,7 @@
             // txtDescr
             // 
             this.txtDescr.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDescr.Location = new System.Drawing.Point(169, 62);
+            this.txtDescr.Location = new System.Drawing.Point(135, 62);
             this.txtDescr.Name = "txtDescr";
             this.txtDescr.Size = new System.Drawing.Size(208, 21);
             this.txtDescr.TabIndex = 51;
@@ -56,7 +56,7 @@
             // txtTag
             // 
             this.txtTag.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtTag.Location = new System.Drawing.Point(169, 24);
+            this.txtTag.Location = new System.Drawing.Point(135, 24);
             this.txtTag.Name = "txtTag";
             this.txtTag.Size = new System.Drawing.Size(208, 21);
             this.txtTag.TabIndex = 50;
@@ -64,7 +64,7 @@
             // txtDay
             // 
             this.txtDay.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDay.Location = new System.Drawing.Point(324, 99);
+            this.txtDay.Location = new System.Drawing.Point(290, 99);
             this.txtDay.MaxValue = 2147483647;
             this.txtDay.MinValue = -2147483648;
             this.txtDay.Name = "txtDay";
@@ -75,7 +75,7 @@
             // txtMonth
             // 
             this.txtMonth.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtMonth.Location = new System.Drawing.Point(258, 99);
+            this.txtMonth.Location = new System.Drawing.Point(224, 99);
             this.txtMonth.MaxValue = 2147483647;
             this.txtMonth.MinValue = -2147483648;
             this.txtMonth.Name = "txtMonth";
@@ -86,7 +86,7 @@
             // txtYear
             // 
             this.txtYear.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtYear.Location = new System.Drawing.Point(169, 99);
+            this.txtYear.Location = new System.Drawing.Point(135, 99);
             this.txtYear.MaxValue = 2147483647;
             this.txtYear.MinValue = -2147483648;
             this.txtYear.Name = "txtYear";
@@ -97,7 +97,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(61, 28);
+            this.label15.Location = new System.Drawing.Point(27, 28);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(95, 12);
             this.label15.TabIndex = 41;
@@ -106,7 +106,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(370, 103);
+            this.label17.Location = new System.Drawing.Point(336, 103);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 12);
             this.label17.TabIndex = 46;
@@ -115,7 +115,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(67, 65);
+            this.label14.Location = new System.Drawing.Point(33, 65);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(89, 12);
             this.label14.TabIndex = 42;
@@ -124,7 +124,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(304, 103);
+            this.label18.Location = new System.Drawing.Point(270, 103);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(17, 12);
             this.label18.TabIndex = 45;
@@ -133,7 +133,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(127, 103);
+            this.label13.Location = new System.Drawing.Point(93, 103);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(29, 12);
             this.label13.TabIndex = 43;
@@ -142,7 +142,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(235, 103);
+            this.label19.Location = new System.Drawing.Point(201, 103);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(17, 12);
             this.label19.TabIndex = 44;
@@ -151,15 +151,15 @@
             // txtMessage
             // 
             this.txtMessage.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtMessage.Location = new System.Drawing.Point(169, 136);
+            this.txtMessage.Location = new System.Drawing.Point(135, 136);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(397, 21);
+            this.txtMessage.Size = new System.Drawing.Size(332, 21);
             this.txtMessage.TabIndex = 53;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(67, 139);
+            this.label12.Location = new System.Drawing.Point(33, 139);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(89, 12);
             this.label12.TabIndex = 52;
@@ -167,7 +167,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(616, 136);
+            this.button1.Location = new System.Drawing.Point(488, 136);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 54;
@@ -178,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 420);
+            this.ClientSize = new System.Drawing.Size(694, 420);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.label12);

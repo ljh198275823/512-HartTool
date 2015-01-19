@@ -62,6 +62,20 @@ namespace HartTool
                 RenderForm(_ActiveForm);
             }
         }
+
+        private void HightLightButton(Button btn)
+        {
+            foreach (Control ctrl in pCommand.Controls)
+            {
+                if (ctrl is Button && !object .ReferenceEquals (ctrl,btn))
+                {
+                    ctrl.BackColor = SystemColors.Control;
+                    ctrl.ForeColor = Color.Black;
+                }
+            }
+            btn.BackColor = Color.Blue;
+            btn.ForeColor = Color.White;
+        }
         #endregion
 
         #region 事件处理
@@ -131,6 +145,7 @@ namespace HartTool
         private void btnGeneral_Click(object sender, EventArgs e)
         {
             ShowForm<Frm基本信息>();
+            HightLightButton(btnGeneral);
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -141,41 +156,49 @@ namespace HartTool
         private void btn电流校准_Click(object sender, EventArgs e)
         {
             ShowForm<Frm电流校准>();
+            HightLightButton(btn电流校准);
         }
 
         private void btn压力微调_Click(object sender, EventArgs e)
         {
             ShowForm<Frm压力标定>();
+            HightLightButton(btn压力微调);
         }
 
         private void btn性能参数_Click(object sender, EventArgs e)
         {
             ShowForm<Frm性能参数>();
+            HightLightButton(btn性能参数);
         }
 
         private void btn过程量监控_Click(object sender, EventArgs e)
         {
             ShowForm<Frm过程量监控>();
+            HightLightButton(btn过程量监控);
         }
 
         private void btn仪表信息_Click(object sender, EventArgs e)
         {
             ShowForm<Frm仪表信息>();
+            HightLightButton(btn仪表信息);
         }
 
         private void btn量程设置_Click(object sender, EventArgs e)
         {
             ShowForm<Frm量程设置>();
+            HightLightButton(btn量程设置);
         }
 
         private void btn温度补偿_Click(object sender, EventArgs e)
         {
             ShowForm<Frm温度补偿>();
+            HightLightButton(btn温度补偿);
         }
 
         private void btn多点线性化_Click(object sender, EventArgs e)
         {
             ShowForm<Frm多点线性化>();
+            HightLightButton(btn多点线性化);
         }
         #endregion
     }

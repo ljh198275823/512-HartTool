@@ -154,7 +154,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 99);
+            this.label4.Location = new System.Drawing.Point(34, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 29;
@@ -163,7 +163,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(136, 99);
+            this.label5.Location = new System.Drawing.Point(136, 71);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 12);
             this.label5.TabIndex = 30;
@@ -172,7 +172,7 @@
             // dbcTextBox3
             // 
             this.dbcTextBox3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox3.Location = new System.Drawing.Point(136, 122);
+            this.dbcTextBox3.Location = new System.Drawing.Point(136, 94);
             this.dbcTextBox3.Name = "dbcTextBox3";
             this.dbcTextBox3.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox3.TabIndex = 32;
@@ -180,7 +180,7 @@
             // dbcTextBox4
             // 
             this.dbcTextBox4.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox4.Location = new System.Drawing.Point(34, 122);
+            this.dbcTextBox4.Location = new System.Drawing.Point(34, 94);
             this.dbcTextBox4.Name = "dbcTextBox4";
             this.dbcTextBox4.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox4.TabIndex = 31;
@@ -188,7 +188,7 @@
             // dbcTextBox5
             // 
             this.dbcTextBox5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox5.Location = new System.Drawing.Point(136, 149);
+            this.dbcTextBox5.Location = new System.Drawing.Point(136, 121);
             this.dbcTextBox5.Name = "dbcTextBox5";
             this.dbcTextBox5.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox5.TabIndex = 34;
@@ -196,7 +196,7 @@
             // dbcTextBox6
             // 
             this.dbcTextBox6.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox6.Location = new System.Drawing.Point(34, 149);
+            this.dbcTextBox6.Location = new System.Drawing.Point(34, 121);
             this.dbcTextBox6.Name = "dbcTextBox6";
             this.dbcTextBox6.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox6.TabIndex = 33;
@@ -204,7 +204,7 @@
             // dbcTextBox7
             // 
             this.dbcTextBox7.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox7.Location = new System.Drawing.Point(136, 176);
+            this.dbcTextBox7.Location = new System.Drawing.Point(136, 148);
             this.dbcTextBox7.Name = "dbcTextBox7";
             this.dbcTextBox7.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox7.TabIndex = 36;
@@ -212,7 +212,7 @@
             // dbcTextBox8
             // 
             this.dbcTextBox8.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox8.Location = new System.Drawing.Point(34, 176);
+            this.dbcTextBox8.Location = new System.Drawing.Point(34, 148);
             this.dbcTextBox8.Name = "dbcTextBox8";
             this.dbcTextBox8.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox8.TabIndex = 35;
@@ -220,7 +220,7 @@
             // dbcTextBox9
             // 
             this.dbcTextBox9.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox9.Location = new System.Drawing.Point(136, 203);
+            this.dbcTextBox9.Location = new System.Drawing.Point(136, 175);
             this.dbcTextBox9.Name = "dbcTextBox9";
             this.dbcTextBox9.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox9.TabIndex = 38;
@@ -228,7 +228,7 @@
             // dbcTextBox10
             // 
             this.dbcTextBox10.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox10.Location = new System.Drawing.Point(34, 203);
+            this.dbcTextBox10.Location = new System.Drawing.Point(34, 175);
             this.dbcTextBox10.Name = "dbcTextBox10";
             this.dbcTextBox10.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox10.TabIndex = 37;
@@ -236,7 +236,7 @@
             // dbcTextBox11
             // 
             this.dbcTextBox11.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox11.Location = new System.Drawing.Point(136, 230);
+            this.dbcTextBox11.Location = new System.Drawing.Point(136, 202);
             this.dbcTextBox11.Name = "dbcTextBox11";
             this.dbcTextBox11.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox11.TabIndex = 40;
@@ -244,7 +244,7 @@
             // dbcTextBox12
             // 
             this.dbcTextBox12.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox12.Location = new System.Drawing.Point(34, 230);
+            this.dbcTextBox12.Location = new System.Drawing.Point(34, 202);
             this.dbcTextBox12.Name = "dbcTextBox12";
             this.dbcTextBox12.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox12.TabIndex = 39;
@@ -252,7 +252,7 @@
             // dbcTextBox13
             // 
             this.dbcTextBox13.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox13.Location = new System.Drawing.Point(136, 365);
+            this.dbcTextBox13.Location = new System.Drawing.Point(136, 337);
             this.dbcTextBox13.Name = "dbcTextBox13";
             this.dbcTextBox13.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox13.TabIndex = 50;
@@ -260,7 +260,7 @@
             // dbcTextBox14
             // 
             this.dbcTextBox14.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox14.Location = new System.Drawing.Point(34, 365);
+            this.dbcTextBox14.Location = new System.Drawing.Point(34, 337);
             this.dbcTextBox14.Name = "dbcTextBox14";
             this.dbcTextBox14.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox14.TabIndex = 49;
@@ -268,7 +268,7 @@
             // dbcTextBox15
             // 
             this.dbcTextBox15.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox15.Location = new System.Drawing.Point(136, 338);
+            this.dbcTextBox15.Location = new System.Drawing.Point(136, 310);
             this.dbcTextBox15.Name = "dbcTextBox15";
             this.dbcTextBox15.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox15.TabIndex = 48;
@@ -276,7 +276,7 @@
             // dbcTextBox16
             // 
             this.dbcTextBox16.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox16.Location = new System.Drawing.Point(34, 338);
+            this.dbcTextBox16.Location = new System.Drawing.Point(34, 310);
             this.dbcTextBox16.Name = "dbcTextBox16";
             this.dbcTextBox16.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox16.TabIndex = 47;
@@ -284,7 +284,7 @@
             // dbcTextBox17
             // 
             this.dbcTextBox17.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox17.Location = new System.Drawing.Point(136, 311);
+            this.dbcTextBox17.Location = new System.Drawing.Point(136, 283);
             this.dbcTextBox17.Name = "dbcTextBox17";
             this.dbcTextBox17.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox17.TabIndex = 46;
@@ -292,7 +292,7 @@
             // dbcTextBox18
             // 
             this.dbcTextBox18.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox18.Location = new System.Drawing.Point(34, 311);
+            this.dbcTextBox18.Location = new System.Drawing.Point(34, 283);
             this.dbcTextBox18.Name = "dbcTextBox18";
             this.dbcTextBox18.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox18.TabIndex = 45;
@@ -300,7 +300,7 @@
             // dbcTextBox19
             // 
             this.dbcTextBox19.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox19.Location = new System.Drawing.Point(136, 284);
+            this.dbcTextBox19.Location = new System.Drawing.Point(136, 256);
             this.dbcTextBox19.Name = "dbcTextBox19";
             this.dbcTextBox19.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox19.TabIndex = 44;
@@ -308,7 +308,7 @@
             // dbcTextBox20
             // 
             this.dbcTextBox20.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox20.Location = new System.Drawing.Point(34, 284);
+            this.dbcTextBox20.Location = new System.Drawing.Point(34, 256);
             this.dbcTextBox20.Name = "dbcTextBox20";
             this.dbcTextBox20.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox20.TabIndex = 43;
@@ -316,7 +316,7 @@
             // dbcTextBox21
             // 
             this.dbcTextBox21.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox21.Location = new System.Drawing.Point(136, 257);
+            this.dbcTextBox21.Location = new System.Drawing.Point(136, 229);
             this.dbcTextBox21.Name = "dbcTextBox21";
             this.dbcTextBox21.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox21.TabIndex = 42;
@@ -324,14 +324,14 @@
             // dbcTextBox22
             // 
             this.dbcTextBox22.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox22.Location = new System.Drawing.Point(34, 257);
+            this.dbcTextBox22.Location = new System.Drawing.Point(34, 229);
             this.dbcTextBox22.Name = "dbcTextBox22";
             this.dbcTextBox22.Size = new System.Drawing.Size(85, 21);
             this.dbcTextBox22.TabIndex = 41;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(231, 121);
+            this.button2.Location = new System.Drawing.Point(231, 93);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 51;
@@ -340,7 +340,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(312, 121);
+            this.button3.Location = new System.Drawing.Point(312, 93);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 52;
@@ -349,7 +349,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(312, 148);
+            this.button4.Location = new System.Drawing.Point(312, 120);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 54;
@@ -358,7 +358,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(231, 148);
+            this.button5.Location = new System.Drawing.Point(231, 120);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 53;
@@ -367,7 +367,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(312, 175);
+            this.button6.Location = new System.Drawing.Point(312, 147);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 56;
@@ -376,7 +376,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(231, 175);
+            this.button7.Location = new System.Drawing.Point(231, 147);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 55;
@@ -385,7 +385,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(312, 202);
+            this.button8.Location = new System.Drawing.Point(312, 174);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 58;
@@ -394,7 +394,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(231, 202);
+            this.button9.Location = new System.Drawing.Point(231, 174);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 57;
@@ -403,7 +403,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(312, 310);
+            this.button10.Location = new System.Drawing.Point(312, 282);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 66;
@@ -412,7 +412,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(231, 310);
+            this.button11.Location = new System.Drawing.Point(231, 282);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 65;
@@ -421,7 +421,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(312, 283);
+            this.button12.Location = new System.Drawing.Point(312, 255);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 23);
             this.button12.TabIndex = 64;
@@ -430,7 +430,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(231, 283);
+            this.button13.Location = new System.Drawing.Point(231, 255);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 63;
@@ -439,7 +439,7 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(312, 256);
+            this.button14.Location = new System.Drawing.Point(312, 228);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(75, 23);
             this.button14.TabIndex = 62;
@@ -448,7 +448,7 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(231, 256);
+            this.button15.Location = new System.Drawing.Point(231, 228);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 61;
@@ -457,7 +457,7 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(312, 229);
+            this.button16.Location = new System.Drawing.Point(312, 201);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
             this.button16.TabIndex = 60;
@@ -466,7 +466,7 @@
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(231, 229);
+            this.button17.Location = new System.Drawing.Point(231, 201);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(75, 23);
             this.button17.TabIndex = 59;
@@ -475,7 +475,7 @@
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(312, 364);
+            this.button18.Location = new System.Drawing.Point(312, 336);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(75, 23);
             this.button18.TabIndex = 70;
@@ -484,7 +484,7 @@
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(231, 364);
+            this.button19.Location = new System.Drawing.Point(231, 336);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(75, 23);
             this.button19.TabIndex = 69;
@@ -493,7 +493,7 @@
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(312, 337);
+            this.button20.Location = new System.Drawing.Point(312, 309);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(75, 23);
             this.button20.TabIndex = 68;
@@ -502,7 +502,7 @@
             // 
             // button21
             // 
-            this.button21.Location = new System.Drawing.Point(231, 337);
+            this.button21.Location = new System.Drawing.Point(231, 309);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(75, 23);
             this.button21.TabIndex = 67;
@@ -511,7 +511,7 @@
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(440, 363);
+            this.button22.Location = new System.Drawing.Point(440, 335);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(158, 23);
             this.button22.TabIndex = 71;
@@ -522,7 +522,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 444);
+            this.ClientSize = new System.Drawing.Size(755, 377);
             this.Controls.Add(this.button22);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button19);
