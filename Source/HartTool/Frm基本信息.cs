@@ -27,7 +27,6 @@ namespace HartTool
 
         public void ReadData()
         {
-            txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
             if (CurrentDevice != null)
             {
                 OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
@@ -44,23 +43,6 @@ namespace HartTool
         private void FrmGeneralInfo_Load(object sender, EventArgs e)
         {
             ReadData();
-        }
-
-        private void btnWritePollingAddress_Click(object sender, EventArgs e)
-        {
-            if (CurrentDevice == null) return;
-            if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
-            {
-                bool ret = HartComport.WritePollingAddress(CurrentDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
-                if (!ret)
-                {
-                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("短帧地址只能设置在0-15之间", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         #endregion
     }

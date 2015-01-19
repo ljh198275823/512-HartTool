@@ -67,7 +67,7 @@ namespace HartTool
         {
             foreach (Control ctrl in pCommand.Controls)
             {
-                if (ctrl is Button && !object .ReferenceEquals (ctrl,btn))
+                if (ctrl is Button && !object.ReferenceEquals(ctrl, btn))
                 {
                     ctrl.BackColor = SystemColors.Control;
                     ctrl.ForeColor = Color.Black;
@@ -75,6 +75,25 @@ namespace HartTool
             }
             btn.BackColor = Color.Blue;
             btn.ForeColor = Color.White;
+        }
+
+        private void OpenDevice()
+        {
+            CurrentDevice = null;
+            _PollingAddress = cmbShortAddress.SelectedIndex;
+            if (HartComport != null && HartComport.IsOpened)
+            {
+                CurrentDevice = HartComport.ReadUniqueID(_PollingAddress);
+            }
+            txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
+            btnWritePollingAddress.Enabled = CurrentDevice != null;
+            if (_ActiveForm != null)
+            {
+                IHartCommunication iHart = _ActiveForm as IHartCommunication;
+                iHart.HartComport = HartComport;
+                iHart.CurrentDevice = CurrentDevice;
+                iHart.ReadData();
+            }
         }
         #endregion
 
@@ -99,14 +118,7 @@ namespace HartTool
                 lblCommportState.Text = string.Format(HartComport.IsOpened ? "通讯串口已打开" : "通讯串口打开失败");
                 lblCommportState.ForeColor = HartComport.IsOpened ? Color.Blue : Color.Red;
                 statusStrip1.Refresh();
-                CurrentDevice = HartComport.ReadUniqueID(_PollingAddress);
-                if (_ActiveForm != null)
-                {
-                    IHartCommunication iHart = _ActiveForm as IHartCommunication;
-                    iHart.HartComport = HartComport;
-                    iHart.CurrentDevice = CurrentDevice;
-                    iHart.ReadData();
-                }
+                OpenDevice();
             }
             else
             {
@@ -124,17 +136,7 @@ namespace HartTool
 
         private void cmbShortAddress_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (HartComport != null && HartComport.IsOpened)
-            {
-                CurrentDevice = HartComport.ReadUniqueID(_PollingAddress);
-                if (_ActiveForm != null)
-                {
-                    IHartCommunication iHart = _ActiveForm as IHartCommunication;
-                    iHart.HartComport = HartComport;
-                    iHart.CurrentDevice = CurrentDevice;
-                    iHart.ReadData();
-                }
-            }
+            OpenDevice();
         }
 
         private void pBody_Resize(object sender, EventArgs e)
@@ -152,7 +154,7 @@ namespace HartTool
         {
             Environment.Exit(0);
         }
-       
+
         private void btn电流校准_Click(object sender, EventArgs e)
         {
             ShowForm<Frm电流校准>();
@@ -201,5 +203,29 @@ namespace HartTool
             HightLightButton(btn多点线性化);
         }
         #endregion
+
+        private void btnWritePollingAddress_Click(object sender, EventArgs e)
+        {
+            if (CurrentDevice == null) return;
+            if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
+            {
+                bool ret = HartComport.WritePollingAddress(CurrentDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
+                if (ret)
+                {
+                    _PollingAddress = txtPollingAddress.IntergerValue;
+                    cmbShortAddress.SelectedIndexChanged -= cmbShortAddress_SelectedIndexChanged;
+                    cmbShortAddress.SelectedIndex = _PollingAddress;
+                    cmbShortAddress.SelectedIndexChanged += cmbShortAddress_SelectedIndexChanged;
+                }
+                else
+                {
+                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("短帧地址只能设置在0-15之间", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

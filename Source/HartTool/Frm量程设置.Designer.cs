@@ -32,7 +32,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbSensorNumber = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -83,12 +83,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "传感器代码";
             // 
-            // comboBox2
+            // cmbSensorNumber
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbSensorNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSensorNumber.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmbSensorNumber.FormattingEnabled = true;
+            this.cmbSensorNumber.Items.AddRange(new object[] {
             "0",
             "1",
             "2",
@@ -99,10 +99,10 @@
             "7",
             "8",
             "9"});
-            this.comboBox2.Location = new System.Drawing.Point(379, 31);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 2;
+            this.cmbSensorNumber.Location = new System.Drawing.Point(379, 31);
+            this.cmbSensorNumber.Name = "cmbSensorNumber";
+            this.cmbSensorNumber.Size = new System.Drawing.Size(121, 24);
+            this.cmbSensorNumber.TabIndex = 2;
             // 
             // button1
             // 
@@ -260,7 +260,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbSensorNumber);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Name = "Frm量程设置";
@@ -275,7 +275,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbSensorNumber;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox1;

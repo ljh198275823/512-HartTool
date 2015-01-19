@@ -113,11 +113,11 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(48, 88);
+            this.label31.Location = new System.Drawing.Point(36, 88);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(53, 12);
+            this.label31.Size = new System.Drawing.Size(65, 12);
             this.label31.TabIndex = 48;
-            this.label31.Text = "显示单位";
+            this.label31.Text = "主显示单位";
             // 
             // label30
             // 
