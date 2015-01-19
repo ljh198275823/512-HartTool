@@ -53,6 +53,18 @@
     <Compile Include="Frm仪表信息.Designer.cs">
       <DependentUpon>Frm仪表信息.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm多点线性化.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm多点线性化.Designer.cs">
+      <DependentUpon>Frm多点线性化.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm温度补偿.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm温度补偿.Designer.cs">
+      <DependentUpon>Frm温度补偿.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm电流校准.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,12 @@
     <Compile Include="Util\SingleInstance.cs" />
     <EmbeddedResource Include="Frm仪表信息.resx">
       <DependentUpon>Frm仪表信息.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm多点线性化.resx">
+      <DependentUpon>Frm多点线性化.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm温度补偿.resx">
+      <DependentUpon>Frm温度补偿.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm电流校准.resx">
       <DependentUpon>Frm电流校准.cs</DependentUpon>

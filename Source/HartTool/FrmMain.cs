@@ -123,22 +123,21 @@ namespace HartTool
             }
         }
 
-        private void btnGeneral_Click(object sender, EventArgs e)
-        {
-            ShowForm<Frm基本信息>();
-        }
-
         private void pBody_Resize(object sender, EventArgs e)
         {
             RenderForm(_ActiveForm);
+        }
+
+        private void btnGeneral_Click(object sender, EventArgs e)
+        {
+            ShowForm<Frm基本信息>();
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
         }
-        #endregion
-
+       
         private void btn电流校准_Click(object sender, EventArgs e)
         {
             ShowForm<Frm电流校准>();
@@ -163,5 +162,21 @@ namespace HartTool
         {
             ShowForm<Frm仪表信息>();
         }
+
+        private void btn量程设置_Click(object sender, EventArgs e)
+        {
+            ShowForm<Frm量程设置>();
+        }
+
+        private void btn温度补偿_Click(object sender, EventArgs e)
+        {
+            ShowForm<Frm温度补偿>();
+        }
+
+        private void btn多点线性化_Click(object sender, EventArgs e)
+        {
+            ShowForm<Frm多点线性化>();
+        }
+        #endregion
     }
 }

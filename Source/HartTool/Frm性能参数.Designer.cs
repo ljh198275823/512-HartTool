@@ -36,6 +36,10 @@
             this.cmbPVUnit = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dbcTextBox1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtDampValue
@@ -109,7 +113,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(36, 88);
+            this.label31.Location = new System.Drawing.Point(48, 88);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(53, 12);
             this.label31.TabIndex = 48;
@@ -124,11 +128,51 @@
             this.label30.TabIndex = 47;
             this.label30.Text = "输出选择";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(36, 188);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "小信号切除";
+            // 
+            // dbcTextBox1
+            // 
+            this.dbcTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dbcTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dbcTextBox1.Location = new System.Drawing.Point(107, 181);
+            this.dbcTextBox1.Name = "dbcTextBox1";
+            this.dbcTextBox1.Size = new System.Drawing.Size(121, 26);
+            this.dbcTextBox1.TabIndex = 61;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(234, 188);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(11, 12);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "%";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(273, 177);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 35);
+            this.button1.TabIndex = 63;
+            this.button1.Text = "下载";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Frm性能参数
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 342);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dbcTextBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDampValue);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.label35);
@@ -153,5 +197,9 @@
         private System.Windows.Forms.ComboBox cmbPVUnit;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

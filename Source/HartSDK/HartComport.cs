@@ -106,7 +106,8 @@ namespace HartSDK
                     {
                         if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "发送数据:" + HexStringConverter.HexToString(outPut, " "));
                         _Port.Write(outPut, 0, outPut.Length);
-                        Thread.Sleep(500);
+                        int count = (int)(Math.Ceiling((double)outPut.Length / 15)) + 1; //1200bps的波特率，每100ms可以发送的最大的字符15个字符，在此基础上再加100ms等待时长
+                        Thread.Sleep(count * 100);
                     }
                 }
             }
