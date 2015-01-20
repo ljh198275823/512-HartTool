@@ -139,6 +139,30 @@ namespace HartTool
             OpenDevice();
         }
 
+        private void btnWritePollingAddress_Click(object sender, EventArgs e)
+        {
+            if (CurrentDevice == null) return;
+            if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
+            {
+                bool ret = HartComport.WritePollingAddress(CurrentDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
+                if (ret)
+                {
+                    _PollingAddress = txtPollingAddress.IntergerValue;
+                    cmbShortAddress.SelectedIndexChanged -= cmbShortAddress_SelectedIndexChanged;
+                    cmbShortAddress.SelectedIndex = _PollingAddress;
+                    cmbShortAddress.SelectedIndexChanged += cmbShortAddress_SelectedIndexChanged;
+                }
+                else
+                {
+                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("短帧地址只能设置在0-15之间", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void pBody_Resize(object sender, EventArgs e)
         {
             RenderForm(_ActiveForm);
@@ -203,29 +227,5 @@ namespace HartTool
             HightLightButton(btn多点线性化);
         }
         #endregion
-
-        private void btnWritePollingAddress_Click(object sender, EventArgs e)
-        {
-            if (CurrentDevice == null) return;
-            if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
-            {
-                bool ret = HartComport.WritePollingAddress(CurrentDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
-                if (ret)
-                {
-                    _PollingAddress = txtPollingAddress.IntergerValue;
-                    cmbShortAddress.SelectedIndexChanged -= cmbShortAddress_SelectedIndexChanged;
-                    cmbShortAddress.SelectedIndex = _PollingAddress;
-                    cmbShortAddress.SelectedIndexChanged += cmbShortAddress_SelectedIndexChanged;
-                }
-                else
-                {
-                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("短帧地址只能设置在0-15之间", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }

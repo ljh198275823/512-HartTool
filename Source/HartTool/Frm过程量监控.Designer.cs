@@ -38,7 +38,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblPVUnit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPercentOfRange
@@ -120,14 +120,14 @@
             this.label20.TabIndex = 46;
             this.label20.Text = "毫安";
             // 
-            // label16
+            // lblPVUnit
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(186, 30);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 12);
-            this.label16.TabIndex = 45;
-            this.label16.Text = "单位";
+            this.lblPVUnit.AutoSize = true;
+            this.lblPVUnit.Location = new System.Drawing.Point(186, 30);
+            this.lblPVUnit.Name = "lblPVUnit";
+            this.lblPVUnit.Size = new System.Drawing.Size(29, 12);
+            this.lblPVUnit.TabIndex = 45;
+            this.lblPVUnit.Text = "单位";
             // 
             // Frm过程量监控
             // 
@@ -143,7 +143,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.lblPVUnit);
             this.Name = "Frm过程量监控";
             this.Text = "Frm过程量监控";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm过程量监控_FormClosed);
@@ -163,6 +163,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblPVUnit;
     }
 }

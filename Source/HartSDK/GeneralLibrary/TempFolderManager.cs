@@ -71,7 +71,7 @@ namespace LJH.GeneralLibrary
                                         TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
                                         if (ts.TotalMinutes > 30) File.Delete(file);
                                     }
-                                    catch (IOException ex)
+                                    catch (IOException)
                                     {
                                     }
                                     catch (Exception ex)
@@ -81,7 +81,7 @@ namespace LJH.GeneralLibrary
                                 }
                             }
                         }
-                        catch (IOException ex)
+                        catch (IOException)
                         {
                         }
                         catch (Exception ex)
@@ -90,7 +90,7 @@ namespace LJH.GeneralLibrary
                         }
                     }
                 }
-                catch (IOException ex)
+                catch (IOException)
                 {
                 }
                 catch (Exception ex)

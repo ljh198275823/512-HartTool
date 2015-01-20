@@ -118,10 +118,32 @@ namespace HartTool
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            if (CurrentDevice == null) return;
+            if (cmbPVUnit.SelectedIndex <= 0)
+            {
+                MessageBox.Show("没有选择量程单位", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            float lower = 0;
+            float upper = 0;
+            if (!float.TryParse(txtPVLower.Text, out lower))
+            {
+                MessageBox.Show("量程下限不能转化成数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!float.TryParse(txtPVUpper.Text, out upper))
+            {
+                MessageBox.Show("量程上限不能转化成数值", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (lower > upper)
+            {
+                MessageBox.Show("量程下限比上限要大", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            bool ret = HartComport.WritePVRange(CurrentDevice.LongAddress, (UnitCode)cmbPVUnit.SelectedIndex, lower, upper);
+            if (!ret) MessageBox.Show(HartComport .GetLastError (), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
-
-       
     }
 }

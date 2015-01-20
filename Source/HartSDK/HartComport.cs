@@ -133,9 +133,9 @@ namespace HartSDK
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //ExceptionPolicy.HandleException(ex);
+               
             }
             return null;
         }
@@ -172,7 +172,7 @@ namespace HartSDK
                     }
                 }
             }
-            catch (ThreadAbortException ex)
+            catch (ThreadAbortException)
             {
             }
             catch (Exception ex)
@@ -303,7 +303,7 @@ namespace HartSDK
             if (response != null && response.DataContent != null && response.DataContent.Length >= 5)
             {
                 ret = new DeviceVariable();
-                ret.UnitCode = response.DataContent[0];
+                ret.UnitCode = (UnitCode)response.DataContent[0];
                 ret.Value = BitConverter.ToSingle(new byte[] { response.DataContent[4], response.DataContent[3], response.DataContent[2], response.DataContent[1] }, 0);
             }
             return ret;
@@ -541,7 +541,7 @@ namespace HartSDK
         /// <summary>
         /// 写主变量的量程范围
         /// </summary>
-        public bool WriteRangeValue(long longAddress, byte unitCode, float upperRange, float lowerRange)
+        public bool WritePVRange(long longAddress, UnitCode unitCode, float upperRange, float lowerRange)
         {
             RequestPacket request = new RequestPacket()
             {
@@ -550,7 +550,7 @@ namespace HartSDK
                 Command = 35,
             };
             List<byte> d = new List<byte>();
-            d.Add(unitCode);
+            d.Add((byte)unitCode);
             d.AddRange(BitConverter.GetBytes(upperRange).Reverse());
             d.AddRange(BitConverter.GetBytes(lowerRange).Reverse());
             request.DataContent = d.ToArray();

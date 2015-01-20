@@ -40,7 +40,6 @@ namespace HartTool
                 lblSU1.Text = si != null ? ((UnitCode)si.UnitCode).ToString() : null;
                 lblSU2.Text = si != null ? ((UnitCode)si.UnitCode).ToString() : null;
                 txtTrim4.Text = HartComport.ReadCurrentTrim(CurrentDevice.LongAddress, 0).ToString();
-                //txtTrim20.Text = HartComport.ReadCurrentTrim(CurrentDevice.LongAddress, 1).ToString();
             }
         }
         #endregion
@@ -49,6 +48,14 @@ namespace HartTool
         private void FrmGeneralInfo_Load(object sender, EventArgs e)
         {
             ReadData();
+        }
+
+        private void txtPwd_TextChanged(object sender, EventArgs e)
+        {
+            btnBackToDevice.Enabled = txtPwd.Text == "5567" && CurrentDevice != null;
+            btnBackToPC.Enabled = txtPwd.Text == "5567" && CurrentDevice != null;
+            btnRestoreFromDecice.Enabled = txtPwd.Text == "5567" && CurrentDevice != null;
+            btnRestoreFromPC.Enabled = txtPwd.Text == "5567" && CurrentDevice != null;
         }
         #endregion
     }

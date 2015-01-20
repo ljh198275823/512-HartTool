@@ -8,7 +8,7 @@ namespace HartSDK
     /// <summary>
     /// 表示设备变量
     /// </summary>
-    [Serializable ]
+    [Serializable]
     public class DeviceVariable
     {
         #region 构造函数
@@ -19,7 +19,7 @@ namespace HartSDK
         /// <summary>
         /// 获取或设置变量的计量单位码
         /// </summary>
-        public byte UnitCode { get; set; }
+        public UnitCode UnitCode { get; set; }
         /// <summary>
         /// 获取或设置变量的值
         /// </summary>

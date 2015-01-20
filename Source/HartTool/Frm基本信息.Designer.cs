@@ -47,6 +47,12 @@
             this.txtSenserUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtOutputLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtOutputUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.btnBackToDevice = new System.Windows.Forms.Button();
+            this.btnBackToPC = new System.Windows.Forms.Button();
+            this.btnRestoreFromDecice = new System.Windows.Forms.Button();
+            this.btnRestoreFromPC = new System.Windows.Forms.Button();
+            this.txtPwd = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
@@ -214,11 +220,77 @@
             this.txtOutputUpper.Size = new System.Drawing.Size(121, 26);
             this.txtOutputUpper.TabIndex = 69;
             // 
+            // btnBackToDevice
+            // 
+            this.btnBackToDevice.Enabled = false;
+            this.btnBackToDevice.Location = new System.Drawing.Point(232, 184);
+            this.btnBackToDevice.Name = "btnBackToDevice";
+            this.btnBackToDevice.Size = new System.Drawing.Size(98, 30);
+            this.btnBackToDevice.TabIndex = 86;
+            this.btnBackToDevice.Text = "备份到模块";
+            this.btnBackToDevice.UseVisualStyleBackColor = true;
+            // 
+            // btnBackToPC
+            // 
+            this.btnBackToPC.Enabled = false;
+            this.btnBackToPC.Location = new System.Drawing.Point(363, 184);
+            this.btnBackToPC.Name = "btnBackToPC";
+            this.btnBackToPC.Size = new System.Drawing.Size(98, 30);
+            this.btnBackToPC.TabIndex = 87;
+            this.btnBackToPC.Text = "备份到电脑";
+            this.btnBackToPC.UseVisualStyleBackColor = true;
+            // 
+            // btnRestoreFromDecice
+            // 
+            this.btnRestoreFromDecice.Enabled = false;
+            this.btnRestoreFromDecice.Location = new System.Drawing.Point(232, 235);
+            this.btnRestoreFromDecice.Name = "btnRestoreFromDecice";
+            this.btnRestoreFromDecice.Size = new System.Drawing.Size(98, 30);
+            this.btnRestoreFromDecice.TabIndex = 88;
+            this.btnRestoreFromDecice.Text = "从模块恢复";
+            this.btnRestoreFromDecice.UseVisualStyleBackColor = true;
+            // 
+            // btnRestoreFromPC
+            // 
+            this.btnRestoreFromPC.Enabled = false;
+            this.btnRestoreFromPC.Location = new System.Drawing.Point(363, 235);
+            this.btnRestoreFromPC.Name = "btnRestoreFromPC";
+            this.btnRestoreFromPC.Size = new System.Drawing.Size(98, 30);
+            this.btnRestoreFromPC.TabIndex = 89;
+            this.btnRestoreFromPC.Text = "从电脑恢复";
+            this.btnRestoreFromPC.UseVisualStyleBackColor = true;
+            // 
+            // txtPwd
+            // 
+            this.txtPwd.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtPwd.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPwd.Location = new System.Drawing.Point(103, 188);
+            this.txtPwd.Name = "txtPwd";
+            this.txtPwd.PasswordChar = '*';
+            this.txtPwd.Size = new System.Drawing.Size(121, 26);
+            this.txtPwd.TabIndex = 91;
+            this.txtPwd.TextChanged += new System.EventHandler(this.txtPwd_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(68, 195);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 12);
+            this.label7.TabIndex = 90;
+            this.label7.Text = "密码";
+            // 
             // Frm基本信息
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 405);
+            this.Controls.Add(this.txtPwd);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnRestoreFromPC);
+            this.Controls.Add(this.btnRestoreFromDecice);
+            this.Controls.Add(this.btnBackToPC);
+            this.Controls.Add(this.btnBackToDevice);
             this.Controls.Add(this.lblSU1);
             this.Controls.Add(this.lblSU2);
             this.Controls.Add(this.lblPVU1);
@@ -265,6 +337,12 @@
         private System.Windows.Forms.Label lblPVU1;
         private System.Windows.Forms.Label lblSU2;
         private System.Windows.Forms.Label lblSU1;
+        private System.Windows.Forms.Button btnBackToDevice;
+        private System.Windows.Forms.Button btnBackToPC;
+        private System.Windows.Forms.Button btnRestoreFromDecice;
+        private System.Windows.Forms.Button btnRestoreFromPC;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPwd;
+        private System.Windows.Forms.Label label7;
 
     }
 }

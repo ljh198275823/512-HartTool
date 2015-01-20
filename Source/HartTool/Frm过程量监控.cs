@@ -67,6 +67,7 @@ namespace HartTool
                     DeviceVariable pv = HartComport.ReadPV(CurrentDevice.LongAddress);
                     Action a = delegate()
                     {
+                        lblPVUnit.Text = pv != null ? UnitCodeDescr.GetDescr(pv.UnitCode) : null;
                         txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
                         CurrentInfo ci = HartComport.ReadCurrent(CurrentDevice.LongAddress);
                         txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
@@ -76,10 +77,10 @@ namespace HartTool
                     Thread.Sleep(200);
                 }
             }
-            catch (ThreadAbortException ex)
+            catch (ThreadAbortException)
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
