@@ -163,7 +163,7 @@ namespace HartTool
 
         private void btn压力微调_Click(object sender, EventArgs e)
         {
-            ShowForm<Frm压力标定>();
+            ShowForm<Frm压力微调>();
             HightLightButton(btn压力微调);
         }
 

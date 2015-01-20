@@ -83,11 +83,11 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm压力标定.cs">
+    <Compile Include="Frm压力微调.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm压力标定.Designer.cs">
-      <DependentUpon>Frm压力标定.cs</DependentUpon>
+    <Compile Include="Frm压力微调.Designer.cs">
+      <DependentUpon>Frm压力微调.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm性能参数.cs">
       <SubType>Form</SubType>
@@ -130,8 +130,8 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm压力标定.resx">
-      <DependentUpon>Frm压力标定.cs</DependentUpon>
+    <EmbeddedResource Include="Frm压力微调.resx">
+      <DependentUpon>Frm压力微调.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm性能参数.resx">
       <DependentUpon>Frm性能参数.cs</DependentUpon>

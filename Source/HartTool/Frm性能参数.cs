@@ -33,7 +33,7 @@ namespace HartTool
                 {
                     cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
                     txtDampValue.Text = oi.DampingValue.ToString();
-                    cmbPVUnit.SelectedIndex = oi.PVUnitCode;
+                    cmbPVUnit.SelectedIndex = (int)oi.PVUnitCode;
                 }
                 txtTrim4.Text = HartComport.ReadCurrentTrim(CurrentDevice.LongAddress, 0).ToString();
             }

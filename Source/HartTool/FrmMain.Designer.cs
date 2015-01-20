@@ -237,7 +237,7 @@
             this.btn性能参数.Name = "btn性能参数";
             this.btn性能参数.Size = new System.Drawing.Size(117, 33);
             this.btn性能参数.TabIndex = 45;
-            this.btn性能参数.Text = "性能参数";
+            this.btn性能参数.Text = "输出特性";
             this.btn性能参数.UseVisualStyleBackColor = true;
             this.btn性能参数.Click += new System.EventHandler(this.btn性能参数_Click);
             // 

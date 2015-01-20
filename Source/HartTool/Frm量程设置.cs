@@ -26,18 +26,35 @@ namespace HartTool
 
         public void ReadData()
         {
-            button1.Enabled = CurrentDevice != null;
-            button2.Enabled = CurrentDevice != null;
-            button3.Enabled = CurrentDevice != null;
-            if (CurrentDevice != null)
+            //采用异步的方式
+            Action action = delegate()
             {
-                byte[] data = HartComport.ReadCommand(CurrentDevice.LongAddress, 0x80);
-                if (data != null && data.Length == 22)
-                {
-                    cmbSensorMode.SelectedIndex = data[11];
-                    cmbSensorCode.SelectedIndex = data[12] >= 2 ? data[12] - 2 : -1;
-                }
-            }
+                this.Invoke((Action)(() =>
+                    {
+                        button1.Enabled = CurrentDevice != null;
+                        button3.Enabled = CurrentDevice != null;
+                        if (CurrentDevice != null)
+                        {
+                            OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
+                            cmbPVUnit.SelectedIndex = oi != null ? (int)oi.PVUnitCode : 0;
+                            txtPVLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
+                            txtPVUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
+                            SensorInfo si = HartComport.ReadPVSensor(CurrentDevice.LongAddress);
+                            txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
+                            txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
+                            lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
+                            byte[] data = HartComport.ReadCommand(CurrentDevice.LongAddress, 0x80);
+                            if (data != null && data.Length == 22)
+                            {
+                                cmbSensorMode.SelectedIndex = data[11];
+                                cmbSensorCode.SelectedIndex = data[12] >= 2 ? data[12] - 2 : -1;
+                            }
+                        }
+                    }));
+            };
+            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(action));
+            t.IsBackground = true;
+            t.Start();
         }
         #endregion
 
@@ -67,9 +84,10 @@ namespace HartTool
         }
         #endregion
 
+        #region 事件处理程序
         private void Frm量程设置_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,7 +104,24 @@ namespace HartTool
                 return;
             }
             bool ret = HartComport.WritePVSensorMode(CurrentDevice.LongAddress, (SensorMode)cmbSensorMode.SelectedIndex, (SensorCode)(cmbSensorCode.SelectedIndex + 2));
-            if (!ret) MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (ret)
+            {
+                SensorInfo si = HartComport.ReadPVSensor(CurrentDevice.LongAddress);
+                txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
+                txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
+            }
+            else
+            {
+                MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+       
     }
 }

@@ -55,4 +55,12 @@ namespace HartSDK
         /// </summary>
         percent=0x11,
     }
+
+    public class UnitCodeDescr
+    {
+        public static string GetDescr(UnitCode uc)
+        {
+            return uc.ToString();
+        }
+    }
 }

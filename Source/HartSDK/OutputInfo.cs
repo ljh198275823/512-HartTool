@@ -24,7 +24,7 @@ namespace HartSDK
         /// <summary>
         /// 获取或设置主变量的计量单位码
         /// </summary>
-        public byte PVUnitCode { get; set; }
+        public UnitCode PVUnitCode { get; set; }
         /// <summary>
         /// 获取或设置高点值
         /// </summary>

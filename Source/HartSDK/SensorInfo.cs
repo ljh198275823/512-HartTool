@@ -8,7 +8,7 @@ namespace HartSDK
     /// <summary>
     /// 表示传感器信息
     /// </summary>
-    [Serializable ]
+    [Serializable]
     public class SensorInfo
     {
         #region 构造函数
@@ -23,7 +23,7 @@ namespace HartSDK
         /// <summary>
         /// 获取或设置传感器计量单位码
         /// </summary>
-        public byte UnitCode { get; set; }
+        public UnitCode UnitCode { get; set; }
         /// <summary>
         /// 获取或设置传感器量程上限
         /// </summary>

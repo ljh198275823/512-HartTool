@@ -372,7 +372,7 @@ namespace HartSDK
                 byte[] d = response.DataContent;
                 ret = new SensorInfo();
                 ret.SensorSN = SEBinaryConverter.BytesToInt(new byte[] { d[2], d[1], d[0] });
-                ret.UnitCode = d[3];
+                ret.UnitCode = (UnitCode)d[3];
                 ret.UpperLimit = BitConverter.ToSingle(new byte[] { d[7], d[6], d[5], d[4] }, 0);
                 ret.LowerLimit = BitConverter.ToSingle(new byte[] { d[11], d[10], d[9], d[8] }, 0);
                 ret.MinimumSpan = BitConverter.ToSingle(new byte[] { d[15], d[14], d[13], d[12] }, 0);
@@ -393,7 +393,7 @@ namespace HartSDK
                 ret = new OutputInfo();
                 ret.AlarmSelectCode = d[0];
                 ret.TransferFunctionCode = d[1];
-                ret.PVUnitCode = d[2];
+                ret.PVUnitCode = (UnitCode)d[2];
                 ret.UpperRangeValue = BitConverter.ToSingle(new byte[] { d[6], d[5], d[4], d[3] }, 0);
                 ret.LowerRangeValue = BitConverter.ToSingle(new byte[] { d[10], d[9], d[8], d[7] }, 0);
                 ret.DampingValue = BitConverter.ToSingle(new byte[] { d[14], d[13], d[12], d[11] }, 0);
