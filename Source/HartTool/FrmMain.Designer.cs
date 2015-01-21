@@ -61,7 +61,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(8, 424);
+            this.label1.Location = new System.Drawing.Point(147, 424);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
@@ -70,7 +70,7 @@
             // btnOpen
             // 
             this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpen.Location = new System.Drawing.Point(168, 419);
+            this.btnOpen.Location = new System.Drawing.Point(294, 419);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnClose.Enabled = false;
-            this.btnClose.Location = new System.Drawing.Point(256, 419);
+            this.btnClose.Location = new System.Drawing.Point(382, 419);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 3;
@@ -111,9 +111,9 @@
             "13",
             "14",
             "15"});
-            this.cmbShortAddress.Location = new System.Drawing.Point(407, 420);
+            this.cmbShortAddress.Location = new System.Drawing.Point(64, 420);
             this.cmbShortAddress.Name = "cmbShortAddress";
-            this.cmbShortAddress.Size = new System.Drawing.Size(84, 20);
+            this.cmbShortAddress.Size = new System.Drawing.Size(65, 20);
             this.cmbShortAddress.TabIndex = 4;
             this.cmbShortAddress.SelectedIndexChanged += new System.EventHandler(this.cmbShortAddress_SelectedIndexChanged);
             // 
@@ -121,7 +121,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(347, 424);
+            this.label2.Location = new System.Drawing.Point(8, 424);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 6;
@@ -147,9 +147,9 @@
             // 
             this.comPortComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comPortComboBox1.FormattingEnabled = true;
-            this.comPortComboBox1.Location = new System.Drawing.Point(55, 420);
+            this.comPortComboBox1.Location = new System.Drawing.Point(194, 420);
             this.comPortComboBox1.Name = "comPortComboBox1";
-            this.comPortComboBox1.Size = new System.Drawing.Size(100, 20);
+            this.comPortComboBox1.Size = new System.Drawing.Size(87, 20);
             this.comPortComboBox1.TabIndex = 0;
             // 
             // pBody
@@ -284,7 +284,7 @@
             // 
             this.btnWritePollingAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnWritePollingAddress.Enabled = false;
-            this.btnWritePollingAddress.Location = new System.Drawing.Point(507, 419);
+            this.btnWritePollingAddress.Location = new System.Drawing.Point(546, 419);
             this.btnWritePollingAddress.Name = "btnWritePollingAddress";
             this.btnWritePollingAddress.Size = new System.Drawing.Size(108, 23);
             this.btnWritePollingAddress.TabIndex = 45;
@@ -296,11 +296,11 @@
             // 
             this.txtPollingAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPollingAddress.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPollingAddress.Location = new System.Drawing.Point(621, 420);
+            this.txtPollingAddress.Location = new System.Drawing.Point(660, 420);
             this.txtPollingAddress.MaxValue = 2147483647;
             this.txtPollingAddress.MinValue = -2147483648;
             this.txtPollingAddress.Name = "txtPollingAddress";
-            this.txtPollingAddress.Size = new System.Drawing.Size(70, 21);
+            this.txtPollingAddress.Size = new System.Drawing.Size(46, 21);
             this.txtPollingAddress.TabIndex = 44;
             this.txtPollingAddress.Text = "0";
             // 
@@ -331,6 +331,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 474);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbShortAddress);
             this.Controls.Add(this.txtDeviceID);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnWritePollingAddress);
@@ -338,8 +340,6 @@
             this.Controls.Add(this.pCommand);
             this.Controls.Add(this.pBody);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbShortAddress);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.label1);
