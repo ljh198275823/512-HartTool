@@ -24,17 +24,14 @@ namespace HartTool
         {
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
             button1.Enabled = HartDevice != null && HartDevice.IsConnected;
-            if (HartDevice != null && HartDevice.IsConnected)
+            OutputInfo oi = HartDevice.ReadOutput();
+            if (oi != null)
             {
-                OutputInfo oi = HartDevice.ReadOutput();
-                if (oi != null)
-                {
-                    cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
-                    txtDampValue.Text = oi.DampingValue.ToString();
-                    cmbPVUnit.SelectedIndex = (int)oi.PVUnitCode;
-                }
-                txtTrim4.Text = HartDevice.ReadCurrentTrim(0).ToString();
+                cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
+                txtDampValue.Text = oi.DampingValue.ToString();
+                cmbPVUnit.SelectedIndex = (int)oi.PVUnitCode;
             }
+            txtTrim4.Text = HartDevice.ReadCurrentTrim(0).ToString();
         }
         #endregion
 
@@ -61,7 +58,6 @@ namespace HartTool
 
         private void btnWrite_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             if (!CheckInput()) return;
             bool ret = false;
 
@@ -82,14 +78,8 @@ namespace HartTool
             }
         }
 
-        private void Frm性能参数_Load(object sender, EventArgs e)
-        {
-            ReadData();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            if(HartDevice != null && HartDevice.IsConnected)return ;
             float f = 0;
             if (float.TryParse(txtTrim4.Text, out f))
             {

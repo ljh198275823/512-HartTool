@@ -56,18 +56,18 @@ namespace HartTool
             {
                 while (true)
                 {
-                    if (HartDevice != null && HartDevice.IsConnected)
+                    if (HartDevice == null || !HartDevice.IsConnected)
                     {
                         this.Invoke((Action)(() => { btnRealTime.Text = "实时采集"; }));
                         _ReadPV = null;
                         return;
                     }
-                    DeviceVariable pv = HartDevice.ReadPV();
+                    DeviceVariable pv = HartDevice.ReadPV(false);
+                    CurrentInfo ci = HartDevice.ReadCurrent(false);
                     Action a = delegate()
                     {
                         lblPVUnit.Text = pv != null ? UnitCodeDescr.GetDescr(pv.UnitCode) : null;
                         txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
-                        CurrentInfo ci = HartDevice.ReadCurrent();
                         txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
                         txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
                     };

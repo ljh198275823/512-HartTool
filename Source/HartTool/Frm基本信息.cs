@@ -40,11 +40,6 @@ namespace HartTool
         #endregion
 
         #region 事件处理程序
-        private void FrmGeneralInfo_Load(object sender, EventArgs e)
-        {
-            ReadData();
-        }
-
         private void txtPwd_TextChanged(object sender, EventArgs e)
         {
             btnBackToDevice.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;

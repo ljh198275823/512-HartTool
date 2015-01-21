@@ -32,6 +32,7 @@ namespace HartSDK
         private string _Message = null;
         private SensorInfo _PVSensor = null;
         private OutputInfo _PVOutput = null;
+        private float? _LowerCurrentTrim = null;
         #endregion
 
         #region 公共属性
@@ -89,56 +90,57 @@ namespace HartSDK
         /// <summary>
         /// 读取设备唯一标识
         /// </summary>
-        public UniqueIdentifier ReadUniqueID()
+        public UniqueIdentifier ReadUniqueID(bool optical = true)
         {
+            if (!optical) _ID = HartComport.ReadUniqueID(PollingAddress);
             return _ID;
         }
         /// <summary>
         /// 读取设备的主变量
         /// </summary>
-        public DeviceVariable ReadPV()
+        public DeviceVariable ReadPV(bool optical = true)
         {
-            if (_PV == null && _ID != null) _PV = HartComport.ReadPV(_ID.LongAddress);
+            if (!optical || (_PV == null && _ID != null)) _PV = HartComport.ReadPV(_ID.LongAddress);
             return _PV;
         }
         /// <summary>
         /// 读取电流和量程百分比
         /// </summary>
-        public CurrentInfo ReadCurrent()
+        public CurrentInfo ReadCurrent(bool optical = true)
         {
-            if (_PVCurrent == null && _ID != null) _PVCurrent = HartComport.ReadCurrent(_ID.LongAddress);
+            if (!optical || (_PVCurrent == null && _ID != null)) _PVCurrent = HartComport.ReadCurrent(_ID.LongAddress);
             return _PVCurrent;
         }
         /// <summary>
         /// 读取设备标签信息
         /// </summary>
-        public DeviceTagInfo ReadTag()
+        public DeviceTagInfo ReadTag(bool optical = true)
         {
-            if (_Tag == null && _ID != null) _Tag = HartComport.ReadTag(_ID.LongAddress);
+            if (!optical || (_Tag == null && _ID != null)) _Tag = HartComport.ReadTag(_ID.LongAddress);
             return _Tag;
         }
         /// <summary>
         /// 读取设备消息
         /// </summary>
-        public string ReadMessage()
+        public string ReadMessage(bool optical = true)
         {
-            if (string.IsNullOrEmpty(_Message) && _ID != null) _Message = HartComport.ReadMessage(_ID.LongAddress);
+            if (!optical || (string.IsNullOrEmpty(_Message) && _ID != null)) _Message = HartComport.ReadMessage(_ID.LongAddress);
             return _Message;
         }
         /// <summary>
         /// 读取主变量传感器信息
         /// </summary>
-        public SensorInfo ReadPVSensor()
+        public SensorInfo ReadPVSensor(bool optical = true)
         {
-            if (_PVSensor == null && _ID != null) _PVSensor = HartComport.ReadPVSensor(_ID.LongAddress);
+            if (!optical || (_PVSensor == null && _ID != null)) _PVSensor = HartComport.ReadPVSensor(_ID.LongAddress);
             return _PVSensor;
         }
         /// <summary>
         /// 读取模拟输出信息
         /// </summary>
-        public OutputInfo ReadOutput()
+        public OutputInfo ReadOutput(bool optical = true)
         {
-            if (_PVOutput == null && _ID != null) _PVOutput = HartComport.ReadOutput(_ID.LongAddress);
+            if (!optical || (_PVOutput == null && _ID != null)) _PVOutput = HartComport.ReadOutput(_ID.LongAddress);
             return _PVOutput;
         }
         /// <summary>
@@ -147,10 +149,10 @@ namespace HartSDK
         /// <param name="longAddress"></param>
         /// <param name="upperOrLower"></param>
         /// <returns></returns>
-        public float ReadCurrentTrim(byte upperOrLower)
+        public float ReadCurrentTrim(byte upperOrLower, bool optical = true)
         {
-            if (_ID != null) return HartComport.ReadCurrentTrim(_ID.LongAddress, upperOrLower);
-            return 0;
+            if (!optical || (_ID != null && _LowerCurrentTrim == null)) _LowerCurrentTrim = HartComport.ReadCurrentTrim(_ID.LongAddress, upperOrLower);
+            return _LowerCurrentTrim != null ? _LowerCurrentTrim.Value : 0;
         }
         /// <summary>
         /// 读取某个命令的返回值
@@ -179,7 +181,9 @@ namespace HartSDK
         public bool WriteMessage(string msg)
         {
             if (_ID == null) return false;
-            return HartComport.WriteMessage(_ID.LongAddress, msg);
+            bool ret= HartComport.WriteMessage(_ID.LongAddress, msg);
+            _Message = null;
+            return ret;
         }
         /// <summary>
         /// 写标签信息
@@ -187,7 +191,9 @@ namespace HartSDK
         public bool WriteTag(DeviceTagInfo tag)
         {
             if (_ID == null) return false;
-            return HartComport.WriteTag(_ID.LongAddress, tag);
+            bool ret= HartComport.WriteTag(_ID.LongAddress, tag);
+            if (ret) _Tag = null;
+            return ret;
         }
         /// <summary>
         /// 写设备的最终装配号
@@ -203,7 +209,9 @@ namespace HartSDK
         public bool WriteDampValue(float dampValue)
         {
             if (_ID == null) return false;
-            return HartComport.WriteDampValue(_ID.LongAddress, dampValue);
+            bool ret= HartComport.WriteDampValue(_ID.LongAddress, dampValue);
+            if (ret) _PVOutput = null;
+            return ret;
         }
         /// <summary>
         /// 写主变量的量程范围
@@ -211,7 +219,9 @@ namespace HartSDK
         public bool WritePVRange(UnitCode unitCode, float upperRange, float lowerRange)
         {
             if (_ID == null) return false;
-            return HartComport.WritePVRange(_ID.LongAddress, unitCode, upperRange, lowerRange);
+            bool ret= HartComport.WritePVRange(_ID.LongAddress, unitCode, upperRange, lowerRange);
+            if (ret) _PVOutput = null;
+            return ret;
         }
         /// <summary>
         /// 将当前的主变量值设置成主变量的上限
@@ -219,7 +229,9 @@ namespace HartSDK
         public bool SetUpperRangeValue()
         {
             if (_ID == null) return false;
-            return HartComport.SetUpperRangeValue(_ID.LongAddress);
+            bool ret = HartComport.SetUpperRangeValue(_ID.LongAddress);
+            if (ret) _PVOutput = null;
+            return ret;
         }
         /// <summary>
         /// 将当前的主变量值设置成主变量的下限
@@ -227,7 +239,9 @@ namespace HartSDK
         public bool SetLowerRangeValue()
         {
             if (_ID == null) return false;
-            return HartComport.SetLowerRangeValue(_ID.LongAddress);
+            bool ret= HartComport.SetLowerRangeValue(_ID.LongAddress);
+            if (ret) _PVOutput = null;
+            return ret;
         }
         /// <summary>
         /// 设置固定电流输出,当传入的参数为0时表示取消固定电流输出模式
@@ -235,7 +249,9 @@ namespace HartSDK
         public bool SetFixedCurrent(float current)
         {
             if (_ID == null) return false;
-            return HartComport.SetFixedCurrent(_ID.LongAddress, current);
+            bool ret= HartComport.SetFixedCurrent(_ID.LongAddress, current);
+            if (ret) _PVCurrent = null;
+            return ret;
         }
         /// <summary>
         /// 自检
@@ -267,7 +283,14 @@ namespace HartSDK
         public bool WritePVUnit(UnitCode unitCode)
         {
             if (_ID == null) return false;
-            return HartComport.WritePVUnit(_ID.LongAddress, unitCode);
+            bool ret= HartComport.WritePVUnit(_ID.LongAddress, unitCode);
+            if (ret)
+            {
+                _PV = null;
+                _PVOutput = null;
+                _PVSensor = null;
+            }
+            return ret;
         }
         /// <summary>
         /// 调校下限输出电流
@@ -291,7 +314,9 @@ namespace HartSDK
         public bool WriteTransferFunction(TransferFunctionCode code)
         {
             if (_ID == null) return false;
-            return HartComport.WriteTransferFunction(_ID.LongAddress, code);
+            bool ret= HartComport.WriteTransferFunction(_ID.LongAddress, code);
+            if (ret) _PVOutput = null;
+            return ret;
         }
         /// <summary>
         /// 写主变量传感器序列号
@@ -299,7 +324,9 @@ namespace HartSDK
         public bool WritePVSensorSN(int sn)
         {
             if (_ID == null) return false;
-            return HartComport.WritePVSensorSN(_ID.LongAddress, sn);
+            bool ret= HartComport.WritePVSensorSN(_ID.LongAddress, sn);
+            if (ret) _PVSensor = null;
+            return ret;
         }
         /// <summary>
         /// 写返回帧前导字符(0xFF)的个数
@@ -315,7 +342,9 @@ namespace HartSDK
         public bool WriteCurrentTrim(byte uOrl, float percent)
         {
             if (_ID == null) return false;
-            return HartComport.WriteCurrentTrim(_ID.LongAddress, uOrl, percent);
+            bool ret= HartComport.WriteCurrentTrim(_ID.LongAddress, uOrl, percent);
+            if (ret) _LowerCurrentTrim = null;
+            return ret;
         }
         /// <summary>
         /// 设置主传感器工作模式
@@ -327,7 +356,13 @@ namespace HartSDK
         public bool WritePVSensorMode(SensorMode mode, SensorCode sensorCode)
         {
             if (_ID == null) return false;
-            return HartComport.WritePVSensorMode(_ID.LongAddress, mode, sensorCode);
+            bool ret= HartComport.WritePVSensorMode(_ID.LongAddress, mode, sensorCode);
+            if (ret)
+            {
+                _PVOutput = null;
+                _PVSensor = null;
+            }
+            return ret;
         }
         #endregion
     }

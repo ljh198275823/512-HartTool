@@ -32,7 +32,6 @@ namespace HartTool
         #region 电流校调
         private void btnFix4_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             bool ret = HartDevice.SetFixedCurrent( (float)4.0);
             txt4.Enabled = ret;
             btn4.Enabled = ret;
@@ -44,7 +43,6 @@ namespace HartTool
 
         private void btnFix20_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             bool ret = HartDevice.SetFixedCurrent( (float)20.0);
             txt20.Enabled = ret;
             btn20.Enabled = ret;
@@ -56,7 +54,6 @@ namespace HartTool
 
         private void btnFixedCurrent_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             decimal current = txtFixedCurrent.DecimalValue;
             if (current == 0 || (current >= 4 && current <= 20))
             {
@@ -71,7 +68,6 @@ namespace HartTool
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             decimal current = -1;
             if (!decimal.TryParse(txt4.Text, out current))
             {
@@ -91,7 +87,6 @@ namespace HartTool
 
         private void btn20_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             decimal current = -1;
             if (!decimal.TryParse(txt20.Text, out current))
             {

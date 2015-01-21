@@ -39,13 +39,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtPVLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtPVUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.cmbPVUnit = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSensorLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtSensorUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.lblUnit1 = new System.Windows.Forms.Label();
+            this.lblRangeUnit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbSensorMode
@@ -70,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 41);
+            this.label2.Location = new System.Drawing.Point(275, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 3;
@@ -81,14 +80,14 @@
             this.cmbSensorCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSensorCode.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmbSensorCode.FormattingEnabled = true;
-            this.cmbSensorCode.Location = new System.Drawing.Point(358, 35);
+            this.cmbSensorCode.Location = new System.Drawing.Point(344, 35);
             this.cmbSensorCode.Name = "cmbSensorCode";
             this.cmbSensorCode.Size = new System.Drawing.Size(121, 24);
             this.cmbSensorCode.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(513, 33);
+            this.button1.Location = new System.Drawing.Point(518, 33);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 29);
             this.button1.TabIndex = 4;
@@ -99,7 +98,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(300, 135);
+            this.label3.Location = new System.Drawing.Point(291, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 84;
@@ -108,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(60, 135);
+            this.label4.Location = new System.Drawing.Point(60, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 81;
@@ -116,7 +115,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(513, 127);
+            this.button3.Location = new System.Drawing.Point(518, 83);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(91, 29);
             this.button3.TabIndex = 85;
@@ -128,7 +127,7 @@
             // 
             this.txtPVLower.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtPVLower.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPVLower.Location = new System.Drawing.Point(131, 128);
+            this.txtPVLower.Location = new System.Drawing.Point(131, 84);
             this.txtPVLower.Name = "txtPVLower";
             this.txtPVLower.Size = new System.Drawing.Size(121, 26);
             this.txtPVLower.TabIndex = 83;
@@ -137,53 +136,15 @@
             // 
             this.txtPVUpper.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtPVUpper.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPVUpper.Location = new System.Drawing.Point(358, 128);
+            this.txtPVUpper.Location = new System.Drawing.Point(344, 84);
             this.txtPVUpper.Name = "txtPVUpper";
             this.txtPVUpper.Size = new System.Drawing.Size(121, 26);
             this.txtPVUpper.TabIndex = 82;
             // 
-            // cmbPVUnit
-            // 
-            this.cmbPVUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPVUnit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmbPVUnit.FormattingEnabled = true;
-            this.cmbPVUnit.Items.AddRange(new object[] {
-            "",
-            "inH2O",
-            "inHg",
-            "ftH2O",
-            "mmH2O",
-            "mmHg",
-            "psi",
-            "bar",
-            "mbar",
-            "g/cm2",
-            "kg/cm2",
-            "pa",
-            "kpa",
-            "torr",
-            "atm",
-            "mpa",
-            "mA",
-            "%"});
-            this.cmbPVUnit.Location = new System.Drawing.Point(131, 82);
-            this.cmbPVUnit.Name = "cmbPVUnit";
-            this.cmbPVUnit.Size = new System.Drawing.Size(121, 24);
-            this.cmbPVUnit.TabIndex = 91;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(72, 88);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(53, 12);
-            this.label31.TabIndex = 90;
-            this.label31.Text = "量程单位";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(300, 181);
+            this.label5.Location = new System.Drawing.Point(291, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(17, 12);
             this.label5.TabIndex = 95;
@@ -194,7 +155,7 @@
             this.txtSensorLower.Enabled = false;
             this.txtSensorLower.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSensorLower.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtSensorLower.Location = new System.Drawing.Point(131, 174);
+            this.txtSensorLower.Location = new System.Drawing.Point(131, 130);
             this.txtSensorLower.Name = "txtSensorLower";
             this.txtSensorLower.Size = new System.Drawing.Size(121, 26);
             this.txtSensorLower.TabIndex = 94;
@@ -204,7 +165,7 @@
             this.txtSensorUpper.Enabled = false;
             this.txtSensorUpper.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSensorUpper.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtSensorUpper.Location = new System.Drawing.Point(358, 174);
+            this.txtSensorUpper.Location = new System.Drawing.Point(344, 130);
             this.txtSensorUpper.Name = "txtSensorUpper";
             this.txtSensorUpper.Size = new System.Drawing.Size(121, 26);
             this.txtSensorUpper.TabIndex = 93;
@@ -212,7 +173,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 181);
+            this.label6.Location = new System.Drawing.Point(24, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 12);
             this.label6.TabIndex = 92;
@@ -221,24 +182,32 @@
             // lblUnit1
             // 
             this.lblUnit1.AutoSize = true;
-            this.lblUnit1.Location = new System.Drawing.Point(485, 181);
+            this.lblUnit1.Location = new System.Drawing.Point(471, 137);
             this.lblUnit1.Name = "lblUnit1";
             this.lblUnit1.Size = new System.Drawing.Size(29, 12);
             this.lblUnit1.TabIndex = 96;
             this.lblUnit1.Text = "单位";
+            // 
+            // lblRangeUnit
+            // 
+            this.lblRangeUnit.AutoSize = true;
+            this.lblRangeUnit.Location = new System.Drawing.Point(471, 91);
+            this.lblRangeUnit.Name = "lblRangeUnit";
+            this.lblRangeUnit.Size = new System.Drawing.Size(29, 12);
+            this.lblRangeUnit.TabIndex = 97;
+            this.lblRangeUnit.Text = "单位";
             // 
             // Frm量程设置
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 385);
+            this.Controls.Add(this.lblRangeUnit);
             this.Controls.Add(this.lblUnit1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSensorLower);
             this.Controls.Add(this.txtSensorUpper);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.cmbPVUnit);
-            this.Controls.Add(this.label31);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPVLower);
@@ -251,7 +220,6 @@
             this.Controls.Add(this.cmbSensorMode);
             this.Name = "Frm量程设置";
             this.Text = "Frm量程设置";
-            this.Load += new System.EventHandler(this.Frm量程设置_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,13 +237,12 @@
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPVUpper;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox cmbPVUnit;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label5;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtSensorLower;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtSensorUpper;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblUnit1;
+        private System.Windows.Forms.Label lblRangeUnit;
 
     }
 }

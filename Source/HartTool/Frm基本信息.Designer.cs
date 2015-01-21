@@ -311,7 +311,6 @@
             this.Controls.Add(this.label32);
             this.Name = "Frm基本信息";
             this.Text = "FrmGeneralInfo";
-            this.Load += new System.EventHandler(this.FrmGeneralInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

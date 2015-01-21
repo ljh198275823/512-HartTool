@@ -830,6 +830,7 @@ namespace HartSDK
             ResponsePacket response = Request(request);
             if (response != null)
             {
+
                 return true;
             }
             return false;

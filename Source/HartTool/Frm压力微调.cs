@@ -18,7 +18,7 @@ namespace HartTool
             InitializeComponent();
         }
 
-        #region t私有变量
+        #region 私有变量
         private Thread _ReadPV = null;
         #endregion
 
@@ -36,14 +36,12 @@ namespace HartTool
         #region 压力微调
         private void btnSetPVZero_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             bool ret = HartDevice.SetPVZero();
             MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSetLowerRange_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             bool ret = HartDevice.SetLowerRangeValue();
             rdLower.Checked = !ret;
             if (ret && _ReadPV != null)
@@ -56,7 +54,6 @@ namespace HartTool
 
         private void btnSetUpperRange_Click(object sender, EventArgs e)
         {
-            if (HartDevice != null && HartDevice.IsConnected) return;
             bool ret = HartDevice.SetUpperRangeValue();
             rdUpper.Checked = !ret;
             if (ret && _ReadPV != null)
@@ -95,18 +92,15 @@ namespace HartTool
             {
                 while (true)
                 {
-                    if (HartDevice != null && HartDevice.IsConnected)
+                    DeviceVariable pv = HartDevice.ReadPV(false);
+                    if (pv != null)
                     {
-                        DeviceVariable pv = HartDevice.ReadPV();
-                        if (pv != null)
-                        {
-                            this.Invoke((Action)(() =>
-                                {
-                                    if (rdLower.Checked) txtLower.Text = pv.Value.ToString();
-                                    if (rdUpper.Checked) txtUpper.Text = pv.Value.ToString();
-                                }
-                            ));
-                        }
+                        this.Invoke((Action)(() =>
+                            {
+                                if (rdLower.Checked) txtLower.Text = pv.Value.ToString();
+                                if (rdUpper.Checked) txtUpper.Text = pv.Value.ToString();
+                            }
+                        ));
                     }
                     Thread.Sleep(100);
                 }
