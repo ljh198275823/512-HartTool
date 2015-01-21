@@ -109,6 +109,7 @@
     <Compile Include="GeneralLibrary\StringHelper.cs" />
     <Compile Include="GeneralLibrary\TempFolderManager.cs" />
     <Compile Include="HartComport.cs" />
+    <Compile Include="HartDevice.cs" />
     <Compile Include="OutputInfo.cs" />
     <Compile Include="GeneralLibrary\PackAsciiHelper.cs" />
     <Compile Include="PacketQueue.cs" />

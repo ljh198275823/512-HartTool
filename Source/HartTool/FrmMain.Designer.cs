@@ -165,6 +165,7 @@
             // 
             // btnGeneral
             // 
+            this.btnGeneral.Enabled = false;
             this.btnGeneral.Location = new System.Drawing.Point(3, 325);
             this.btnGeneral.Name = "btnGeneral";
             this.btnGeneral.Size = new System.Drawing.Size(117, 33);
@@ -193,6 +194,7 @@
             // 
             // btn量程设置
             // 
+            this.btn量程设置.Enabled = false;
             this.btn量程设置.Location = new System.Drawing.Point(3, 10);
             this.btn量程设置.Name = "btn量程设置";
             this.btn量程设置.Size = new System.Drawing.Size(117, 33);
@@ -203,6 +205,7 @@
             // 
             // btn仪表信息
             // 
+            this.btn仪表信息.Enabled = false;
             this.btn仪表信息.Location = new System.Drawing.Point(3, 283);
             this.btn仪表信息.Name = "btn仪表信息";
             this.btn仪表信息.Size = new System.Drawing.Size(117, 33);
@@ -213,6 +216,7 @@
             // 
             // btn过程量监控
             // 
+            this.btn过程量监控.Enabled = false;
             this.btn过程量监控.Location = new System.Drawing.Point(3, 244);
             this.btn过程量监控.Name = "btn过程量监控";
             this.btn过程量监控.Size = new System.Drawing.Size(117, 33);
@@ -223,6 +227,7 @@
             // 
             // btn压力微调
             // 
+            this.btn压力微调.Enabled = false;
             this.btn压力微调.Location = new System.Drawing.Point(3, 205);
             this.btn压力微调.Name = "btn压力微调";
             this.btn压力微调.Size = new System.Drawing.Size(117, 33);
@@ -233,6 +238,7 @@
             // 
             // btn性能参数
             // 
+            this.btn性能参数.Enabled = false;
             this.btn性能参数.Location = new System.Drawing.Point(3, 166);
             this.btn性能参数.Name = "btn性能参数";
             this.btn性能参数.Size = new System.Drawing.Size(117, 33);
@@ -243,6 +249,7 @@
             // 
             // btn温度补偿
             // 
+            this.btn温度补偿.Enabled = false;
             this.btn温度补偿.Location = new System.Drawing.Point(3, 127);
             this.btn温度补偿.Name = "btn温度补偿";
             this.btn温度补偿.Size = new System.Drawing.Size(117, 33);
@@ -253,6 +260,7 @@
             // 
             // btn多点线性化
             // 
+            this.btn多点线性化.Enabled = false;
             this.btn多点线性化.Location = new System.Drawing.Point(3, 88);
             this.btn多点线性化.Name = "btn多点线性化";
             this.btn多点线性化.Size = new System.Drawing.Size(117, 33);
@@ -263,6 +271,7 @@
             // 
             // btn电流校准
             // 
+            this.btn电流校准.Enabled = false;
             this.btn电流校准.Location = new System.Drawing.Point(3, 49);
             this.btn电流校准.Name = "btn电流校准";
             this.btn电流校准.Size = new System.Drawing.Size(117, 33);
@@ -274,6 +283,7 @@
             // btnWritePollingAddress
             // 
             this.btnWritePollingAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnWritePollingAddress.Enabled = false;
             this.btnWritePollingAddress.Location = new System.Drawing.Point(507, 419);
             this.btnWritePollingAddress.Name = "btnWritePollingAddress";
             this.btnWritePollingAddress.Size = new System.Drawing.Size(108, 23);

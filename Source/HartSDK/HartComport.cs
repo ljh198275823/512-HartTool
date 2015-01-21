@@ -91,6 +91,7 @@ namespace HartSDK
             }
             catch (Exception ex)
             {
+                _LastError = ex.Message;
                 ExceptionPolicy.HandleException(ex);
             }
         }
@@ -113,6 +114,7 @@ namespace HartSDK
             }
             catch (Exception ex)
             {
+                _LastError = ex.Message;
                 ExceptionPolicy.HandleException(ex);
             }
         }
@@ -133,9 +135,9 @@ namespace HartSDK
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               
+                _LastError = ex.Message;
             }
             return null;
         }
@@ -177,6 +179,7 @@ namespace HartSDK
             }
             catch (Exception ex)
             {
+                _LastError = ex.Message;
                 ExceptionPolicy.HandleException(ex);
             }
         }
@@ -204,6 +207,7 @@ namespace HartSDK
             }
             catch (Exception ex)
             {
+                _LastError = ex.Message;
                 ExceptionPolicy.HandleException(ex);
             }
         }
@@ -223,6 +227,7 @@ namespace HartSDK
             }
             catch (Exception ex)
             {
+                _LastError = ex.Message;
                 ExceptionPolicy.HandleException(ex);
             }
         }

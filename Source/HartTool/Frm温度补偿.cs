@@ -17,7 +17,7 @@ namespace HartTool
         }
 
         #region 实现接口 IHartCommunication
-        public HartSDK.HartComport HartComport { get; set; }
+        public HartSDK.HartDevice HartDevice { get; set; }
 
         public HartSDK.UniqueIdentifier CurrentDevice { get; set; }
 

@@ -7,8 +7,7 @@ namespace HartTool
 {
     interface IHartCommunication
     {
-        HartSDK.HartComport HartComport { get; set; }
-        HartSDK.UniqueIdentifier CurrentDevice { get; set; }
+        HartSDK.HartDevice HartDevice { get; set; }
         void ReadData();
     }
 }

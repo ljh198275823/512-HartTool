@@ -23,50 +23,48 @@ namespace HartTool
         #endregion
 
         #region 实现接口 IHartCommunication
-        public HartSDK.HartComport HartComport { get; set; }
-
-        public HartSDK.UniqueIdentifier CurrentDevice { get; set; }
+        public HartSDK.HartDevice HartDevice { get; set; }
 
         public void ReadData()
         {
-            btnSetPVZero.Enabled = CurrentDevice != null;
-            rdLower.Enabled = CurrentDevice != null;
-            rdUpper.Enabled = CurrentDevice != null;
+            btnSetPVZero.Enabled = HartDevice != null && HartDevice.IsConnected;
+            rdLower.Enabled = HartDevice != null && HartDevice.IsConnected;
+            rdUpper.Enabled = HartDevice != null && HartDevice.IsConnected;
         }
         #endregion
 
         #region 压力微调
         private void btnSetPVZero_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
-            bool ret = HartComport.SetPVZero(CurrentDevice.LongAddress);
-            MessageBox.Show(ret ? "设置成功" : HartComport.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (HartDevice != null && HartDevice.IsConnected) return;
+            bool ret = HartDevice.SetPVZero();
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSetLowerRange_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
-            bool ret = HartComport.SetLowerRangeValue(CurrentDevice.LongAddress);
+            if (HartDevice != null && HartDevice.IsConnected) return;
+            bool ret = HartDevice.SetLowerRangeValue();
             rdLower.Checked = !ret;
             if (ret && _ReadPV != null)
             {
                 _ReadPV.Abort();
                 _ReadPV = null;
             }
-            MessageBox.Show(ret ? "设置成功" : HartComport.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSetUpperRange_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
-            bool ret = HartComport.SetUpperRangeValue(CurrentDevice.LongAddress);
+            if (HartDevice != null && HartDevice.IsConnected) return;
+            bool ret = HartDevice.SetUpperRangeValue();
             rdUpper.Checked = !ret;
             if (ret && _ReadPV != null)
             {
                 _ReadPV.Abort();
                 _ReadPV = null;
             }
-            MessageBox.Show(ret ? "设置成功" : HartComport.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void rdLower_CheckedChanged(object sender, EventArgs e)
@@ -97,9 +95,9 @@ namespace HartTool
             {
                 while (true)
                 {
-                    if (CurrentDevice != null)
+                    if (HartDevice != null && HartDevice.IsConnected)
                     {
-                        DeviceVariable pv = HartComport.ReadPV(CurrentDevice.LongAddress);
+                        DeviceVariable pv = HartDevice.ReadPV();
                         if (pv != null)
                         {
                             this.Invoke((Action)(() =>

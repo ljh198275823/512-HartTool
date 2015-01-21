@@ -23,9 +23,7 @@ namespace HartTool
         #endregion
 
         #region 实现接口 IHartCommunication
-        public HartSDK.HartComport HartComport { get; set; }
-
-        public HartSDK.UniqueIdentifier CurrentDevice { get; set; }
+        public HartSDK.HartDevice HartDevice { get; set; }
 
         public void ReadData()
         {
@@ -42,7 +40,7 @@ namespace HartTool
             }
             else
             {
-                if (CurrentDevice != null)
+                if (HartDevice != null && HartDevice.IsConnected)
                 {
                     _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
                     _ReadPV.IsBackground = true;
@@ -58,18 +56,18 @@ namespace HartTool
             {
                 while (true)
                 {
-                    if (CurrentDevice == null)
+                    if (HartDevice != null && HartDevice.IsConnected)
                     {
                         this.Invoke((Action)(() => { btnRealTime.Text = "实时采集"; }));
                         _ReadPV = null;
                         return;
                     }
-                    DeviceVariable pv = HartComport.ReadPV(CurrentDevice.LongAddress);
+                    DeviceVariable pv = HartDevice.ReadPV();
                     Action a = delegate()
                     {
                         lblPVUnit.Text = pv != null ? UnitCodeDescr.GetDescr(pv.UnitCode) : null;
                         txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
-                        CurrentInfo ci = HartComport.ReadCurrent(CurrentDevice.LongAddress);
+                        CurrentInfo ci = HartDevice.ReadCurrent();
                         txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
                         txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
                     };

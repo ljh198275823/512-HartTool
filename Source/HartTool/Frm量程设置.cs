@@ -20,41 +20,26 @@ namespace HartTool
         }
 
         #region 实现接口 IHartCommunication
-        public HartSDK.HartComport HartComport { get; set; }
-
-        public HartSDK.UniqueIdentifier CurrentDevice { get; set; }
+        public HartSDK.HartDevice HartDevice { get; set; }
 
         public void ReadData()
         {
-            //采用异步的方式
-            Action action = delegate()
+            button1.Enabled = HartDevice != null && HartDevice.IsConnected;
+            button3.Enabled = HartDevice != null && HartDevice.IsConnected;
+            OutputInfo oi = HartDevice.ReadOutput();
+            cmbPVUnit.SelectedIndex = oi != null ? (int)oi.PVUnitCode : 0;
+            txtPVLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
+            txtPVUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
+            SensorInfo si = HartDevice.ReadPVSensor();
+            txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
+            txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
+            lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
+            byte[] data = HartDevice.ReadCommand(0x80);
+            if (data != null && data.Length == 22)
             {
-                this.Invoke((Action)(() =>
-                    {
-                        button1.Enabled = CurrentDevice != null;
-                        button3.Enabled = CurrentDevice != null;
-                        if (CurrentDevice != null)
-                        {
-                            OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
-                            cmbPVUnit.SelectedIndex = oi != null ? (int)oi.PVUnitCode : 0;
-                            txtPVLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
-                            txtPVUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
-                            SensorInfo si = HartComport.ReadPVSensor(CurrentDevice.LongAddress);
-                            txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
-                            txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
-                            lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
-                            byte[] data = HartComport.ReadCommand(CurrentDevice.LongAddress, 0x80);
-                            if (data != null && data.Length == 22)
-                            {
-                                cmbSensorMode.SelectedIndex = data[11];
-                                cmbSensorCode.SelectedIndex = data[12] >= 2 ? data[12] - 2 : -1;
-                            }
-                        }
-                    }));
-            };
-            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(action));
-            t.IsBackground = true;
-            t.Start();
+                cmbSensorMode.SelectedIndex = data[11];
+                cmbSensorCode.SelectedIndex = data[12] >= 2 ? data[12] - 2 : -1;
+            }
         }
         #endregion
 
@@ -92,7 +77,7 @@ namespace HartTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
+            if (HartDevice != null && HartDevice.IsConnected) return;
             if (cmbSensorCode.SelectedIndex < 0)
             {
                 MessageBox.Show("没有选择传感器代码", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -103,22 +88,22 @@ namespace HartTool
                 MessageBox.Show("没有选择工作模式", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            bool ret = HartComport.WritePVSensorMode(CurrentDevice.LongAddress, (SensorMode)cmbSensorMode.SelectedIndex, (SensorCode)(cmbSensorCode.SelectedIndex + 2));
+            bool ret = HartDevice.WritePVSensorMode( (SensorMode)cmbSensorMode.SelectedIndex, (SensorCode)(cmbSensorCode.SelectedIndex + 2));
             if (ret)
             {
-                SensorInfo si = HartComport.ReadPVSensor(CurrentDevice.LongAddress);
+                SensorInfo si = HartDevice.ReadPVSensor();
                 txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
                 txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
             }
             else
             {
-                MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
+            if (HartDevice != null && HartDevice.IsConnected) return;
             if (cmbPVUnit.SelectedIndex <= 0)
             {
                 MessageBox.Show("没有选择量程单位", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -141,8 +126,8 @@ namespace HartTool
                 MessageBox.Show("量程下限比上限要大", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            bool ret = HartComport.WritePVRange(CurrentDevice.LongAddress, (UnitCode)cmbPVUnit.SelectedIndex, lower, upper);
-            if (!ret) MessageBox.Show(HartComport .GetLastError (), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            bool ret = HartDevice.WritePVRange( (UnitCode)cmbPVUnit.SelectedIndex, lower, upper);
+            if (!ret) MessageBox.Show(HartDevice .GetLastError (), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
     }

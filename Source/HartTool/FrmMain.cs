@@ -21,10 +21,7 @@ namespace HartTool
         }
 
         #region 私有变量
-        private HartSDK.HartComport HartComport = null;
-        private int _PollingAddress = 0;
-        private UniqueIdentifier CurrentDevice = null;
-
+        private HartSDK.HartDevice HartDevice = null;
         private Form _ActiveForm = null;
         #endregion
 
@@ -55,8 +52,7 @@ namespace HartTool
                 IHartCommunication iHart = _ActiveForm as IHartCommunication;
                 if (iHart != null)
                 {
-                    iHart.HartComport = HartComport;
-                    iHart.CurrentDevice = CurrentDevice;
+                    iHart.HartDevice = HartDevice;
                     iHart.ReadData();
                 }
                 RenderForm(_ActiveForm);
@@ -79,19 +75,19 @@ namespace HartTool
 
         private void OpenDevice()
         {
-            CurrentDevice = null;
-            _PollingAddress = cmbShortAddress.SelectedIndex;
-            if (HartComport != null && HartComport.IsOpened)
+            HartSDK.UniqueIdentifier did = null;
+            if (HartDevice != null && HartDevice.IsConnected) did = HartDevice.ReadUniqueID();
+            txtDeviceID.IntergerValue = did != null ? did.DeviceID : 0;
+            btnWritePollingAddress.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnWritePollingAddress.Enabled = HartDevice != null && HartDevice.IsConnected;
+            foreach (Control ctrl in pCommand.Controls)
             {
-                CurrentDevice = HartComport.ReadUniqueID(_PollingAddress);
+                if (ctrl is Button) ctrl.Enabled = HartDevice != null && HartDevice.IsConnected;
             }
-            txtDeviceID.IntergerValue = CurrentDevice != null ? CurrentDevice.DeviceID : 0;
-            btnWritePollingAddress.Enabled = CurrentDevice != null;
             if (_ActiveForm != null)
             {
                 IHartCommunication iHart = _ActiveForm as IHartCommunication;
-                iHart.HartComport = HartComport;
-                iHart.CurrentDevice = CurrentDevice;
+                iHart.HartDevice = HartDevice;
                 iHart.ReadData();
             }
         }
@@ -101,23 +97,22 @@ namespace HartTool
         private void FrmMain_Load(object sender, EventArgs e)
         {
             comPortComboBox1.Init();
-            cmbShortAddress.Text = _PollingAddress.ToString();
-            btnGeneral.PerformClick();
+            cmbShortAddress.SelectedIndex = 0;
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            if (HartComport != null) HartComport.Close();
+            if (HartDevice != null) HartDevice.Close();
             if (comPortComboBox1.ComPort > 0)
             {
-                HartComport = new HartSDK.HartComport(comPortComboBox1.ComPort, 1200);
-                HartComport.Open();
-                HartComport.Debug = true;
-                btnOpen.Enabled = !HartComport.IsOpened;
-                btnClose.Enabled = HartComport.IsOpened;
-                lblCommportState.Text = string.Format(HartComport.IsOpened ? "通讯串口已打开" : "通讯串口打开失败");
-                lblCommportState.ForeColor = HartComport.IsOpened ? Color.Blue : Color.Red;
+                HartDevice = new HartSDK.HartDevice(comPortComboBox1.ComPort, 1200);
+                HartDevice.PollingAddress = (byte)cmbShortAddress.SelectedIndex;
+                HartDevice.Connect();
+                lblCommportState.Text = string.Format(HartDevice.IsConnected ? "设备已经连接" : "设备连接失败");
+                lblCommportState.ForeColor = HartDevice.IsConnected ? Color.Blue : Color.Red;
                 statusStrip1.Refresh();
+                btnOpen.Enabled = !HartDevice.IsConnected;
+                btnClose.Enabled = HartDevice.IsConnected;
                 OpenDevice();
             }
             else
@@ -128,7 +123,7 @@ namespace HartTool
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (HartComport != null) HartComport.Close();
+            if (HartDevice != null) HartDevice.Close();
             btnOpen.Enabled = true;
             btnClose.Enabled = false;
             lblCommportState.Text = string.Empty;
@@ -141,20 +136,19 @@ namespace HartTool
 
         private void btnWritePollingAddress_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
+            if (HartDevice  == null || !HartDevice .IsConnected ) return;
             if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
             {
-                bool ret = HartComport.WritePollingAddress(CurrentDevice.LongAddress, (byte)txtPollingAddress.IntergerValue);
+                bool ret = HartDevice.WritePollingAddress((byte)txtPollingAddress.IntergerValue);
                 if (ret)
                 {
-                    _PollingAddress = txtPollingAddress.IntergerValue;
                     cmbShortAddress.SelectedIndexChanged -= cmbShortAddress_SelectedIndexChanged;
-                    cmbShortAddress.SelectedIndex = _PollingAddress;
+                    cmbShortAddress.SelectedIndex = HartDevice.PollingAddress;
                     cmbShortAddress.SelectedIndexChanged += cmbShortAddress_SelectedIndexChanged;
                 }
                 else
                 {
-                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

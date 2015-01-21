@@ -18,24 +18,22 @@ namespace HartTool
         }
 
         #region 实现接口 IHartCommunication
-        public HartSDK.HartComport HartComport { get; set; }
-
-        public HartSDK.UniqueIdentifier CurrentDevice { get; set; }
+        public HartSDK.HartDevice HartDevice { get; set; }
 
         public void ReadData()
         {
-            btnWrite.Enabled = CurrentDevice != null;
-            button1.Enabled = CurrentDevice != null;
-            if (CurrentDevice != null)
+            btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
+            button1.Enabled = HartDevice != null && HartDevice.IsConnected;
+            if (HartDevice != null && HartDevice.IsConnected)
             {
-                OutputInfo oi = HartComport.ReadOutput(CurrentDevice.LongAddress);
+                OutputInfo oi = HartDevice.ReadOutput();
                 if (oi != null)
                 {
                     cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
                     txtDampValue.Text = oi.DampingValue.ToString();
                     cmbPVUnit.SelectedIndex = (int)oi.PVUnitCode;
                 }
-                txtTrim4.Text = HartComport.ReadCurrentTrim(CurrentDevice.LongAddress, 0).ToString();
+                txtTrim4.Text = HartDevice.ReadCurrentTrim(0).ToString();
             }
         }
         #endregion
@@ -63,24 +61,24 @@ namespace HartTool
 
         private void btnWrite_Click(object sender, EventArgs e)
         {
-            if (CurrentDevice == null) return;
+            if (HartDevice != null && HartDevice.IsConnected) return;
             if (!CheckInput()) return;
             bool ret = false;
 
             TransferFunctionCode tc = (TransferFunctionCode)cmbTranserFunction.SelectedIndex;
-            ret = HartComport.WriteTransferFunction(CurrentDevice.LongAddress, tc);
-            if (!ret) MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            ret = HartDevice.WriteTransferFunction( tc);
+            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             UnitCode pvUnit = (UnitCode)cmbPVUnit.SelectedIndex;
-            ret = HartComport.WritePVUnit(CurrentDevice.LongAddress, pvUnit);
-            if (!ret) MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            ret = HartDevice.WritePVUnit( pvUnit);
+            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             decimal damp = 0;
             decimal.TryParse(txtDampValue.Text, out damp);
-            ret = HartComport.WriteDampValue(CurrentDevice.LongAddress, (float)damp);
+            ret = HartDevice.WriteDampValue( (float)damp);
             if (!ret)
             {
-                MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -91,14 +89,14 @@ namespace HartTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(CurrentDevice ==null )return ;
+            if(HartDevice != null && HartDevice.IsConnected)return ;
             float f = 0;
             if (float.TryParse(txtTrim4.Text, out f))
             {
-                bool ret = HartComport.WriteCurrentTrim(CurrentDevice.LongAddress, 0x22, f);
+                bool ret = HartDevice.WriteCurrentTrim( 0x22, f);
                 if (!ret)
                 {
-                    MessageBox.Show(HartComport.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
