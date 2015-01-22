@@ -22,7 +22,8 @@ namespace HartTool
 
         public void ReadData()
         {
-            button1.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnDownloadTag.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnDownloadMsg.Enabled = HartDevice != null && HartDevice.IsConnected;
             DeviceTagInfo tag = HartDevice.ReadTag();
             txtTag.Text = tag != null ? tag.Tag : string.Empty;
             txtDescr.Text = tag != null ? tag.Description : string.Empty;
@@ -33,5 +34,23 @@ namespace HartTool
             txtMessage.Text = HartDevice.ReadMessage();
         }
         #endregion
+
+        private void btnDownloadTag_Click(object sender, EventArgs e)
+        {
+            DeviceTagInfo tag = new DeviceTagInfo();
+            tag.Tag = txtTag.Text;
+            tag.Description = txtDescr.Text;
+            tag.Year = txtYear.IntergerValue;
+            tag.Month = txtMonth.IntergerValue;
+            tag.Day = txtDay.IntergerValue;
+            bool ret = HartDevice.WriteTag(tag);
+            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnDownloadMsg_Click(object sender, EventArgs e)
+        {
+            bool ret = HartDevice.WriteMessage(txtMessage.Text);
+            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
