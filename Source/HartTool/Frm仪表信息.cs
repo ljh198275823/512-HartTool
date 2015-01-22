@@ -22,6 +22,7 @@ namespace HartTool
 
         public void ReadData()
         {
+            button1.Enabled = HartDevice != null && HartDevice.IsConnected;
             DeviceTagInfo tag = HartDevice.ReadTag();
             txtTag.Text = tag != null ? tag.Tag : string.Empty;
             txtDescr.Text = tag != null ? tag.Description : string.Empty;

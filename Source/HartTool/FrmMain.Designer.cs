@@ -115,7 +115,6 @@
             this.cmbShortAddress.Name = "cmbShortAddress";
             this.cmbShortAddress.Size = new System.Drawing.Size(65, 20);
             this.cmbShortAddress.TabIndex = 4;
-            this.cmbShortAddress.SelectedIndexChanged += new System.EventHandler(this.cmbShortAddress_SelectedIndexChanged);
             // 
             // label2
             // 

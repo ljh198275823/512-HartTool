@@ -129,11 +129,6 @@ namespace HartTool
             lblCommportState.Text = string.Empty;
         }
 
-        private void cmbShortAddress_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            OpenDevice();
-        }
-
         private void btnWritePollingAddress_Click(object sender, EventArgs e)
         {
             if (HartDevice  == null || !HartDevice .IsConnected ) return;
@@ -142,9 +137,7 @@ namespace HartTool
                 bool ret = HartDevice.WritePollingAddress((byte)txtPollingAddress.IntergerValue);
                 if (ret)
                 {
-                    cmbShortAddress.SelectedIndexChanged -= cmbShortAddress_SelectedIndexChanged;
                     cmbShortAddress.SelectedIndex = HartDevice.PollingAddress;
-                    cmbShortAddress.SelectedIndexChanged += cmbShortAddress_SelectedIndexChanged;
                 }
                 else
                 {
