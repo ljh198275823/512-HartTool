@@ -34,7 +34,7 @@ namespace HartTool
             txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
             txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
             lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
-            byte[] data = HartDevice.ReadCommand(0x80);
+            byte[] data = HartDevice.ReadCommand(0x80, null);
             if (data != null && data.Length == 22)
             {
                 cmbSensorMode.SelectedIndex = data[11];

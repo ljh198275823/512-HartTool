@@ -427,11 +427,32 @@ namespace HartSDK
             return ret;
         }
         /// <summary>
+        /// 获取设备的温度补偿参数 para为0表示低温补偿，1表示常温补偿 2表示高温补偿
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="para"></param>
+        /// <returns></returns>
+        public TemperatureCompensation ReadTC(long longAddress, byte para)
+        {
+            TemperatureCompensation ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0xC3, DataContent = new byte[] { 0x4C, para }, };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 14)
+            {
+                byte[] d = response.DataContent;
+                ret = new TemperatureCompensation();
+                ret.LowerRangeAD = BitConverter.ToSingle(new byte[] { d[5], d[4], d[3], d[2] }, 0);
+                ret.UpperRangeAD = BitConverter.ToSingle(new byte[] { d[9], d[8], d[7], d[6] }, 0);
+                ret.TemperatureAD  = BitConverter.ToSingle(new byte[] { d[13], d[12], d[11], d[10] }, 0);
+            }
+            return ret;
+        }
+        /// <summary>
         /// 读取某个命令的返回值
         /// </summary>
-        public byte[] ReadCommand(long longAddress, byte cmd)
+        public byte[] ReadCommand(long longAddress, byte cmd, byte[] paras)
         {
-            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = cmd };
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = cmd, DataContent = paras };
             ResponsePacket response = Request(request);
             if (response != null && response.DataContent != null)
             {

@@ -33,6 +33,9 @@ namespace HartSDK
         private SensorInfo _PVSensor = null;
         private OutputInfo _PVOutput = null;
         private float? _LowerCurrentTrim = null;
+        private TemperatureCompensation _LowTemp = null;
+        private TemperatureCompensation _NormalTemp = null;
+        private TemperatureCompensation _HightTemp = null;
         #endregion
 
         #region 公共属性
@@ -155,11 +158,36 @@ namespace HartSDK
             return _LowerCurrentTrim != null ? _LowerCurrentTrim.Value : 0;
         }
         /// <summary>
+        /// 获取设备的温度补偿参数 para为0表示低温补偿，1表示常温补偿 2表示高温补偿
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="para"></param>
+        /// <returns></returns>
+        public TemperatureCompensation ReadTC(byte para, bool optical = true)
+        {
+            if (para == 0)
+            {
+                if (!optical || (_ID != null && _LowTemp == null)) _LowTemp = HartComport.ReadTC(_ID.LongAddress, para);
+                return _LowTemp;
+            }
+            else if (para == 1)
+            {
+                if (!optical || (_ID != null && _NormalTemp == null)) _NormalTemp = HartComport.ReadTC(_ID.LongAddress, para);
+                return _NormalTemp;
+            }
+            else if (para == 2)
+            {
+                if (!optical || (_ID != null && _HightTemp == null)) _HightTemp = HartComport.ReadTC(_ID.LongAddress, para);
+                return _HightTemp ;
+            }
+            return null;
+        }
+        /// <summary>
         /// 读取某个命令的返回值
         /// </summary>
-        public byte[] ReadCommand(byte cmd)
+        public byte[] ReadCommand(byte cmd, byte[] data)
         {
-            if (_ID != null) return HartComport.ReadCommand(_ID.LongAddress, cmd);
+            if (_ID != null) return HartComport.ReadCommand(_ID.LongAddress, cmd, data);
             return null;
         }
         #endregion

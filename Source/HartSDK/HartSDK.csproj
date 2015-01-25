@@ -119,6 +119,7 @@
     <Compile Include="SensorCode.cs" />
     <Compile Include="SensorInfo.cs" />
     <Compile Include="SensorMode.cs" />
+    <Compile Include="TemperatureCompensation.cs" />
     <Compile Include="TransferFunctionCode.cs" />
     <Compile Include="UniqueIdentifier.cs" />
     <Compile Include="UnitCode.cs" />

@@ -37,23 +37,23 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dbcTextBox1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox3 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox4 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox5 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox6 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox7 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox8 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox9 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.dbcTextBox10 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox11 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtPresureAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtTempAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtHightAD2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtNormalAD2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtLowAD2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtHightAD1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtNormalAD1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtLowAD1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtHightTempAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtNormalTempAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtLowTempAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +108,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 5;
-            this.label6.Text = "压力温度AD";
+            this.label6.Text = "压力满度AD";
             // 
             // button1
             // 
@@ -127,78 +127,6 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "下载";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // dbcTextBox1
-            // 
-            this.dbcTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox1.Location = new System.Drawing.Point(74, 59);
-            this.dbcTextBox1.Name = "dbcTextBox1";
-            this.dbcTextBox1.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox1.TabIndex = 8;
-            // 
-            // dbcTextBox2
-            // 
-            this.dbcTextBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox2.Location = new System.Drawing.Point(74, 100);
-            this.dbcTextBox2.Name = "dbcTextBox2";
-            this.dbcTextBox2.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox2.TabIndex = 9;
-            // 
-            // dbcTextBox3
-            // 
-            this.dbcTextBox3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox3.Location = new System.Drawing.Point(74, 143);
-            this.dbcTextBox3.Name = "dbcTextBox3";
-            this.dbcTextBox3.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox3.TabIndex = 10;
-            // 
-            // dbcTextBox4
-            // 
-            this.dbcTextBox4.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox4.Location = new System.Drawing.Point(210, 143);
-            this.dbcTextBox4.Name = "dbcTextBox4";
-            this.dbcTextBox4.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox4.TabIndex = 13;
-            // 
-            // dbcTextBox5
-            // 
-            this.dbcTextBox5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox5.Location = new System.Drawing.Point(210, 100);
-            this.dbcTextBox5.Name = "dbcTextBox5";
-            this.dbcTextBox5.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox5.TabIndex = 12;
-            // 
-            // dbcTextBox6
-            // 
-            this.dbcTextBox6.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox6.Location = new System.Drawing.Point(210, 59);
-            this.dbcTextBox6.Name = "dbcTextBox6";
-            this.dbcTextBox6.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox6.TabIndex = 11;
-            // 
-            // dbcTextBox7
-            // 
-            this.dbcTextBox7.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox7.Location = new System.Drawing.Point(336, 143);
-            this.dbcTextBox7.Name = "dbcTextBox7";
-            this.dbcTextBox7.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox7.TabIndex = 16;
-            // 
-            // dbcTextBox8
-            // 
-            this.dbcTextBox8.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox8.Location = new System.Drawing.Point(336, 100);
-            this.dbcTextBox8.Name = "dbcTextBox8";
-            this.dbcTextBox8.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox8.TabIndex = 15;
-            // 
-            // dbcTextBox9
-            // 
-            this.dbcTextBox9.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox9.Location = new System.Drawing.Point(336, 59);
-            this.dbcTextBox9.Name = "dbcTextBox9";
-            this.dbcTextBox9.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox9.TabIndex = 14;
             // 
             // button3
             // 
@@ -236,26 +164,10 @@
             this.button6.Text = "采集";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // dbcTextBox10
-            // 
-            this.dbcTextBox10.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox10.Location = new System.Drawing.Point(261, 208);
-            this.dbcTextBox10.Name = "dbcTextBox10";
-            this.dbcTextBox10.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox10.TabIndex = 23;
-            // 
-            // dbcTextBox11
-            // 
-            this.dbcTextBox11.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox11.Location = new System.Drawing.Point(104, 208);
-            this.dbcTextBox11.Name = "dbcTextBox11";
-            this.dbcTextBox11.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox11.TabIndex = 22;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(63, 212);
+            this.label7.Location = new System.Drawing.Point(84, 198);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 21;
@@ -264,11 +176,99 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(214, 212);
+            this.label8.Location = new System.Drawing.Point(257, 198);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 24;
             this.label8.Text = "压力AD";
+            // 
+            // txtPresureAD
+            // 
+            this.txtPresureAD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPresureAD.Location = new System.Drawing.Point(304, 194);
+            this.txtPresureAD.Name = "txtPresureAD";
+            this.txtPresureAD.Size = new System.Drawing.Size(100, 21);
+            this.txtPresureAD.TabIndex = 23;
+            // 
+            // txtTempAD
+            // 
+            this.txtTempAD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtTempAD.Location = new System.Drawing.Point(134, 194);
+            this.txtTempAD.Name = "txtTempAD";
+            this.txtTempAD.Size = new System.Drawing.Size(100, 21);
+            this.txtTempAD.TabIndex = 22;
+            // 
+            // txtHightAD2
+            // 
+            this.txtHightAD2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtHightAD2.Location = new System.Drawing.Point(336, 143);
+            this.txtHightAD2.Name = "txtHightAD2";
+            this.txtHightAD2.Size = new System.Drawing.Size(100, 21);
+            this.txtHightAD2.TabIndex = 16;
+            // 
+            // txtNormalAD2
+            // 
+            this.txtNormalAD2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtNormalAD2.Location = new System.Drawing.Point(336, 100);
+            this.txtNormalAD2.Name = "txtNormalAD2";
+            this.txtNormalAD2.Size = new System.Drawing.Size(100, 21);
+            this.txtNormalAD2.TabIndex = 15;
+            // 
+            // txtLowAD2
+            // 
+            this.txtLowAD2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtLowAD2.Location = new System.Drawing.Point(336, 59);
+            this.txtLowAD2.Name = "txtLowAD2";
+            this.txtLowAD2.Size = new System.Drawing.Size(100, 21);
+            this.txtLowAD2.TabIndex = 14;
+            // 
+            // txtHightAD1
+            // 
+            this.txtHightAD1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtHightAD1.Location = new System.Drawing.Point(210, 143);
+            this.txtHightAD1.Name = "txtHightAD1";
+            this.txtHightAD1.Size = new System.Drawing.Size(100, 21);
+            this.txtHightAD1.TabIndex = 13;
+            // 
+            // txtNormalAD1
+            // 
+            this.txtNormalAD1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtNormalAD1.Location = new System.Drawing.Point(210, 100);
+            this.txtNormalAD1.Name = "txtNormalAD1";
+            this.txtNormalAD1.Size = new System.Drawing.Size(100, 21);
+            this.txtNormalAD1.TabIndex = 12;
+            // 
+            // txtLowAD1
+            // 
+            this.txtLowAD1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtLowAD1.Location = new System.Drawing.Point(210, 59);
+            this.txtLowAD1.Name = "txtLowAD1";
+            this.txtLowAD1.Size = new System.Drawing.Size(100, 21);
+            this.txtLowAD1.TabIndex = 11;
+            // 
+            // txtHightTempAD
+            // 
+            this.txtHightTempAD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtHightTempAD.Location = new System.Drawing.Point(74, 143);
+            this.txtHightTempAD.Name = "txtHightTempAD";
+            this.txtHightTempAD.Size = new System.Drawing.Size(100, 21);
+            this.txtHightTempAD.TabIndex = 10;
+            // 
+            // txtNormalTempAD
+            // 
+            this.txtNormalTempAD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtNormalTempAD.Location = new System.Drawing.Point(74, 100);
+            this.txtNormalTempAD.Name = "txtNormalTempAD";
+            this.txtNormalTempAD.Size = new System.Drawing.Size(100, 21);
+            this.txtNormalTempAD.TabIndex = 9;
+            // 
+            // txtLowTempAD
+            // 
+            this.txtLowTempAD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtLowTempAD.Location = new System.Drawing.Point(74, 59);
+            this.txtLowTempAD.Name = "txtLowTempAD";
+            this.txtLowTempAD.Size = new System.Drawing.Size(100, 21);
+            this.txtLowTempAD.TabIndex = 8;
             // 
             // Frm温度补偿
             // 
@@ -276,22 +276,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 331);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dbcTextBox10);
-            this.Controls.Add(this.dbcTextBox11);
+            this.Controls.Add(this.txtPresureAD);
+            this.Controls.Add(this.txtTempAD);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.dbcTextBox7);
-            this.Controls.Add(this.dbcTextBox8);
-            this.Controls.Add(this.dbcTextBox9);
-            this.Controls.Add(this.dbcTextBox4);
-            this.Controls.Add(this.dbcTextBox5);
-            this.Controls.Add(this.dbcTextBox6);
-            this.Controls.Add(this.dbcTextBox3);
-            this.Controls.Add(this.dbcTextBox2);
-            this.Controls.Add(this.dbcTextBox1);
+            this.Controls.Add(this.txtHightAD2);
+            this.Controls.Add(this.txtNormalAD2);
+            this.Controls.Add(this.txtLowAD2);
+            this.Controls.Add(this.txtHightAD1);
+            this.Controls.Add(this.txtNormalAD1);
+            this.Controls.Add(this.txtLowAD1);
+            this.Controls.Add(this.txtHightTempAD);
+            this.Controls.Add(this.txtNormalTempAD);
+            this.Controls.Add(this.txtLowTempAD);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
@@ -302,6 +302,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Frm温度补偿";
             this.Text = "Frm温度补偿";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm温度补偿_FormClosed);
+            this.Load += new System.EventHandler(this.Frm温度补偿_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,21 +319,21 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox1;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox2;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox3;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox4;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox5;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox6;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox7;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox8;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox9;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtLowTempAD;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtNormalTempAD;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtHightTempAD;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtHightAD1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtNormalAD1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtLowAD1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtHightAD2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtNormalAD2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtLowAD2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox10;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox11;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPresureAD;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtTempAD;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
     }
