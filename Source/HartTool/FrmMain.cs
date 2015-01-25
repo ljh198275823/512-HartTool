@@ -98,6 +98,10 @@ namespace HartTool
         {
             comPortComboBox1.Init();
             cmbShortAddress.SelectedIndex = 0;
+
+            float f = BitConverter.ToSingle(new byte[] {0x00,0x00,0xA0,0x41 }, 0);
+            float f1 = BitConverter.ToSingle(new byte[] { 0x00, 0xbd, 0x27, 0x47 }, 0);
+            Console.WriteLine(f);
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
