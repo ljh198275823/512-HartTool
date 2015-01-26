@@ -33,9 +33,9 @@ namespace HartSDK
         private SensorInfo _PVSensor = null;
         private OutputInfo _PVOutput = null;
         private float? _LowerCurrentTrim = null;
-        private TemperatureCompensation _LowTemp = null;
-        private TemperatureCompensation _NormalTemp = null;
-        private TemperatureCompensation _HightTemp = null;
+        private float? _PVAD = null;
+        private TemperatureCompensation[] _TCS = new TemperatureCompensation[2];
+        private LinearizationItem[] _LItems = new LinearizationItem[11];
         #endregion
 
         #region 公共属性
@@ -165,22 +165,32 @@ namespace HartSDK
         /// <returns></returns>
         public TemperatureCompensation ReadTC(byte para, bool optical = true)
         {
-            if (para == 0)
+            if (para > 0 && para < _TCS.Length)
             {
-                if (!optical || (_ID != null && _LowTemp == null)) _LowTemp = HartComport.ReadTC(_ID.LongAddress, para);
-                return _LowTemp;
-            }
-            else if (para == 1)
-            {
-                if (!optical || (_ID != null && _NormalTemp == null)) _NormalTemp = HartComport.ReadTC(_ID.LongAddress, para);
-                return _NormalTemp;
-            }
-            else if (para == 2)
-            {
-                if (!optical || (_ID != null && _HightTemp == null)) _HightTemp = HartComport.ReadTC(_ID.LongAddress, para);
-                return _HightTemp ;
+                if (!optical || (_ID != null && _TCS[para] == null)) _TCS[para] = HartComport.ReadTC(_ID.LongAddress, para);
+                return _TCS[para];
             }
             return null;
+        }
+        /// <summary>
+        /// 读取线性化参数
+        /// </summary>
+        public LinearizationItem ReadLinearizationItem(byte para, bool optical = true)
+        {
+            if (para > 0 && para < _LItems.Length)
+            {
+                if (!optical || (_ID != null && _LItems[para] == null)) _LItems[para] = HartComport.ReadLinearizationItem(_ID.LongAddress, para);
+                return _LItems[para];
+            }
+            return null;
+        }
+        /// <summary>
+        /// 读取主变量的AD值
+        /// </summary>
+        public float ReadPVAD(bool optical = true)
+        {
+            if (!optical || (_ID != null && _PVAD == null)) _PVAD = HartComport.ReadPVAD(_ID.LongAddress);
+            return _PVAD != null ? _PVAD.Value : 0;
         }
         /// <summary>
         /// 读取某个命令的返回值
@@ -209,7 +219,7 @@ namespace HartSDK
         public bool WriteMessage(string msg)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WriteMessage(_ID.LongAddress, msg);
+            bool ret = HartComport.WriteMessage(_ID.LongAddress, msg);
             _Message = null;
             return ret;
         }
@@ -219,7 +229,7 @@ namespace HartSDK
         public bool WriteTag(DeviceTagInfo tag)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WriteTag(_ID.LongAddress, tag);
+            bool ret = HartComport.WriteTag(_ID.LongAddress, tag);
             if (ret) _Tag = null;
             return ret;
         }
@@ -237,7 +247,7 @@ namespace HartSDK
         public bool WriteDampValue(float dampValue)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WriteDampValue(_ID.LongAddress, dampValue);
+            bool ret = HartComport.WriteDampValue(_ID.LongAddress, dampValue);
             if (ret) _PVOutput = null;
             return ret;
         }
@@ -247,7 +257,7 @@ namespace HartSDK
         public bool WritePVRange(UnitCode unitCode, float upperRange, float lowerRange)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WritePVRange(_ID.LongAddress, unitCode, upperRange, lowerRange);
+            bool ret = HartComport.WritePVRange(_ID.LongAddress, unitCode, upperRange, lowerRange);
             if (ret) _PVOutput = null;
             return ret;
         }
@@ -267,7 +277,7 @@ namespace HartSDK
         public bool SetLowerRangeValue()
         {
             if (_ID == null) return false;
-            bool ret= HartComport.SetLowerRangeValue(_ID.LongAddress);
+            bool ret = HartComport.SetLowerRangeValue(_ID.LongAddress);
             if (ret) _PVOutput = null;
             return ret;
         }
@@ -277,7 +287,7 @@ namespace HartSDK
         public bool SetFixedCurrent(float current)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.SetFixedCurrent(_ID.LongAddress, current);
+            bool ret = HartComport.SetFixedCurrent(_ID.LongAddress, current);
             if (ret) _PVCurrent = null;
             return ret;
         }
@@ -311,7 +321,7 @@ namespace HartSDK
         public bool WritePVUnit(UnitCode unitCode)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WritePVUnit(_ID.LongAddress, unitCode);
+            bool ret = HartComport.WritePVUnit(_ID.LongAddress, unitCode);
             if (ret)
             {
                 _PV = null;
@@ -342,7 +352,7 @@ namespace HartSDK
         public bool WriteTransferFunction(TransferFunctionCode code)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WriteTransferFunction(_ID.LongAddress, code);
+            bool ret = HartComport.WriteTransferFunction(_ID.LongAddress, code);
             if (ret) _PVOutput = null;
             return ret;
         }
@@ -352,7 +362,7 @@ namespace HartSDK
         public bool WritePVSensorSN(int sn)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WritePVSensorSN(_ID.LongAddress, sn);
+            bool ret = HartComport.WritePVSensorSN(_ID.LongAddress, sn);
             if (ret) _PVSensor = null;
             return ret;
         }
@@ -370,7 +380,7 @@ namespace HartSDK
         public bool WriteCurrentTrim(byte uOrl, float percent)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WriteCurrentTrim(_ID.LongAddress, uOrl, percent);
+            bool ret = HartComport.WriteCurrentTrim(_ID.LongAddress, uOrl, percent);
             if (ret) _LowerCurrentTrim = null;
             return ret;
         }
@@ -384,13 +394,78 @@ namespace HartSDK
         public bool WritePVSensorMode(SensorMode mode, SensorCode sensorCode)
         {
             if (_ID == null) return false;
-            bool ret= HartComport.WritePVSensorMode(_ID.LongAddress, mode, sensorCode);
+            bool ret = HartComport.WritePVSensorMode(_ID.LongAddress, mode, sensorCode);
             if (ret)
             {
                 _PVOutput = null;
                 _PVSensor = null;
             }
             return ret;
+        }
+        /// <summary>
+        /// 写温度补偿参数
+        /// </summary>
+        public bool WriteTC(byte para, TemperatureCompensation tc)
+        {
+            if (_ID == null) return false;
+            bool ret = HartComport.WriteTC(_ID.LongAddress, para, tc);
+            if (ret && para == 0) _TCS[0] = null;
+            if (ret && para == 1) _TCS[1] = null;
+            if (ret && para == 2) _TCS[2] = null;
+            return ret;
+        }
+        /// <summary>
+        /// 写线性化参数
+        /// </summary>
+        public bool WriteLinearizationItems(LinearizationItem[] items)
+        {
+            if (_ID == null) return false;
+            if (items == null || items.Length == 0) return false;
+            bool ret= HartComport.WriteLinearizationItems(_ID.LongAddress, items);
+            if (ret) _LItems = new LinearizationItem[11];
+            return ret;
+        }
+        /// <summary>
+        /// 备份参数
+        /// </summary>
+        /// <returns></returns>
+        public bool BackUp()
+        {
+            if (_ID == null) return false;
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = _ID.LongAddress,
+                Command = 0xC7,
+                DataContent = new byte[] { 0x11, 0x53, 0x1C, 0x89 },
+            };
+            ResponsePacket response = HartComport.Request(request);
+            return response != null;
+        }
+        /// <summary>
+        /// 数据初始化
+        /// </summary>
+        /// <returns></returns>
+        public bool Init()
+        {
+            if (_ID == null) return false;
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = _ID.LongAddress,
+                Command = 0xC6,
+                DataContent = new byte[] { 0x4C, 0x55, 0x20, 0x10, 0x15, 0x48, 0x20, 0x10, 0x25 },
+            };
+            ResponsePacket response = HartComport.Request(request);
+            return response != null;
+        }
+        /// <summary>
+        /// 从备份的数据中恢复设备的参数
+        /// </summary>
+        /// <returns></returns>
+        public bool Restore()
+        {
+            return false;
         }
         #endregion
     }

@@ -229,6 +229,7 @@
             this.btnBackToDevice.TabIndex = 86;
             this.btnBackToDevice.Text = "备份到模块";
             this.btnBackToDevice.UseVisualStyleBackColor = true;
+            this.btnBackToDevice.Click += new System.EventHandler(this.btnBackToDevice_Click);
             // 
             // btnBackToPC
             // 
@@ -239,6 +240,7 @@
             this.btnBackToPC.TabIndex = 87;
             this.btnBackToPC.Text = "备份到电脑";
             this.btnBackToPC.UseVisualStyleBackColor = true;
+            this.btnBackToPC.Visible = false;
             // 
             // btnRestoreFromDecice
             // 
@@ -249,6 +251,7 @@
             this.btnRestoreFromDecice.TabIndex = 88;
             this.btnRestoreFromDecice.Text = "从模块恢复";
             this.btnRestoreFromDecice.UseVisualStyleBackColor = true;
+            this.btnRestoreFromDecice.Click += new System.EventHandler(this.btnRestoreFromDecice_Click);
             // 
             // btnRestoreFromPC
             // 
@@ -259,6 +262,7 @@
             this.btnRestoreFromPC.TabIndex = 89;
             this.btnRestoreFromPC.Text = "从电脑恢复";
             this.btnRestoreFromPC.UseVisualStyleBackColor = true;
+            this.btnRestoreFromPC.Visible = false;
             // 
             // txtPwd
             // 

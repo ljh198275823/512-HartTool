@@ -443,7 +443,7 @@ namespace HartSDK
                 ret = new TemperatureCompensation();
                 ret.LowerRangeAD = BitConverter.ToSingle(new byte[] { d[5], d[4], d[3], d[2] }, 0);
                 ret.UpperRangeAD = BitConverter.ToSingle(new byte[] { d[9], d[8], d[7], d[6] }, 0);
-                ret.TemperatureAD  = BitConverter.ToSingle(new byte[] { d[13], d[12], d[11], d[10] }, 0);
+                ret.TemperatureAD = BitConverter.ToSingle(new byte[] { d[13], d[12], d[11], d[10] }, 0);
             }
             return ret;
         }
@@ -459,6 +459,38 @@ namespace HartSDK
                 return response.DataContent;
             }
             return null;
+        }
+        /// <summary>
+        /// 读取主变量的AD值
+        /// </summary>
+        public float ReadPVAD(long longAddress)
+        {
+            float ret = 0;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0xA6 };
+            request.DataContent = new byte[] { 0x48, 0x48, 0x20, 0x04, 0x48, 0x20 };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 10)
+            {
+                byte[] d = response.DataContent;
+                ret = BitConverter.ToSingle(new byte[] { d[9], d[8], d[7], d[6] }, 0);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 读取线性化参数
+        /// </summary>
+        public LinearizationItem ReadLinearizationItem(long longAddress, byte para)
+        {
+            LinearizationItem ret = null;
+            RequestPacket request = new RequestPacket() { LongOrShort = 1, Address = longAddress, Command = 0xC0, DataContent = new byte[] { para } };
+            ResponsePacket response = Request(request);
+            if (response != null && response.DataContent != null && response.DataContent.Length >= 10)
+            {
+                byte[] d = response.DataContent;
+                ret.SensorValue = BitConverter.ToSingle(new byte[] { d[9], d[8], d[7], d[6] }, 0);
+                ret.SensorAD = BitConverter.ToSingle(new byte[] { d[4], d[3], d[2], d[1] }, 0);
+            }
+            return ret;
         }
         #endregion
 
@@ -851,10 +883,57 @@ namespace HartSDK
             ResponsePacket response = Request(request);
             if (response != null)
             {
-
                 return true;
             }
             return false;
+        }
+        /// <summary>
+        /// 写温度补偿
+        /// </summary>
+        public bool WriteTC(long longAddress, byte para, TemperatureCompensation tc)
+        {
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = longAddress,
+                Command = 0xC3,
+            };
+            List<byte> temp = new List<byte>();
+            temp.Add(0x22);
+            temp.Add(para);
+            temp.AddRange(BitConverter.GetBytes(tc.LowerRangeAD));
+            temp.AddRange(BitConverter.GetBytes(tc.UpperRangeAD));
+            temp.AddRange(BitConverter.GetBytes(tc.TemperatureAD));
+            request.DataContent = temp.ToArray();
+            ResponsePacket response = Request(request);
+            return response != null;
+        }
+        /// <summary>
+        /// 写线性化参数
+        /// </summary>
+        public bool WriteLinearizationItems(long longAddress, LinearizationItem[] items)
+        {
+            bool ret = false;
+            for (int i = 0; i < items.Length; i += 2)
+            {
+                RequestPacket request = new RequestPacket()
+                {
+                    LongOrShort = 1,
+                    Address = longAddress,
+                    Command = 0xBD,
+                };
+                List<byte> temp = new List<byte>();
+                temp.AddRange(new byte[] { 0x4C, 0x55, 0x20, 0x10, 0x15 });
+                temp.Add((byte)(i / 2));
+                temp.AddRange(BitConverter.GetBytes(items[i].SensorAD));
+                temp.AddRange(BitConverter.GetBytes(items[i].SensorValue));
+                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorAD));
+                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorValue));
+                request.DataContent = temp.ToArray();
+                ResponsePacket response = Request(request);
+                if (response == null) return false;
+            }
+            return ret;
         }
         #endregion
     }

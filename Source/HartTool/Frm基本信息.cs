@@ -47,6 +47,34 @@ namespace HartTool
             btnRestoreFromDecice.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
             btnRestoreFromPC.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
         }
+
+        private void btnBackToDevice_Click(object sender, EventArgs e)
+        {
+            if (HartDevice == null || !HartDevice.IsConnected) return;
+            bool ret = HartDevice.BackUp();
+            if (ret)
+            {
+                MessageBox.Show("备份到设备成功");
+            }
+            else
+            {
+                MessageBox.Show(HartDevice.GetLastError(), "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRestoreFromDecice_Click(object sender, EventArgs e)
+        {
+            if (HartDevice == null || !HartDevice.IsConnected) return;
+            bool ret = HartDevice.Restore();
+            if (ret)
+            {
+                MessageBox.Show("从设备恢复成功");
+            }
+            else
+            {
+                MessageBox.Show(HartDevice.GetLastError(), "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
     }
 }

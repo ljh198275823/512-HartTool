@@ -29,132 +29,64 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dbcTextBox1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.dbcTextBox2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dbcTextBox3 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox4 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox5 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox6 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox7 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox8 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox9 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox10 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox11 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox12 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox13 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox14 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox15 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox16 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox17 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox18 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox19 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox20 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox21 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.dbcTextBox22 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP1 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP2 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD3 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP3 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD4 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP4 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD5 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP5 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD10 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP10 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD9 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP9 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD8 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP8 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD7 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP7 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtAD6 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtP6 = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.btnWrite = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "压力值";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(204, 34);
+            this.label7.Location = new System.Drawing.Point(336, 235);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 22;
-            this.label7.Text = "压力AD值";
+            this.label7.Text = "实时AD值";
             // 
-            // label2
+            // txtAD
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(383, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "选择增溢";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(566, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "下载";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // dbcTextBox1
-            // 
-            this.dbcTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox1.Location = new System.Drawing.Point(80, 30);
-            this.dbcTextBox1.Name = "dbcTextBox1";
-            this.dbcTextBox1.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox1.TabIndex = 25;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(521, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(17, 12);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "倍";
-            // 
-            // dbcTextBox2
-            // 
-            this.dbcTextBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox2.Location = new System.Drawing.Point(262, 30);
-            this.dbcTextBox2.Name = "dbcTextBox2";
-            this.dbcTextBox2.Size = new System.Drawing.Size(100, 21);
-            this.dbcTextBox2.TabIndex = 27;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(439, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(76, 20);
-            this.comboBox1.TabIndex = 28;
+            this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD.Location = new System.Drawing.Point(394, 231);
+            this.txtAD.Name = "txtAD";
+            this.txtAD.Size = new System.Drawing.Size(100, 21);
+            this.txtAD.TabIndex = 27;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 71);
+            this.label4.Location = new System.Drawing.Point(24, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 29;
@@ -163,419 +95,386 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(136, 71);
+            this.label5.Location = new System.Drawing.Point(126, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 12);
             this.label5.TabIndex = 30;
             this.label5.Text = "AD值";
             // 
-            // dbcTextBox3
+            // txtAD1
             // 
-            this.dbcTextBox3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox3.Location = new System.Drawing.Point(136, 94);
-            this.dbcTextBox3.Name = "dbcTextBox3";
-            this.dbcTextBox3.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox3.TabIndex = 32;
+            this.txtAD1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD1.Location = new System.Drawing.Point(126, 42);
+            this.txtAD1.Name = "txtAD1";
+            this.txtAD1.Size = new System.Drawing.Size(85, 21);
+            this.txtAD1.TabIndex = 32;
+            this.txtAD1.Tag = "1";
+            this.txtAD1.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox4
+            // txtP1
             // 
-            this.dbcTextBox4.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox4.Location = new System.Drawing.Point(34, 94);
-            this.dbcTextBox4.Name = "dbcTextBox4";
-            this.dbcTextBox4.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox4.TabIndex = 31;
+            this.txtP1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP1.Location = new System.Drawing.Point(24, 42);
+            this.txtP1.Name = "txtP1";
+            this.txtP1.Size = new System.Drawing.Size(85, 21);
+            this.txtP1.TabIndex = 31;
+            this.txtP1.Tag = "1";
+            this.txtP1.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox5
+            // txtAD2
             // 
-            this.dbcTextBox5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox5.Location = new System.Drawing.Point(136, 121);
-            this.dbcTextBox5.Name = "dbcTextBox5";
-            this.dbcTextBox5.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox5.TabIndex = 34;
+            this.txtAD2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD2.Location = new System.Drawing.Point(126, 69);
+            this.txtAD2.Name = "txtAD2";
+            this.txtAD2.Size = new System.Drawing.Size(85, 21);
+            this.txtAD2.TabIndex = 34;
+            this.txtAD2.Tag = "2";
+            this.txtAD2.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox6
+            // txtP2
             // 
-            this.dbcTextBox6.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox6.Location = new System.Drawing.Point(34, 121);
-            this.dbcTextBox6.Name = "dbcTextBox6";
-            this.dbcTextBox6.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox6.TabIndex = 33;
+            this.txtP2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP2.Location = new System.Drawing.Point(24, 69);
+            this.txtP2.Name = "txtP2";
+            this.txtP2.Size = new System.Drawing.Size(85, 21);
+            this.txtP2.TabIndex = 33;
+            this.txtP2.Tag = "2";
+            this.txtP2.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox7
+            // txtAD3
             // 
-            this.dbcTextBox7.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox7.Location = new System.Drawing.Point(136, 148);
-            this.dbcTextBox7.Name = "dbcTextBox7";
-            this.dbcTextBox7.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox7.TabIndex = 36;
+            this.txtAD3.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD3.Location = new System.Drawing.Point(126, 96);
+            this.txtAD3.Name = "txtAD3";
+            this.txtAD3.Size = new System.Drawing.Size(85, 21);
+            this.txtAD3.TabIndex = 36;
+            this.txtAD3.Tag = "3";
+            this.txtAD3.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox8
+            // txtP3
             // 
-            this.dbcTextBox8.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox8.Location = new System.Drawing.Point(34, 148);
-            this.dbcTextBox8.Name = "dbcTextBox8";
-            this.dbcTextBox8.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox8.TabIndex = 35;
+            this.txtP3.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP3.Location = new System.Drawing.Point(24, 96);
+            this.txtP3.Name = "txtP3";
+            this.txtP3.Size = new System.Drawing.Size(85, 21);
+            this.txtP3.TabIndex = 35;
+            this.txtP3.Tag = "3";
+            this.txtP3.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox9
+            // txtAD4
             // 
-            this.dbcTextBox9.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox9.Location = new System.Drawing.Point(136, 175);
-            this.dbcTextBox9.Name = "dbcTextBox9";
-            this.dbcTextBox9.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox9.TabIndex = 38;
+            this.txtAD4.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD4.Location = new System.Drawing.Point(126, 123);
+            this.txtAD4.Name = "txtAD4";
+            this.txtAD4.Size = new System.Drawing.Size(85, 21);
+            this.txtAD4.TabIndex = 38;
+            this.txtAD4.Tag = "4";
+            this.txtAD4.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox10
+            // txtP4
             // 
-            this.dbcTextBox10.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox10.Location = new System.Drawing.Point(34, 175);
-            this.dbcTextBox10.Name = "dbcTextBox10";
-            this.dbcTextBox10.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox10.TabIndex = 37;
+            this.txtP4.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP4.Location = new System.Drawing.Point(24, 123);
+            this.txtP4.Name = "txtP4";
+            this.txtP4.Size = new System.Drawing.Size(85, 21);
+            this.txtP4.TabIndex = 37;
+            this.txtP4.Tag = "4";
+            this.txtP4.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox11
+            // txtAD5
             // 
-            this.dbcTextBox11.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox11.Location = new System.Drawing.Point(136, 202);
-            this.dbcTextBox11.Name = "dbcTextBox11";
-            this.dbcTextBox11.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox11.TabIndex = 40;
+            this.txtAD5.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD5.Location = new System.Drawing.Point(126, 150);
+            this.txtAD5.Name = "txtAD5";
+            this.txtAD5.Size = new System.Drawing.Size(85, 21);
+            this.txtAD5.TabIndex = 40;
+            this.txtAD5.Tag = "5";
+            this.txtAD5.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox12
+            // txtP5
             // 
-            this.dbcTextBox12.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox12.Location = new System.Drawing.Point(34, 202);
-            this.dbcTextBox12.Name = "dbcTextBox12";
-            this.dbcTextBox12.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox12.TabIndex = 39;
+            this.txtP5.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP5.Location = new System.Drawing.Point(24, 150);
+            this.txtP5.Name = "txtP5";
+            this.txtP5.Size = new System.Drawing.Size(85, 21);
+            this.txtP5.TabIndex = 39;
+            this.txtP5.Tag = "5";
+            this.txtP5.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox13
+            // txtAD10
             // 
-            this.dbcTextBox13.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox13.Location = new System.Drawing.Point(136, 337);
-            this.dbcTextBox13.Name = "dbcTextBox13";
-            this.dbcTextBox13.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox13.TabIndex = 50;
+            this.txtAD10.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD10.Location = new System.Drawing.Point(126, 285);
+            this.txtAD10.Name = "txtAD10";
+            this.txtAD10.Size = new System.Drawing.Size(85, 21);
+            this.txtAD10.TabIndex = 50;
+            this.txtAD10.Tag = "10";
+            this.txtAD10.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox14
+            // txtP10
             // 
-            this.dbcTextBox14.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox14.Location = new System.Drawing.Point(34, 337);
-            this.dbcTextBox14.Name = "dbcTextBox14";
-            this.dbcTextBox14.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox14.TabIndex = 49;
+            this.txtP10.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP10.Location = new System.Drawing.Point(24, 285);
+            this.txtP10.Name = "txtP10";
+            this.txtP10.Size = new System.Drawing.Size(85, 21);
+            this.txtP10.TabIndex = 49;
+            this.txtP10.Tag = "10";
+            this.txtP10.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox15
+            // txtAD9
             // 
-            this.dbcTextBox15.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox15.Location = new System.Drawing.Point(136, 310);
-            this.dbcTextBox15.Name = "dbcTextBox15";
-            this.dbcTextBox15.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox15.TabIndex = 48;
+            this.txtAD9.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD9.Location = new System.Drawing.Point(126, 258);
+            this.txtAD9.Name = "txtAD9";
+            this.txtAD9.Size = new System.Drawing.Size(85, 21);
+            this.txtAD9.TabIndex = 48;
+            this.txtAD9.Tag = "9";
+            this.txtAD9.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox16
+            // txtP9
             // 
-            this.dbcTextBox16.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox16.Location = new System.Drawing.Point(34, 310);
-            this.dbcTextBox16.Name = "dbcTextBox16";
-            this.dbcTextBox16.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox16.TabIndex = 47;
+            this.txtP9.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP9.Location = new System.Drawing.Point(24, 258);
+            this.txtP9.Name = "txtP9";
+            this.txtP9.Size = new System.Drawing.Size(85, 21);
+            this.txtP9.TabIndex = 47;
+            this.txtP9.Tag = "9";
+            this.txtP9.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox17
+            // txtAD8
             // 
-            this.dbcTextBox17.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox17.Location = new System.Drawing.Point(136, 283);
-            this.dbcTextBox17.Name = "dbcTextBox17";
-            this.dbcTextBox17.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox17.TabIndex = 46;
+            this.txtAD8.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD8.Location = new System.Drawing.Point(126, 231);
+            this.txtAD8.Name = "txtAD8";
+            this.txtAD8.Size = new System.Drawing.Size(85, 21);
+            this.txtAD8.TabIndex = 46;
+            this.txtAD8.Tag = "8";
+            this.txtAD8.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox18
+            // txtP8
             // 
-            this.dbcTextBox18.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox18.Location = new System.Drawing.Point(34, 283);
-            this.dbcTextBox18.Name = "dbcTextBox18";
-            this.dbcTextBox18.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox18.TabIndex = 45;
+            this.txtP8.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP8.Location = new System.Drawing.Point(24, 231);
+            this.txtP8.Name = "txtP8";
+            this.txtP8.Size = new System.Drawing.Size(85, 21);
+            this.txtP8.TabIndex = 45;
+            this.txtP8.Tag = "8";
+            this.txtP8.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox19
+            // txtAD7
             // 
-            this.dbcTextBox19.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox19.Location = new System.Drawing.Point(136, 256);
-            this.dbcTextBox19.Name = "dbcTextBox19";
-            this.dbcTextBox19.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox19.TabIndex = 44;
+            this.txtAD7.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD7.Location = new System.Drawing.Point(126, 204);
+            this.txtAD7.Name = "txtAD7";
+            this.txtAD7.Size = new System.Drawing.Size(85, 21);
+            this.txtAD7.TabIndex = 44;
+            this.txtAD7.Tag = "7";
+            this.txtAD7.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox20
+            // txtP7
             // 
-            this.dbcTextBox20.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox20.Location = new System.Drawing.Point(34, 256);
-            this.dbcTextBox20.Name = "dbcTextBox20";
-            this.dbcTextBox20.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox20.TabIndex = 43;
+            this.txtP7.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP7.Location = new System.Drawing.Point(24, 204);
+            this.txtP7.Name = "txtP7";
+            this.txtP7.Size = new System.Drawing.Size(85, 21);
+            this.txtP7.TabIndex = 43;
+            this.txtP7.Tag = "7";
+            this.txtP7.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox21
+            // txtAD6
             // 
-            this.dbcTextBox21.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox21.Location = new System.Drawing.Point(136, 229);
-            this.dbcTextBox21.Name = "dbcTextBox21";
-            this.dbcTextBox21.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox21.TabIndex = 42;
+            this.txtAD6.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtAD6.Location = new System.Drawing.Point(126, 177);
+            this.txtAD6.Name = "txtAD6";
+            this.txtAD6.Size = new System.Drawing.Size(85, 21);
+            this.txtAD6.TabIndex = 42;
+            this.txtAD6.Tag = "6";
+            this.txtAD6.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
-            // dbcTextBox22
+            // txtP6
             // 
-            this.dbcTextBox22.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dbcTextBox22.Location = new System.Drawing.Point(34, 229);
-            this.dbcTextBox22.Name = "dbcTextBox22";
-            this.dbcTextBox22.Size = new System.Drawing.Size(85, 21);
-            this.dbcTextBox22.TabIndex = 41;
+            this.txtP6.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtP6.Location = new System.Drawing.Point(24, 177);
+            this.txtP6.Name = "txtP6";
+            this.txtP6.Size = new System.Drawing.Size(85, 21);
+            this.txtP6.TabIndex = 41;
+            this.txtP6.Tag = "6";
+            this.txtP6.Enter += new System.EventHandler(this.txtP1_Enter);
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(221, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 51;
+            this.button1.Tag = "1";
+            this.button1.Text = "采集";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(231, 93);
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(221, 68);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 51;
+            this.button2.TabIndex = 53;
+            this.button2.Tag = "2";
             this.button2.Text = "采集";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(312, 93);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(221, 95);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 52;
-            this.button3.Text = "读取";
+            this.button3.TabIndex = 55;
+            this.button3.Tag = "3";
+            this.button3.Text = "采集";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button1_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(312, 120);
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(221, 122);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 54;
-            this.button4.Text = "读取";
+            this.button4.TabIndex = 57;
+            this.button4.Tag = "4";
+            this.button4.Text = "采集";
             this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(231, 120);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 53;
-            this.button5.Text = "采集";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(312, 147);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 56;
-            this.button6.Text = "读取";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(231, 147);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 55;
-            this.button7.Text = "采集";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button1_Click);
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(312, 174);
+            this.button8.Enabled = false;
+            this.button8.Location = new System.Drawing.Point(221, 230);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 58;
-            this.button8.Text = "读取";
+            this.button8.TabIndex = 65;
+            this.button8.Tag = "8";
+            this.button8.Text = "采集";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button9
+            // button7
             // 
-            this.button9.Location = new System.Drawing.Point(231, 174);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 57;
-            this.button9.Text = "采集";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button7.Enabled = false;
+            this.button7.Location = new System.Drawing.Point(221, 203);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 63;
+            this.button7.Tag = "7";
+            this.button7.Text = "采集";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button6
+            // 
+            this.button6.Enabled = false;
+            this.button6.Location = new System.Drawing.Point(221, 176);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 61;
+            this.button6.Tag = "6";
+            this.button6.Text = "采集";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button5
+            // 
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(221, 149);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 59;
+            this.button5.Tag = "5";
+            this.button5.Text = "采集";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button1_Click);
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(312, 282);
+            this.button10.Enabled = false;
+            this.button10.Location = new System.Drawing.Point(221, 284);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 66;
-            this.button10.Text = "读取";
+            this.button10.TabIndex = 69;
+            this.button10.Tag = "10";
+            this.button10.Text = "采集";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button11
+            // button9
             // 
-            this.button11.Location = new System.Drawing.Point(231, 282);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 65;
-            this.button11.Text = "采集";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button9.Enabled = false;
+            this.button9.Location = new System.Drawing.Point(221, 257);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 67;
+            this.button9.Tag = "9";
+            this.button9.Text = "采集";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button12
+            // btnWrite
             // 
-            this.button12.Location = new System.Drawing.Point(312, 255);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 64;
-            this.button12.Text = "读取";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(231, 255);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 63;
-            this.button13.Text = "采集";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(312, 228);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 62;
-            this.button14.Text = "读取";
-            this.button14.UseVisualStyleBackColor = true;
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(231, 228);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 61;
-            this.button15.Text = "采集";
-            this.button15.UseVisualStyleBackColor = true;
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(312, 201);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
-            this.button16.TabIndex = 60;
-            this.button16.Text = "读取";
-            this.button16.UseVisualStyleBackColor = true;
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(231, 201);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
-            this.button17.TabIndex = 59;
-            this.button17.Text = "采集";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(312, 336);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(75, 23);
-            this.button18.TabIndex = 70;
-            this.button18.Text = "读取";
-            this.button18.UseVisualStyleBackColor = true;
-            // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(231, 336);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 69;
-            this.button19.Text = "采集";
-            this.button19.UseVisualStyleBackColor = true;
-            // 
-            // button20
-            // 
-            this.button20.Location = new System.Drawing.Point(312, 309);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(75, 23);
-            this.button20.TabIndex = 68;
-            this.button20.Text = "读取";
-            this.button20.UseVisualStyleBackColor = true;
-            // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(231, 309);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(75, 23);
-            this.button21.TabIndex = 67;
-            this.button21.Text = "采集";
-            this.button21.UseVisualStyleBackColor = true;
-            // 
-            // button22
-            // 
-            this.button22.Location = new System.Drawing.Point(440, 335);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(158, 23);
-            this.button22.TabIndex = 71;
-            this.button22.Text = "下载";
-            this.button22.UseVisualStyleBackColor = true;
+            this.btnWrite.Location = new System.Drawing.Point(338, 283);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(158, 23);
+            this.btnWrite.TabIndex = 71;
+            this.btnWrite.Text = "下载";
+            this.btnWrite.UseVisualStyleBackColor = true;
+            this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
             // 
             // Frm多点线性化
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 377);
-            this.Controls.Add(this.button22);
-            this.Controls.Add(this.button18);
-            this.Controls.Add(this.button19);
-            this.Controls.Add(this.button20);
-            this.Controls.Add(this.button21);
+            this.ClientSize = new System.Drawing.Size(755, 330);
+            this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.button10);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button15);
-            this.Controls.Add(this.button16);
-            this.Controls.Add(this.button17);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.dbcTextBox13);
-            this.Controls.Add(this.dbcTextBox14);
-            this.Controls.Add(this.dbcTextBox15);
-            this.Controls.Add(this.dbcTextBox16);
-            this.Controls.Add(this.dbcTextBox17);
-            this.Controls.Add(this.dbcTextBox18);
-            this.Controls.Add(this.dbcTextBox19);
-            this.Controls.Add(this.dbcTextBox20);
-            this.Controls.Add(this.dbcTextBox21);
-            this.Controls.Add(this.dbcTextBox22);
-            this.Controls.Add(this.dbcTextBox11);
-            this.Controls.Add(this.dbcTextBox12);
-            this.Controls.Add(this.dbcTextBox9);
-            this.Controls.Add(this.dbcTextBox10);
-            this.Controls.Add(this.dbcTextBox7);
-            this.Controls.Add(this.dbcTextBox8);
-            this.Controls.Add(this.dbcTextBox5);
-            this.Controls.Add(this.dbcTextBox6);
-            this.Controls.Add(this.dbcTextBox3);
-            this.Controls.Add(this.dbcTextBox4);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtAD10);
+            this.Controls.Add(this.txtP10);
+            this.Controls.Add(this.txtAD9);
+            this.Controls.Add(this.txtP9);
+            this.Controls.Add(this.txtAD8);
+            this.Controls.Add(this.txtP8);
+            this.Controls.Add(this.txtAD7);
+            this.Controls.Add(this.txtP7);
+            this.Controls.Add(this.txtAD6);
+            this.Controls.Add(this.txtP6);
+            this.Controls.Add(this.txtAD5);
+            this.Controls.Add(this.txtP5);
+            this.Controls.Add(this.txtAD4);
+            this.Controls.Add(this.txtP4);
+            this.Controls.Add(this.txtAD3);
+            this.Controls.Add(this.txtP3);
+            this.Controls.Add(this.txtAD2);
+            this.Controls.Add(this.txtP2);
+            this.Controls.Add(this.txtAD1);
+            this.Controls.Add(this.txtP1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dbcTextBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dbcTextBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtAD);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label1);
             this.Name = "Frm多点线性化";
             this.Text = "Frm多点线性化";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm多点线性化_FormClosed);
+            this.Load += new System.EventHandler(this.Frm多点线性化_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -583,56 +482,40 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox1;
-        private System.Windows.Forms.Label label3;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox3;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox4;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox5;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox6;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox7;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox8;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox9;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox10;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox11;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox12;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox13;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox14;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox15;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox16;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox17;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox18;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox19;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox20;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox21;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox dbcTextBox22;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP1;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD3;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP3;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD4;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP4;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD5;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP5;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD10;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP10;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD9;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP9;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD8;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP8;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD7;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP7;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtAD6;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtP6;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnWrite;
     }
 }

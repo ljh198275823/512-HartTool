@@ -36,11 +36,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnLow = new System.Windows.Forms.Button();
+            this.btnNormal = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnHight = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPresureAD = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
@@ -112,57 +112,66 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(456, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
             this.button1.Text = "采集";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnLow
+            // 
+            this.btnLow.Location = new System.Drawing.Point(555, 58);
+            this.btnLow.Name = "btnLow";
+            this.btnLow.Size = new System.Drawing.Size(75, 23);
+            this.btnLow.TabIndex = 7;
+            this.btnLow.Text = "下载";
+            this.btnLow.UseVisualStyleBackColor = true;
+            this.btnLow.Click += new System.EventHandler(this.btuLow_Click);
+            // 
+            // btnNormal
+            // 
+            this.btnNormal.Location = new System.Drawing.Point(555, 99);
+            this.btnNormal.Name = "btnNormal";
+            this.btnNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnNormal.TabIndex = 18;
+            this.btnNormal.Text = "下载";
+            this.btnNormal.UseVisualStyleBackColor = true;
+            this.btnNormal.Click += new System.EventHandler(this.btnNormal_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(555, 58);
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(456, 99);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "下载";
+            this.button2.TabIndex = 17;
+            this.button2.Text = "采集";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnHight
+            // 
+            this.btnHight.Location = new System.Drawing.Point(555, 142);
+            this.btnHight.Name = "btnHight";
+            this.btnHight.Size = new System.Drawing.Size(75, 23);
+            this.btnHight.TabIndex = 20;
+            this.btnHight.Text = "下载";
+            this.btnHight.UseVisualStyleBackColor = true;
+            this.btnHight.Click += new System.EventHandler(this.btnHight_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(555, 99);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(456, 142);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "下载";
+            this.button3.TabIndex = 19;
+            this.button3.Text = "采集";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(456, 99);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "采集";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(555, 142);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "下载";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(456, 142);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 19;
-            this.button6.Text = "采集";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label7
             // 
@@ -205,6 +214,7 @@
             this.txtHightAD2.Name = "txtHightAD2";
             this.txtHightAD2.Size = new System.Drawing.Size(100, 21);
             this.txtHightAD2.TabIndex = 16;
+            this.txtHightAD2.Enter += new System.EventHandler(this.txtHightTempAD_Enter);
             // 
             // txtNormalAD2
             // 
@@ -213,6 +223,7 @@
             this.txtNormalAD2.Name = "txtNormalAD2";
             this.txtNormalAD2.Size = new System.Drawing.Size(100, 21);
             this.txtNormalAD2.TabIndex = 15;
+            this.txtNormalAD2.Enter += new System.EventHandler(this.txtNormalTempAD_Enter);
             // 
             // txtLowAD2
             // 
@@ -221,6 +232,7 @@
             this.txtLowAD2.Name = "txtLowAD2";
             this.txtLowAD2.Size = new System.Drawing.Size(100, 21);
             this.txtLowAD2.TabIndex = 14;
+            this.txtLowAD2.Enter += new System.EventHandler(this.txtLowTempAD_Enter);
             // 
             // txtHightAD1
             // 
@@ -229,6 +241,7 @@
             this.txtHightAD1.Name = "txtHightAD1";
             this.txtHightAD1.Size = new System.Drawing.Size(100, 21);
             this.txtHightAD1.TabIndex = 13;
+            this.txtHightAD1.Enter += new System.EventHandler(this.txtHightTempAD_Enter);
             // 
             // txtNormalAD1
             // 
@@ -237,6 +250,7 @@
             this.txtNormalAD1.Name = "txtNormalAD1";
             this.txtNormalAD1.Size = new System.Drawing.Size(100, 21);
             this.txtNormalAD1.TabIndex = 12;
+            this.txtNormalAD1.Enter += new System.EventHandler(this.txtNormalTempAD_Enter);
             // 
             // txtLowAD1
             // 
@@ -245,6 +259,7 @@
             this.txtLowAD1.Name = "txtLowAD1";
             this.txtLowAD1.Size = new System.Drawing.Size(100, 21);
             this.txtLowAD1.TabIndex = 11;
+            this.txtLowAD1.Enter += new System.EventHandler(this.txtLowTempAD_Enter);
             // 
             // txtHightTempAD
             // 
@@ -253,6 +268,7 @@
             this.txtHightTempAD.Name = "txtHightTempAD";
             this.txtHightTempAD.Size = new System.Drawing.Size(100, 21);
             this.txtHightTempAD.TabIndex = 10;
+            this.txtHightTempAD.Enter += new System.EventHandler(this.txtHightTempAD_Enter);
             // 
             // txtNormalTempAD
             // 
@@ -261,6 +277,7 @@
             this.txtNormalTempAD.Name = "txtNormalTempAD";
             this.txtNormalTempAD.Size = new System.Drawing.Size(100, 21);
             this.txtNormalTempAD.TabIndex = 9;
+            this.txtNormalTempAD.Enter += new System.EventHandler(this.txtNormalTempAD_Enter);
             // 
             // txtLowTempAD
             // 
@@ -269,6 +286,7 @@
             this.txtLowTempAD.Name = "txtLowTempAD";
             this.txtLowTempAD.Size = new System.Drawing.Size(100, 21);
             this.txtLowTempAD.TabIndex = 8;
+            this.txtLowTempAD.Enter += new System.EventHandler(this.txtLowTempAD_Enter);
             // 
             // Frm温度补偿
             // 
@@ -279,10 +297,10 @@
             this.Controls.Add(this.txtPresureAD);
             this.Controls.Add(this.txtTempAD);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnHight);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnNormal);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.txtHightAD2);
             this.Controls.Add(this.txtNormalAD2);
             this.Controls.Add(this.txtLowAD2);
@@ -292,7 +310,7 @@
             this.Controls.Add(this.txtHightTempAD);
             this.Controls.Add(this.txtNormalTempAD);
             this.Controls.Add(this.txtLowTempAD);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnLow);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -318,7 +336,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnLow;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtLowTempAD;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtNormalTempAD;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtHightTempAD;
@@ -328,10 +346,10 @@
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtHightAD2;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtNormalAD2;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtLowAD2;
+        private System.Windows.Forms.Button btnNormal;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnHight;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPresureAD;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtTempAD;
         private System.Windows.Forms.Label label7;
