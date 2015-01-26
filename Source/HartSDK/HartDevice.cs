@@ -34,7 +34,7 @@ namespace HartSDK
         private OutputInfo _PVOutput = null;
         private float? _LowerCurrentTrim = null;
         private float? _PVAD = null;
-        private TemperatureCompensation[] _TCS = new TemperatureCompensation[2];
+        private TemperatureCompensation[] _TCS = new TemperatureCompensation[3];
         private LinearizationItem[] _LItems = new LinearizationItem[11];
         #endregion
 
@@ -165,7 +165,7 @@ namespace HartSDK
         /// <returns></returns>
         public TemperatureCompensation ReadTC(byte para, bool optical = true)
         {
-            if (para > 0 && para < _TCS.Length)
+            if (para >= 0 && para < _TCS.Length)
             {
                 if (!optical || (_ID != null && _TCS[para] == null)) _TCS[para] = HartComport.ReadTC(_ID.LongAddress, para);
                 return _TCS[para];
@@ -177,7 +177,7 @@ namespace HartSDK
         /// </summary>
         public LinearizationItem ReadLinearizationItem(byte para, bool optical = true)
         {
-            if (para > 0 && para < _LItems.Length)
+            if (para >= 0 && para < _LItems.Length)
             {
                 if (!optical || (_ID != null && _LItems[para] == null)) _LItems[para] = HartComport.ReadLinearizationItem(_ID.LongAddress, para);
                 return _LItems[para];

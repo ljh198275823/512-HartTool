@@ -128,7 +128,7 @@ namespace HartTool
             }
             TemperatureCompensation tc = new TemperatureCompensation() { TemperatureAD = tempAD, LowerRangeAD = lowerAD, UpperRangeAD = upperAD };
             bool ret = HartDevice.WriteTC(0, tc);
-            if (!ret) MessageBox.Show(HartDevice.GetLastError());
+            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "结果", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -157,7 +157,7 @@ namespace HartTool
             }
             TemperatureCompensation tc = new TemperatureCompensation() { TemperatureAD = tempAD, LowerRangeAD = lowerAD, UpperRangeAD = upperAD };
             bool ret = HartDevice.WriteTC(1, tc);
-            if (!ret) MessageBox.Show(HartDevice.GetLastError());
+            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "结果", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnHight_Click(object sender, EventArgs e)
@@ -186,7 +186,7 @@ namespace HartTool
             }
             TemperatureCompensation tc = new TemperatureCompensation() { TemperatureAD = tempAD, LowerRangeAD = lowerAD, UpperRangeAD = upperAD };
             bool ret = HartDevice.WriteTC(2, tc);
-            if (!ret) MessageBox.Show(HartDevice.GetLastError());
+            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "结果", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void txtLowTempAD_Enter(object sender, EventArgs e)

@@ -487,6 +487,7 @@ namespace HartSDK
             if (response != null && response.DataContent != null && response.DataContent.Length >= 10)
             {
                 byte[] d = response.DataContent;
+                ret = new LinearizationItem();
                 ret.SensorValue = BitConverter.ToSingle(new byte[] { d[9], d[8], d[7], d[6] }, 0);
                 ret.SensorAD = BitConverter.ToSingle(new byte[] { d[4], d[3], d[2], d[1] }, 0);
             }
@@ -901,9 +902,9 @@ namespace HartSDK
             List<byte> temp = new List<byte>();
             temp.Add(0x22);
             temp.Add(para);
-            temp.AddRange(BitConverter.GetBytes(tc.LowerRangeAD));
-            temp.AddRange(BitConverter.GetBytes(tc.UpperRangeAD));
-            temp.AddRange(BitConverter.GetBytes(tc.TemperatureAD));
+            temp.AddRange(BitConverter.GetBytes(tc.LowerRangeAD).Reverse());
+            temp.AddRange(BitConverter.GetBytes(tc.UpperRangeAD).Reverse());
+            temp.AddRange(BitConverter.GetBytes(tc.TemperatureAD).Reverse());
             request.DataContent = temp.ToArray();
             ResponsePacket response = Request(request);
             return response != null;
@@ -925,10 +926,10 @@ namespace HartSDK
                 List<byte> temp = new List<byte>();
                 temp.AddRange(new byte[] { 0x4C, 0x55, 0x20, 0x10, 0x15 });
                 temp.Add((byte)(i / 2));
-                temp.AddRange(BitConverter.GetBytes(items[i].SensorAD));
-                temp.AddRange(BitConverter.GetBytes(items[i].SensorValue));
-                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorAD));
-                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorValue));
+                temp.AddRange(BitConverter.GetBytes(items[i].SensorAD).Reverse());
+                temp.AddRange(BitConverter.GetBytes(items[i].SensorValue).Reverse());
+                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorAD).Reverse());
+                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorValue).Reverse());
                 request.DataContent = temp.ToArray();
                 ResponsePacket response = Request(request);
                 if (response == null) return false;

@@ -60,7 +60,7 @@ namespace HartTool
                 {
                     LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
                     (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
-                    (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
+                    (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
                 }
             }
         }
@@ -120,6 +120,7 @@ namespace HartTool
                 {
                     if (float.TryParse(strP, out fp) && fp >= 0 && float.TryParse(strAD, out fAD) && fAD >= 0)
                     {
+                        if (fp == 0 && fAD == 0) break;
                         LinearizationItem li = new LinearizationItem() { SensorValue = fp, SensorAD = fAD };
                         lis.Add(li);
                     }

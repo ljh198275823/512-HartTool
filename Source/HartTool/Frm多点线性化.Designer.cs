@@ -64,12 +64,22 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.btnRead5 = new System.Windows.Forms.Button();
+            this.btnRead4 = new System.Windows.Forms.Button();
+            this.btnRead3 = new System.Windows.Forms.Button();
+            this.btnRead2 = new System.Windows.Forms.Button();
+            this.btnRead1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(336, 235);
+            this.label7.Location = new System.Drawing.Point(438, 230);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 22;
@@ -78,7 +88,7 @@
             // txtAD
             // 
             this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAD.Location = new System.Drawing.Point(394, 231);
+            this.txtAD.Location = new System.Drawing.Point(496, 226);
             this.txtAD.Name = "txtAD";
             this.txtAD.Size = new System.Drawing.Size(100, 21);
             this.txtAD.TabIndex = 27;
@@ -423,7 +433,7 @@
             // 
             // btnWrite
             // 
-            this.btnWrite.Location = new System.Drawing.Point(338, 283);
+            this.btnWrite.Location = new System.Drawing.Point(440, 278);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(158, 23);
             this.btnWrite.TabIndex = 71;
@@ -431,11 +441,131 @@
             this.btnWrite.UseVisualStyleBackColor = true;
             this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
             // 
+            // button11
+            // 
+            this.button11.Enabled = false;
+            this.button11.Location = new System.Drawing.Point(302, 283);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 81;
+            this.button11.Tag = "10";
+            this.button11.Text = "读参数";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Enabled = false;
+            this.button12.Location = new System.Drawing.Point(302, 256);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 80;
+            this.button12.Tag = "9";
+            this.button12.Text = "读参数";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Enabled = false;
+            this.button13.Location = new System.Drawing.Point(302, 229);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.TabIndex = 79;
+            this.button13.Tag = "8";
+            this.button13.Text = "读参数";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Enabled = false;
+            this.button14.Location = new System.Drawing.Point(302, 202);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 78;
+            this.button14.Tag = "7";
+            this.button14.Text = "读参数";
+            this.button14.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Enabled = false;
+            this.button15.Location = new System.Drawing.Point(302, 175);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 77;
+            this.button15.Tag = "6";
+            this.button15.Text = "读参数";
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // btnRead5
+            // 
+            this.btnRead5.Enabled = false;
+            this.btnRead5.Location = new System.Drawing.Point(302, 148);
+            this.btnRead5.Name = "btnRead5";
+            this.btnRead5.Size = new System.Drawing.Size(75, 23);
+            this.btnRead5.TabIndex = 76;
+            this.btnRead5.Tag = "5";
+            this.btnRead5.Text = "读参数";
+            this.btnRead5.UseVisualStyleBackColor = true;
+            // 
+            // btnRead4
+            // 
+            this.btnRead4.Enabled = false;
+            this.btnRead4.Location = new System.Drawing.Point(302, 121);
+            this.btnRead4.Name = "btnRead4";
+            this.btnRead4.Size = new System.Drawing.Size(75, 23);
+            this.btnRead4.TabIndex = 75;
+            this.btnRead4.Tag = "4";
+            this.btnRead4.Text = "读参数";
+            this.btnRead4.UseVisualStyleBackColor = true;
+            // 
+            // btnRead3
+            // 
+            this.btnRead3.Enabled = false;
+            this.btnRead3.Location = new System.Drawing.Point(302, 94);
+            this.btnRead3.Name = "btnRead3";
+            this.btnRead3.Size = new System.Drawing.Size(75, 23);
+            this.btnRead3.TabIndex = 74;
+            this.btnRead3.Tag = "3";
+            this.btnRead3.Text = "读参数";
+            this.btnRead3.UseVisualStyleBackColor = true;
+            // 
+            // btnRead2
+            // 
+            this.btnRead2.Enabled = false;
+            this.btnRead2.Location = new System.Drawing.Point(302, 67);
+            this.btnRead2.Name = "btnRead2";
+            this.btnRead2.Size = new System.Drawing.Size(75, 23);
+            this.btnRead2.TabIndex = 73;
+            this.btnRead2.Tag = "2";
+            this.btnRead2.Text = "读参数";
+            this.btnRead2.UseVisualStyleBackColor = true;
+            // 
+            // btnRead1
+            // 
+            this.btnRead1.Enabled = false;
+            this.btnRead1.Location = new System.Drawing.Point(302, 40);
+            this.btnRead1.Name = "btnRead1";
+            this.btnRead1.Size = new System.Drawing.Size(75, 23);
+            this.btnRead1.TabIndex = 72;
+            this.btnRead1.Tag = "1";
+            this.btnRead1.Text = "读参数";
+            this.btnRead1.UseVisualStyleBackColor = true;
+            // 
             // Frm多点线性化
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 330);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.button14);
+            this.Controls.Add(this.button15);
+            this.Controls.Add(this.btnRead5);
+            this.Controls.Add(this.btnRead4);
+            this.Controls.Add(this.btnRead3);
+            this.Controls.Add(this.btnRead2);
+            this.Controls.Add(this.btnRead1);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
@@ -517,5 +647,15 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnWrite;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button btnRead5;
+        private System.Windows.Forms.Button btnRead4;
+        private System.Windows.Forms.Button btnRead3;
+        private System.Windows.Forms.Button btnRead2;
+        private System.Windows.Forms.Button btnRead1;
     }
 }
