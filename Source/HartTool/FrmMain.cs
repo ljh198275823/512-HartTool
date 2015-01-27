@@ -96,6 +96,7 @@ namespace HartTool
         #region 事件处理
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            this.Text += string.Format(" [{0}]", Application.ProductVersion);
             comPortComboBox1.Init();
             cmbShortAddress.SelectedIndex = 0;
 

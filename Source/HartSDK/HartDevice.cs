@@ -417,11 +417,11 @@ namespace HartSDK
         /// <summary>
         /// 写线性化参数
         /// </summary>
-        public bool WriteLinearizationItems(LinearizationItem[] items)
+        public bool WriteLinearizationItems(LinearizationItem[] items, byte start)
         {
             if (_ID == null) return false;
             if (items == null || items.Length == 0) return false;
-            bool ret= HartComport.WriteLinearizationItems(_ID.LongAddress, items);
+            bool ret = HartComport.WriteLinearizationItems(_ID.LongAddress, items, start);
             if (ret) _LItems = new LinearizationItem[11];
             return ret;
         }

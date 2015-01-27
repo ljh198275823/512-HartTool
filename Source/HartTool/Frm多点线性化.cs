@@ -53,16 +53,17 @@ namespace HartTool
 
         public void ReadData()
         {
+            int count = 0;
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
             if (HartDevice != null && HartDevice.IsConnected)
             {
                 for (int i = 1; i <= 10; i++)
                 {
                     LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
-                    if (li == null || li.SensorAD == 70000) break; //获取不到或者到达线性化结尾的时候不再继续获取
-                    if (li != null && li.SensorAD == 0 && li.SensorValue == 0) break; //后面的都是无效的参数了,不用再继续获取
+                    if (li != null && li.SensorAD == 0 && li.SensorValue == 0 && count > 0) break; //后面的都是无效的参数了,不用再继续获取
                     (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
                     (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
+                    count++;
                 }
             }
         }
@@ -111,7 +112,7 @@ namespace HartTool
         private void btnWrite_Click(object sender, EventArgs e)
         {
             if (HartDevice == null || !HartDevice.IsConnected) return;
-            List<LinearizationItem> lis = new List<LinearizationItem>() { new LinearizationItem() { SensorValue = 0, SensorAD = 0 } };
+            List<LinearizationItem> lis = new List<LinearizationItem>(){ new LinearizationItem() };
             for (int i = 1; i <= 10; i++)
             {
                 string strP = (this.Controls["txtP" + i.ToString()] as TextBox).Text;
@@ -122,14 +123,22 @@ namespace HartTool
                 {
                     if (float.TryParse(strP, out fp) && fp >= 0 && float.TryParse(strAD, out fAD) && fAD >= 0)
                     {
-                        if (fp == 0 && fAD == 0) break;
                         LinearizationItem li = new LinearizationItem() { SensorValue = fp, SensorAD = fAD };
                         lis.Add(li);
                     }
                 }
             }
-            lis.Add(new LinearizationItem() { SensorValue = 0, SensorAD = 70000 });
-            if (lis.Count % 2 == 1) lis.Add(new LinearizationItem() { SensorValue = 0, SensorAD = 70000 });
+            if (lis.Count == 1)  //如果列表中只有初始化时增加的一个线性化参数，则退出
+            {
+                MessageBox.Show("没有设置线性化参数");
+                return;
+            }
+            for (int i = lis.Count; i < 10; i++)
+            {
+                lis.Add(new LinearizationItem());
+            }
+            //lis.Add(new LinearizationItem() { SensorAD = 70000, SensorValue = 70000 });
+            if (lis.Count % 2 == 1) lis.Add(new LinearizationItem());
 
             FrmProcessing frm = new FrmProcessing();
             Action action = delegate()
@@ -139,7 +148,7 @@ namespace HartTool
                     for (int i = 0; i < lis.Count; i += 2)
                     {
                         LinearizationItem[] items = new LinearizationItem[2] { lis[i], lis[i + 1] };
-                        bool ret = HartDevice.WriteLinearizationItems(items);
+                        bool ret = HartDevice.WriteLinearizationItems(items, (byte)(i / 2));
                         frm.ShowProgress(string.Empty, (decimal)(i + 2) / lis.Count);
                         Thread.Sleep(100);
                     }
