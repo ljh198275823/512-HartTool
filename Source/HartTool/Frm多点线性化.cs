@@ -34,7 +34,7 @@ namespace HartTool
                         float ad = HartDevice.ReadPVAD(false);
                         this.Invoke((Action)(() => { txtAD.Text = ad.ToString("F0"); }));
                     }
-                    Thread.Sleep(200);
+                    Thread.Sleep(1000);
                 }
             }
             catch (ThreadAbortException)
@@ -59,6 +59,8 @@ namespace HartTool
                 for (int i = 1; i <= 10; i++)
                 {
                     LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
+                    if (li == null || li.SensorAD == 70000) break; //获取不到或者到达线性化结尾的时候不再继续获取
+                    if (li != null && li.SensorAD == 0 && li.SensorValue == 0) break; //后面的都是无效的参数了,不用再继续获取
                     (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
                     (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
                 }
@@ -128,8 +130,35 @@ namespace HartTool
             }
             lis.Add(new LinearizationItem() { SensorValue = 0, SensorAD = 70000 });
             if (lis.Count % 2 == 1) lis.Add(new LinearizationItem() { SensorValue = 0, SensorAD = 70000 });
-            bool ret = HartDevice.WriteLinearizationItems(lis.ToArray());
-            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            FrmProcessing frm = new FrmProcessing();
+            Action action = delegate()
+            {
+                try
+                {
+                    for (int i = 0; i < lis.Count; i += 2)
+                    {
+                        LinearizationItem[] items = new LinearizationItem[2] { lis[i], lis[i + 1] };
+                        bool ret = HartDevice.WriteLinearizationItems(items);
+                        frm.ShowProgress(string.Empty, (decimal)(i + 2) / lis.Count);
+                        Thread.Sleep(100);
+                    }
+                    frm.ShowProgress(string.Empty, 1);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception)
+                {
+                }
+            };
+            Thread t = new Thread(new ThreadStart(action));
+            t.IsBackground = true;
+            t.Start();
+            if (frm.ShowDialog() != DialogResult.OK)
+            {
+                t.Abort();
+            }
         }
         #endregion
     }

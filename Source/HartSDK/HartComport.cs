@@ -917,22 +917,25 @@ namespace HartSDK
             bool ret = false;
             for (int i = 0; i < items.Length; i += 2)
             {
-                RequestPacket request = new RequestPacket()
+                while (true)
                 {
-                    LongOrShort = 1,
-                    Address = longAddress,
-                    Command = 0xBD,
-                };
-                List<byte> temp = new List<byte>();
-                temp.AddRange(new byte[] { 0x4C, 0x55, 0x20, 0x10, 0x15 });
-                temp.Add((byte)(i / 2));
-                temp.AddRange(BitConverter.GetBytes(items[i].SensorAD).Reverse());
-                temp.AddRange(BitConverter.GetBytes(items[i].SensorValue).Reverse());
-                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorAD).Reverse());
-                temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorValue).Reverse());
-                request.DataContent = temp.ToArray();
-                ResponsePacket response = Request(request);
-                if (response == null) return false;
+                    RequestPacket request = new RequestPacket()
+                    {
+                        LongOrShort = 1,
+                        Address = longAddress,
+                        Command = 0xBD,
+                    };
+                    List<byte> temp = new List<byte>();
+                    temp.AddRange(new byte[] { 0x4C, 0x55, 0x20, 0x10, 0x15 });
+                    temp.Add((byte)(i / 2));
+                    temp.AddRange(BitConverter.GetBytes(items[i].SensorAD).Reverse());
+                    temp.AddRange(BitConverter.GetBytes(items[i].SensorValue).Reverse());
+                    temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorAD).Reverse());
+                    temp.AddRange(BitConverter.GetBytes(items[i + 1].SensorValue).Reverse());
+                    request.DataContent = temp.ToArray();
+                    ResponsePacket response = Request(request);
+                    if (response != null) break; //执行成功进行下一轮调用,
+                }
             }
             return ret;
         }

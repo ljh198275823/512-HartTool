@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProcessing.designer.cs">
+      <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm仪表信息.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ExceptionPolicy.cs" />
     <Compile Include="Util\SingleInstance.cs" />
+    <EmbeddedResource Include="FrmProcessing.resx">
+      <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm仪表信息.resx">
       <DependentUpon>Frm仪表信息.cs</DependentUpon>
     </EmbeddedResource>

@@ -72,7 +72,7 @@ namespace HartTool
                         txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
                     };
                     this.Invoke(a);
-                    Thread.Sleep(200);
+                    Thread.Sleep(1000);
                 }
             }
             catch (ThreadAbortException)

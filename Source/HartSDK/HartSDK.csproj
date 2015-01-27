@@ -65,6 +65,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -104,6 +105,12 @@
     </Compile>
     <Compile Include="GeneralLibrary\IntergerTextBox.designer.cs">
       <DependentUpon>IntergerTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralLibrary\PercentageProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralLibrary\PercentageProgressBar.designer.cs">
+      <DependentUpon>PercentageProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneralLibrary\SEBinaryConverter.cs" />
     <Compile Include="GeneralLibrary\StringHelper.cs" />
