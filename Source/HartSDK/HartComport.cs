@@ -509,11 +509,7 @@ namespace HartSDK
                 DataContent = new byte[] { pollingAddress },
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写消息
@@ -528,11 +524,7 @@ namespace HartSDK
                 DataContent = PackAsciiHelper.GetBytes(msg, 24),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写标签信息
@@ -553,11 +545,7 @@ namespace HartSDK
             d.Add((byte)(tag.Year - 1990));
             request.DataContent = d.ToArray();
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写设备的最终装配号
@@ -572,11 +560,7 @@ namespace HartSDK
                 DataContent = SEBinaryConverter.IntToBytes(assemblyNumber, 3).Reverse().ToArray(),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写主变量的阻尼系数
@@ -591,11 +575,7 @@ namespace HartSDK
                 DataContent = BitConverter.GetBytes(dampValue).Reverse().ToArray(),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写主变量的量程范围
@@ -614,11 +594,7 @@ namespace HartSDK
             d.AddRange(BitConverter.GetBytes(lowerRange).Reverse());
             request.DataContent = d.ToArray();
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 将当前的主变量值设置成主变量的上限
@@ -632,11 +608,7 @@ namespace HartSDK
                 Command = 36,
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 将当前的主变量值设置成主变量的下限
@@ -650,11 +622,7 @@ namespace HartSDK
                 Command = 37,
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 设置固定电流输出,当传入的参数为0时表示取消固定电流输出模式
@@ -669,11 +637,7 @@ namespace HartSDK
                 DataContent = BitConverter.GetBytes(current).Reverse().ToArray(),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 自检
@@ -687,11 +651,7 @@ namespace HartSDK
                 Command = 41,
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 复位设备
@@ -705,11 +665,7 @@ namespace HartSDK
                 Command = 42,
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 设置主变量零点
@@ -723,11 +679,7 @@ namespace HartSDK
                 Command = 43,
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 设置主变量单位代码
@@ -742,11 +694,7 @@ namespace HartSDK
                 DataContent = new byte[] { (byte)unitCode },
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 调校下限输出电流
@@ -761,11 +709,7 @@ namespace HartSDK
                 DataContent = BitConverter.GetBytes(current).Reverse().ToArray(),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 调校上限电流
@@ -780,11 +724,7 @@ namespace HartSDK
                 DataContent = BitConverter.GetBytes(current).Reverse().ToArray(),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 设置主变量DA输出转换函数
@@ -799,11 +739,7 @@ namespace HartSDK
                 DataContent = new byte[] { (byte)code },
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写主变量传感器序列号
@@ -818,11 +754,7 @@ namespace HartSDK
                 DataContent = SEBinaryConverter.IntToBytes(sn, 3).Reverse().ToArray(),
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写返回帧前导字符(0xFF)的个数
@@ -837,11 +769,7 @@ namespace HartSDK
                 DataContent = new byte[] { count }
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 设置信号量切除量
@@ -859,11 +787,7 @@ namespace HartSDK
             d.AddRange(BitConverter.GetBytes(percent).Reverse().ToArray());
             request.DataContent = d.ToArray();
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 设置主传感器工作模式
@@ -882,11 +806,7 @@ namespace HartSDK
                 DataContent = new byte[] { (byte)mode, (byte)sensorCode },
             };
             ResponsePacket response = Request(request);
-            if (response != null)
-            {
-                return true;
-            }
-            return false;
+            return response != null;
         }
         /// <summary>
         /// 写温度补偿

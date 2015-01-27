@@ -220,7 +220,7 @@ namespace HartSDK
         {
             if (_ID == null) return false;
             bool ret = HartComport.WriteMessage(_ID.LongAddress, msg);
-            _Message = null;
+            if(ret) _Message = null;
             return ret;
         }
         /// <summary>
