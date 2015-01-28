@@ -53,6 +53,7 @@ namespace HartTool
 
         public void ReadData()
         {
+            int maxAD = 70000;
             int count = 0;
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
             if (HartDevice != null && HartDevice.IsConnected)
@@ -60,6 +61,7 @@ namespace HartTool
                 for (int i = 1; i <= 10; i++)
                 {
                     LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
+                    if (li != null && li.SensorAD == maxAD) break;
                     if (li != null && li.SensorAD == 0 && li.SensorValue == 0 && count > 0) break; //后面的都是无效的参数了,不用再继续获取
                     (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
                     (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
