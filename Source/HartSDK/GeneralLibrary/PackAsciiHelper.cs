@@ -17,7 +17,7 @@ namespace LJH.GeneralLibrary
                 StringBuilder sb = new StringBuilder();
                 foreach (byte b in temp)
                 {
-                    sb.Append(Convert.ToString(b, 2).PadLeft (8,'0').Substring(2));
+                    sb.Append(Convert.ToString(b, 2).PadLeft(8, '0').Substring(2));
                 }
                 for (int i = 0; i < count; i++)
                 {

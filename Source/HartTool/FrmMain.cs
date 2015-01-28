@@ -23,6 +23,8 @@ namespace HartTool
         #region 私有变量
         private HartSDK.HartDevice HartDevice = null;
         private Form _ActiveForm = null;
+
+        private DateTime _StartDT = DateTime.Now;
         #endregion
 
         #region 私有方法
@@ -99,10 +101,7 @@ namespace HartTool
             this.Text += string.Format(" [{0}]", Application.ProductVersion);
             comPortComboBox1.Init();
             cmbShortAddress.SelectedIndex = 0;
-
-            float f = BitConverter.ToSingle(new byte[] {0x00,0x00,0xA0,0x41 }, 0);
-            float f1 = BitConverter.ToSingle(new byte[] { 0x00, 0xbd, 0x27, 0x47 }, 0);
-            Console.WriteLine(f);
+            timer1.Enabled = true;
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -136,7 +135,7 @@ namespace HartTool
 
         private void btnWritePollingAddress_Click(object sender, EventArgs e)
         {
-            if (HartDevice  == null || !HartDevice .IsConnected ) return;
+            if (HartDevice == null || !HartDevice.IsConnected) return;
             if (txtPollingAddress.IntergerValue >= 0 && txtPollingAddress.IntergerValue <= 15)
             {
                 bool ret = HartDevice.WritePollingAddress((byte)txtPollingAddress.IntergerValue);
@@ -219,5 +218,15 @@ namespace HartTool
             HightLightButton(btn多点线性化);
         }
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - _StartDT.Ticks);
+            if (ts.TotalMinutes >= 10)
+            {
+                MessageBox.Show("试用版软件使用时间超过10分钟，即将关闭，请联系供应商使用正版", "警告");
+                Environment.Exit(0);
+            }
+        }
     }
 }

@@ -17,11 +17,11 @@ namespace HartSDK
 
         #region 公共属性
         /// <summary>
-        /// 获取或设置标答值
+        /// 获取或设置标答值(8字符)
         /// </summary>
         public string Tag { get; set; }
         /// <summary>
-        /// 获取或设置描述
+        /// 获取或设置描述 (16字符)
         /// </summary>
         public string Description { get; set; }
         /// <summary>

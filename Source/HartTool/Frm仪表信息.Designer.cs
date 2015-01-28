@@ -138,9 +138,9 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(135, 199);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 16);
+            this.label1.Size = new System.Drawing.Size(488, 16);
             this.label1.TabIndex = 56;
-            this.label1.Text = "字符串里面只能包含数字和大写字母";
+            this.label1.Text = "字符串里面只能包含数字和大写字母，小写字母会转化成其它的字符";
             // 
             // label2
             // 
