@@ -112,7 +112,7 @@ namespace HartTool
         private void btnWrite_Click(object sender, EventArgs e)
         {
             if (HartDevice == null || !HartDevice.IsConnected) return;
-            List<LinearizationItem> lis = new List<LinearizationItem>(){ new LinearizationItem() };
+            List<LinearizationItem> lis = new List<LinearizationItem>();
             for (int i = 1; i <= 10; i++)
             {
                 string strP = (this.Controls["txtP" + i.ToString()] as TextBox).Text;
@@ -128,18 +128,17 @@ namespace HartTool
                     }
                 }
             }
-            if (lis.Count == 1)  //如果列表中只有初始化时增加的一个线性化参数，则退出
+            if (lis.Count <= 2)
             {
-                MessageBox.Show("没有设置线性化参数");
+                MessageBox.Show("至少要设置3个线性化点");
                 return;
             }
-            for (int i = lis.Count; i < 10; i++)
-            {
-                lis.Add(new LinearizationItem());
-            }
-            //lis.Add(new LinearizationItem() { SensorAD = 70000, SensorValue = 70000 });
-            if (lis.Count % 2 == 1) lis.Add(new LinearizationItem());
+            LinearizationItem.FillHeaderAndTail(lis);
+            DownloadLinearizations(lis);
+        }
 
+        private void DownloadLinearizations(List<LinearizationItem> lis)
+        {
             FrmProcessing frm = new FrmProcessing();
             Action action = delegate()
             {

@@ -69,7 +69,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(335, 230);
+            this.label7.Location = new System.Drawing.Point(335, 46);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 22;
@@ -78,7 +78,7 @@
             // txtAD
             // 
             this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAD.Location = new System.Drawing.Point(393, 226);
+            this.txtAD.Location = new System.Drawing.Point(393, 42);
             this.txtAD.Name = "txtAD";
             this.txtAD.Size = new System.Drawing.Size(100, 21);
             this.txtAD.TabIndex = 27;
