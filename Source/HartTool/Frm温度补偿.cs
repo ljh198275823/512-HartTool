@@ -32,6 +32,7 @@ namespace HartTool
             {
                 while (true)
                 {
+                    Thread.Sleep(AppSettings.Current.RealInterval);
                     if (HartDevice != null && HartDevice.IsConnected)
                     {
                         byte[] response = HartDevice.ReadCommand(0xAF, _Params);
@@ -44,7 +45,6 @@ namespace HartTool
                                 }));
                         }
                     }
-                    Thread.Sleep(AppSettings.Current.RealInterval);
                 }
             }
             catch (ThreadAbortException)
@@ -63,6 +63,7 @@ namespace HartTool
 
         public void ReadData()
         {
+            DateTime dt = DateTime.Now;
             if (HartDevice == null || !HartDevice.IsConnected) return;
             btnRead0.Enabled = (HartDevice != null && HartDevice.IsConnected);
             btnRead1.Enabled = (HartDevice != null && HartDevice.IsConnected);
@@ -71,9 +72,47 @@ namespace HartTool
             btnWrite1.Enabled = (HartDevice != null && HartDevice.IsConnected);
             btnWrite2.Enabled = (HartDevice != null && HartDevice.IsConnected);
 
-            btnRead0.PerformClick();
-            btnRead1.PerformClick();
-            btnRead2.PerformClick();
+            ReadTC(0);
+            ReadTC(1);
+            ReadTC(2);
+            TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+            MessageBox.Show(ts.TotalMilliseconds.ToString());
+        }
+
+        private void ReadTC(byte tag)
+        {
+            TemperatureCompensation tc = HartDevice.ReadTC(tag);
+            (this.Controls["txtTempAD" + tag.ToString()] as TextBox).Text = tc != null ? tc.TemperatureAD.ToString() : null;
+            (this.Controls["txtLow" + tag.ToString()] as TextBox).Text = tc != null ? tc.LowerRangeAD.ToString() : null;
+            (this.Controls["txtUpper" + tag.ToString()] as TextBox).Text = tc != null ? tc.UpperRangeAD.ToString() : null;
+        }
+
+        private void WriteTC(byte tag)
+        {
+            float tempAD = 0;
+            float lowerAD = 0;
+            float upperAD = 0;
+            if (!float.TryParse((this.Controls["txtTempAD" + tag.ToString()] as TextBox).Text, out tempAD))
+            {
+                MessageBox.Show("温度AD不能转化成数值");
+                (this.Controls["txtTempAD" + tag.ToString()] as TextBox).Focus();
+                return;
+            }
+            if (!float.TryParse((this.Controls["txtLow" + tag.ToString()] as TextBox).Text, out lowerAD))
+            {
+                MessageBox.Show("压力零点AD不能转化成数值");
+                (this.Controls["txtLow" + tag.ToString()] as TextBox).Focus();
+                return;
+            }
+            if (!float.TryParse((this.Controls["txtUpper" + tag.ToString()] as TextBox).Text, out upperAD))
+            {
+                MessageBox.Show("压力满度AD不能转化成数值");
+                (this.Controls["txtUpper" + tag.ToString()] as TextBox).Focus();
+                return;
+            }
+            TemperatureCompensation tc = new TemperatureCompensation() { TemperatureAD = tempAD, LowerRangeAD = lowerAD, UpperRangeAD = upperAD };
+            bool ret = HartDevice.WriteTC(tag, tc);
+            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "结果", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
 
@@ -120,6 +159,7 @@ namespace HartTool
 
         private void btnCollect_Click(object sender, EventArgs e)
         {
+            DateTime dt = DateTime.Now;
             if (_LastEnter == null) return;
             object tag = (sender as Control).Tag;
             if (tag == null) return;
@@ -134,13 +174,13 @@ namespace HartTool
                         _LastEnter = (this.Controls["txtLow" + tag.ToString()] as TextBox);
                         _LastEnter.Focus();
                     }
-                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtLow" + tag.ToString()]))
+                    else if (object.ReferenceEquals(_LastEnter, this.Controls["txtLow" + tag.ToString()]))
                     {
                         _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[13], response[12], response[11], response[10] }, 0).ToString("F0");
                         _LastEnter = this.Controls["txtUpper" + tag.ToString()] as TextBox;
                         _LastEnter.Focus();
                     }
-                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtUpper" + tag.ToString()]))
+                    else if (object.ReferenceEquals(_LastEnter, this.Controls["txtUpper" + tag.ToString()]))
                     {
                         _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[13], response[12], response[11], response[10] }, 0).ToString("F0");
                         byte temp = byte.Parse(tag.ToString());
@@ -153,6 +193,8 @@ namespace HartTool
                     }
                 }
             }
+            TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+            MessageBox.Show(ts.TotalMilliseconds.ToString());
         }
 
         private void btnRead_Click(object sender, EventArgs e)
@@ -160,10 +202,7 @@ namespace HartTool
             if (HartDevice == null) return;
             object tag = (sender as Control).Tag;
             if (tag == null) return;
-            TemperatureCompensation tc = HartDevice.ReadTC(byte.Parse(tag.ToString()));
-            (this.Controls["txtTempAD" + tag.ToString()] as TextBox).Text = tc != null ? tc.TemperatureAD.ToString() : null;
-            (this.Controls["txtLow" + tag.ToString()] as TextBox).Text = tc != null ? tc.LowerRangeAD.ToString() : null;
-            (this.Controls["txtUpper" + tag.ToString()] as TextBox).Text = tc != null ? tc.UpperRangeAD.ToString() : null;
+            ReadTC(byte.Parse(tag.ToString()));
         }
 
         private void btuWrite_Click(object sender, EventArgs e)
@@ -171,30 +210,7 @@ namespace HartTool
             if (HartDevice == null) return;
             object tag = (sender as Control).Tag;
             if (tag == null) return;
-            float tempAD = 0;
-            float lowerAD = 0;
-            float upperAD = 0;
-            if (!float.TryParse((this.Controls["txtTempAD" + tag.ToString()] as TextBox).Text, out tempAD))
-            {
-                MessageBox.Show("温度AD不能转化成数值");
-                txtTempAD0.Focus();
-                return;
-            }
-            if (!float.TryParse((this.Controls["txtLow" + tag.ToString()] as TextBox).Text, out lowerAD))
-            {
-                MessageBox.Show("压力零点AD不能转化成数值");
-                txtLow0.Focus();
-                return;
-            }
-            if (!float.TryParse((this.Controls["txtUpper" + tag.ToString()] as TextBox).Text, out upperAD))
-            {
-                MessageBox.Show("压力满度AD不能转化成数值");
-                txtUpper0.Focus();
-                return;
-            }
-            TemperatureCompensation tc = new TemperatureCompensation() { TemperatureAD = tempAD, LowerRangeAD = lowerAD, UpperRangeAD = upperAD };
-            bool ret = HartDevice.WriteTC(byte.Parse(tag.ToString()), tc);
-            MessageBox.Show(ret ? "下载成功" : HartDevice.GetLastError(), "结果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            WriteTC(byte.Parse(tag.ToString()));
         }
         #endregion
     }

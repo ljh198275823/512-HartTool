@@ -47,7 +47,7 @@ namespace HartTool
             bool ret = false;
             decimal.TryParse(txtDampValue.Text, out damp);
             ret = HartDevice.WriteDampValue((float)damp);
-            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,10 +56,7 @@ namespace HartTool
             if (float.TryParse(txtTrim4.Text, out f))
             {
                 bool ret = HartDevice.WriteCurrentTrim(0x22, f);
-                if (!ret)
-                {
-                    MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -77,7 +74,7 @@ namespace HartTool
             bool ret = false;
             TransferFunctionCode tc = (TransferFunctionCode)cmbTranserFunction.SelectedIndex;
             ret = HartDevice.WriteTransferFunction(tc);
-            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -90,7 +87,7 @@ namespace HartTool
             bool ret = false;
             UnitCode pvUnit = (UnitCode)cmbPVUnit.SelectedIndex;
             ret = HartDevice.WritePVUnit(pvUnit);
-            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
     }

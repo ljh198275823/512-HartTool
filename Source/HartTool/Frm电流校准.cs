@@ -32,13 +32,10 @@ namespace HartTool
         #region 电流校调
         private void btnFix4_Click(object sender, EventArgs e)
         {
-            bool ret = HartDevice.SetFixedCurrent( (float)4.0);
+            bool ret = HartDevice.SetFixedCurrent((float)4.0);
             txt4.Enabled = ret;
             btn4.Enabled = ret;
-            if (!ret)
-            {
-                MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnFix20_Click(object sender, EventArgs e)
@@ -46,10 +43,7 @@ namespace HartTool
             bool ret = HartDevice.SetFixedCurrent( (float)20.0);
             txt20.Enabled = ret;
             btn20.Enabled = ret;
-            if (!ret)
-            {
-                MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnFixedCurrent_Click(object sender, EventArgs e)

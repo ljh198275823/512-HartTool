@@ -83,6 +83,7 @@ namespace HartTool
                 return;
             }
             bool ret = HartDevice.WritePVSensorMode((SensorMode)cmbSensorMode.SelectedIndex, (SensorCode)(cmbSensorCode.SelectedIndex + 2));
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (ret)
             {
                 OutputInfo oi = HartDevice.ReadOutput();
@@ -93,10 +94,6 @@ namespace HartTool
                 txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
                 txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
                 lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
-            }
-            else
-            {
-                MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -123,7 +120,7 @@ namespace HartTool
             if (oi != null)
             {
                 bool ret = HartDevice.WritePVRange(oi.PVUnitCode, upper, lower);
-                if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

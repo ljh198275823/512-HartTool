@@ -104,7 +104,7 @@ namespace HartTool
         {
             get
             {
-                return _RealInterval <= 0 ? 3000 : _RealInterval;
+                return _RealInterval <= 0 ? 1000 : _RealInterval;
             }
             set
             {
