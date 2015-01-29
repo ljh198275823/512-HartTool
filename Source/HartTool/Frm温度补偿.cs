@@ -128,9 +128,29 @@ namespace HartTool
                 byte[] response = HartDevice.ReadCommand(0xAF, _Params);
                 if (response != null && response.Length == 14)
                 {
-                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtTempAD" + tag.ToString()])) _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[9], response[8], response[7], response[6] }, 0).ToString("F0");
-                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtLow" + tag.ToString()])) _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[13], response[12], response[11], response[10] }, 0).ToString("F0");
-                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtUpper" + tag.ToString()])) _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[13], response[12], response[11], response[10] }, 0).ToString("F0");
+                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtTempAD" + tag.ToString()]))
+                    {
+                        _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[9], response[8], response[7], response[6] }, 0).ToString("F0");
+                        _LastEnter = (this.Controls["txtLow" + tag.ToString()] as TextBox);
+                        _LastEnter.Focus();
+                    }
+                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtLow" + tag.ToString()]))
+                    {
+                        _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[13], response[12], response[11], response[10] }, 0).ToString("F0");
+                        _LastEnter = this.Controls["txtUpper" + tag.ToString()] as TextBox;
+                        _LastEnter.Focus();
+                    }
+                    if (object.ReferenceEquals(_LastEnter, this.Controls["txtUpper" + tag.ToString()]))
+                    {
+                        _LastEnter.Text = BitConverter.ToSingle(new byte[] { response[13], response[12], response[11], response[10] }, 0).ToString("F0");
+                        byte temp = byte.Parse(tag.ToString());
+                        if (temp < 2) //如果没有到未尾
+                        {
+                            temp++;
+                            _LastEnter = this.Controls["txtTempAD" + temp.ToString()] as TextBox;
+                            _LastEnter.Focus();
+                        }
+                    }
                 }
             }
         }
