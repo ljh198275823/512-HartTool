@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace LJH.GeneralLibrary.ExceptionHandling
 {
-    internal static class ExceptionPolicy
+    public static class ExceptionPolicy
     {
         #region 公共方法
         /// <summary>

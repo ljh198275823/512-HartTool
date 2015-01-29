@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<configuration>
+  <appSettings>
+    <add key="HartCommport" value="" />
+    <add key="Debug" value="False" />
+  </appSettings>
+</configuration>
