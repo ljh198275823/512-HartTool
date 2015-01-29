@@ -52,6 +52,7 @@
             this.txtPollingAddress = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtDeviceID = new LJH.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.pCommand.SuspendLayout();
             this.SuspendLayout();
@@ -325,6 +326,11 @@
             this.label7.TabIndex = 46;
             this.label7.Text = "设备ID号";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -380,6 +386,7 @@
         private LJH.GeneralLibrary.WinformControl.IntergerTextBox txtPollingAddress;
         private LJH.GeneralLibrary.WinformControl.IntergerTextBox txtDeviceID;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

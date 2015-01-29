@@ -521,7 +521,7 @@ namespace HartSDK
                 LongOrShort = 1,
                 Address = longAddress,
                 Command = 17,
-                DataContent = PackAsciiHelper.GetBytes(msg, 24),
+                DataContent = PackAsciiHelper.GetBytes(msg.PadRight(32, ' ').Substring(0, 32), 24),
             };
             ResponsePacket response = Request(request);
             return response != null;
@@ -538,8 +538,8 @@ namespace HartSDK
                 Command = 18,
             };
             List<byte> d = new List<byte>();
-            d.AddRange(PackAsciiHelper.GetBytes(tag.Tag, 6));
-            d.AddRange(PackAsciiHelper.GetBytes(tag.Description, 12));
+            d.AddRange(PackAsciiHelper.GetBytes(tag.Tag.PadRight(8, ' ').Substring(0, 8), 6));
+            d.AddRange(PackAsciiHelper.GetBytes(tag.Description.PadRight(16, ' ').Substring(0, 16), 12));
             d.Add((byte)tag.Day);
             d.Add((byte)tag.Month);
             d.Add((byte)(tag.Year - 1990));
