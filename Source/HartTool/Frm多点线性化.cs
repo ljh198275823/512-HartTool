@@ -40,7 +40,7 @@ namespace HartTool
                             }
                         }));
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(AppSettings.Current.RealInterval);
                 }
             }
             catch (ThreadAbortException)

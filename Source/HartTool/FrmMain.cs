@@ -120,7 +120,6 @@ namespace HartTool
                 statusStrip1.Refresh();
                 btnOpen.Enabled = !HartDevice.IsConnected;
                 btnClose.Enabled = HartDevice.IsConnected;
-                
                 OpenDevice();
             }
             else

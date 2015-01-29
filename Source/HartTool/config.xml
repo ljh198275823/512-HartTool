@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <configuration>
   <appSettings>
-    <add key="HartCommport" value="" />
-    <add key="Debug" value="False" />
+    <add key="HartCommport" value="" /> <!--Hart 通讯串口-->
+    <add key="Debug" value="False" /> <!--是否处理调试状态-->
+    <add key="RealInterval" value="3000" /> <!--实时数据的间隔(毫秒)-->
   </appSettings>
 </configuration>

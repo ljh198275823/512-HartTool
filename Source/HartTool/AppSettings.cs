@@ -30,6 +30,7 @@ namespace HartTool
 
         private byte _HartCommport;
         private bool _Debug;
+        private int _RealInterval = 0;
         #endregion
 
         #region 构造函数
@@ -51,6 +52,9 @@ namespace HartTool
 
                     temp = GetConfigContent("Debug");
                     bool.TryParse(temp, out _Debug);
+
+                    temp = GetConfigContent("RealInterval");
+                    int.TryParse(temp, out _RealInterval);
                 }
                 catch
                 {
@@ -90,6 +94,24 @@ namespace HartTool
                 {
                     _Debug = value;
                     SaveConfig("Debug", _Debug.ToString());
+                }
+            }
+        }
+        /// <summary>
+        /// 获取或设置每次获取实时数据的间隔
+        /// </summary>
+        public int RealInterval
+        {
+            get
+            {
+                return _RealInterval <= 0 ? 3000 : _RealInterval;
+            }
+            set
+            {
+                if (_RealInterval != value)
+                {
+                    _RealInterval = value;
+                    SaveConfig("RealInterval", value.ToString());
                 }
             }
         }
