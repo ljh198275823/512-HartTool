@@ -185,12 +185,12 @@ namespace HartSDK
             return null;
         }
         /// <summary>
-        /// 读取主变量的AD值
+        /// 读取主变量的AD值,小于0表示获取失败
         /// </summary>
         public float ReadPVAD(bool optical = true)
         {
             if (!optical || (_ID != null && _PVAD == null)) _PVAD = HartComport.ReadPVAD(_ID.LongAddress);
-            return _PVAD != null ? _PVAD.Value : 0;
+            return _PVAD != null ? _PVAD.Value : -1;
         }
         /// <summary>
         /// 读取某个命令的返回值
@@ -220,7 +220,7 @@ namespace HartSDK
         {
             if (_ID == null) return false;
             bool ret = HartComport.WriteMessage(_ID.LongAddress, msg);
-            if(ret) _Message = null;
+            if (ret) _Message = null;
             return ret;
         }
         /// <summary>

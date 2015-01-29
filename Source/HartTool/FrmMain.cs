@@ -100,7 +100,8 @@ namespace HartTool
         {
             this.Text += string.Format(" [{0}]", Application.ProductVersion);
             comPortComboBox1.Init();
-            cmbShortAddress.SelectedIndex = 0;
+            comPortComboBox1.ComPort = AppSettings.Current.HartCommport;
+            cmbShortAddress.SelectedIndex =0;
             timer1.Enabled = true;
         }
 
@@ -109,14 +110,17 @@ namespace HartTool
             if (HartDevice != null) HartDevice.Close();
             if (comPortComboBox1.ComPort > 0)
             {
+                AppSettings.Current.HartCommport = comPortComboBox1.ComPort;
                 HartDevice = new HartSDK.HartDevice(comPortComboBox1.ComPort, 1200);
                 HartDevice.PollingAddress = (byte)cmbShortAddress.SelectedIndex;
+                HartDevice.HartComport.Debug = AppSettings.Current.Debug;
                 HartDevice.Connect();
                 lblCommportState.Text = string.Format(HartDevice.IsConnected ? "设备已经连接" : "设备连接失败");
                 lblCommportState.ForeColor = HartDevice.IsConnected ? Color.Blue : Color.Red;
                 statusStrip1.Refresh();
                 btnOpen.Enabled = !HartDevice.IsConnected;
                 btnClose.Enabled = HartDevice.IsConnected;
+                
                 OpenDevice();
             }
             else
@@ -182,10 +186,10 @@ namespace HartTool
             HightLightButton(btn压力微调);
         }
 
-        private void btn性能参数_Click(object sender, EventArgs e)
+        private void btn特性输出_Click(object sender, EventArgs e)
         {
-            ShowForm<Frm性能参数>();
-            HightLightButton(btn性能参数);
+            ShowForm<Frm特性输出>();
+            HightLightButton(btn特性输出);
         }
 
         private void btn过程量监控_Click(object sender, EventArgs e)

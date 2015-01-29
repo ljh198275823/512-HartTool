@@ -66,10 +66,16 @@ namespace HartTool
                     CurrentInfo ci = HartDevice.ReadCurrent(false);
                     Action a = delegate()
                     {
-                        lblPVUnit.Text = pv != null ? UnitCodeDescr.GetDescr(pv.UnitCode) : null;
-                        txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
-                        txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
-                        txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
+                        if (pv != null)
+                        {
+                            lblPVUnit.Text = pv != null ? UnitCodeDescr.GetDescr(pv.UnitCode) : null;
+                            txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
+                        }
+                        if (ci != null)
+                        {
+                            txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
+                            txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
+                        }
                     };
                     this.Invoke(a);
                     Thread.Sleep(1000);

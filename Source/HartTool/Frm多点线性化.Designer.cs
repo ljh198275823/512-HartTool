@@ -64,12 +64,13 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
+            this.btnRead = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(335, 46);
+            this.label7.Location = new System.Drawing.Point(335, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 22;
@@ -77,10 +78,12 @@
             // 
             // txtAD
             // 
+            this.txtAD.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtAD.ForeColor = System.Drawing.Color.Red;
             this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAD.Location = new System.Drawing.Point(393, 42);
+            this.txtAD.Location = new System.Drawing.Point(393, 16);
             this.txtAD.Name = "txtAD";
-            this.txtAD.Size = new System.Drawing.Size(100, 21);
+            this.txtAD.Size = new System.Drawing.Size(151, 26);
             this.txtAD.TabIndex = 27;
             // 
             // label4
@@ -423,19 +426,30 @@
             // 
             // btnWrite
             // 
-            this.btnWrite.Location = new System.Drawing.Point(337, 278);
+            this.btnWrite.Location = new System.Drawing.Point(335, 255);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(158, 23);
+            this.btnWrite.Size = new System.Drawing.Size(158, 51);
             this.btnWrite.TabIndex = 71;
             this.btnWrite.Text = "下载";
             this.btnWrite.UseVisualStyleBackColor = true;
             this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
+            // 
+            // btnRead
+            // 
+            this.btnRead.Location = new System.Drawing.Point(335, 149);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(158, 51);
+            this.btnRead.TabIndex = 72;
+            this.btnRead.Text = "读取参数";
+            this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // Frm多点线性化
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 330);
+            this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
@@ -517,5 +531,6 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnWrite;
+        private System.Windows.Forms.Button btnRead;
     }
 }

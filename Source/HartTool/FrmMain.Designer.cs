@@ -44,7 +44,7 @@
             this.btn仪表信息 = new System.Windows.Forms.Button();
             this.btn过程量监控 = new System.Windows.Forms.Button();
             this.btn压力微调 = new System.Windows.Forms.Button();
-            this.btn性能参数 = new System.Windows.Forms.Button();
+            this.btn特性输出 = new System.Windows.Forms.Button();
             this.btn温度补偿 = new System.Windows.Forms.Button();
             this.btn多点线性化 = new System.Windows.Forms.Button();
             this.btn电流校准 = new System.Windows.Forms.Button();
@@ -182,7 +182,7 @@
             this.pCommand.Controls.Add(this.btn仪表信息);
             this.pCommand.Controls.Add(this.btn过程量监控);
             this.pCommand.Controls.Add(this.btn压力微调);
-            this.pCommand.Controls.Add(this.btn性能参数);
+            this.pCommand.Controls.Add(this.btn特性输出);
             this.pCommand.Controls.Add(this.btn温度补偿);
             this.pCommand.Controls.Add(this.btn多点线性化);
             this.pCommand.Controls.Add(this.btn电流校准);
@@ -238,14 +238,14 @@
             // 
             // btn性能参数
             // 
-            this.btn性能参数.Enabled = false;
-            this.btn性能参数.Location = new System.Drawing.Point(3, 166);
-            this.btn性能参数.Name = "btn性能参数";
-            this.btn性能参数.Size = new System.Drawing.Size(117, 33);
-            this.btn性能参数.TabIndex = 45;
-            this.btn性能参数.Text = "输出特性";
-            this.btn性能参数.UseVisualStyleBackColor = true;
-            this.btn性能参数.Click += new System.EventHandler(this.btn性能参数_Click);
+            this.btn特性输出.Enabled = false;
+            this.btn特性输出.Location = new System.Drawing.Point(3, 166);
+            this.btn特性输出.Name = "btn性能参数";
+            this.btn特性输出.Size = new System.Drawing.Size(117, 33);
+            this.btn特性输出.TabIndex = 45;
+            this.btn特性输出.Text = "输出特性";
+            this.btn特性输出.UseVisualStyleBackColor = true;
+            this.btn特性输出.Click += new System.EventHandler(this.btn特性输出_Click);
             // 
             // btn温度补偿
             // 
@@ -378,7 +378,7 @@
         private System.Windows.Forms.Button btn仪表信息;
         private System.Windows.Forms.Button btn过程量监控;
         private System.Windows.Forms.Button btn压力微调;
-        private System.Windows.Forms.Button btn性能参数;
+        private System.Windows.Forms.Button btn特性输出;
         private System.Windows.Forms.Button btn温度补偿;
         private System.Windows.Forms.Button btn多点线性化;
         private System.Windows.Forms.Button btn电流校准;

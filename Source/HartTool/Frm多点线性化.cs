@@ -32,7 +32,13 @@ namespace HartTool
                     if (HartDevice != null && HartDevice.IsConnected)
                     {
                         float ad = HartDevice.ReadPVAD(false);
-                        this.Invoke((Action)(() => { txtAD.Text = ad.ToString("F0"); }));
+                        this.Invoke((Action)(() =>
+                        {
+                            if (ad > 0)
+                            {
+                                txtAD.Text = ad.ToString("F0");
+                            }
+                        }));
                     }
                     Thread.Sleep(1000);
                 }
@@ -40,7 +46,7 @@ namespace HartTool
             catch (ThreadAbortException)
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -111,6 +117,11 @@ namespace HartTool
             }
         }
 
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+            ReadData();
+        }
+
         private void btnWrite_Click(object sender, EventArgs e)
         {
             if (HartDevice == null || !HartDevice.IsConnected) return;
@@ -171,5 +182,7 @@ namespace HartTool
             }
         }
         #endregion
+
+        
     }
 }
