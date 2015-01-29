@@ -29,6 +29,7 @@ namespace HartTool
             {
                 while (true)
                 {
+                    Thread.Sleep(AppSettings.Current.RealInterval);
                     if (HartDevice != null && HartDevice.IsConnected)
                     {
                         float ad = HartDevice.ReadPVAD(false);
@@ -40,7 +41,6 @@ namespace HartTool
                             }
                         }));
                     }
-                    Thread.Sleep(AppSettings.Current.RealInterval);
                 }
             }
             catch (ThreadAbortException)
@@ -59,19 +59,22 @@ namespace HartTool
 
         public void ReadData()
         {
-            int maxAD = 70000;
-            int count = 0;
+            btnRead.Enabled = HartDevice != null && HartDevice.IsConnected;
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
+            ReadLinearizationItems();
+        }
+
+        private void ReadLinearizationItems()
+        {
+            int maxAD = 70000;
             if (HartDevice != null && HartDevice.IsConnected)
             {
                 for (int i = 1; i <= 10; i++)
                 {
                     LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
-                    if (li != null && li.SensorAD == maxAD) break;
-                    if (li != null && li.SensorAD == 0 && li.SensorValue == 0 && count > 0) break; //后面的都是无效的参数了,不用再继续获取
+                    if (li != null && li.SensorAD == maxAD) break; //后面的都是无效的参数了,不用再继续获取
                     (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
                     (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
-                    count++;
                 }
             }
         }
@@ -106,7 +109,7 @@ namespace HartTool
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCollect_Click(object sender, EventArgs e)
         {
             if (HartDevice == null || !HartDevice.IsConnected) return;
             string temp = (sender as Control).Tag.ToString();
@@ -114,12 +117,16 @@ namespace HartTool
             if (int.TryParse(temp, out ind) && ind >= 1 && ind <= 10)
             {
                 (this.Controls["txtAD" + ind.ToString()] as TextBox).Text = HartDevice.ReadPVAD(false).ToString("F0");
+                if (ind < 10)
+                {
+                    (this.Controls["txtP" + (ind + 1).ToString()] as TextBox).Focus();
+                }
             }
         }
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            ReadData();
+            ReadLinearizationItems();
         }
 
         private void btnWrite_Click(object sender, EventArgs e)
@@ -182,7 +189,5 @@ namespace HartTool
             }
         }
         #endregion
-
-        
     }
 }

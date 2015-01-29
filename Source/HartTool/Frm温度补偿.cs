@@ -63,7 +63,6 @@ namespace HartTool
 
         public void ReadData()
         {
-            DateTime dt = DateTime.Now;
             if (HartDevice == null || !HartDevice.IsConnected) return;
             btnRead0.Enabled = (HartDevice != null && HartDevice.IsConnected);
             btnRead1.Enabled = (HartDevice != null && HartDevice.IsConnected);
@@ -75,8 +74,6 @@ namespace HartTool
             ReadTC(0);
             ReadTC(1);
             ReadTC(2);
-            TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
-            MessageBox.Show(ts.TotalMilliseconds.ToString());
         }
 
         private void ReadTC(byte tag)
@@ -159,7 +156,6 @@ namespace HartTool
 
         private void btnCollect_Click(object sender, EventArgs e)
         {
-            DateTime dt = DateTime.Now;
             if (_LastEnter == null) return;
             object tag = (sender as Control).Tag;
             if (tag == null) return;
@@ -193,8 +189,6 @@ namespace HartTool
                     }
                 }
             }
-            TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
-            MessageBox.Show(ts.TotalMilliseconds.ToString());
         }
 
         private void btnRead_Click(object sender, EventArgs e)

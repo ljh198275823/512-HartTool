@@ -92,6 +92,7 @@ namespace HartTool
             {
                 while (true)
                 {
+                    Thread.Sleep(AppSettings.Current.RealInterval);
                     DeviceVariable pv = HartDevice.ReadPV(false);
                     if (pv != null)
                     {
@@ -102,7 +103,6 @@ namespace HartTool
                             }
                         ));
                     }
-                    Thread.Sleep(AppSettings.Current.RealInterval);
                 }
             }
             catch (ThreadAbortException)

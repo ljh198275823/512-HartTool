@@ -104,7 +104,7 @@ namespace HartTool
         {
             get
             {
-                return _RealInterval <= 0 ? 1000 : _RealInterval;
+                return _RealInterval <= 0 ? 3000 : _RealInterval;
             }
             set
             {
@@ -158,7 +158,6 @@ namespace HartTool
                 }
                 catch (Exception ex)
                 {
-                    LJH.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
                 }
             }
             return false;
@@ -185,7 +184,6 @@ namespace HartTool
                 }
                 catch (Exception ex)
                 {
-                    LJH.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
                 }
             }
             return "";

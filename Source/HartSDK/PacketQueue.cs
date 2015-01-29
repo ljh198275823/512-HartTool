@@ -77,9 +77,8 @@ namespace HartSDK
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    LJH.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
                 }
             }
             return null;
