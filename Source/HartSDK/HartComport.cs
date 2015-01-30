@@ -101,13 +101,16 @@ namespace HartSDK
             {
                 lock (_PortLocker)
                 {
-                    _Port.RtsEnable = true;
                     if (this.IsOpened)
                     {
+                        _Port.RtsEnable = true;
+                        if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "----------------------------------------------------------------------------------------------");
                         if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "发送数据:" + HexStringConverter.HexToString(outPut, " "));
                         _Port.Write(outPut, 0, outPut.Length);
-                        int count = (int)(Math.Ceiling((double)outPut.Length / 15)) + 2; //1200bps的波特率，每100ms可以发送的最大的字符15个字符，在此基础上再加100ms等待时长
+                        int count = (int)(Math.Ceiling((double)outPut.Length / 15)) + 1; //1200bps的波特率，每100ms可以发送的最大的字符15个字符，在此基础上再加100ms等待时长
                         Thread.Sleep(count * 100);
+                        _Port.RtsEnable = false;
+                        _Port.DtrEnable = true;
                     }
                 }
             }
@@ -123,8 +126,6 @@ namespace HartSDK
             {
                 lock (_PortLocker)
                 {
-                    _Port.RtsEnable = false;
-                    _Port.DtrEnable = true;
                     if (_Port.BytesToRead > 0)
                     {
                         byte[] data = new byte[_Port.BytesToRead];
@@ -154,6 +155,7 @@ namespace HartSDK
                         ResponsePacket p = _Buffer.Dequeue();
                         while (p != null)
                         {
+                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "解析包成功");
                             if (p.PacketType == 0x01) //成组包,从设备主动上传的包
                             {
                                 OnPacketArrived(p);
@@ -259,6 +261,7 @@ namespace HartSDK
                     else
                     {
                         _LastError = "设备没有回复";
+                        if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "解析包失败");
                     }
                 }
             }

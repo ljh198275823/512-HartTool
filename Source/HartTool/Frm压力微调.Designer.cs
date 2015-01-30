@@ -150,6 +150,7 @@
             this.Controls.Add(this.btnSetPVZero);
             this.Name = "Frm压力微调";
             this.Text = "压力标定";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm压力微调_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

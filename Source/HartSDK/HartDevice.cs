@@ -34,6 +34,8 @@ namespace HartSDK
         private OutputInfo _PVOutput = null;
         private float? _LowerCurrentTrim = null;
         private float? _PVAD = null;
+        private SensorMode? _SensorMode = null;
+        private SensorCode? _SensorCode = null;
         private TemperatureCompensation[] _TCS = new TemperatureCompensation[3];
         private LinearizationItem[] _LItems = new LinearizationItem[11];
         #endregion
@@ -191,6 +193,34 @@ namespace HartSDK
         {
             if (!optical || (_ID != null && _PVAD == null)) _PVAD = HartComport.ReadPVAD(_ID.LongAddress);
             return _PVAD != null ? _PVAD.Value : -1;
+        }
+
+        public SensorMode? ReadSensorMode(bool optical = true)
+        {
+            if (!optical || (_ID != null && _SensorMode == null))
+            {
+                byte[] data = ReadCommand(0x80, null);
+                if (data != null && data.Length == 22)
+                {
+                    _SensorMode = (SensorMode)data[11];
+                    _SensorCode = (SensorCode)data[12];
+                }
+            }
+            return _SensorMode;
+        }
+
+        public SensorCode? ReadSensorCode(bool optical = true)
+        {
+            if (!optical || (_ID != null && _SensorCode == null))
+            {
+                byte[] data = ReadCommand(0x80, null);
+                if (data != null && data.Length == 22)
+                {
+                    _SensorMode = (SensorMode)data[11];
+                    _SensorCode = (SensorCode)data[12];
+                }
+            }
+            return _SensorCode;
         }
         /// <summary>
         /// 读取某个命令的返回值
@@ -397,6 +427,8 @@ namespace HartSDK
             bool ret = HartComport.WritePVSensorMode(_ID.LongAddress, mode, sensorCode);
             if (ret)
             {
+                _SensorMode = null;
+                _SensorCode = null;
                 _PVOutput = null;
                 _PVSensor = null;
             }

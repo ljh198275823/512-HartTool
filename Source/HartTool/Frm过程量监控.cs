@@ -19,6 +19,7 @@ namespace HartTool
         }
 
         #region 私有变量
+        private bool _Running = false;
         private Thread _ReadPV = null;
         #endregion
 
@@ -34,8 +35,7 @@ namespace HartTool
         {
             if (_ReadPV != null)
             {
-                _ReadPV.Abort();
-                _ReadPV = null;
+                _Running = false;
                 btnRealTime.Text = "实时采集";
             }
             else
@@ -44,6 +44,7 @@ namespace HartTool
                 {
                     _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
                     _ReadPV.IsBackground = true;
+                    _Running = true;
                     _ReadPV.Start();
                     btnRealTime.Text = "停止采集";
                 }
@@ -54,7 +55,7 @@ namespace HartTool
         {
             try
             {
-                while (true)
+                while (_Running )
                 {
                     if (HartDevice == null || !HartDevice.IsConnected)
                     {
@@ -88,15 +89,15 @@ namespace HartTool
             {
 
             }
+            finally
+            {
+                _ReadPV = null;
+            }
         }
 
         private void Frm过程量监控_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_ReadPV != null)
-            {
-                _ReadPV.Abort();
-                _ReadPV = null;
-            }
+            if (_ReadPV != null) _Running = false;
         }
     }
 }

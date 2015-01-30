@@ -20,6 +20,7 @@ namespace HartTool
 
         #region 私有变量
         private byte[] _Params = new byte[] { 0x48, 0x48, 0x20, 0x04, 0x42, 0x4E };  //读取AD的参数
+        private bool _Running = false;
         private Thread _TrdReadAD = null;
 
         private TextBox _LastEnter = null;
@@ -30,7 +31,7 @@ namespace HartTool
         {
             try
             {
-                while (true)
+                while (_Running)
                 {
                     Thread.Sleep(AppSettings.Current.RealInterval);
                     if (HartDevice != null && HartDevice.IsConnected)
@@ -52,6 +53,10 @@ namespace HartTool
             }
             catch (Exception)
             {
+            }
+            finally
+            {
+                _TrdReadAD = null;
             }
         }
         #endregion
@@ -118,16 +123,13 @@ namespace HartTool
         {
             _TrdReadAD = new Thread(new ThreadStart(ReadAD_Task));
             _TrdReadAD.IsBackground = true;
+            _Running = true;
             _TrdReadAD.Start();
         }
 
         private void Frm温度补偿_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_TrdReadAD != null)
-            {
-                _TrdReadAD.Abort();
-                _TrdReadAD = null;
-            }
+            if (_TrdReadAD != null) _Running = false;
         }
 
         private void txtLowTempAD_Enter(object sender, EventArgs e)

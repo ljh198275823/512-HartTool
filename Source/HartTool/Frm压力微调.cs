@@ -19,6 +19,7 @@ namespace HartTool
         }
 
         #region 私有变量
+        private bool _Running = false;
         private Thread _ReadPV = null;
         #endregion
 
@@ -44,11 +45,7 @@ namespace HartTool
         {
             bool ret = HartDevice.SetLowerRangeValue();
             rdLower.Checked = !ret;
-            if (ret && _ReadPV != null)
-            {
-                _ReadPV.Abort();
-                _ReadPV = null;
-            }
+            if (ret && _ReadPV != null) _Running = false;
             MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -56,11 +53,7 @@ namespace HartTool
         {
             bool ret = HartDevice.SetUpperRangeValue();
             rdUpper.Checked = !ret;
-            if (ret && _ReadPV != null)
-            {
-                _ReadPV.Abort();
-                _ReadPV = null;
-            }
+            if (ret && _ReadPV != null) _Running = false;
             MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -71,6 +64,7 @@ namespace HartTool
             {
                 _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
                 _ReadPV.IsBackground = true;
+                _Running = true;
                 _ReadPV.Start();
             }
         }
@@ -82,6 +76,7 @@ namespace HartTool
             {
                 _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
                 _ReadPV.IsBackground = true;
+                _Running = true;
                 _ReadPV.Start();
             }
         }
@@ -90,7 +85,7 @@ namespace HartTool
         {
             try
             {
-                while (true)
+                while (_Running)
                 {
                     Thread.Sleep(AppSettings.Current.RealInterval);
                     DeviceVariable pv = HartDevice.ReadPV(false);
@@ -111,6 +106,15 @@ namespace HartTool
             catch (Exception)
             {
             }
+            finally
+            {
+                _ReadPV = null;
+            }
+        }
+
+        private void Frm压力微调_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _Running = false;
         }
         #endregion
     }

@@ -101,7 +101,7 @@ namespace HartTool
             this.Text += string.Format(" [{0}]", Application.ProductVersion);
             comPortComboBox1.Init();
             comPortComboBox1.ComPort = AppSettings.Current.HartCommport;
-            cmbShortAddress.SelectedIndex =0;
+            cmbShortAddress.SelectedIndex = 0;
             timer1.Enabled = true;
         }
 
@@ -220,16 +220,17 @@ namespace HartTool
             ShowForm<Frm多点线性化>();
             HightLightButton(btn多点线性化);
         }
-        #endregion
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - _StartDT.Ticks);
             if (ts.TotalMinutes >= 10)
             {
+                timer1.Enabled = false;
                 MessageBox.Show("试用版软件使用时间超过10分钟，即将关闭，请联系供应商使用正版", "警告");
                 Environment.Exit(0);
             }
         }
+        #endregion
     }
 }

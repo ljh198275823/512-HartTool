@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.label1 = new System.Windows.Forms.Label();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -236,11 +237,11 @@
             this.btn压力微调.UseVisualStyleBackColor = true;
             this.btn压力微调.Click += new System.EventHandler(this.btn压力微调_Click);
             // 
-            // btn性能参数
+            // btn特性输出
             // 
             this.btn特性输出.Enabled = false;
             this.btn特性输出.Location = new System.Drawing.Point(3, 166);
-            this.btn特性输出.Name = "btn性能参数";
+            this.btn特性输出.Name = "btn特性输出";
             this.btn特性输出.Size = new System.Drawing.Size(117, 33);
             this.btn特性输出.TabIndex = 45;
             this.btn特性输出.Text = "输出特性";
@@ -349,6 +350,7 @@
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comPortComboBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.Text = "Hart 工具";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);

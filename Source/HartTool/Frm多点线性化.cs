@@ -19,6 +19,7 @@ namespace HartTool
         }
 
         #region 私有变量
+        private bool _Running = false;
         private Thread _TrdReadAD = null;
         #endregion
 
@@ -27,7 +28,7 @@ namespace HartTool
         {
             try
             {
-                while (true)
+                while (_Running)
                 {
                     Thread.Sleep(AppSettings.Current.RealInterval);
                     if (HartDevice != null && HartDevice.IsConnected)
@@ -48,6 +49,10 @@ namespace HartTool
             }
             catch (Exception)
             {
+            }
+            finally
+            {
+                _TrdReadAD = null;
             }
         }
         #endregion
@@ -85,16 +90,13 @@ namespace HartTool
         {
             _TrdReadAD = new Thread(new ThreadStart(ReadAD_Task));
             _TrdReadAD.IsBackground = true;
+            _Running = true;
             _TrdReadAD.Start();
         }
 
         private void Frm多点线性化_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_TrdReadAD != null)
-            {
-                _TrdReadAD.Abort();
-                _TrdReadAD = null;
-            }
+            if (_TrdReadAD != null) _Running = false;
         }
 
         private void txtP1_Enter(object sender, EventArgs e)
