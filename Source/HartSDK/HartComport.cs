@@ -103,14 +103,13 @@ namespace HartSDK
                 {
                     if (this.IsOpened)
                     {
+                        _Port.DtrEnable = false;
                         _Port.RtsEnable = true;
                         if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "----------------------------------------------------------------------------------------------");
                         if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "发送数据:" + HexStringConverter.HexToString(outPut, " "));
                         _Port.Write(outPut, 0, outPut.Length);
                         int count = (int)(Math.Ceiling((double)outPut.Length / 15)) + 1; //1200bps的波特率，每100ms可以发送的最大的字符15个字符，在此基础上再加100ms等待时长
                         Thread.Sleep(count * 100);
-                        _Port.RtsEnable = false;
-                        _Port.DtrEnable = true;
                     }
                 }
             }
@@ -126,6 +125,8 @@ namespace HartSDK
             {
                 lock (_PortLocker)
                 {
+                    if (_Port.RtsEnable) _Port.RtsEnable = false;
+                    if (!_Port.DtrEnable) _Port.DtrEnable = true;
                     if (_Port.BytesToRead > 0)
                     {
                         byte[] data = new byte[_Port.BytesToRead];
@@ -170,8 +171,8 @@ namespace HartSDK
                             }
                             p = _Buffer.Dequeue();
                         }
-                        Thread.Sleep(100);
                     }
+                    Thread.Sleep(100);
                 }
             }
             catch (ThreadAbortException)
