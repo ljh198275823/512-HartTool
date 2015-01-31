@@ -66,21 +66,46 @@ namespace HartTool
         {
             btnRead.Enabled = HartDevice != null && HartDevice.IsConnected;
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
-            ReadLinearizationItems();
         }
 
         private void ReadLinearizationItems()
         {
-            int maxAD = 70000;
-            if (HartDevice != null && HartDevice.IsConnected)
+            FrmProcessing frm = new FrmProcessing();
+            Action a = delegate()
             {
-                for (int i = 1; i <= 10; i++)
+                try
                 {
-                    LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
-                    if (li != null && li.SensorAD == maxAD) break; //后面的都是无效的参数了,不用再继续获取
-                    (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
-                    (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
+                    int maxAD = 70000;
+                    if (HartDevice != null && HartDevice.IsConnected)
+                    {
+                        for (int i = 1; i <= 10; i++)
+                        {
+                            LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
+                            if (li != null && li.SensorAD == maxAD) break; //后面的都是无效的参数了,不用再继续获取
+                            this.Invoke((Action)(() =>
+                                {
+                                    (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
+                                    (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
+                                }));
+                            frm.ShowProgress(string.Empty, (decimal)i / 10);
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    frm.ShowProgress(string.Empty, 1);
                 }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception)
+                {
+                }
+            };
+            Thread t = new Thread(new ThreadStart(a));
+            t.IsBackground = true;
+            t.Start();
+            if (frm.ShowDialog() != DialogResult.OK)
+            {
+                t.Abort();
             }
         }
         #endregion
@@ -145,8 +170,11 @@ namespace HartTool
                 {
                     if (float.TryParse(strP, out fp) && fp >= 0 && float.TryParse(strAD, out fAD) && fAD >= 0)
                     {
-                        LinearizationItem li = new LinearizationItem() { SensorValue = fp, SensorAD = fAD };
-                        lis.Add(li);
+                        if (!(fp == 0 && fAD == 0)) //同时为零的点忽略掉
+                        {
+                            LinearizationItem li = new LinearizationItem() { SensorValue = fp, SensorAD = fAD };
+                            lis.Add(li);
+                        }
                     }
                 }
             }

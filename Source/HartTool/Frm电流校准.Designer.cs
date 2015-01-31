@@ -43,6 +43,8 @@
             this.txtFixedCurrent = new LJH.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkExitFixCurrent = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label27
@@ -167,10 +169,10 @@
             -1,
             0});
             this.txtFixedCurrent.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
+            0,
+            0,
+            0,
+            0});
             this.txtFixedCurrent.Name = "txtFixedCurrent";
             this.txtFixedCurrent.PointCount = -1;
             this.txtFixedCurrent.Size = new System.Drawing.Size(100, 26);
@@ -195,11 +197,41 @@
             this.label2.TabIndex = 48;
             this.label2.Text = "第二步";
             // 
+            // chkExitFixCurrent
+            // 
+            this.chkExitFixCurrent.AutoSize = true;
+            this.chkExitFixCurrent.Checked = true;
+            this.chkExitFixCurrent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkExitFixCurrent.ForeColor = System.Drawing.Color.Red;
+            this.chkExitFixCurrent.Location = new System.Drawing.Point(116, 235);
+            this.chkExitFixCurrent.Name = "chkExitFixCurrent";
+            this.chkExitFixCurrent.Size = new System.Drawing.Size(240, 16);
+            this.chkExitFixCurrent.TabIndex = 49;
+            this.chkExitFixCurrent.Text = "切换到其它窗口时退出固定电流输出模式";
+            this.chkExitFixCurrent.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Enabled = false;
+            this.richTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.Gray;
+            this.richTextBox1.Location = new System.Drawing.Point(12, 276);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(604, 125);
+            this.richTextBox1.TabIndex = 50;
+            this.richTextBox1.Text = "说明：电流校准：首先点击“固定4mA电流输出”此时对照标准电流表，输入电流表所示电流值，填入“标准电流表读数”数字框，点击“DA调整”按纽，此时电流表应显示4mA" +
+                ". 如未调整到位，可再次输入电流表实际电流值，在调整一次。完毕后，点击“固定20mA电流输出”按钮，按照4mA调校方法，将电流调校到位。可通过“固定电流输出”按" +
+                "钮填入所需输出的电流值，检查DA输出。";
+            // 
             // Frm电流校准
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 413);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.chkExitFixCurrent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFix4);
@@ -216,6 +248,7 @@
             this.Controls.Add(this.label24);
             this.Name = "Frm电流校准";
             this.Text = "电流校准";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm电流校准_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +270,8 @@
         private System.Windows.Forms.Button btnFix20;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkExitFixCurrent;
+        private System.Windows.Forms.RichTextBox richTextBox1;
 
     }
 }

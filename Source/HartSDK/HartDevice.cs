@@ -95,7 +95,7 @@ namespace HartSDK
         /// <summary>
         /// 读取设备唯一标识
         /// </summary>
-        public UniqueIdentifier ReadUniqueID(bool optical = true)
+        public UniqueIdentifier ReadUniqueID(bool optical = false)
         {
             if (!optical) _ID = HartComport.ReadUniqueID(PollingAddress);
             return _ID;
@@ -103,7 +103,7 @@ namespace HartSDK
         /// <summary>
         /// 读取设备的主变量
         /// </summary>
-        public DeviceVariable ReadPV(bool optical = true)
+        public DeviceVariable ReadPV(bool optical = false)
         {
             if (!optical || (_PV == null && _ID != null)) _PV = HartComport.ReadPV(_ID.LongAddress);
             return _PV;
@@ -111,7 +111,7 @@ namespace HartSDK
         /// <summary>
         /// 读取电流和量程百分比
         /// </summary>
-        public CurrentInfo ReadCurrent(bool optical = true)
+        public CurrentInfo ReadCurrent(bool optical = false)
         {
             if (!optical || (_PVCurrent == null && _ID != null)) _PVCurrent = HartComport.ReadCurrent(_ID.LongAddress);
             return _PVCurrent;
@@ -119,7 +119,7 @@ namespace HartSDK
         /// <summary>
         /// 读取设备标签信息
         /// </summary>
-        public DeviceTagInfo ReadTag(bool optical = true)
+        public DeviceTagInfo ReadTag(bool optical = false)
         {
             if (!optical || (_Tag == null && _ID != null)) _Tag = HartComport.ReadTag(_ID.LongAddress);
             return _Tag;
@@ -127,7 +127,7 @@ namespace HartSDK
         /// <summary>
         /// 读取设备消息
         /// </summary>
-        public string ReadMessage(bool optical = true)
+        public string ReadMessage(bool optical = false)
         {
             if (!optical || (string.IsNullOrEmpty(_Message) && _ID != null)) _Message = HartComport.ReadMessage(_ID.LongAddress);
             return _Message;
@@ -135,7 +135,7 @@ namespace HartSDK
         /// <summary>
         /// 读取主变量传感器信息
         /// </summary>
-        public SensorInfo ReadPVSensor(bool optical = true)
+        public SensorInfo ReadPVSensor(bool optical = false)
         {
             if (!optical || (_PVSensor == null && _ID != null)) _PVSensor = HartComport.ReadPVSensor(_ID.LongAddress);
             return _PVSensor;
@@ -143,7 +143,7 @@ namespace HartSDK
         /// <summary>
         /// 读取模拟输出信息
         /// </summary>
-        public OutputInfo ReadOutput(bool optical = true)
+        public OutputInfo ReadOutput(bool optical = false)
         {
             if (!optical || (_PVOutput == null && _ID != null)) _PVOutput = HartComport.ReadOutput(_ID.LongAddress);
             return _PVOutput;
@@ -154,7 +154,7 @@ namespace HartSDK
         /// <param name="longAddress"></param>
         /// <param name="upperOrLower"></param>
         /// <returns></returns>
-        public float ReadCurrentTrim(byte upperOrLower, bool optical = true)
+        public float ReadCurrentTrim(byte upperOrLower, bool optical = false)
         {
             if (!optical || (_ID != null && _LowerCurrentTrim == null)) _LowerCurrentTrim = HartComport.ReadCurrentTrim(_ID.LongAddress, upperOrLower);
             return _LowerCurrentTrim != null ? _LowerCurrentTrim.Value : 0;
@@ -165,7 +165,7 @@ namespace HartSDK
         /// <param name="longAddress"></param>
         /// <param name="para"></param>
         /// <returns></returns>
-        public TemperatureCompensation ReadTC(byte para, bool optical = true)
+        public TemperatureCompensation ReadTC(byte para, bool optical = false)
         {
             if (para >= 0 && para < _TCS.Length)
             {
@@ -177,7 +177,7 @@ namespace HartSDK
         /// <summary>
         /// 读取线性化参数
         /// </summary>
-        public LinearizationItem ReadLinearizationItem(byte para, bool optical = true)
+        public LinearizationItem ReadLinearizationItem(byte para, bool optical = false)
         {
             if (para >= 0 && para < _LItems.Length)
             {
@@ -189,13 +189,13 @@ namespace HartSDK
         /// <summary>
         /// 读取主变量的AD值,小于0表示获取失败
         /// </summary>
-        public float ReadPVAD(bool optical = true)
+        public float ReadPVAD(bool optical = false)
         {
             if (!optical || (_ID != null && _PVAD == null)) _PVAD = HartComport.ReadPVAD(_ID.LongAddress);
             return _PVAD != null ? _PVAD.Value : -1;
         }
 
-        public SensorMode? ReadSensorMode(bool optical = true)
+        public SensorMode? ReadSensorMode(bool optical = false)
         {
             if (!optical || (_ID != null && _SensorMode == null))
             {
@@ -209,7 +209,7 @@ namespace HartSDK
             return _SensorMode;
         }
 
-        public SensorCode? ReadSensorCode(bool optical = true)
+        public SensorCode? ReadSensorCode(bool optical = false)
         {
             if (!optical || (_ID != null && _SensorCode == null))
             {

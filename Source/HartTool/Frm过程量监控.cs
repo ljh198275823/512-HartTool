@@ -70,16 +70,15 @@ namespace HartTool
                         if (pv != null)
                         {
                             lblPVUnit.Text = pv != null ? UnitCodeDescr.GetDescr(pv.UnitCode) : null;
-                            txtPV.Text = pv != null ? pv.Value.ToString("F3") : string.Empty;
+                            txtPV.Text = pv != null ? pv.Value.ToString() : string.Empty;
                         }
                         if (ci != null)
                         {
-                            txtCurrent.Text = ci != null ? ci.Current.ToString("F3") : string.Empty;
-                            txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString("F3") : string.Empty;
+                            txtCurrent.Text = ci != null ? ci.Current.ToString() : string.Empty;
+                            txtPercentOfRange.Text = ci != null ? ci.PercentOfRange.ToString() : string.Empty;
                         }
                     };
                     this.Invoke(a);
-                    //Thread.Sleep(100);
                 }
             }
             catch (ThreadAbortException)

@@ -57,6 +57,7 @@
             this.btnRead2 = new System.Windows.Forms.Button();
             this.btnRead1 = new System.Windows.Forms.Button();
             this.btnRead0 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -337,11 +338,25 @@
             this.btnRead0.UseVisualStyleBackColor = true;
             this.btnRead0.Click += new System.EventHandler(this.btnRead_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Enabled = false;
+            this.richTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.Red;
+            this.richTextBox1.Location = new System.Drawing.Point(35, 249);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(606, 45);
+            this.richTextBox1.TabIndex = 74;
+            this.richTextBox1.Text = "说明：当不做满度温度补偿时，请在压力满度数字框填入65525再下载。";
+            // 
             // Frm温度补偿
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 331);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnRead2);
             this.Controls.Add(this.btnRead1);
             this.Controls.Add(this.btnRead0);
@@ -409,5 +424,6 @@
         private System.Windows.Forms.Button btnRead2;
         private System.Windows.Forms.Button btnRead1;
         private System.Windows.Forms.Button btnRead0;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

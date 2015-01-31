@@ -34,6 +34,12 @@ namespace HartTool
             frm.Size = new Size(this.pBody.Size.Width, this.pBody.Height);
             SetParent(frm.Handle, this.pBody.Handle);
             frm.Show();
+            IHartCommunication iHart = _ActiveForm as IHartCommunication;
+            if (iHart != null)
+            {
+                iHart.HartDevice = HartDevice;
+                iHart.ReadData();
+            }
         }
 
         private void ShowForm<T>() where T : Form
@@ -51,12 +57,6 @@ namespace HartTool
                 instance.ShowInTaskbar = false;
                 instance.StartPosition = FormStartPosition.Manual;
                 _ActiveForm = instance;
-                IHartCommunication iHart = _ActiveForm as IHartCommunication;
-                if (iHart != null)
-                {
-                    iHart.HartDevice = HartDevice;
-                    iHart.ReadData();
-                }
                 RenderForm(_ActiveForm);
             }
         }

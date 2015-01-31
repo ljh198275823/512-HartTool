@@ -48,7 +48,7 @@
             this.txtPercentOfRange.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtPercentOfRange.Location = new System.Drawing.Point(84, 100);
             this.txtPercentOfRange.Name = "txtPercentOfRange";
-            this.txtPercentOfRange.Size = new System.Drawing.Size(96, 26);
+            this.txtPercentOfRange.Size = new System.Drawing.Size(112, 26);
             this.txtPercentOfRange.TabIndex = 49;
             // 
             // txtCurrent
@@ -58,7 +58,7 @@
             this.txtCurrent.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtCurrent.Location = new System.Drawing.Point(84, 63);
             this.txtCurrent.Name = "txtCurrent";
-            this.txtCurrent.Size = new System.Drawing.Size(96, 26);
+            this.txtCurrent.Size = new System.Drawing.Size(112, 26);
             this.txtCurrent.TabIndex = 50;
             // 
             // txtPV
@@ -68,7 +68,7 @@
             this.txtPV.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtPV.Location = new System.Drawing.Point(84, 26);
             this.txtPV.Name = "txtPV";
-            this.txtPV.Size = new System.Drawing.Size(96, 26);
+            this.txtPV.Size = new System.Drawing.Size(112, 26);
             this.txtPV.TabIndex = 48;
             // 
             // label9
@@ -82,7 +82,7 @@
             // 
             // btnRealTime
             // 
-            this.btnRealTime.Location = new System.Drawing.Point(246, 27);
+            this.btnRealTime.Location = new System.Drawing.Point(279, 27);
             this.btnRealTime.Name = "btnRealTime";
             this.btnRealTime.Size = new System.Drawing.Size(112, 99);
             this.btnRealTime.TabIndex = 47;
@@ -111,7 +111,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(186, 107);
+            this.label11.Location = new System.Drawing.Point(208, 107);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(11, 12);
             this.label11.TabIndex = 44;
@@ -120,16 +120,16 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(186, 70);
+            this.label20.Location = new System.Drawing.Point(208, 70);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(29, 12);
+            this.label20.Size = new System.Drawing.Size(17, 12);
             this.label20.TabIndex = 46;
-            this.label20.Text = "毫安";
+            this.label20.Text = "mA";
             // 
             // lblPVUnit
             // 
             this.lblPVUnit.AutoSize = true;
-            this.lblPVUnit.Location = new System.Drawing.Point(186, 33);
+            this.lblPVUnit.Location = new System.Drawing.Point(208, 33);
             this.lblPVUnit.Name = "lblPVUnit";
             this.lblPVUnit.Size = new System.Drawing.Size(29, 12);
             this.lblPVUnit.TabIndex = 45;

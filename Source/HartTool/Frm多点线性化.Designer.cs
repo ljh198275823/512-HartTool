@@ -65,12 +65,13 @@
             this.button9 = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(335, 23);
+            this.label7.Location = new System.Drawing.Point(513, 17);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 22;
@@ -81,7 +82,7 @@
             this.txtAD.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtAD.ForeColor = System.Drawing.Color.Red;
             this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAD.Location = new System.Drawing.Point(393, 16);
+            this.txtAD.Location = new System.Drawing.Point(571, 10);
             this.txtAD.Name = "txtAD";
             this.txtAD.Size = new System.Drawing.Size(151, 26);
             this.txtAD.TabIndex = 27;
@@ -120,7 +121,7 @@
             this.txtP1.Location = new System.Drawing.Point(24, 42);
             this.txtP1.Name = "txtP1";
             this.txtP1.Size = new System.Drawing.Size(85, 21);
-            this.txtP1.TabIndex = 31;
+            this.txtP1.TabIndex = 11;
             this.txtP1.Tag = "1";
             this.txtP1.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -140,7 +141,7 @@
             this.txtP2.Location = new System.Drawing.Point(24, 69);
             this.txtP2.Name = "txtP2";
             this.txtP2.Size = new System.Drawing.Size(85, 21);
-            this.txtP2.TabIndex = 33;
+            this.txtP2.TabIndex = 12;
             this.txtP2.Tag = "2";
             this.txtP2.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -160,7 +161,7 @@
             this.txtP3.Location = new System.Drawing.Point(24, 96);
             this.txtP3.Name = "txtP3";
             this.txtP3.Size = new System.Drawing.Size(85, 21);
-            this.txtP3.TabIndex = 35;
+            this.txtP3.TabIndex = 13;
             this.txtP3.Tag = "3";
             this.txtP3.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -180,7 +181,7 @@
             this.txtP4.Location = new System.Drawing.Point(24, 123);
             this.txtP4.Name = "txtP4";
             this.txtP4.Size = new System.Drawing.Size(85, 21);
-            this.txtP4.TabIndex = 37;
+            this.txtP4.TabIndex = 14;
             this.txtP4.Tag = "4";
             this.txtP4.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -200,7 +201,7 @@
             this.txtP5.Location = new System.Drawing.Point(24, 150);
             this.txtP5.Name = "txtP5";
             this.txtP5.Size = new System.Drawing.Size(85, 21);
-            this.txtP5.TabIndex = 39;
+            this.txtP5.TabIndex = 15;
             this.txtP5.Tag = "5";
             this.txtP5.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -220,7 +221,7 @@
             this.txtP10.Location = new System.Drawing.Point(24, 285);
             this.txtP10.Name = "txtP10";
             this.txtP10.Size = new System.Drawing.Size(85, 21);
-            this.txtP10.TabIndex = 49;
+            this.txtP10.TabIndex = 20;
             this.txtP10.Tag = "10";
             this.txtP10.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -240,7 +241,7 @@
             this.txtP9.Location = new System.Drawing.Point(24, 258);
             this.txtP9.Name = "txtP9";
             this.txtP9.Size = new System.Drawing.Size(85, 21);
-            this.txtP9.TabIndex = 47;
+            this.txtP9.TabIndex = 19;
             this.txtP9.Tag = "9";
             this.txtP9.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -260,7 +261,7 @@
             this.txtP8.Location = new System.Drawing.Point(24, 231);
             this.txtP8.Name = "txtP8";
             this.txtP8.Size = new System.Drawing.Size(85, 21);
-            this.txtP8.TabIndex = 45;
+            this.txtP8.TabIndex = 18;
             this.txtP8.Tag = "8";
             this.txtP8.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -280,7 +281,7 @@
             this.txtP7.Location = new System.Drawing.Point(24, 204);
             this.txtP7.Name = "txtP7";
             this.txtP7.Size = new System.Drawing.Size(85, 21);
-            this.txtP7.TabIndex = 43;
+            this.txtP7.TabIndex = 17;
             this.txtP7.Tag = "7";
             this.txtP7.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -300,7 +301,7 @@
             this.txtP6.Location = new System.Drawing.Point(24, 177);
             this.txtP6.Name = "txtP6";
             this.txtP6.Size = new System.Drawing.Size(85, 21);
-            this.txtP6.TabIndex = 41;
+            this.txtP6.TabIndex = 16;
             this.txtP6.Tag = "6";
             this.txtP6.Enter += new System.EventHandler(this.txtP1_Enter);
             // 
@@ -426,9 +427,9 @@
             // 
             // btnWrite
             // 
-            this.btnWrite.Location = new System.Drawing.Point(335, 255);
+            this.btnWrite.Location = new System.Drawing.Point(349, 10);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(158, 51);
+            this.btnWrite.Size = new System.Drawing.Size(158, 27);
             this.btnWrite.TabIndex = 71;
             this.btnWrite.Text = "下载";
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -436,19 +437,34 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(335, 161);
+            this.btnRead.Location = new System.Drawing.Point(221, 10);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(158, 51);
+            this.btnRead.Size = new System.Drawing.Size(111, 27);
             this.btnRead.TabIndex = 72;
             this.btnRead.Text = "读取参数";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Enabled = false;
+            this.richTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.Gray;
+            this.richTextBox1.Location = new System.Drawing.Point(349, 43);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(373, 264);
+            this.richTextBox1.TabIndex = 73;
+            this.richTextBox1.Text = "说明：做多点线性化时，首先在压力一列，填入所要校验的压力点，按TAB可直接切换到下一所要填的压力值框。采集压力AD的时候一定要等AD值稳定后在采样。所有点完成后点" +
+                "击“下载”，完成多点线性化。通过读取参数按钮，可以读出多点线性化的数据。";
             // 
             // Frm多点线性化
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 330);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.button10);
@@ -532,5 +548,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnWrite;
         private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

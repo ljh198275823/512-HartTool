@@ -42,10 +42,9 @@ namespace HartTool
         #region 事件处理程序
         private void txtPwd_TextChanged(object sender, EventArgs e)
         {
-            btnBackToDevice.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
-            //btnBackToPC.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
-            //btnRestoreFromDecice.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
-            //btnRestoreFromPC.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
+            txtPwd.Visible = !((txtPwd.Text == "5567" || txtPwd.Text == "8888") && HartDevice != null && HartDevice.IsConnected);
+            btnBackToDevice.Enabled = (txtPwd.Text == "5567" || txtPwd.Text == "8888") && HartDevice != null && HartDevice.IsConnected;
+            btnRestoreFromDecice.Enabled = (txtPwd.Text == "5567" || txtPwd.Text == "8888") && HartDevice != null && HartDevice.IsConnected;
         }
 
         private void btnBackToDevice_Click(object sender, EventArgs e)

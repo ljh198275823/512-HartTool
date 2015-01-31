@@ -32,6 +32,8 @@ namespace HartTool
         #region 电流校调
         private void btnFix4_Click(object sender, EventArgs e)
         {
+            txt20.Enabled = false;
+            btn20.Enabled = false;
             bool ret = HartDevice.SetFixedCurrent((float)4.0);
             txt4.Enabled = ret;
             btn4.Enabled = ret;
@@ -40,7 +42,9 @@ namespace HartTool
 
         private void btnFix20_Click(object sender, EventArgs e)
         {
-            bool ret = HartDevice.SetFixedCurrent( (float)20.0);
+            btn4.Enabled = false;
+            txt4.Enabled = false;
+            bool ret = HartDevice.SetFixedCurrent((float)20.0);
             txt20.Enabled = ret;
             btn20.Enabled = ret;
             if (!ret) MessageBox.Show(HartDevice.GetLastError(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -49,53 +53,37 @@ namespace HartTool
         private void btnFixedCurrent_Click(object sender, EventArgs e)
         {
             decimal current = txtFixedCurrent.DecimalValue;
-            if (current == 0 || (current >= 4 && current <= 20))
-            {
-                bool ret = HartDevice.SetFixedCurrent( (float)current);
-                MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            else
-            {
-                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            bool ret = HartDevice.SetFixedCurrent((float)current);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            decimal current = -1;
-            if (!decimal.TryParse(txt4.Text, out current))
+            float current = -1;
+            if (!float.TryParse(txt4.Text, out current) || current < 0)
             {
-                MessageBox.Show("输入的电流不能是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("输入的电流不是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (current == 0 || (current >= 4 && current <= 20))
-            {
-                bool ret = HartDevice.TrimDACZero( (float)current);
-                MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            else
-            {
-                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            bool ret = HartDevice.TrimDACZero(current);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void btn20_Click(object sender, EventArgs e)
         {
-            decimal current = -1;
-            if (!decimal.TryParse(txt20.Text, out current))
+            float current = -1;
+            if (!float.TryParse(txt20.Text, out current) || current < 0)
             {
-                MessageBox.Show("输入的电流不能是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("输入的电流不是有效的数字", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (current == 0 || (current >= 4 && current <= 20))
-            {
-                bool ret = HartDevice.TrimDACGain( (float)current);
-                MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            else
-            {
-                MessageBox.Show("输入的固定电流不正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            bool ret = HartDevice.TrimDACGain(current);
+            MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
+
+        private void Frm电流校准_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (chkExitFixCurrent.Checked) HartDevice.SetFixedCurrent(0);
         }
         #endregion
     }

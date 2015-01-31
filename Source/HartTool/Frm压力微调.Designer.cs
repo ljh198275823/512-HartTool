@@ -47,7 +47,7 @@
             this.btnSetUpperRange.Name = "btnSetUpperRange";
             this.btnSetUpperRange.Size = new System.Drawing.Size(116, 35);
             this.btnSetUpperRange.TabIndex = 32;
-            this.btnSetUpperRange.Text = "下载";
+            this.btnSetUpperRange.Text = "低点微调";
             this.btnSetUpperRange.UseVisualStyleBackColor = true;
             this.btnSetUpperRange.Click += new System.EventHandler(this.btnSetLowerRange_Click);
             // 
@@ -58,7 +58,7 @@
             this.btnSetLowerRange.Name = "btnSetLowerRange";
             this.btnSetLowerRange.Size = new System.Drawing.Size(116, 35);
             this.btnSetLowerRange.TabIndex = 31;
-            this.btnSetLowerRange.Text = "下载";
+            this.btnSetLowerRange.Text = "高点微调";
             this.btnSetLowerRange.UseVisualStyleBackColor = true;
             this.btnSetLowerRange.Click += new System.EventHandler(this.btnSetUpperRange_Click);
             // 
@@ -80,7 +80,7 @@
             this.rdUpper.Size = new System.Drawing.Size(71, 16);
             this.rdUpper.TabIndex = 33;
             this.rdUpper.TabStop = true;
-            this.rdUpper.Text = "校准上限";
+            this.rdUpper.Text = "高点微调";
             this.rdUpper.UseVisualStyleBackColor = true;
             this.rdUpper.CheckedChanged += new System.EventHandler(this.rdUpper_CheckedChanged);
             // 
@@ -92,7 +92,7 @@
             this.rdLower.Size = new System.Drawing.Size(71, 16);
             this.rdLower.TabIndex = 34;
             this.rdLower.TabStop = true;
-            this.rdLower.Text = "校准下限";
+            this.rdLower.Text = "低点微调";
             this.rdLower.UseVisualStyleBackColor = true;
             this.rdLower.CheckedChanged += new System.EventHandler(this.rdLower_CheckedChanged);
             // 
