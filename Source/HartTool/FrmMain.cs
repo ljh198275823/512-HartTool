@@ -75,7 +75,7 @@ namespace HartTool
             btn.ForeColor = Color.White;
         }
 
-        private void OpenDevice()
+        private void ShowDeviceState()
         {
             HartSDK.UniqueIdentifier did = null;
             if (HartDevice != null && HartDevice.IsConnected) did = HartDevice.ReadUniqueID();
@@ -120,7 +120,7 @@ namespace HartTool
                 statusStrip1.Refresh();
                 btnOpen.Enabled = !HartDevice.IsConnected;
                 btnClose.Enabled = HartDevice.IsConnected;
-                OpenDevice();
+                ShowDeviceState();
             }
             else
             {
@@ -131,9 +131,11 @@ namespace HartTool
         private void btnClose_Click(object sender, EventArgs e)
         {
             if (HartDevice != null) HartDevice.Close();
+            HartDevice = null;
             btnOpen.Enabled = true;
             btnClose.Enabled = false;
             lblCommportState.Text = string.Empty;
+            ShowDeviceState();
         }
 
         private void btnWritePollingAddress_Click(object sender, EventArgs e)

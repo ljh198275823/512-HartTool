@@ -32,6 +32,8 @@ namespace HartTool
             btnSetPVZero.Enabled = HartDevice != null && HartDevice.IsConnected;
             rdLower.Enabled = HartDevice != null && HartDevice.IsConnected;
             rdUpper.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnSetLowerRange.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnSetUpperRange.Enabled = HartDevice != null && HartDevice.IsConnected;
             ReadOutput();
         }
         #endregion
@@ -45,12 +47,12 @@ namespace HartTool
 
         private void btnSetLowerRange_Click(object sender, EventArgs e)
         {
+            if (_PV == null) return;
             float lv = 0;
             if (float.TryParse(txtLower.Text, out lv))
             {
                 bool ret = HartDevice.SetLowerRangeValue(_PV.UnitCode, lv);
                 rdLower.Checked = !ret;
-                if (ret && _ReadPV != null) _Running = false;
                 MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ReadOutput();
             }
@@ -62,12 +64,12 @@ namespace HartTool
 
         private void btnSetUpperRange_Click(object sender, EventArgs e)
         {
+            if (_PV == null) return;
             float uv = 0;
             if (float.TryParse(txtUpper.Text, out uv))
             {
                 bool ret = HartDevice.SetUpperRangeValue(_PV.UnitCode, uv);
                 rdUpper.Checked = !ret;
-                if (ret && _ReadPV != null) _Running = false;
                 MessageBox.Show(ret ? "设置成功" : HartDevice.GetLastError(), "消息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ReadOutput();
             }
@@ -80,27 +82,17 @@ namespace HartTool
         private void rdLower_CheckedChanged(object sender, EventArgs e)
         {
             btnSetLowerRange.Enabled = true;
+            button1.Enabled = true;
             btnSetUpperRange.Enabled = false;
-            if (_ReadPV == null)
-            {
-                _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
-                _ReadPV.IsBackground = true;
-                _Running = true;
-                _ReadPV.Start();
-            }
+            button2.Enabled = false;
         }
 
         private void rdUpper_CheckedChanged(object sender, EventArgs e)
         {
             btnSetUpperRange.Enabled = true;
+            button2.Enabled = true;
             btnSetLowerRange.Enabled = false;
-            if (_ReadPV == null)
-            {
-                _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
-                _ReadPV.IsBackground = true;
-                _Running = true;
-                _ReadPV.Start();
-            }
+            button1.Enabled = false;
         }
 
         private void ReadPV_Thread()
@@ -110,24 +102,18 @@ namespace HartTool
                 while (_Running)
                 {
                     Thread.Sleep(AppSettings.Current.RealInterval);
-                    DeviceVariable pv = HartDevice.ReadPV(false);
-                    if (pv != null && _Running)
+                    if (HartDevice != null && HartDevice.IsConnected)
                     {
-                        this.Invoke((Action)(() =>
-                            {
-                                _PV = pv;
-                                if (rdLower.Checked)
+                        DeviceVariable pv = HartDevice.ReadPV(false);
+                        if (pv != null && _Running)
+                        {
+                            this.Invoke((Action)(() =>
                                 {
-                                    txtLower.Text = pv.Value.ToString();
-                                    label1.Text = pv.UnitCode.ToString();
+                                    _PV = pv;
+                                    txtReal.Text = pv.Value.ToString();
                                 }
-                                else if (rdUpper.Checked)
-                                {
-                                    txtUpper.Text = pv.Value.ToString();
-                                    label2.Text = pv.UnitCode.ToString();
-                                }
-                            }
-                        ));
+                            ));
+                        }
                     }
                 }
             }
@@ -152,18 +138,43 @@ namespace HartTool
         {
             if (HartDevice != null && HartDevice.IsConnected)
             {
-                OutputInfo oi = HartDevice.ReadOutput();
-                txtOutputLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
-                txtOutputUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
-                lblPVU1.Text = oi != null ? ((UnitCode)oi.PVUnitCode).ToString() : null;
-                lblPVU2.Text = oi != null ? ((UnitCode)oi.PVUnitCode).ToString() : null;
+                byte[] data = HartDevice.ReadCommand(0x80, null);
+                if (data != null && data.Length == 22)
+                {
+                    txtUpper.Text = BitConverter.ToSingle(new byte[] { data[17], data[16], data[15], data[14] }, 0).ToString();
+                    txtLower.Text = BitConverter.ToSingle(new byte[] { data[21], data[20], data[19], data[18] }, 0).ToString();
+                }
             }
         }
         #endregion
 
-        private void btnRead_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            ReadOutput();
+            DeviceVariable pv = HartDevice.ReadPV(false);
+            if (pv != null)
+            {
+                txtLower.Text = pv.Value.ToString();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DeviceVariable pv = HartDevice.ReadPV(false);
+            if (pv != null)
+            {
+                txtUpper.Text = pv.Value.ToString();
+            }
+        }
+
+        private void Frm压力微调_Load(object sender, EventArgs e)
+        {
+            if (_ReadPV == null)
+            {
+                _ReadPV = new Thread(new ThreadStart(ReadPV_Thread));
+                _ReadPV.IsBackground = true;
+                _Running = true;
+                _ReadPV.Start();
+            }
         }
     }
 }

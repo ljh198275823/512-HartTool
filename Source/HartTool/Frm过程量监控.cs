@@ -28,6 +28,7 @@ namespace HartTool
 
         public void ReadData()
         {
+            btnRealTime.Enabled = HartDevice != null && HartDevice.IsConnected;
         }
         #endregion
 

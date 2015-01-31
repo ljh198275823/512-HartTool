@@ -24,14 +24,17 @@ namespace HartTool
         {
             btnDownloadTag.Enabled = HartDevice != null && HartDevice.IsConnected;
             btnDownloadMsg.Enabled = HartDevice != null && HartDevice.IsConnected;
-            DeviceTagInfo tag = HartDevice.ReadTag();
-            txtTag.Text = tag != null ? tag.Tag : string.Empty;
-            txtDescr.Text = tag != null ? tag.Description : string.Empty;
-            txtYear.IntergerValue = tag != null ? tag.Year : 0;
-            txtMonth.IntergerValue = tag != null ? tag.Month : 0;
-            txtDay.IntergerValue = tag != null ? tag.Day : 0;
-            OutputInfo oi = HartDevice.ReadOutput();
-            txtMessage.Text = HartDevice.ReadMessage();
+            if (HartDevice != null && HartDevice.IsConnected)
+            {
+                DeviceTagInfo tag = HartDevice.ReadTag();
+                txtTag.Text = tag != null ? tag.Tag : string.Empty;
+                txtDescr.Text = tag != null ? tag.Description : string.Empty;
+                txtYear.IntergerValue = tag != null ? tag.Year : 0;
+                txtMonth.IntergerValue = tag != null ? tag.Month : 0;
+                txtDay.IntergerValue = tag != null ? tag.Day : 0;
+                OutputInfo oi = HartDevice.ReadOutput();
+                txtMessage.Text = HartDevice.ReadMessage();
+            }
         }
         #endregion
 

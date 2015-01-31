@@ -24,14 +24,17 @@ namespace HartTool
         {
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
             button1.Enabled = HartDevice != null && HartDevice.IsConnected;
-            OutputInfo oi = HartDevice.ReadOutput();
-            if (oi != null)
+            if (HartDevice != null && HartDevice.IsConnected)
             {
-                cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
-                txtDampValue.Text = oi.DampingValue.ToString();
-                cmbPVUnit.SelectedIndex = (int)oi.PVUnitCode;
+                OutputInfo oi = HartDevice.ReadOutput();
+                if (oi != null)
+                {
+                    cmbTranserFunction.SelectedIndex = oi.TransferFunctionCode;
+                    txtDampValue.Text = oi.DampingValue.ToString();
+                    cmbPVUnit.SelectedIndex = (int)oi.PVUnitCode;
+                }
+                txtTrim4.Text = HartDevice.ReadCurrentTrim(0).ToString();
             }
-            txtTrim4.Text = HartDevice.ReadCurrentTrim(0).ToString();
         }
         #endregion
 

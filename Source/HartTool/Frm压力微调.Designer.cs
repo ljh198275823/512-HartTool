@@ -34,8 +34,9 @@
             this.btnSetPVZero = new System.Windows.Forms.Button();
             this.rdUpper = new System.Windows.Forms.RadioButton();
             this.rdLower = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txtReal = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.SuspendLayout();
@@ -43,7 +44,7 @@
             // btnSetLowerRange
             // 
             this.btnSetLowerRange.Enabled = false;
-            this.btnSetLowerRange.Location = new System.Drawing.Point(313, 112);
+            this.btnSetLowerRange.Location = new System.Drawing.Point(358, 112);
             this.btnSetLowerRange.Name = "btnSetLowerRange";
             this.btnSetLowerRange.Size = new System.Drawing.Size(116, 35);
             this.btnSetLowerRange.TabIndex = 32;
@@ -54,7 +55,7 @@
             // btnSetUpperRange
             // 
             this.btnSetUpperRange.Enabled = false;
-            this.btnSetUpperRange.Location = new System.Drawing.Point(313, 156);
+            this.btnSetUpperRange.Location = new System.Drawing.Point(358, 156);
             this.btnSetUpperRange.Name = "btnSetUpperRange";
             this.btnSetUpperRange.Size = new System.Drawing.Size(116, 35);
             this.btnSetUpperRange.TabIndex = 31;
@@ -96,23 +97,36 @@
             this.rdLower.UseVisualStyleBackColor = true;
             this.rdLower.CheckedChanged += new System.EventHandler(this.rdLower_CheckedChanged);
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(264, 123);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 12);
-            this.label1.TabIndex = 64;
-            this.label1.Text = "KPa";
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(263, 112);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(79, 35);
+            this.button1.TabIndex = 68;
+            this.button1.Text = "采集";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
+            // button2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(264, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 12);
-            this.label2.TabIndex = 65;
-            this.label2.Text = "KPa";
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(263, 156);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 35);
+            this.button2.TabIndex = 67;
+            this.button2.Text = "采集";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txtReal
+            // 
+            this.txtReal.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtReal.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtReal.Location = new System.Drawing.Point(136, 228);
+            this.txtReal.Name = "txtReal";
+            this.txtReal.Size = new System.Drawing.Size(121, 26);
+            this.txtReal.TabIndex = 66;
             // 
             // txtUpper
             // 
@@ -137,8 +151,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 343);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.txtReal);
             this.Controls.Add(this.txtUpper);
             this.Controls.Add(this.txtLower);
             this.Controls.Add(this.rdLower);
@@ -149,6 +164,7 @@
             this.Name = "Frm压力微调";
             this.Text = "压力标定";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm压力微调_FormClosed);
+            this.Load += new System.EventHandler(this.Frm压力微调_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,7 +179,8 @@
         private System.Windows.Forms.RadioButton rdLower;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtLower;
         private LJH.GeneralLibrary.WinformControl.DBCTextBox txtUpper;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtReal;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

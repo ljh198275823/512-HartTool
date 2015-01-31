@@ -28,19 +28,22 @@ namespace HartTool
             {
                 button1.Enabled = HartDevice != null && HartDevice.IsConnected;
                 button3.Enabled = HartDevice != null && HartDevice.IsConnected;
-                OutputInfo oi = HartDevice.ReadOutput();
-                lblRangeUnit.Text = oi != null ? UnitCodeDescr.GetDescr(oi.PVUnitCode) : null;
-                txtPVLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
-                txtPVUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
-                SensorInfo si = HartDevice.ReadPVSensor();
-                txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
-                txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
-                lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
+                if (HartDevice != null && HartDevice.IsConnected)
+                {
+                    OutputInfo oi = HartDevice.ReadOutput();
+                    lblRangeUnit.Text = oi != null ? UnitCodeDescr.GetDescr(oi.PVUnitCode) : null;
+                    txtPVLower.Text = oi != null ? oi.LowerRangeValue.ToString() : null;
+                    txtPVUpper.Text = oi != null ? oi.UpperRangeValue.ToString() : null;
+                    SensorInfo si = HartDevice.ReadPVSensor();
+                    txtSensorLower.Text = si != null ? si.LowerLimit.ToString() : null;
+                    txtSensorUpper.Text = si != null ? si.UpperLimit.ToString() : null;
+                    lblUnit1.Text = si != null ? UnitCodeDescr.GetDescr((UnitCode)si.UnitCode) : null;
 
-                SensorMode? sm = HartDevice.ReadSensorMode();
-                SensorCode? sc = HartDevice.ReadSensorCode();
-                cmbSensorMode.SelectedIndex = sm != null ? (int)sm.Value : -1;
-                cmbSensorCode.SelectedIndex = sc != null ? (int)sc.Value - 2 : -1;
+                    SensorMode? sm = HartDevice.ReadSensorMode();
+                    SensorCode? sc = HartDevice.ReadSensorCode();
+                    cmbSensorMode.SelectedIndex = sm != null ? (int)sm.Value : -1;
+                    cmbSensorCode.SelectedIndex = sc != null ? (int)sc.Value - 2 : -1;
+                }
             }
             catch (Exception)
             {
