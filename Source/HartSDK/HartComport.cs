@@ -598,28 +598,36 @@ namespace HartSDK
         /// <summary>
         /// 将当前的主变量值设置成主变量的上限
         /// </summary>
-        public bool SetUpperRangeValue(long longAddress)
+        public bool SetUpperRangeValue(long longAddress, UnitCode uc, float uv)
         {
             RequestPacket request = new RequestPacket()
             {
                 LongOrShort = 1,
                 Address = longAddress,
-                Command = 36,
+                Command = 0x82,
             };
+            List<byte> temp = new List<byte>();
+            temp.Add((byte)uc);
+            temp.AddRange(BitConverter.GetBytes(uv).Reverse());
+            request.DataContent = temp.ToArray();
             ResponsePacket response = Request(request);
             return response != null;
         }
         /// <summary>
         /// 将当前的主变量值设置成主变量的下限
         /// </summary>
-        public bool SetLowerRangeValue(long longAddress)
+        public bool SetLowerRangeValue(long longAddress,UnitCode uc,float lv)
         {
             RequestPacket request = new RequestPacket()
             {
                 LongOrShort = 1,
                 Address = longAddress,
-                Command = 37,
+                Command = 0x83,
             };
+            List<byte> temp = new List<byte>();
+            temp.Add ((byte )uc);
+            temp.AddRange(BitConverter.GetBytes(lv).Reverse());
+            request.DataContent = temp.ToArray();
             ResponsePacket response = Request(request);
             return response != null;
         }

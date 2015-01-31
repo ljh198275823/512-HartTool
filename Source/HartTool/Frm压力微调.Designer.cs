@@ -29,38 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnSetUpperRange = new System.Windows.Forms.Button();
             this.btnSetLowerRange = new System.Windows.Forms.Button();
+            this.btnSetUpperRange = new System.Windows.Forms.Button();
             this.btnSetPVZero = new System.Windows.Forms.Button();
             this.rdUpper = new System.Windows.Forms.RadioButton();
             this.rdLower = new System.Windows.Forms.RadioButton();
-            this.txtLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txtUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtLower = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.SuspendLayout();
-            // 
-            // btnSetUpperRange
-            // 
-            this.btnSetUpperRange.Enabled = false;
-            this.btnSetUpperRange.Location = new System.Drawing.Point(313, 112);
-            this.btnSetUpperRange.Name = "btnSetUpperRange";
-            this.btnSetUpperRange.Size = new System.Drawing.Size(116, 35);
-            this.btnSetUpperRange.TabIndex = 32;
-            this.btnSetUpperRange.Text = "低点微调";
-            this.btnSetUpperRange.UseVisualStyleBackColor = true;
-            this.btnSetUpperRange.Click += new System.EventHandler(this.btnSetLowerRange_Click);
             // 
             // btnSetLowerRange
             // 
             this.btnSetLowerRange.Enabled = false;
-            this.btnSetLowerRange.Location = new System.Drawing.Point(313, 156);
+            this.btnSetLowerRange.Location = new System.Drawing.Point(313, 112);
             this.btnSetLowerRange.Name = "btnSetLowerRange";
             this.btnSetLowerRange.Size = new System.Drawing.Size(116, 35);
-            this.btnSetLowerRange.TabIndex = 31;
-            this.btnSetLowerRange.Text = "高点微调";
+            this.btnSetLowerRange.TabIndex = 32;
+            this.btnSetLowerRange.Text = "低点微调";
             this.btnSetLowerRange.UseVisualStyleBackColor = true;
-            this.btnSetLowerRange.Click += new System.EventHandler(this.btnSetUpperRange_Click);
+            this.btnSetLowerRange.Click += new System.EventHandler(this.btnSetLowerRange_Click);
+            // 
+            // btnSetUpperRange
+            // 
+            this.btnSetUpperRange.Enabled = false;
+            this.btnSetUpperRange.Location = new System.Drawing.Point(313, 156);
+            this.btnSetUpperRange.Name = "btnSetUpperRange";
+            this.btnSetUpperRange.Size = new System.Drawing.Size(116, 35);
+            this.btnSetUpperRange.TabIndex = 31;
+            this.btnSetUpperRange.Text = "高点微调";
+            this.btnSetUpperRange.UseVisualStyleBackColor = true;
+            this.btnSetUpperRange.Click += new System.EventHandler(this.btnSetUpperRange_Click);
             // 
             // btnSetPVZero
             // 
@@ -96,26 +96,6 @@
             this.rdLower.UseVisualStyleBackColor = true;
             this.rdLower.CheckedChanged += new System.EventHandler(this.rdLower_CheckedChanged);
             // 
-            // txtLower
-            // 
-            this.txtLower.Enabled = false;
-            this.txtLower.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtLower.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtLower.Location = new System.Drawing.Point(136, 116);
-            this.txtLower.Name = "txtLower";
-            this.txtLower.Size = new System.Drawing.Size(121, 26);
-            this.txtLower.TabIndex = 62;
-            // 
-            // txtUpper
-            // 
-            this.txtUpper.Enabled = false;
-            this.txtUpper.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtUpper.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtUpper.Location = new System.Drawing.Point(136, 160);
-            this.txtUpper.Name = "txtUpper";
-            this.txtUpper.Size = new System.Drawing.Size(121, 26);
-            this.txtUpper.TabIndex = 63;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -134,6 +114,24 @@
             this.label2.TabIndex = 65;
             this.label2.Text = "KPa";
             // 
+            // txtUpper
+            // 
+            this.txtUpper.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtUpper.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtUpper.Location = new System.Drawing.Point(136, 160);
+            this.txtUpper.Name = "txtUpper";
+            this.txtUpper.Size = new System.Drawing.Size(121, 26);
+            this.txtUpper.TabIndex = 63;
+            // 
+            // txtLower
+            // 
+            this.txtLower.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtLower.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtLower.Location = new System.Drawing.Point(136, 116);
+            this.txtLower.Name = "txtLower";
+            this.txtLower.Size = new System.Drawing.Size(121, 26);
+            this.txtLower.TabIndex = 62;
+            // 
             // Frm压力微调
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -145,8 +143,8 @@
             this.Controls.Add(this.txtLower);
             this.Controls.Add(this.rdLower);
             this.Controls.Add(this.rdUpper);
-            this.Controls.Add(this.btnSetUpperRange);
             this.Controls.Add(this.btnSetLowerRange);
+            this.Controls.Add(this.btnSetUpperRange);
             this.Controls.Add(this.btnSetPVZero);
             this.Name = "Frm压力微调";
             this.Text = "压力标定";
@@ -158,8 +156,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnSetUpperRange;
         private System.Windows.Forms.Button btnSetLowerRange;
+        private System.Windows.Forms.Button btnSetUpperRange;
         private System.Windows.Forms.Button btnSetPVZero;
         private System.Windows.Forms.RadioButton rdUpper;
         private System.Windows.Forms.RadioButton rdLower;

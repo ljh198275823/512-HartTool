@@ -294,20 +294,20 @@ namespace HartSDK
         /// <summary>
         /// 将当前的主变量值设置成主变量的上限
         /// </summary>
-        public bool SetUpperRangeValue()
+        public bool SetUpperRangeValue(UnitCode uc, float uv)
         {
             if (_ID == null) return false;
-            bool ret = HartComport.SetUpperRangeValue(_ID.LongAddress);
+            bool ret = HartComport.SetUpperRangeValue(_ID.LongAddress,uc,uv);
             if (ret) _PVOutput = null;
             return ret;
         }
         /// <summary>
         /// 将当前的主变量值设置成主变量的下限
         /// </summary>
-        public bool SetLowerRangeValue()
+        public bool SetLowerRangeValue(UnitCode uc, float lv)
         {
             if (_ID == null) return false;
-            bool ret = HartComport.SetLowerRangeValue(_ID.LongAddress);
+            bool ret = HartComport.SetLowerRangeValue(_ID.LongAddress, uc, lv);
             if (ret) _PVOutput = null;
             return ret;
         }
@@ -478,7 +478,7 @@ namespace HartSDK
         /// 数据初始化
         /// </summary>
         /// <returns></returns>
-        public bool Init()
+        public bool DataInit()
         {
             if (_ID == null) return false;
             RequestPacket request = new RequestPacket()
@@ -497,7 +497,16 @@ namespace HartSDK
         /// <returns></returns>
         public bool Restore()
         {
-            return false;
+            if (_ID == null) return false;
+            RequestPacket request = new RequestPacket()
+            {
+                LongOrShort = 1,
+                Address = _ID.LongAddress,
+                Command = 0xC7,
+                DataContent = new byte[] { 0x33, 0x53, 0x1C, 0x89 },
+            };
+            ResponsePacket response = HartComport.Request(request);
+            return response != null;
         }
         #endregion
     }

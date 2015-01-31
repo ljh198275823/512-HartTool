@@ -40,11 +40,12 @@ namespace HartTool
         #endregion
 
         #region 事件处理程序
-        private void txtPwd_TextChanged(object sender, EventArgs e)
+        private void btnUnlock_Click(object sender, EventArgs e)
         {
-            txtPwd.Visible = !((txtPwd.Text == "5567" || txtPwd.Text == "8888") && HartDevice != null && HartDevice.IsConnected);
-            btnBackToDevice.Enabled = (txtPwd.Text == "5567" || txtPwd.Text == "8888") && HartDevice != null && HartDevice.IsConnected;
-            btnRestoreFromDecice.Enabled = (txtPwd.Text == "5567" || txtPwd.Text == "8888") && HartDevice != null && HartDevice.IsConnected;
+            btnBackToDevice.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
+            btnDataInit.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected; 
+            btnRestoreFromDecice.Enabled = txtPwd.Text == "8888" && HartDevice != null && HartDevice.IsConnected;
+            txtPwd.Text = string.Empty;
         }
 
         private void btnBackToDevice_Click(object sender, EventArgs e)
@@ -73,6 +74,25 @@ namespace HartTool
                 if (ret)
                 {
                     MessageBox.Show("从设备恢复成功");
+                    ReadData();
+                }
+                else
+                {
+                    MessageBox.Show(HartDevice.GetLastError(), "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnDataInit_Click(object sender, EventArgs e)
+        {
+            if (HartDevice == null || !HartDevice.IsConnected) return;
+            if (MessageBox.Show("是否进行数据初始化?", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bool ret = HartDevice.DataInit();
+                if (ret)
+                {
+                    MessageBox.Show("数据初始化成功");
+                    ReadData();
                 }
                 else
                 {

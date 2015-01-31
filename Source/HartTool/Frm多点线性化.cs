@@ -64,7 +64,6 @@ namespace HartTool
 
         public void ReadData()
         {
-            btnRead.Enabled = HartDevice != null && HartDevice.IsConnected;
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
         }
 
@@ -153,7 +152,23 @@ namespace HartTool
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            ReadLinearizationItems();
+            int maxAD = 70000;
+            if (HartDevice == null || !HartDevice.IsConnected) return;
+            string temp = (sender as Control).Tag.ToString();
+            int ind = 0;
+            if (int.TryParse(temp, out ind) && ind >= 1 && ind <= 10)
+            {
+                LinearizationItem li = HartDevice.ReadLinearizationItem((byte)ind);
+                if (li != null && li.SensorAD == maxAD)
+                {
+                    MessageBox.Show("已经获取到末尾");
+                }
+                else
+                {
+                    (this.Controls["txtP" + ind.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
+                    (this.Controls["txtAD" + ind.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
+                }
+            }
         }
 
         private void btnWrite_Click(object sender, EventArgs e)
@@ -219,5 +234,7 @@ namespace HartTool
             }
         }
         #endregion
+
+        
     }
 }
