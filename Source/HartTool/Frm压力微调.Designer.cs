@@ -122,6 +122,7 @@
             // txtReal
             // 
             this.txtReal.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtReal.ForeColor = System.Drawing.Color.Red;
             this.txtReal.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtReal.Location = new System.Drawing.Point(136, 228);
             this.txtReal.Name = "txtReal";

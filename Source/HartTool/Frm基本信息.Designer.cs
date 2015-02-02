@@ -49,10 +49,6 @@
             this.txtOutputUpper = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.btnBackToDevice = new System.Windows.Forms.Button();
             this.btnRestoreFromDecice = new System.Windows.Forms.Button();
-            this.txtPwd = new LJH.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnUnlock = new System.Windows.Forms.Button();
-            this.btnDataInit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -223,7 +219,7 @@
             // btnBackToDevice
             // 
             this.btnBackToDevice.Enabled = false;
-            this.btnBackToDevice.Location = new System.Drawing.Point(325, 186);
+            this.btnBackToDevice.Location = new System.Drawing.Point(180, 195);
             this.btnBackToDevice.Name = "btnBackToDevice";
             this.btnBackToDevice.Size = new System.Drawing.Size(98, 30);
             this.btnBackToDevice.TabIndex = 86;
@@ -234,7 +230,7 @@
             // btnRestoreFromDecice
             // 
             this.btnRestoreFromDecice.Enabled = false;
-            this.btnRestoreFromDecice.Location = new System.Drawing.Point(325, 233);
+            this.btnRestoreFromDecice.Location = new System.Drawing.Point(312, 195);
             this.btnRestoreFromDecice.Name = "btnRestoreFromDecice";
             this.btnRestoreFromDecice.Size = new System.Drawing.Size(98, 30);
             this.btnRestoreFromDecice.TabIndex = 88;
@@ -242,55 +238,11 @@
             this.btnRestoreFromDecice.UseVisualStyleBackColor = true;
             this.btnRestoreFromDecice.Click += new System.EventHandler(this.btnRestoreFromDecice_Click);
             // 
-            // txtPwd
-            // 
-            this.txtPwd.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtPwd.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPwd.Location = new System.Drawing.Point(103, 188);
-            this.txtPwd.Name = "txtPwd";
-            this.txtPwd.PasswordChar = '*';
-            this.txtPwd.Size = new System.Drawing.Size(121, 26);
-            this.txtPwd.TabIndex = 91;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(68, 195);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 12);
-            this.label7.TabIndex = 90;
-            this.label7.Text = "密码";
-            // 
-            // btnUnlock
-            // 
-            this.btnUnlock.Location = new System.Drawing.Point(232, 186);
-            this.btnUnlock.Name = "btnUnlock";
-            this.btnUnlock.Size = new System.Drawing.Size(65, 30);
-            this.btnUnlock.TabIndex = 92;
-            this.btnUnlock.Text = "解锁";
-            this.btnUnlock.UseVisualStyleBackColor = true;
-            this.btnUnlock.Click += new System.EventHandler(this.btnUnlock_Click);
-            // 
-            // btnDataInit
-            // 
-            this.btnDataInit.Enabled = false;
-            this.btnDataInit.Location = new System.Drawing.Point(429, 186);
-            this.btnDataInit.Name = "btnDataInit";
-            this.btnDataInit.Size = new System.Drawing.Size(98, 30);
-            this.btnDataInit.TabIndex = 93;
-            this.btnDataInit.Text = "数据初始化";
-            this.btnDataInit.UseVisualStyleBackColor = true;
-            this.btnDataInit.Click += new System.EventHandler(this.btnDataInit_Click);
-            // 
             // Frm基本信息
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 405);
-            this.Controls.Add(this.btnDataInit);
-            this.Controls.Add(this.btnUnlock);
-            this.Controls.Add(this.txtPwd);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnRestoreFromDecice);
             this.Controls.Add(this.btnBackToDevice);
             this.Controls.Add(this.lblSU1);
@@ -340,10 +292,6 @@
         private System.Windows.Forms.Label lblSU1;
         private System.Windows.Forms.Button btnBackToDevice;
         private System.Windows.Forms.Button btnRestoreFromDecice;
-        private LJH.GeneralLibrary.WinformControl.DBCTextBox txtPwd;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnUnlock;
-        private System.Windows.Forms.Button btnDataInit;
 
     }
 }

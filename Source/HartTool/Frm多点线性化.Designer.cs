@@ -64,16 +64,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnRead10 = new System.Windows.Forms.Button();
-            this.btnRead9 = new System.Windows.Forms.Button();
-            this.btnRead8 = new System.Windows.Forms.Button();
-            this.btnRead7 = new System.Windows.Forms.Button();
-            this.btnRead6 = new System.Windows.Forms.Button();
-            this.btnRead5 = new System.Windows.Forms.Button();
-            this.btnRead4 = new System.Windows.Forms.Button();
-            this.btnRead3 = new System.Windows.Forms.Button();
-            this.btnRead2 = new System.Windows.Forms.Button();
-            this.btnRead1 = new System.Windows.Forms.Button();
+            this.btnRead = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtAD
@@ -81,7 +72,7 @@
             this.txtAD.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtAD.ForeColor = System.Drawing.Color.Red;
             this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAD.Location = new System.Drawing.Point(408, 243);
+            this.txtAD.Location = new System.Drawing.Point(526, 279);
             this.txtAD.Name = "txtAD";
             this.txtAD.Size = new System.Drawing.Size(156, 26);
             this.txtAD.TabIndex = 27;
@@ -426,7 +417,7 @@
             // 
             // btnWrite
             // 
-            this.btnWrite.Location = new System.Drawing.Point(408, 279);
+            this.btnWrite.Location = new System.Drawing.Point(314, 279);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(158, 27);
             this.btnWrite.TabIndex = 71;
@@ -441,138 +432,29 @@
             this.richTextBox1.Enabled = false;
             this.richTextBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.richTextBox1.ForeColor = System.Drawing.Color.Gray;
-            this.richTextBox1.Location = new System.Drawing.Point(415, 43);
+            this.richTextBox1.Location = new System.Drawing.Point(314, 43);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(307, 139);
+            this.richTextBox1.Size = new System.Drawing.Size(408, 139);
             this.richTextBox1.TabIndex = 73;
             this.richTextBox1.Text = "说明：做多点线性化时，首先在压力一列，填入所要校验的压力点，按TAB可直接切换到下一所要填的压力值框。采集压力AD的时候一定要等AD值稳定后在采样。所有点完成后点" +
                 "击“下载”，完成多点线性化。通过读取参数按钮，可以读出多点线性化的数据。";
             // 
-            // btnRead10
+            // btnRead
             // 
-            this.btnRead10.Location = new System.Drawing.Point(302, 283);
-            this.btnRead10.Name = "btnRead10";
-            this.btnRead10.Size = new System.Drawing.Size(75, 23);
-            this.btnRead10.TabIndex = 83;
-            this.btnRead10.Tag = "10";
-            this.btnRead10.Text = "读取";
-            this.btnRead10.UseVisualStyleBackColor = true;
-            this.btnRead10.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead9
-            // 
-            this.btnRead9.Location = new System.Drawing.Point(302, 256);
-            this.btnRead9.Name = "btnRead9";
-            this.btnRead9.Size = new System.Drawing.Size(75, 23);
-            this.btnRead9.TabIndex = 82;
-            this.btnRead9.Tag = "9";
-            this.btnRead9.Text = "读取";
-            this.btnRead9.UseVisualStyleBackColor = true;
-            this.btnRead9.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead8
-            // 
-            this.btnRead8.Location = new System.Drawing.Point(302, 229);
-            this.btnRead8.Name = "btnRead8";
-            this.btnRead8.Size = new System.Drawing.Size(75, 23);
-            this.btnRead8.TabIndex = 81;
-            this.btnRead8.Tag = "8";
-            this.btnRead8.Text = "读取";
-            this.btnRead8.UseVisualStyleBackColor = true;
-            this.btnRead8.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead7
-            // 
-            this.btnRead7.Location = new System.Drawing.Point(302, 202);
-            this.btnRead7.Name = "btnRead7";
-            this.btnRead7.Size = new System.Drawing.Size(75, 23);
-            this.btnRead7.TabIndex = 80;
-            this.btnRead7.Tag = "7";
-            this.btnRead7.Text = "读取";
-            this.btnRead7.UseVisualStyleBackColor = true;
-            this.btnRead7.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead6
-            // 
-            this.btnRead6.Location = new System.Drawing.Point(302, 175);
-            this.btnRead6.Name = "btnRead6";
-            this.btnRead6.Size = new System.Drawing.Size(75, 23);
-            this.btnRead6.TabIndex = 79;
-            this.btnRead6.Tag = "6";
-            this.btnRead6.Text = "读取";
-            this.btnRead6.UseVisualStyleBackColor = true;
-            this.btnRead6.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead5
-            // 
-            this.btnRead5.Location = new System.Drawing.Point(302, 148);
-            this.btnRead5.Name = "btnRead5";
-            this.btnRead5.Size = new System.Drawing.Size(75, 23);
-            this.btnRead5.TabIndex = 78;
-            this.btnRead5.Tag = "5";
-            this.btnRead5.Text = "读取";
-            this.btnRead5.UseVisualStyleBackColor = true;
-            this.btnRead5.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead4
-            // 
-            this.btnRead4.Location = new System.Drawing.Point(302, 121);
-            this.btnRead4.Name = "btnRead4";
-            this.btnRead4.Size = new System.Drawing.Size(75, 23);
-            this.btnRead4.TabIndex = 77;
-            this.btnRead4.Tag = "4";
-            this.btnRead4.Text = "读取";
-            this.btnRead4.UseVisualStyleBackColor = true;
-            this.btnRead4.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead3
-            // 
-            this.btnRead3.Location = new System.Drawing.Point(302, 94);
-            this.btnRead3.Name = "btnRead3";
-            this.btnRead3.Size = new System.Drawing.Size(75, 23);
-            this.btnRead3.TabIndex = 76;
-            this.btnRead3.Tag = "3";
-            this.btnRead3.Text = "读取";
-            this.btnRead3.UseVisualStyleBackColor = true;
-            this.btnRead3.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead2
-            // 
-            this.btnRead2.Location = new System.Drawing.Point(302, 67);
-            this.btnRead2.Name = "btnRead2";
-            this.btnRead2.Size = new System.Drawing.Size(75, 23);
-            this.btnRead2.TabIndex = 75;
-            this.btnRead2.Tag = "2";
-            this.btnRead2.Text = "读取";
-            this.btnRead2.UseVisualStyleBackColor = true;
-            this.btnRead2.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRead1
-            // 
-            this.btnRead1.Location = new System.Drawing.Point(302, 40);
-            this.btnRead1.Name = "btnRead1";
-            this.btnRead1.Size = new System.Drawing.Size(75, 23);
-            this.btnRead1.TabIndex = 74;
-            this.btnRead1.Tag = "1";
-            this.btnRead1.Text = "读取";
-            this.btnRead1.UseVisualStyleBackColor = true;
-            this.btnRead1.Click += new System.EventHandler(this.btnRead_Click);
+            this.btnRead.Location = new System.Drawing.Point(314, 231);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(158, 27);
+            this.btnRead.TabIndex = 0;
+            this.btnRead.Text = "读取线性化参数";
+            this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // Frm多点线性化
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 330);
-            this.Controls.Add(this.btnRead10);
-            this.Controls.Add(this.btnRead9);
-            this.Controls.Add(this.btnRead8);
-            this.Controls.Add(this.btnRead7);
-            this.Controls.Add(this.btnRead6);
-            this.Controls.Add(this.btnRead5);
-            this.Controls.Add(this.btnRead4);
-            this.Controls.Add(this.btnRead3);
-            this.Controls.Add(this.btnRead2);
-            this.Controls.Add(this.btnRead1);
+            this.Controls.Add(this.btnRead);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.button10);
@@ -654,15 +536,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnWrite;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button btnRead10;
-        private System.Windows.Forms.Button btnRead9;
-        private System.Windows.Forms.Button btnRead8;
-        private System.Windows.Forms.Button btnRead7;
-        private System.Windows.Forms.Button btnRead6;
-        private System.Windows.Forms.Button btnRead5;
-        private System.Windows.Forms.Button btnRead4;
-        private System.Windows.Forms.Button btnRead3;
-        private System.Windows.Forms.Button btnRead2;
-        private System.Windows.Forms.Button btnRead1;
+        private System.Windows.Forms.Button btnRead;
     }
 }

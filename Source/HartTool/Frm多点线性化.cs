@@ -64,6 +64,7 @@ namespace HartTool
 
         public void ReadData()
         {
+            btnRead.Enabled = HartDevice != null && HartDevice.IsConnected;
             btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
         }
 
@@ -79,15 +80,20 @@ namespace HartTool
                     {
                         for (int i = 1; i <= 10; i++)
                         {
-                            LinearizationItem li = HartDevice.ReadLinearizationItem((byte)i);
+                            LinearizationItem li = null;
+                            for (int j = 0; j < 3; j++) //由于有时会读不到数据,所以每组数据在读取失败时会重新偿试读两次
+                            {
+                                li = HartDevice.ReadLinearizationItem((byte)i);
+                                if (li != null) break;
+                                Thread.Sleep(500);
+                            }
                             if (li != null && li.SensorAD == maxAD) break; //后面的都是无效的参数了,不用再继续获取
                             this.Invoke((Action)(() =>
-                                {
-                                    (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
-                                    (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
-                                }));
+                            {
+                                (this.Controls["txtP" + i.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
+                                (this.Controls["txtAD" + i.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
+                            }));
                             frm.ShowProgress(string.Empty, (decimal)i / 10);
-                            Thread.Sleep(1000);
                         }
                     }
                     frm.ShowProgress(string.Empty, 1);
@@ -98,8 +104,41 @@ namespace HartTool
                 catch (Exception)
                 {
                 }
+
             };
             Thread t = new Thread(new ThreadStart(a));
+            t.IsBackground = true;
+            t.Start();
+            if (frm.ShowDialog() != DialogResult.OK)
+            {
+                t.Abort();
+            }
+        }
+
+        private void WriteLinearizationItems(List<LinearizationItem> lis)
+        {
+            FrmProcessing frm = new FrmProcessing();
+            Action action = delegate()
+            {
+                try
+                {
+                    for (int i = 0; i < lis.Count; i += 2)
+                    {
+                        LinearizationItem[] items = new LinearizationItem[2] { lis[i], lis[i + 1] };
+                        bool ret = HartDevice.WriteLinearizationItems(items, (byte)(i / 2));
+                        frm.ShowProgress(string.Empty, (decimal)(i + 2) / lis.Count);
+                        Thread.Sleep(100);
+                    }
+                    frm.ShowProgress(string.Empty, 1);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception)
+                {
+                }
+            };
+            Thread t = new Thread(new ThreadStart(action));
             t.IsBackground = true;
             t.Start();
             if (frm.ShowDialog() != DialogResult.OK)
@@ -152,23 +191,7 @@ namespace HartTool
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            int maxAD = 70000;
-            if (HartDevice == null || !HartDevice.IsConnected) return;
-            string temp = (sender as Control).Tag.ToString();
-            int ind = 0;
-            if (int.TryParse(temp, out ind) && ind >= 1 && ind <= 10)
-            {
-                LinearizationItem li = HartDevice.ReadLinearizationItem((byte)ind);
-                if (li != null && li.SensorAD == maxAD)
-                {
-                    MessageBox.Show("已经获取到末尾");
-                }
-                else
-                {
-                    (this.Controls["txtP" + ind.ToString()] as TextBox).Text = li != null ? li.SensorValue.ToString() : null;
-                    (this.Controls["txtAD" + ind.ToString()] as TextBox).Text = li != null ? li.SensorAD.ToString() : null;
-                }
-            }
+            ReadLinearizationItems();
         }
 
         private void btnWrite_Click(object sender, EventArgs e)
@@ -193,48 +216,14 @@ namespace HartTool
                     }
                 }
             }
-            if (lis.Count <= 2)
+            if (lis.Count <= 1)
             {
-                MessageBox.Show("至少要设置3个线性化点");
+                MessageBox.Show("至少要设置2个线性化点");
                 return;
             }
             LinearizationItem.FillHeaderAndTail(lis);
-            DownloadLinearizations(lis);
-        }
-
-        private void DownloadLinearizations(List<LinearizationItem> lis)
-        {
-            FrmProcessing frm = new FrmProcessing();
-            Action action = delegate()
-            {
-                try
-                {
-                    for (int i = 0; i < lis.Count; i += 2)
-                    {
-                        LinearizationItem[] items = new LinearizationItem[2] { lis[i], lis[i + 1] };
-                        bool ret = HartDevice.WriteLinearizationItems(items, (byte)(i / 2));
-                        frm.ShowProgress(string.Empty, (decimal)(i + 2) / lis.Count);
-                        Thread.Sleep(100);
-                    }
-                    frm.ShowProgress(string.Empty, 1);
-                }
-                catch (ThreadAbortException)
-                {
-                }
-                catch (Exception)
-                {
-                }
-            };
-            Thread t = new Thread(new ThreadStart(action));
-            t.IsBackground = true;
-            t.Start();
-            if (frm.ShowDialog() != DialogResult.OK)
-            {
-                t.Abort();
-            }
+            WriteLinearizationItems(lis);
         }
         #endregion
-
-        
     }
 }

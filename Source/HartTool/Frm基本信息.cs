@@ -25,7 +25,8 @@ namespace HartTool
 
         public void ReadData()
         {
-            btnUnlock.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnBackToDevice.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnRestoreFromDecice.Enabled = HartDevice != null && HartDevice.IsConnected;
             if (HartDevice != null && HartDevice.IsConnected)
             {
                 OutputInfo oi = HartDevice.ReadOutput();
@@ -44,14 +45,6 @@ namespace HartTool
         #endregion
 
         #region 事件处理程序
-        private void btnUnlock_Click(object sender, EventArgs e)
-        {
-            btnBackToDevice.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected;
-            btnDataInit.Enabled = txtPwd.Text == "5567" && HartDevice != null && HartDevice.IsConnected; 
-            btnRestoreFromDecice.Enabled = txtPwd.Text == "8888" && HartDevice != null && HartDevice.IsConnected;
-            txtPwd.Text = string.Empty;
-        }
-
         private void btnBackToDevice_Click(object sender, EventArgs e)
         {
             if (HartDevice == null || !HartDevice.IsConnected) return;
