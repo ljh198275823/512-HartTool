@@ -76,6 +76,7 @@
             this.txtAD.Name = "txtAD";
             this.txtAD.Size = new System.Drawing.Size(156, 26);
             this.txtAD.TabIndex = 27;
+            this.txtAD.Visible = false;
             // 
             // label4
             // 
