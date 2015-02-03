@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartSDK", "HartSDK\HartSDK.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest1", "UnitTest1\UnitTest1.csproj", "{F2A18CD1-DD57-4CCD-AFF7-83C8D873F52A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{D7FA888A-57E7-4450-85CA-4399E380131E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,12 @@ Global
 		{F2A18CD1-DD57-4CCD-AFF7-83C8D873F52A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F2A18CD1-DD57-4CCD-AFF7-83C8D873F52A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F2A18CD1-DD57-4CCD-AFF7-83C8D873F52A}.Release|x86.ActiveCfg = Release|Any CPU
+		{D7FA888A-57E7-4450-85CA-4399E380131E}.Debug|Any CPU.ActiveCfg = Debug
+		{D7FA888A-57E7-4450-85CA-4399E380131E}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{D7FA888A-57E7-4450-85CA-4399E380131E}.Debug|x86.ActiveCfg = Debug
+		{D7FA888A-57E7-4450-85CA-4399E380131E}.Release|Any CPU.ActiveCfg = Release
+		{D7FA888A-57E7-4450-85CA-4399E380131E}.Release|Mixed Platforms.ActiveCfg = Release
+		{D7FA888A-57E7-4450-85CA-4399E380131E}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

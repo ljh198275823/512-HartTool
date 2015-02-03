@@ -102,7 +102,7 @@ namespace HartTool
             comPortComboBox1.Init();
             comPortComboBox1.ComPort = AppSettings.Current.HartCommport;
             cmbShortAddress.SelectedIndex = 0;
-            timer1.Enabled = true;
+            //timer1.Enabled = true;
         }
 
         private void btnOpen_Click(object sender, EventArgs e)

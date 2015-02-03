@@ -81,7 +81,7 @@ namespace HartTool
                         for (int i = 1; i <= 10; i++)
                         {
                             LinearizationItem li = null;
-                            for (int j = 0; j < 3; j++) //由于有时会读不到数据,所以每组数据在读取失败时会重新偿试读两次
+                            for (int j = 0; j < 4; j++) //由于有时会读不到数据,所以每组数据在读取失败时会重新偿试读三次
                             {
                                 li = HartDevice.ReadLinearizationItem((byte)i);
                                 if (li != null) break;
