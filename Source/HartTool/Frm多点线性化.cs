@@ -151,10 +151,10 @@ namespace HartTool
         #region 事件处理程序
         private void Frm多点线性化_Load(object sender, EventArgs e)
         {
-            //_TrdReadAD = new Thread(new ThreadStart(ReadAD_Task));
-            //_TrdReadAD.IsBackground = true;
-            //_Running = true;
-            //_TrdReadAD.Start();
+            _TrdReadAD = new Thread(new ThreadStart(ReadAD_Task));
+            _TrdReadAD.IsBackground = true;
+            _Running = true;
+            _TrdReadAD.Start();
         }
 
         private void Frm多点线性化_FormClosed(object sender, FormClosedEventArgs e)
