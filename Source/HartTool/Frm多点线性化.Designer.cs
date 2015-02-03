@@ -72,11 +72,10 @@
             this.txtAD.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtAD.ForeColor = System.Drawing.Color.Red;
             this.txtAD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAD.Location = new System.Drawing.Point(526, 279);
+            this.txtAD.Location = new System.Drawing.Point(513, 279);
             this.txtAD.Name = "txtAD";
             this.txtAD.Size = new System.Drawing.Size(156, 26);
             this.txtAD.TabIndex = 27;
-            this.txtAD.Visible = false;
             // 
             // label4
             // 

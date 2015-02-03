@@ -156,17 +156,20 @@ namespace HartSDK
                         ResponsePacket p = _Buffer.Dequeue();
                         while (p != null)
                         {
-                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", "解析包成功");
-                            if (p.PacketType == 0x01) //成组包,从设备主动上传的包
+                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯",p.CheckCRC ? "解析包成功":"解析包成功但校验失败");
+                            if (p.CheckCRC)
                             {
-                                OnPacketArrived(p);
-                            }
-                            else if (p.PacketType == 0x06) //从主包,从设备回复主设备
-                            {
-                                if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == p.Address)
+                                if (p.PacketType == 0x01) //成组包,从设备主动上传的包
                                 {
-                                    _ResponsePacket = p;
-                                    _DeviceResponsed.Set(); //通知设备有回复
+                                    OnPacketArrived(p);
+                                }
+                                else if (p.PacketType == 0x06) //从主包,从设备回复主设备
+                                {
+                                    if (_RequestPakcet != null && _RequestPakcet.Command == p.Command && _RequestPakcet.Address == p.Address)
+                                    {
+                                        _ResponsePacket = p;
+                                        _DeviceResponsed.Set(); //通知设备有回复
+                                    }
                                 }
                             }
                             p = _Buffer.Dequeue();

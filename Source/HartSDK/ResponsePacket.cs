@@ -150,7 +150,7 @@ namespace HartSDK
         /// <summary>
         /// 获取帧是否有效
         /// </summary>
-        public bool IsValid
+        public bool CheckCRC
         {
             get
             {
@@ -159,7 +159,6 @@ namespace HartSDK
                 Array.Copy(_Data, 2, temp, 0, temp.Length);
                 byte crc = LJH.GeneralLibrary.CRCHelper.CalCRC(temp);
                 if (crc != _Data[_Data.Length - 1]) return false;
-
                 return true;
             }
         }
