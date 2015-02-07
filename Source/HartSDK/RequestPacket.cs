@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace HartSDK
 {
     /// <summary>
     /// 表示一个请求帧
     /// </summary>
+    [Serializable]
     public class RequestPacket
     {
         #region 构造函数

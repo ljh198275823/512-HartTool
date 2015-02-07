@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading ;
 using System.IO.Ports;
+using System.Runtime.InteropServices;
 using LJH.GeneralLibrary;
 using LJH.GeneralLibrary.ExceptionHandling;
 
@@ -15,7 +16,7 @@ namespace HartSDK
     /// <summary>
     /// 表示HART 通讯串口
     /// </summary>
-    public class HartComport
+    internal class HartComport
     {
         #region 构造方法
         /// <summary>
@@ -156,7 +157,7 @@ namespace HartSDK
                         ResponsePacket p = _Buffer.Dequeue();
                         while (p != null)
                         {
-                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯",p.CheckCRC ? "解析包成功":"解析包成功但校验失败");
+                            if (Debug) LJH.GeneralLibrary.LOG.FileLog.Log("串口通讯", p.CheckCRC ? "解析包成功" : "解析包成功但校验失败");
                             if (p.CheckCRC)
                             {
                                 if (p.PacketType == 0x01) //成组包,从设备主动上传的包
@@ -619,7 +620,7 @@ namespace HartSDK
         /// <summary>
         /// 将当前的主变量值设置成主变量的下限
         /// </summary>
-        public bool SetLowerRangeValue(long longAddress,UnitCode uc,float lv)
+        public bool SetLowerRangeValue(long longAddress, UnitCode uc, float lv)
         {
             RequestPacket request = new RequestPacket()
             {
@@ -628,7 +629,7 @@ namespace HartSDK
                 Command = 0x83,
             };
             List<byte> temp = new List<byte>();
-            temp.Add ((byte )uc);
+            temp.Add((byte)uc);
             temp.AddRange(BitConverter.GetBytes(lv).Reverse());
             request.DataContent = temp.ToArray();
             ResponsePacket response = Request(request);

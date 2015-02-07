@@ -1,0 +1,222 @@
+using System;
+
+主要要操作的类
+
+HardDevice
+调用顺序
+Dim hart As New HartSDK.HartDevice //创建实例
+hart.Comport = 1 //设置串口号
+hart.Baud = 1200 //设置波特率
+Call hart.Connect //连接设备
+
+
+所有HartDevice的属性和方法的说明	
+ #region 公共属性
+        /// 获取或设置设备的通讯串口
+        public byte Comport
+        /// <summary>
+        ///获取或设置波特率
+        /// </summary>
+        public int Baud 
+        /// <summary>
+        /// 获取或设置设备的短帧地址
+        /// </summary>
+        public byte PollingAddress
+        /// <summary>
+        /// 获取或设置是否连接当前设备
+        /// </summary>
+        public bool IsConnected
+        /// <summary>
+        /// 获取或设置是否在调试模式
+        /// </summary>
+        public bool Debug { get; set; }
+        #endregion
+
+        #region 公共方法
+        /// <summary>
+        /// 连接设备
+        /// </summary>
+        public void Connect()
+
+        /// <summary>
+        /// 关闭与设备的连接
+        /// </summary>
+        public void Close()
+
+        /// <summary>
+        /// 获取最后一次操作的错误描述
+        /// </summary>
+        /// <returns></returns>
+        public string GetLastError()
+        #endregion
+
+        #region 读取参数的相关方法
+        /// <summary>
+        /// 读取设备唯一标识
+        /// </summary>
+        public UniqueIdentifier ReadUniqueID(bool optical = false)
+        /// <summary>
+        /// 读取设备的主变量
+        /// </summary>
+        public DeviceVariable ReadPV(bool optical = false)
+        /// <summary>
+        /// 读取电流和量程百分比
+        /// </summary>
+        public CurrentInfo ReadCurrent(bool optical = false)
+        /// <summary>
+        /// 读取设备标签信息
+        /// </summary>
+        public DeviceTagInfo ReadTag(bool optical = false)
+        /// <summary>
+        /// 读取设备消息
+        /// </summary>
+        public string ReadMessage(bool optical = false)
+        /// <summary>
+        /// 读取主变量传感器信息
+        /// </summary>
+        public SensorInfo ReadPVSensor(bool optical = false)
+        /// <summary>
+        /// 读取模拟输出信息
+        /// </summary>
+        public OutputInfo ReadOutput(bool optical = false)
+        /// <summary>
+        /// 获取信号切除量,百分比 0表示小信号切除量，1表示大20mA信号切除量
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="upperOrLower"></param>
+        /// <returns></returns>
+        public float ReadCurrentTrim(byte upperOrLower, bool optical = false)
+        /// <summary>
+        /// 获取设备的温度补偿参数 para为0表示低温补偿，1表示常温补偿 2表示高温补偿
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="para"></param>
+        /// <returns></returns>
+        public TemperatureCompensation ReadTC(byte para, bool optical = false)
+        /// <summary>
+        /// 读取线性化参数
+        /// </summary>
+        public LinearizationItem ReadLinearizationItem(byte para, bool optical = false)
+        /// <summary>
+        /// 读取主变量的AD值,小于0表示获取失败
+        /// </summary>
+        public float ReadPVAD(bool optical = false)
+		///读取传感器模式
+        public SensorMode? ReadSensorMode(bool optical = false)
+		///读取传感器代码
+        public SensorCode? ReadSensorCode(bool optical = false)
+        /// <summary>
+        /// 读取某个命令的返回值
+        /// </summary>
+        public byte[] ReadCommand(byte cmd, byte[] data)
+        #endregion
+
+        #region 设置参数的相关方法
+        /// <summary>
+        /// 写设备的短帧地址
+        /// </summary>
+        public bool WritePollingAddress(byte pollingAddress)
+        /// <summary>
+        /// 写消息
+        /// </summary>
+        public bool WriteMessage(string msg)
+        /// <summary>
+        /// 写标签信息
+        /// </summary>
+        public bool WriteTag(DeviceTagInfo tag)
+        /// <summary>
+        /// 写设备的最终装配号
+        /// </summary>
+        public bool WriteFinalAssemblyNumber(int assemblyNumber)
+        /// <summary>
+        /// 写主变量的阻尼系数
+        /// </summary>
+        public bool WriteDampValue(float dampValue)
+        /// <summary>
+        /// 写主变量的量程范围
+        /// </summary>
+        public bool WritePVRange(UnitCode unitCode, float upperRange, float lowerRange)
+        /// <summary>
+        /// 将当前的主变量值设置成主变量的上限
+        /// </summary>
+        public bool SetUpperRangeValue(UnitCode uc, float uv)
+        /// <summary>
+        /// 将当前的主变量值设置成主变量的下限
+        /// </summary>
+        public bool SetLowerRangeValue(UnitCode uc, float lv)
+        /// <summary>
+        /// 设置固定电流输出,当传入的参数为0时表示取消固定电流输出模式
+        /// </summary>
+        public bool SetFixedCurrent(float current)
+        /// <summary>
+        /// 自检
+        /// </summary>
+        public bool SelftTest()
+        /// <summary>
+        /// 复位设备
+        /// </summary>
+        public bool Reset()
+        /// <summary>
+        /// 设置主变量零点
+        /// </summary>
+        public bool SetPVZero()
+        /// <summary>
+        /// 设置主变量单位代码
+        /// </summary>
+        public bool WritePVUnit(UnitCode unitCode)
+        /// <summary>
+        /// 调校下限输出电流
+        /// </summary>
+        public bool TrimDACZero(float current)
+        /// <summary>
+        /// 调校上限电流
+        /// </summary>
+        public bool TrimDACGain(float current)
+        /// <summary>
+        /// 设置主变量DA输出转换函数
+        /// </summary>
+        public bool WriteTransferFunction(TransferFunctionCode code)
+        /// <summary>
+        /// 写主变量传感器序列号
+        /// </summary>
+        public bool WritePVSensorSN(int sn)
+        /// <summary>
+        /// 写返回帧前导字符(0xFF)的个数
+        /// </summary>
+        public bool WriteResponsePreamblesCount(byte count)
+        /// <summary>
+        /// 设置信号量切除量
+        /// </summary>
+        public bool WriteCurrentTrim(byte uOrl, float percent)
+        /// <summary>
+        /// 设置主传感器工作模式
+        /// </summary>
+        /// <param name="longAddress"></param>
+        /// <param name="mode"></param>
+        /// <param name="sensorCode"></param>
+        /// <returns></returns>
+        public bool WritePVSensorMode(SensorMode mode, SensorCode sensorCode)
+        /// <summary>
+        /// 写温度补偿参数
+        /// </summary>
+        public bool WriteTC(byte para, TemperatureCompensation tc)
+        /// <summary>
+        /// 写线性化参数
+        /// </summary>
+        public bool WriteLinearizationItems(LinearizationItem[] items, byte start)
+        /// <summary>
+        /// 备份参数
+        /// </summary>
+        /// <returns></returns>
+        public bool BackUp()
+        /// <summary>
+        /// 数据初始化
+        /// </summary>
+        /// <returns></returns>
+        public bool DataInit()
+        /// <summary>
+        /// 从备份的数据中恢复设备的参数
+        /// </summary>
+        /// <returns></returns>
+        public bool Restore()
+        #endregion

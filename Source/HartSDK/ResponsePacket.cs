@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace HartSDK
 {
@@ -11,6 +12,7 @@ namespace HartSDK
     /// </summary>
     // 结构 前导字节(2字节) + 界定(1字节) + 设备地址(1或5字节) + 命令(1字节) + 数据长度(1字节) + 数据(0-n字节) + CRC(1字节)
     // 前导符：设备回复此帧时可能在通讯上有超过两个字节的前导帧，但这里为了简便管理，统一取两个字节
+    [Serializable]
     public class ResponsePacket
     {
         #region 构造函数

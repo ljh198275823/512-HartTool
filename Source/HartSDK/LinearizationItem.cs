@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace HartSDK
 {
     /// <summary>
     /// 表示线性化参数
     /// </summary>
+    [Serializable]
     public class LinearizationItem
     {
         #region 构造函数

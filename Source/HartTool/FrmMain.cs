@@ -113,7 +113,7 @@ namespace HartTool
                 AppSettings.Current.HartCommport = comPortComboBox1.ComPort;
                 HartDevice = new HartSDK.HartDevice(comPortComboBox1.ComPort, 1200);
                 HartDevice.PollingAddress = (byte)cmbShortAddress.SelectedIndex;
-                HartDevice.HartComport.Debug = AppSettings.Current.Debug;
+                HartDevice.Debug = AppSettings.Current.Debug;
                 HartDevice.Connect();
                 lblCommportState.Text = string.Format(HartDevice.IsConnected ? "设备已经连接" : "设备连接失败");
                 lblCommportState.ForeColor = HartDevice.IsConnected ? Color.Blue : Color.Red;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LJH.GeneralLibrary
 {
-    public class CRCHelper
+    internal class CRCHelper
     {
         public static byte CalCRC(IEnumerable<byte> buffer)
         {
