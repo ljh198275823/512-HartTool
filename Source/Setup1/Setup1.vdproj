@@ -15,13 +15,19 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_012090FAD88178AE71A1EBBBB2401610"
+        "OwnerKey" = "8:_23436801FF9EF2594878A168AF51314C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1000FF33F6DD450A830FB9C8A5EF1EEC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_15F5CF030A3BF037DB60FFC4148671A5"
+        "MsmKey" = "8:_23436801FF9EF2594878A168AF51314C"
         "OwnerKey" = "8:_1000FF33F6DD450A830FB9C8A5EF1EEC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_15F5CF030A3BF037DB60FFC4148671A5"
+        "OwnerKey" = "8:_23436801FF9EF2594878A168AF51314C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -68,6 +74,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -92,6 +111,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -122,14 +154,34 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_15F5CF030A3BF037DB60FFC4148671A5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_012090FAD88178AE71A1EBBBB2401610"
+            {
+            "SourcePath" = "8:HartSDK.tlb"
+            "TargetName" = "8:HartSDK.tlb"
+            "Tag" = "8:"
+            "Folder" = "8:_3C3FCF1ADAF74B94B0BBA038F40118E6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_23436801FF9EF2594878A168AF51314C"
             {
             "AssemblyRegister" = "3:2"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:HartSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_15F5CF030A3BF037DB60FFC4148671A5"
+                    "_23436801FF9EF2594878A168AF51314C"
                     {
                     "Name" = "8:HartSDK.dll"
                     "Attributes" = "3:512"
@@ -230,7 +282,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HartTool"
         "ProductCode" = "8:{60D156F0-26B8-4840-AD28-B15E3A6684D9}"
-        "PackageCode" = "8:{F5195125-259B-4D83-8FAF-458853667249}"
+        "PackageCode" = "8:{B3E23C1A-A186-4700-A3B0-F8DBDC0C4D77}"
         "UpgradeCode" = "8:{3A4A33A7-EF0B-4513-91D2-28CE780CB1BB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

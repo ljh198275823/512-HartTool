@@ -46,8 +46,6 @@ namespace HartSDK
         private TemperatureCompensation[] _TCS = new TemperatureCompensation[3];
         private LinearizationItem[] _LItems = new LinearizationItem[11];
 
-        private string _ManufactureID = null;
-        private string _ManufactureCode = null;
         #endregion
 
         #region 公共属性
@@ -126,8 +124,7 @@ namespace HartSDK
 
         public bool IsMyDevice()
         {
-            if (!string.IsNullOrEmpty(_ManufactureID) && _ManufactureID == "A67C") return true;
-            if (!string.IsNullOrEmpty(_ManufactureCode) && _ManufactureCode == "7A") return true;
+            if (_ID != null && _ID.ManufactureID == 0xA8 && _ID.ManufactureDeviceType == 0x9D) return true;
             return false;
         }
         /// <summary>
