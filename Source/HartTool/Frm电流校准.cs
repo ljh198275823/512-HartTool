@@ -25,8 +25,8 @@ namespace HartTool
         {
             btnFix4.Enabled = HartDevice != null && HartDevice.IsConnected;
             btnFix20.Enabled = HartDevice != null && HartDevice.IsConnected;
-            btn4.Enabled = HartDevice != null && HartDevice.IsConnected;
-            btn20.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btn4.Enabled = HartDevice != null && HartDevice.IsConnected && HartDevice.IsMyDevice();
+            btn20.Enabled = HartDevice != null && HartDevice.IsConnected && HartDevice.IsMyDevice();
             btnFixedCurrent.Enabled = HartDevice != null && HartDevice.IsConnected;
         }
         #endregion

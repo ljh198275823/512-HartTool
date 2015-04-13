@@ -72,9 +72,9 @@ namespace HartTool
             btnRead0.Enabled = (HartDevice != null && HartDevice.IsConnected);
             btnRead1.Enabled = (HartDevice != null && HartDevice.IsConnected);
             btnRead2.Enabled = (HartDevice != null && HartDevice.IsConnected);
-            btnWrite0.Enabled = (HartDevice != null && HartDevice.IsConnected);
-            btnWrite1.Enabled = (HartDevice != null && HartDevice.IsConnected);
-            btnWrite2.Enabled = (HartDevice != null && HartDevice.IsConnected);
+            btnWrite0.Enabled = (HartDevice != null && HartDevice.IsConnected && HartDevice.IsMyDevice());
+            btnWrite1.Enabled = (HartDevice != null && HartDevice.IsConnected && HartDevice.IsMyDevice());
+            btnWrite2.Enabled = (HartDevice != null && HartDevice.IsConnected && HartDevice.IsMyDevice());
         }
 
         private void ReadTC(byte tag)

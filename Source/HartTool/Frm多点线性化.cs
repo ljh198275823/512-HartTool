@@ -65,7 +65,7 @@ namespace HartTool
         public void ReadData()
         {
             btnRead.Enabled = HartDevice != null && HartDevice.IsConnected;
-            btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected;
+            btnWrite.Enabled = HartDevice != null && HartDevice.IsConnected && HartDevice.IsMyDevice();
         }
 
         private void ReadLinearizationItems()

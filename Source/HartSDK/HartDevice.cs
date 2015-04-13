@@ -45,6 +45,9 @@ namespace HartSDK
         private SensorCode? _SensorCode = null;
         private TemperatureCompensation[] _TCS = new TemperatureCompensation[3];
         private LinearizationItem[] _LItems = new LinearizationItem[11];
+
+        private string _ManufactureID = null;
+        private string _ManufactureCode = null;
         #endregion
 
         #region 公共属性
@@ -119,6 +122,13 @@ namespace HartSDK
         {
             if (!optical) _ID = _HartComport.ReadUniqueID(PollingAddress);
             return _ID;
+        }
+
+        public bool IsMyDevice()
+        {
+            if (!string.IsNullOrEmpty(_ManufactureID) && _ManufactureID == "A67C") return true;
+            if (!string.IsNullOrEmpty(_ManufactureCode) && _ManufactureCode == "7A") return true;
+            return false;
         }
         /// <summary>
         /// 读取设备的主变量
